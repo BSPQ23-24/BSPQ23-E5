@@ -19,12 +19,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.RouteBus.client.gateway.ServerGateway;
+
 
 
 public class LoginWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	
+	private ServerGateway serverGateway;
 	private JLabel appNameLabel;
 	
 	private JLabel emailLabel;
@@ -38,7 +40,7 @@ public class LoginWindow extends JFrame{
 	private JLabel registerLabel;
 	private JButton registerButton;
 	
-	public LoginWindow() {
+	public LoginWindow(ServerGateway sg) {
 		
 		this.setTitle("LOGIN");
 		this.setLayout(null);
@@ -115,13 +117,10 @@ public class LoginWindow extends JFrame{
 				// TODO Auto-generated method stub
 				String password = String.valueOf(passwordField.getPassword());
 				String password_example = "SPQ23%24";
-				if (password.equals(password_example)) {
-					JOptionPane.showMessageDialog(null, "Login successful", "", JOptionPane.INFORMATION_MESSAGE);	
-					
-					}else {
-						JOptionPane.showMessageDialog(null, "The password is no valid", "", JOptionPane.ERROR_MESSAGE);
-					}
-				}
+				if(sg.checkPassword(emailTField.getText(),String.valueOf(passwordField.getPassword()))) {
+					System.out.println("login correct");
+				};
+			}
 		});
 		
 		registerButton.addActionListener(new ActionListener() {
@@ -143,12 +142,5 @@ public class LoginWindow extends JFrame{
 			});
 			
 			this.setVisible(true);
-		
-	}
-	
-	public static void main(String[] args) {
-		new LoginWindow();
-	}
-	
-
+		}
 }
