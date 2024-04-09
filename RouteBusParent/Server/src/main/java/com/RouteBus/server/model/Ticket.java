@@ -1,4 +1,4 @@
-package com.RouteBus.server.information;
+package com.RouteBus.server.model;
 
 import java.util.Date;
 

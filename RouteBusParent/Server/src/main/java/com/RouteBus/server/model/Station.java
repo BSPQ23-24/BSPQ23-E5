@@ -1,4 +1,4 @@
-package com.RouteBus.server.information;
+package com.RouteBus.server.model;
 import java.util.List;
 
 public class Station {
@@ -6,7 +6,7 @@ public class Station {
     private String name;
     private String location;
     private List<Bus> buses; // Nuevo atributo para la lista de buses
-    private List<Route>
+    private List<Route> routes;
     public Station(){
         
     }

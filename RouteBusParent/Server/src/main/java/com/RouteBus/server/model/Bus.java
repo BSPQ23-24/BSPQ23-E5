@@ -1,12 +1,19 @@
-package com.RouteBus.server.information;
+package com.RouteBus.server.model;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 @Table
 @Entity
 public class Bus {
 	@Id
     private int id;
-	@ManyToMany(mapped="buses",Fetch= FechtType.Eager, cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy ="buses",fetch= FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Station> stations;
     private String driver;
     private int capacity;

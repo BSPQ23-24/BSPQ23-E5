@@ -1,4 +1,4 @@
-package com.RouteBus.server.information;
+package com.RouteBus.server.model;
 
 import java.util.Date;
 import java.util.List;
@@ -13,12 +13,12 @@ import javax.persistence.Table;
 @Entity
 public class User {
 	@Id
-    private int id;
-    private String name;
+    private Long id;
+    private String firstName;
     private String lastName;
     private String email;
     private Date birthDate;
-    private String gender;
+    private String password;
     private String nationality;
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Ticket> tickets;
@@ -26,31 +26,31 @@ public class User {
         
     }
 
-    public User(int id, String name, String lastName, String email, Date birthDate, String gender, String nationality) {
+    public User(Long id, String name, String lastName, String email, Date birthDate, String password, String nationality) {
         this.id = id;
-        this.name = name;
+        this.firstName = name;
         this.lastName = lastName;
         this.email = email;
         this.birthDate = birthDate;
-        this.gender = gender;
+        this.password = password;
         this.nationality = nationality;
     }
 
     // Getters and setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getLastName() {
@@ -77,12 +77,12 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public String getGender() {
-        return gender;
+    public String getPassword() {
+        return password;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNationality() {
@@ -97,11 +97,11 @@ public class User {
     public String toString() {
         return "User{" +
             "id=" + id +
-            ", name='" + name + '\'' +
+            ", name='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", birthDate=" + birthDate +
-            ", gender='" + gender + '\'' +
+            ", password='" + password + '\'' +
             ", nationality='" + nationality + '\'' +
             '}';
     }

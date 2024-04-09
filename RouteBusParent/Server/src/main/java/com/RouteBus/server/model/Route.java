@@ -1,14 +1,19 @@
-package com.RouteBus.server.information;
+package com.RouteBus.server.model;
 
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 @Table
 @Entity
 public class Route {
 	@Id
     private int id;
-	@ManyToMany(mappedby="routes")
+	@ManyToMany(mappedBy ="routes")
     private ArrayList<Station> RouteStations;
-	@ManyToMany(mappedby="stations")
+	@ManyToMany(mappedBy ="stations")
     private ArrayList<Bus> buses;
     private double totalDistance; 
 
