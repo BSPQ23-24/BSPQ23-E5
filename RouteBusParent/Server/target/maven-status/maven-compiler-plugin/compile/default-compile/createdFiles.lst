@@ -1,11 +1,7 @@
 com\RouteBus\server\dao\UserRepository.class
 com\RouteBus\server\service\UserService.class
-com\RouteBus\server\model\Station.class
-com\RouteBus\server\model\Ticket.class
 com\RouteBus\server\model\User.class
 com\RouteBus\server\App.class
 com\RouteBus\server\controller\UserRestController$1.class
-com\RouteBus\server\model\Bus.class
 com\RouteBus\server\service\UserService$UserServiceResult.class
 com\RouteBus\server\controller\UserRestController.class
-com\RouteBus\server\model\Route.class
