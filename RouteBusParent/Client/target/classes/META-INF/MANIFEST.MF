@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: murci
-Build-Jdk: 17.0.10
+Built-By: diego
+Build-Jdk: 17.0.8.1
 Implementation-Title: Client
 Implementation-Version: 1.0-SNAPSHOT
 Implementation-Vendor-Id: com.RouteBus

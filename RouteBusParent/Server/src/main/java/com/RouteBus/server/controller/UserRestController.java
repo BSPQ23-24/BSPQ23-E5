@@ -96,13 +96,13 @@ public class UserRestController {
     }
     @GetMapping("/checkUser/{Gmail}")
     public boolean checkUser(@PathVariable String Gmail) {
-    	log.warn("Comprobando gmail...");
+    	log.warn("Checking user gmail ...");
     	return userService.checkUser(Gmail);
     }
                  
     @PostMapping("/checkPassword")
     public boolean checkPassword(@RequestParam String gmail, @RequestParam String password) {
-    	log.warn("Comprobando usuario ...");
+    	log.warn("Checking user password ...");
     	return userService.checkPassword(gmail, password);
     }
 }

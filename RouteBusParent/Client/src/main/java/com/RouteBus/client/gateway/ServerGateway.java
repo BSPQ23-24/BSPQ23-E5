@@ -54,8 +54,7 @@ public class ServerGateway {
 
 	public boolean checkUser(String email) {
 		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(SERVERURL + ":" + SERVERPORT +"/" + "checkUser/" + email))
-				.build();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(SERVERURL + ":" + SERVERPORT + "/checkUser/" + email)).build();
 		try {
 			HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 			
@@ -72,13 +71,12 @@ public class ServerGateway {
 
 	public boolean checkPassword(String email, String password) {
 	    HttpClient client = HttpClient.newHttpClient();
-	    String jsonBody = String.format("{\"Gmail\":\"%s\", \"password\":\"%s\"}", email, password);
+	    String formParams = String.format("gmail=%s&password=%s", email, password);
 	    String finalUri = String.format("%s:%d/checkPassword", SERVERURL, SERVERPORT);
-	    System.out.println("Final URI: " + finalUri); // Para depuración
 	    HttpRequest request = HttpRequest.newBuilder()
 	            .uri(URI.create(finalUri))
-	            .header("Content-Type", "application/json")
-	            .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+	            .header("Content-Type", "application/x-www-form-urlencoded")
+	            .POST(HttpRequest.BodyPublishers.ofString(formParams))
 	            .build();
 
 	    try {

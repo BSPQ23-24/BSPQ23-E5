@@ -4,6 +4,7 @@ import com.RouteBus.client.gateway.ServerGateway;
 
 public class App {
 	public static void main(String[] args) {
-		new ServerGateway().checkPassword("diego.merino@opendeusto.es", "123");
+		System.out.println(new ServerGateway().checkPassword("diego.merino@opendeusto.es", "123"));
+		System.out.println(new ServerGateway().checkUser("diego.merino@opendeusto.es"));
 	}
 }
