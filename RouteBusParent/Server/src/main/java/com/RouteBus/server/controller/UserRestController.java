@@ -1,7 +1,6 @@
 package com.RouteBus.server.controller;
 
 
-package es.deusto.ingenieria.sd.springboot.server.controller;
 
 import java.util.List;
 
@@ -21,12 +20,12 @@ import com.RouteBus.server.model.User;
 import com.RouteBus.server.service.UserService;
 
 @RestController
-public class UserServiceController {
-	private static final Logger log= LoggerFactory.getLogger(UserServiceController.class);	
+public class UserRestController {
+	private static final Logger log= LoggerFactory.getLogger(UserRestController.class);	
 
     private UserService userService;
     
-    public UserServiceController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
     
