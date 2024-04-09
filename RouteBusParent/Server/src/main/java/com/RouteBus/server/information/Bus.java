@@ -1,9 +1,12 @@
 package com.RouteBus.server.information;
 
 import java.util.List;
-
+@Table
+@Entity
 public class Bus {
+	@Id
     private int id;
+	@ManyToMany(mapped="buses",Fetch= FechtType.Eager, cascade=CascadeType.ALL)
     private List<Station> stations;
     private String driver;
     private int capacity;

@@ -6,7 +6,7 @@ public class Station {
     private String name;
     private String location;
     private List<Bus> buses; // Nuevo atributo para la lista de buses
-
+    private List<Route>
     public Station(){
         
     }

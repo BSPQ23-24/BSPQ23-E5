@@ -1,8 +1,18 @@
 package com.RouteBus.server.information;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Table
+@Entity
 public class User {
+	@Id
     private int id;
     private String name;
     private String lastName;
@@ -10,7 +20,8 @@ public class User {
     private Date birthDate;
     private String gender;
     private String nationality;
-
+    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
     public User(){
         
     }

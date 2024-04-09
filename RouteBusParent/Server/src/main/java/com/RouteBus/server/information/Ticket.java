@@ -2,7 +2,13 @@ package com.RouteBus.server.information;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Table
+@Entity
 public class Ticket {
+	@ManyToOne
     private User client;
     private String destination;
     private double price;

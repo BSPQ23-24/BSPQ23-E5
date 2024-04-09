@@ -1,10 +1,14 @@
 package com.RouteBus.server.information;
 
 import java.util.ArrayList;
-
+@Table
+@Entity
 public class Route {
+	@Id
     private int id;
-    private ArrayList<Station> stations;
+	@ManyToMany(mappedby="routes")
+    private ArrayList<Station> RouteStations;
+	@ManyToMany(mappedby="stations")
     private ArrayList<Bus> buses;
     private double totalDistance; 
 
@@ -14,7 +18,7 @@ public class Route {
 
     public Route(int id, ArrayList<Station> stations, ArrayList<Bus> buses, double totalDistance) {
         this.id = id;
-        this.stations = stations;
+        this.RouteStations = stations;
         this.buses = buses;
         this.totalDistance = totalDistance;
     }
@@ -29,11 +33,11 @@ public class Route {
     }
 
     public ArrayList<Station> getStations() {
-        return stations;
+        return RouteStations;
     }
 
     public void setStations(ArrayList<Station> stations) {
-        this.stations = stations;
+        this.RouteStations = stations;
     }
 
     public ArrayList<Bus> getBuses() {
@@ -55,7 +59,7 @@ public class Route {
     public String toString() {
         return "Route{" +
                 "id=" + id +
-                ", stations=" + stations +
+                ", stations=" + RouteStations +
                 ", buses=" + buses +
                 ", totalDistance=" + totalDistance +
                 '}';
