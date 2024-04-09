@@ -54,10 +54,11 @@ public class ServerGateway {
 
 	public boolean checkUser(String email) {
 		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(SERVERURL + SERVERPORT + "checkUser/" + email))
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(SERVERURL + "/" + SERVERPORT +"/" + "checkUser/" + email))
 				.build();
 		try {
 			HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+			
 			if (response.statusCode() == 200) {
 				boolean result = gson.fromJson(response.body(), Boolean.class);
 				return result;
