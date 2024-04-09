@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.RouteBus.server.dao.UserRepository;
+import com.RouteBus.server.model.User;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 
 
@@ -17,11 +17,6 @@ public class App {
 
 	private static final Logger log = LoggerFactory.getLogger(App.class);
 
-	@Value("${spring.mail.host}")
-	private String host;
-	@Value("${spring.mail.port}")
-	private int port;
-
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
@@ -29,6 +24,8 @@ public class App {
 	@Bean
 	CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
+			User diego = new User("Diego", "Merino", "diego.merino@opendeusto.es", "123");
+			repository.save(diego);
 			log.info("USER Services AVAILABLE ...");
 		};
 	}

@@ -1,18 +1,16 @@
 package com.RouteBus.server.model;
 
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-@Table
+@Table(name = "userTable")
 @Entity
 public class User {
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -20,14 +18,8 @@ public class User {
     private Date birthDate;
     private String password;
     private String nationality;
-    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<Ticket> tickets;
-    public User(){
-        
-    }
 
-    public User(Long id, String name, String lastName, String email, Date birthDate, String password, String nationality) {
-        this.id = id;
+    public User(String name, String lastName, String email, Date birthDate, String password, String nationality) {
         this.firstName = name;
         this.lastName = lastName;
         this.email = email;
@@ -36,13 +28,12 @@ public class User {
         this.nationality = nationality;
     }
 
-    // Getters and setters
+    public User(String firstName, String lastName, String email, String password) {
+    	this(firstName, lastName, email, null, password, null);
+	}
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

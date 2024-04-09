@@ -9,7 +9,6 @@ import com.RouteBus.server.model.User;
 import java.util.List;
 import java.util.Optional;
 
-//Use @Service annotation for BUSINESS LOGIC and access to the @REPOSITORY
 @Service
 public class UserService {
 

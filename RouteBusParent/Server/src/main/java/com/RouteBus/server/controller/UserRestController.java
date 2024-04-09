@@ -94,17 +94,15 @@ public class UserRestController {
    				return ResponseEntity.ok("All users has been deleted.");
     	}   
     }
-    @GetMapping( "/validarGmail/{Gmail}")
-    public boolean validarGmail( @PathVariable String Gmail) {
+    @GetMapping("/checkUser/{Gmail}")
+    public boolean checkUser(@PathVariable String Gmail) {
     	log.warn("Comprobando gmail...");
     	return userService.checkUser(Gmail);
     }
                  
-    @PostMapping("/validarUsuario")
-    public boolean validUsuario(  @RequestParam String gmail, @RequestParam String password) {
+    @PostMapping("/checkPassword")
+    public boolean checkPassword(@RequestParam String gmail, @RequestParam String password) {
     	log.warn("Comprobando usuario ...");
     	return userService.checkPassword(gmail, password);
     }
-    
-    
 }
