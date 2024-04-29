@@ -1,29 +1,37 @@
 package com.RouteBus.server.model;
-import java.util.List;
+import java.util.Set;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.apache.catalina.LifecycleState;
 
+@Table
+@Entity
 public class Station {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String location;
-    private List<Bus> buses; // Nuevo atributo para la lista de buses
-
+    @ManyToMany(mappedBy = "stations",fetch = FetchType.EAGER)
+    private Set<Route> routes;
     public Station(){
         
     }
 
-    public Station(int id, String name, String location, List<Bus> buses) {
-        this.id = id;
+    public Station( String name, String location, Set<Route> routes) {
         this.name = name;
         this.location = location;
-        this.buses = buses; // Inicializar el atributo buses
+        this.routes= routes;
+        // Inicializar el atributo buses
     }
 
     // Getters and setters
@@ -51,21 +59,16 @@ public class Station {
         this.location = location;
     }
 
-    public List<Bus> getBuses() {
-        return buses;
-    }
-
-    public void setBuses(List<Bus> buses) {
-        this.buses = buses;
-    }
-
     @Override
     public String toString() {
         return "Station{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", buses=" + buses +
+                ", location='" + location + 
                 '}';
+    }
+    
+    public boolean addRoute(Route route) {
+    	return this.routes.add(route);
     }
 }

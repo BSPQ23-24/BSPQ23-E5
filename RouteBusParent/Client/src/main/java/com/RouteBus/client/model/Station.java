@@ -1,5 +1,4 @@
-package com.RouteBus.server.model;
-
+package com.RouteBus.client.model;
 import java.util.Set;
 import java.util.Set;
 
@@ -11,28 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
+import org.apache.catalina.LifecycleState;
 
 @Table
 @Entity
-public class Bus {
+public class Station {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-	@ManyToMany(mappedBy = "buses", fetch = FetchType.EAGER)
+    private String name;
+    private String location;
+    @ManyToMany(mappedBy = "stations",fetch = FetchType.EAGER)
     private Set<Route> routes;
-    private String driver;
-    private int capacity;
-
-    public Bus(){
+    public Station(){
         
     }
 
-    public Bus(Set<Route> routes, String driver, int capacity) {
-        this.driver = driver;
-        this.capacity = capacity; 
+    public Station( String name, String location, Set<Route> routes) {
+        this.name = name;
+        this.location = location;
         this.routes= routes;
+        // Inicializar el atributo buses
     }
 
     // Getters and setters
@@ -44,34 +43,32 @@ public class Bus {
         this.id = id;
     }
 
-  
-    public String getDriver() {
-        return driver;
+    public String getName() {
+        return name;
     }
 
-    public void setDriver(String driver) {
-        this.driver = driver;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
     public String toString() {
-        return "Bus{" +
+        return "Station{" +
                 "id=" + id +
-                ", driver='" + driver +
-                ", capacity=" + capacity +
+                ", name='" + name + '\'' +
+                ", location='" + location + 
                 '}';
     }
     
     public boolean addRoute(Route route) {
     	return this.routes.add(route);
     }
-
 }

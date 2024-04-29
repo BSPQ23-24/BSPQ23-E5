@@ -1,4 +1,4 @@
-package com.RouteBus.server.model;
+package com.RouteBus.client.model;
 
 import java.util.Set;
 import java.util.Set;
@@ -35,7 +35,15 @@ public class Bus {
         this.routes= routes;
     }
 
-    // Getters and setters
+    public Set<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
+
+	// Getters and setters
     public int getId() {
         return id;
     }

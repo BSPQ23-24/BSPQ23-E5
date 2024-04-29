@@ -1,4 +1,4 @@
-package com.RouteBus.server.model;
+package com.RouteBus.client.model;
 
 import java.util.Set;
 import java.util.Set;
