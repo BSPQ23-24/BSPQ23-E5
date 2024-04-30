@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name = "userTable")
 @Entity
 public class User {
@@ -20,6 +22,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date birthDate;
     private String password;
     private String nationality;

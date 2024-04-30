@@ -22,6 +22,7 @@ import com.RouteBus.client.model.Ticket;
 import com.RouteBus.client.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
 @SpringBootApplication
@@ -31,7 +32,9 @@ public class ServerGateway {
 	private static final String SERVERURL = "http://localhost";
 	private static final int SERVERPORT = 8080;
 	
-	private static Gson gson = new Gson();
+	private static Gson gson = new GsonBuilder()
+			.setDateFormat("yyyy-MM-dd")
+            .create();
 	@SuppressWarnings("unused")
 	private RestTemplate restTemplate;
 	private static ServerGateway instance;
@@ -508,7 +511,6 @@ public class ServerGateway {
 	        }
 	        System.out.format("- Error: %d\n", response.statusCode());
 	    } catch (Exception e) {
-	    	
 	        System.out.format("- ERROR: %s\n", e.getMessage());
 	    }
 
@@ -616,12 +618,12 @@ public class ServerGateway {
 	}
 	public boolean registerUser(User user) {
 	    HttpClient client = HttpClient.newHttpClient();
-	    String busJson = gson.toJson(user);
+	    String userJson = gson.toJson(user);
 	    String finalUri = String.format("%s:%d/user/create", SERVERURL, SERVERPORT);
 	    HttpRequest request = HttpRequest.newBuilder()
 	            .uri(URI.create(finalUri))
 	            .header("Content-Type", "application/json")
-	            .POST(HttpRequest.BodyPublishers.ofString(busJson))
+	            .POST(HttpRequest.BodyPublishers.ofString(userJson))
 	            .build();
 	    try {
 	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

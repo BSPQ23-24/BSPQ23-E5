@@ -1,13 +1,19 @@
 package com.RouteBus.client.gui;
 import com.RouteBus.client.gateway.ServerGateway;
+import com.RouteBus.client.model.User;
 import com.toedter.calendar.JDateChooser;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import java.util.regex.Pattern;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 
 public class RegistrationWindow extends JFrame {
 
@@ -16,13 +22,13 @@ public class RegistrationWindow extends JFrame {
     private JTextField tName;
     private JTextField tSurname;
     private JTextField tEmail;
-    private JDateChooser dBirthDate;
-
+    private JTextField dBirthDate;
+    private JTextField tNationality;
     private JPasswordField password;
     private JPasswordField passwordR;
 
-    public RegistrationWindow() {
-
+    public RegistrationWindow(ServerGateway serverGateway) {
+    	this.serverGateway= serverGateway;
         this.setTitle("REGISTER NEW USER");
         this.setLayout(null);
         this.setBounds(500, 100, 420, 600);
@@ -79,34 +85,42 @@ public class RegistrationWindow extends JFrame {
 
         JLabel birthDateLabel = new JLabel("Birth Date:");
         birthDateLabel.setForeground(Color.WHITE);
-        birthDateLabel.setBounds(30, 250, 80, 30);
+        birthDateLabel.setBounds(30, 290, 80, 30);
         panel.add(birthDateLabel);
 
         // Initialize JDateChooser
-        dBirthDate = new JDateChooser();
-        dBirthDate.setBounds(140, 250, 200, 30);
+        dBirthDate = new JTextField("yyyy-MM-dd");
+        dBirthDate.setBounds(140, 290, 200, 30);
         panel.add(dBirthDate);
-
+        
+        JLabel nationalityLabel = new JLabel("Nationality:");
+        nationalityLabel.setForeground(Color.WHITE);
+        nationalityLabel.setBounds(30, 170, 80, 30);
+        panel.add(nationalityLabel);
+        tNationality = new JTextField();
+        tNationality.setBounds(140, 170, 200, 30);
+        panel.add(tNationality);
+        
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setForeground(Color.WHITE);
-        passwordLabel.setBounds(30, 170, 80, 30);
+        passwordLabel.setBounds(30, 210, 80, 30);
         panel.add(passwordLabel);
 
         password = new JPasswordField();
-        password.setBounds(140, 170, 200, 30);
+        password.setBounds(140, 210, 200, 30);
         panel.add(password);
 
         JLabel passwordRLabel = new JLabel("Repeat Password:");
         passwordRLabel.setForeground(Color.WHITE);
-        passwordRLabel.setBounds(30, 210, 110, 30);
+        passwordRLabel.setBounds(30, 250, 110, 30);
         panel.add(passwordRLabel);
 
         passwordR = new JPasswordField();
-        passwordR.setBounds(140, 210, 200, 30);
+        passwordR.setBounds(140, 250, 200, 30);
         panel.add(passwordR);
 
         JButton bRegister = new JButton("Register");
-        bRegister.setBounds(90, 300, 160, 30);
+        bRegister.setBounds(90, 350, 160, 30);
         panel.add(bRegister);
         bRegister.addMouseListener(new MouseAdapter() {
             Pattern pEmail = Pattern.compile("^[A-Z0-9+_.-]+@[A-Z0-9.-]+$");
@@ -119,12 +133,11 @@ public class RegistrationWindow extends JFrame {
                 String emailCheck = tEmail.getText();
                 boolean b1 = pEmail.matcher(emailCheck).find();
                             
-                if(tName.getText().equals("") || tSurname.getText().equals("")||dBirthDate.getDate() == null || tEmail.getText().equals("")){
+                if(tName.getText().equals("") || tSurname.getText().equals("")||dBirthDate.getText().equals("") || tEmail.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Name, Surname, Birthdate must be filled to register correctly");
                     if(!b1) {
                         JOptionPane.showMessageDialog(null, "Email format is not valid");	
                     }					
-
                 }else if (password1.equals(password2) && password1.length()>0) {
                     boolean b2 = pPassword.matcher(password1).find();
                     if(!b2) {
@@ -133,8 +146,20 @@ public class RegistrationWindow extends JFrame {
                         String surname = tSurname.getText();
                         String email = tEmail.getText();
                         String userPassword = new String(password.getPassword());
+                        Date birthDate = null;
+                        DateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+							birthDate =df.parse(dBirthDate.getText());
+						} catch (Exception e2) {
+							// TODO: handle exception
+							System.err.println(e2.getMessage());
+						}
+                       
+                        String nationality = tNationality.getText();
+                        User user= new User(name,surname, email, birthDate, userPassword, nationality);
+                        
                         //
-                        if (true) {
+                        if (serverGateway.registerUser(user)) {
                             JOptionPane.showMessageDialog(null,"User has been created","",JOptionPane.DEFAULT_OPTION);		
                             dispose();
                             new LoginWindow(serverGateway);
@@ -150,7 +175,7 @@ public class RegistrationWindow extends JFrame {
             }
         });
         JTextField loginText = new JTextField("Already have an account?");
-        loginText.setBounds(100, 330, 290, 20);
+        loginText.setBounds(100, 390, 290, 20);
         loginText.setForeground(Color.WHITE);
         loginText.setBorder(null);
         loginText.setOpaque(false);
@@ -169,6 +194,6 @@ public class RegistrationWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        new RegistrationWindow();
+        new RegistrationWindow(new ServerGateway());
     }
 }
