@@ -1,6 +1,8 @@
 package com.RouteBus.server.model;
 
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +19,13 @@ public class User {
     private String lastName;
     private String password;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nationality_id")
+    private Nationality nationality;
+    
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+    
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
@@ -26,15 +35,16 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, UserRole role) {
+    public User(String firstName, String lastName, String email, String password, Date birthDate, UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.birthDate = birthDate;
         this.role = role;
     }
 
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -72,6 +82,22 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Nationality getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(Nationality nationality) {
+		this.nationality = nationality;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public UserRole getRole() {
