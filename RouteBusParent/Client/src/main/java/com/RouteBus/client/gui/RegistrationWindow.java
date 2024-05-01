@@ -1,17 +1,19 @@
 package com.RouteBus.client.gui;
 import javax.imageio.ImageIO;
+
 import javax.swing.*;
 
-//import com.RouteBus.client.model.User;
+import com.RouteBus.client.controller.UserController;
+import com.RouteBus.client.dto.UserDTO;
 import com.toedter.calendar.JDateChooser;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 public class RegistrationWindow extends JFrame{
 
@@ -43,7 +45,9 @@ public class RegistrationWindow extends JFrame{
 		this.setLayout(null);
 		this.setBounds(300, 100, 750, 600);
 		this.setResizable(false);
-		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+
 		JPanel contentPane = new JPanel(null);
 		contentPane.setBackground(Color.WHITE);
 		this.setContentPane(contentPane);
@@ -63,15 +67,7 @@ public class RegistrationWindow extends JFrame{
 		dBirthDate = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
 		
 		comboNationality = new JComboBox<String>();
-        comboNationality.addItem("American");
-        comboNationality.addItem("British");
-        comboNationality.addItem("Chinese");
-        comboNationality.addItem("French");
-        comboNationality.addItem("German");
-        comboNationality.addItem("Indian");
-        comboNationality.addItem("Japanese");
-        comboNationality.addItem("Russian");
-        comboNationality.addItem("Spanish");
+		loadNationalities();
 		
 		password = new JPasswordField();
 		passwordR = new JPasswordField();
@@ -126,72 +122,57 @@ public class RegistrationWindow extends JFrame{
 		bRegister.setBounds(320, 450, 150, 30);
 		contentPane.add(bRegister);
 		
-		bRegister.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-	            String name = tName.getText().trim();
-	            String surname = tSurname.getText().trim();
-	            String email = tEmail.getText().trim();
-	            String nationality = (String) comboNationality.getSelectedItem();
-	            String passwordText = new String(password.getPassword());
-	            String passwordRText = new String(passwordR.getPassword());
-	            // Convert birthdate to string
-	            Date birthDate = dBirthDate.getDate();
-
-	            // Check if all fields are filled
-	            if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality.isEmpty() || passwordText.isEmpty() || passwordRText.isEmpty()) {
-	                JOptionPane.showMessageDialog(RegistrationWindow.this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
-	                return;
-	            } else {
-//	                User user = new User();
-//	                user.setFirstName(name);
-//	                user.setLastName(surname);
-//	                user.setEmail(email);
-//	                user.setBirthDate(birthDate);
-//	                user.setNationality(nationality);
-//	                user.setPassword(passwordText);
-	            }
-
-	            // Check if passwords match
-	            if (!passwordText.equals(passwordRText)) {
-	                JOptionPane.showMessageDialog(RegistrationWindow.this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
-	                return;
-	            }
-				
-			}
-		});
+		bRegister.addActionListener(this::performRegistration);
 		
         // Draw vertical line
         VerticalLinePanel linePanel = new VerticalLinePanel();
-        linePanel.setBounds(450, 200, 1, 220); // Adjust position and size as needed
+        linePanel.setBounds(450, 200, 1, 220);
         contentPane.add(linePanel);
 		
         try {
-            BufferedImage image = ImageIO.read(new File("images/icon.png"));
+            BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
             ImageIcon icon = new ImageIcon(image);
             JLabel imageLabel = new JLabel(icon);
-            imageLabel.setBounds(300, -40, 200, 300); // Adjust position and size as needed
+            imageLabel.setBounds(300, -40, 200, 300);
             contentPane.add(imageLabel);
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
-		
-		
+
 		this.setVisible(true);
 		
 	}
 	
-	public static void main(String[] args) {
-		new RegistrationWindow();
-	}
+	private void performRegistration(ActionEvent e) {
+        String name = tName.getText().trim();
+        String surname = tSurname.getText().trim();
+        String email = tEmail.getText().trim();
+        Date birthDate = dBirthDate.getDate();
+        String nationality = (String) comboNationality.getSelectedItem();
+        String passwordText = new String(password.getPassword());
+        String passwordRText = new String(passwordR.getPassword());
+
+        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality.isEmpty() || passwordText.isEmpty() || passwordRText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!passwordText.equals(passwordRText)) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        UserDTO newUser = new UserDTO(name, name, email, email, nationality, birthDate, passwordText);
+        boolean created = UserController.getInstance().createUser(newUser);
+        if (created) {
+            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Registration failed. User may already exist.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 	
-	// Custom panel to draw a vertical line
     private static class VerticalLinePanel extends JPanel {
-        /**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 		@Override
@@ -201,5 +182,11 @@ public class RegistrationWindow extends JFrame{
             g.drawLine(0, 0, 0, getHeight());
      }
     }
-
+    
+    private void loadNationalities() {
+       List<String> nationalities = UserController.getInstance().getNationalities();
+        for (String nationality : nationalities) {
+            comboNationality.addItem(nationality);
+        }
+    }
 }

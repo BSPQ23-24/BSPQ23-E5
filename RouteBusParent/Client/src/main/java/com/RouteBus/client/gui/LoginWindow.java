@@ -1,9 +1,11 @@
 package com.RouteBus.client.gui;
 
 import javax.swing.*;
+
+import com.RouteBus.client.controller.UserController;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
@@ -27,8 +29,9 @@ public class LoginWindow extends JFrame {
         this.setLayout(null);
         this.setBounds(500, 100, 420, 600);
         this.setResizable(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        // Set the content pane background to white
         JPanel contentPane = new JPanel(null);
         contentPane.setBackground(Color.WHITE);
         this.setContentPane(contentPane);
@@ -57,19 +60,12 @@ public class LoginWindow extends JFrame {
         registerButton.setBorder(null);
 
         // ACTION LISTENERS
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Handle login action here
-            }
-        });
+        loginButton.addActionListener(e -> performLogin());
 
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Close the login window
                 dispose();
-                // Open the registration window
                 new RegistrationWindow();
             }
         });
@@ -98,7 +94,7 @@ public class LoginWindow extends JFrame {
 
         // Load and display the image
         try {
-            BufferedImage image = ImageIO.read(new File("images/icon.png"));
+        	BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
             ImageIcon icon = new ImageIcon(image);
             JLabel imageLabel = new JLabel(icon);
             imageLabel.setBounds(100, -30, 200, 300); // Adjust position and size as needed
@@ -110,9 +106,21 @@ public class LoginWindow extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new LoginWindow();
+    private void performLogin() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean validLogin = UserController.getInstance().checkPassword(email, password);
+        if (validLogin) {
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
-
-
