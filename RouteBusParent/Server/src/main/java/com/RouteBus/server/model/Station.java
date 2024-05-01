@@ -23,4 +23,36 @@ public class Station {
         this.name = name;
         this.location = location;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public Set<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
 }

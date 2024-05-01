@@ -21,8 +21,8 @@ public class Ticket {
     private TicketStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schedule_id")  // Asegúrate de que esta es la columna correcta en la base de datos.
-    private Schedule schedule;  // Esta propiedad debe existir y coincidir con 'mappedBy' en la clase Schedule
+    @JoinColumn(name = "schedule_id")  
+    private Schedule schedule;
 
     public Ticket() {
     }
@@ -32,10 +32,9 @@ public class Ticket {
         this.seatNumber = seatNumber;
         this.price = price;
         this.status = status;
-        this.schedule = schedule;  // Asegúrate de asignar el schedule correctamente en el constructor
+        this.schedule = schedule;
     }
 
-    // Getters y setters
     public Long getId() {
         return id;
     }

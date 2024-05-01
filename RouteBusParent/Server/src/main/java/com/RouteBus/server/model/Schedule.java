@@ -37,4 +37,52 @@ public class Schedule {
         this.arrivalTime = arrivalTime;
         this.date = date;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public Date getDepartureTime() {
+		return departureTime;
+	}
+
+	public Date getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public void setDepartureTime(Date departureTime) {
+		this.departureTime = departureTime;
+	}
+
+	public void setArrivalTime(Date arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
 }

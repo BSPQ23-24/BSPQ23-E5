@@ -1,28 +1,28 @@
-package com.RouteBus.server.service;
-
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.RouteBus.server.dao.BusRepository;
-import com.RouteBus.server.dao.RouteRepository;
-import com.RouteBus.server.dao.StationRepository;
-import com.RouteBus.server.dao.TicketRepository;
-import com.RouteBus.server.dao.UserRepository;
-import com.RouteBus.server.model.Bus;
-import com.RouteBus.server.model.Route;
-import com.RouteBus.server.model.Station;
-import com.RouteBus.server.model.Ticket;
-import com.RouteBus.server.model.User;
-import com.RouteBus.server.service.UserService.UserServiceResult;
-
-@Service
-public class BusService {
+//package com.RouteBus.server.service;
+//
+//import java.util.List;
+//import java.util.Optional;
+//
+//import javax.transaction.Transactional;
+//
+//import org.springframework.stereotype.Service;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.PathVariable;
+//
+//import com.RouteBus.server.dao.BusRepository;
+//import com.RouteBus.server.dao.RouteRepository;
+//import com.RouteBus.server.dao.StationRepository;
+//import com.RouteBus.server.dao.TicketRepository;
+//import com.RouteBus.server.dao.UserRepository;
+//import com.RouteBus.server.model.Bus;
+//import com.RouteBus.server.model.Route;
+//import com.RouteBus.server.model.Station;
+//import com.RouteBus.server.model.Ticket;
+//import com.RouteBus.server.model.User;
+//import com.RouteBus.server.service.UserService.UserServiceResult;
+//
+//@Service
+//public class BusService {
 //	private BusRepository busRepository;
 //	private RouteRepository routeRepository;
 //	private StationRepository stationRepository;
@@ -352,4 +352,4 @@ public class BusService {
 //    public List<Route> obtainRoutesByBus(int busId) {
 //            return routeRepository.findByBusesId(busId);
 //        }
-}
+//}

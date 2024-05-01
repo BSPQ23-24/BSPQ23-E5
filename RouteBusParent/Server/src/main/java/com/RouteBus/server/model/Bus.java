@@ -28,4 +28,51 @@ public class Bus {
         this.model = model;
     }
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getLicensePlate() {
+		return licensePlate;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public Set<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
 }

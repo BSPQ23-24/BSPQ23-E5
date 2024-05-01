@@ -41,4 +41,59 @@ public class Route {
         this.totalDistance = totalDistance;
     }
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getStartPoint() {
+		return startPoint;
+	}
+
+	public String getEndPoint() {
+		return endPoint;
+	}
+
+	public double getTotalDistance() {
+		return totalDistance;
+	}
+
+	public Set<Station> getStations() {
+		return stations;
+	}
+
+	public Set<Bus> getBuses() {
+		return buses;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setStartPoint(String startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
+	}
+
+	public void setTotalDistance(double totalDistance) {
+		this.totalDistance = totalDistance;
+	}
+
+	public void setStations(Set<Station> stations) {
+		this.stations = stations;
+	}
+
+	public void setBuses(Set<Bus> buses) {
+		this.buses = buses;
+	}
 }
