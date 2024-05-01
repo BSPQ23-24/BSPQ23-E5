@@ -1,199 +1,205 @@
 package com.RouteBus.client.gui;
-import com.RouteBus.client.gateway.ServerGateway;
-import com.RouteBus.client.model.User;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+//import com.RouteBus.client.model.User;
 import com.toedter.calendar.JDateChooser;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Date;
-import java.util.regex.Pattern;
-import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 
-public class RegistrationWindow extends JFrame {
+public class RegistrationWindow extends JFrame{
 
-    private static final long serialVersionUID = 1L;
-    private ServerGateway serverGateway;
-    private JTextField tName;
-    private JTextField tSurname;
-    private JTextField tEmail;
-    private JTextField dBirthDate;
-    private JTextField tNationality;
-    private JPasswordField password;
-    private JPasswordField passwordR;
+	private static final long serialVersionUID = 1L;
+	
+	private JLabel lName;
+	private JLabel lSurname;
+	private JLabel lEmail;
+	private JLabel lBirthDay;
+	private JLabel lNationality;
+	private JLabel lPassword;
+	private JLabel lPasswordR;
+	
+	private JTextField tName;
+	private JTextField tSurname;
+	private JTextField tEmail;
+	
+	private JDateChooser dBirthDate;
+	
+	private JComboBox<String> comboNationality;
+	
+	private JPasswordField password;
+	private JPasswordField passwordR;
+	
+	private JButton bRegister;
+	
+	public RegistrationWindow() {
+		this.setTitle("Registration Window");
+		this.setLayout(null);
+		this.setBounds(300, 100, 750, 600);
+		this.setResizable(false);
+		
+		JPanel contentPane = new JPanel(null);
+		contentPane.setBackground(Color.WHITE);
+		this.setContentPane(contentPane);
+		
+		lName = new JLabel("Name: ");
+		lSurname = new JLabel("Surname: ");
+		lEmail = new JLabel("Email: ");
+		lBirthDay = new JLabel("Birthdate: ");
+		lNationality = new JLabel("Nationality: ");
+		lPassword = new JLabel("Password: ");
+		lPasswordR = new JLabel("Repeat password: ");
+		
+		tName = new JTextField();
+		tSurname = new JTextField();
+		tEmail = new JTextField();
+		
+		dBirthDate = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		
+		comboNationality = new JComboBox<String>();
+        comboNationality.addItem("American");
+        comboNationality.addItem("British");
+        comboNationality.addItem("Chinese");
+        comboNationality.addItem("French");
+        comboNationality.addItem("German");
+        comboNationality.addItem("Indian");
+        comboNationality.addItem("Japanese");
+        comboNationality.addItem("Russian");
+        comboNationality.addItem("Spanish");
+		
+		password = new JPasswordField();
+		passwordR = new JPasswordField();
+		
+		bRegister = new JButton("Register");
+		bRegister.setBackground(new Color(204, 153, 255));
+		bRegister.setBorder(null);
+		
+		// POSITIONING
+		lName.setBounds(50,210,150,30);
+		contentPane.add(lName);
+		
+		tName.setBounds(50,240, 150,30);
+		contentPane.add(tName);
+		
+		lSurname.setBounds(230, 210, 150, 30);
+		contentPane.add(lSurname);
+		
+		tSurname.setBounds(230, 240, 150, 30);
+		contentPane.add(tSurname);
+		
+		lEmail.setBounds(60, 270, 150, 30);
+		contentPane.add(lEmail);
+		
+		tEmail.setBounds(60, 300, 310, 30);
+		contentPane.add(tEmail);
+		
+		lNationality.setBounds(50, 330, 150,30);
+		contentPane.add(lNationality);
+		
+		comboNationality.setBounds(50, 360, 150, 30);
+		contentPane.add(comboNationality);
+		
+		lBirthDay.setBounds(230, 330, 150, 30);
+		contentPane.add(lBirthDay);
+		
+		dBirthDate.setBounds(230, 360, 150,30);
+		contentPane.add(dBirthDate);
+		
+		lPassword.setBounds(500, 210, 150, 30);
+		contentPane.add(lPassword);
+		
+		password.setBounds(500,240,150,30);
+		contentPane.add(password);
+		
+		lPasswordR.setBounds(500, 290, 150, 30);
+		contentPane.add(lPasswordR);
+		
+		passwordR.setBounds(500,320,150,30);
+		contentPane.add(passwordR);
+		
+		bRegister.setBounds(320, 450, 150, 30);
+		contentPane.add(bRegister);
+		
+		bRegister.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+	            String name = tName.getText().trim();
+	            String surname = tSurname.getText().trim();
+	            String email = tEmail.getText().trim();
+	            String nationality = (String) comboNationality.getSelectedItem();
+	            String passwordText = new String(password.getPassword());
+	            String passwordRText = new String(passwordR.getPassword());
+	            // Convert birthdate to string
+	            Date birthDate = dBirthDate.getDate();
 
-    public RegistrationWindow(ServerGateway serverGateway) {
-    	this.serverGateway= serverGateway;
-        this.setTitle("REGISTER NEW USER");
-        this.setLayout(null);
-        this.setBounds(500, 100, 420, 600);
-        this.setResizable(false);
+	            // Check if all fields are filled
+	            if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality.isEmpty() || passwordText.isEmpty() || passwordRText.isEmpty()) {
+	                JOptionPane.showMessageDialog(RegistrationWindow.this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            } else {
+//	                User user = new User();
+//	                user.setFirstName(name);
+//	                user.setLastName(surname);
+//	                user.setEmail(email);
+//	                user.setBirthDate(birthDate);
+//	                user.setNationality(nationality);
+//	                user.setPassword(passwordText);
+	            }
 
-        URL urlBackGround;
-
+	            // Check if passwords match
+	            if (!passwordText.equals(passwordRText)) {
+	                JOptionPane.showMessageDialog(RegistrationWindow.this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+				
+			}
+		});
+		
+        // Draw vertical line
+        VerticalLinePanel linePanel = new VerticalLinePanel();
+        linePanel.setBounds(450, 200, 1, 220); // Adjust position and size as needed
+        contentPane.add(linePanel);
+		
         try {
-            urlBackGround = new URL("https://www.caf.com/media/6860/las-carreteras-de-america-latina-no-estan-suficientemente-preparadas-para-enfrentar-el-cambio-climatico.jpg");
-            Image imageBackground = new ImageIcon(urlBackGround).getImage().getScaledInstance(420, 600, Image.SCALE_SMOOTH);
-            this.setContentPane(new JLabel(new ImageIcon(imageBackground)));
-        } catch (Exception e) {
-            System.out.println("# Problem while setting the background: " + e);
+            BufferedImage image = ImageIO.read(new File("images/icon.png"));
+            ImageIcon icon = new ImageIcon(image);
+            JLabel imageLabel = new JLabel(icon);
+            imageLabel.setBounds(300, -40, 200, 300); // Adjust position and size as needed
+            contentPane.add(imageLabel);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+		
+		
+		this.setVisible(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		new RegistrationWindow();
+	}
+	
+	// Custom panel to draw a vertical line
+    private static class VerticalLinePanel extends JPanel {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
-        JPanel panel = new JPanel();
-        panel.setOpaque(false);
-        panel.setBounds(40, 80, 340, 450);
-        panel.setLayout(null);
-        this.getContentPane().add(panel);
-
-        JLabel titleLabel = new JLabel("Registration");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        titleLabel.setForeground(Color.WHITE);
-        titleLabel.setBounds(66, 0, 200, 30);
-        panel.add(titleLabel);
-
-        JLabel nameLabel = new JLabel("Name:");
-        nameLabel.setForeground(Color.WHITE);
-        nameLabel.setBounds(30, 50, 80, 30);
-        panel.add(nameLabel);
-
-        tName = new JTextField();
-        tName.setBounds(140, 50, 200, 30);
-        panel.add(tName);
-
-        JLabel surnameLabel = new JLabel("Surname:");
-        surnameLabel.setForeground(Color.WHITE);
-        surnameLabel.setBounds(30, 90, 80, 30);
-        panel.add(surnameLabel);
-
-        tSurname = new JTextField();
-        tSurname.setBounds(140, 90, 200, 30);
-        panel.add(tSurname);
-
-        JLabel emailLabel = new JLabel("Email:");
-        emailLabel.setForeground(Color.WHITE);
-        emailLabel.setBounds(30, 130, 80, 30);
-        panel.add(emailLabel);
-
-        tEmail = new JTextField();
-        tEmail.setBounds(140, 130, 200, 30);
-        panel.add(tEmail);
-
-        JLabel birthDateLabel = new JLabel("Birth Date:");
-        birthDateLabel.setForeground(Color.WHITE);
-        birthDateLabel.setBounds(30, 290, 80, 30);
-        panel.add(birthDateLabel);
-
-        // Initialize JDateChooser
-        dBirthDate = new JTextField("yyyy-MM-dd");
-        dBirthDate.setBounds(140, 290, 200, 30);
-        panel.add(dBirthDate);
-        
-        JLabel nationalityLabel = new JLabel("Nationality:");
-        nationalityLabel.setForeground(Color.WHITE);
-        nationalityLabel.setBounds(30, 170, 80, 30);
-        panel.add(nationalityLabel);
-        tNationality = new JTextField();
-        tNationality.setBounds(140, 170, 200, 30);
-        panel.add(tNationality);
-        
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setForeground(Color.WHITE);
-        passwordLabel.setBounds(30, 210, 80, 30);
-        panel.add(passwordLabel);
-
-        password = new JPasswordField();
-        password.setBounds(140, 210, 200, 30);
-        panel.add(password);
-
-        JLabel passwordRLabel = new JLabel("Repeat Password:");
-        passwordRLabel.setForeground(Color.WHITE);
-        passwordRLabel.setBounds(30, 250, 110, 30);
-        panel.add(passwordRLabel);
-
-        passwordR = new JPasswordField();
-        passwordR.setBounds(140, 250, 200, 30);
-        panel.add(passwordR);
-
-        JButton bRegister = new JButton("Register");
-        bRegister.setBounds(90, 350, 160, 30);
-        panel.add(bRegister);
-        bRegister.addMouseListener(new MouseAdapter() {
-            Pattern pEmail = Pattern.compile("^[A-Z0-9+_.-]+@[A-Z0-9.-]+$");
-            Pattern pPassword = Pattern.compile("#");
-            
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String password1 = String.valueOf(password.getPassword()); 
-                String password2 = String.valueOf(passwordR.getPassword()); 	
-                String emailCheck = tEmail.getText();
-                boolean b1 = pEmail.matcher(emailCheck).find();
-                            
-                if(tName.getText().equals("") || tSurname.getText().equals("")||dBirthDate.getText().equals("") || tEmail.getText().equals("")){
-                    JOptionPane.showMessageDialog(null, "Name, Surname, Birthdate must be filled to register correctly");
-                    if(!b1) {
-                        JOptionPane.showMessageDialog(null, "Email format is not valid");	
-                    }					
-                }else if (password1.equals(password2) && password1.length()>0) {
-                    boolean b2 = pPassword.matcher(password1).find();
-                    if(!b2) {
-                        
-                        String name = tName.getText();
-                        String surname = tSurname.getText();
-                        String email = tEmail.getText();
-                        String userPassword = new String(password.getPassword());
-                        Date birthDate = null;
-                        DateFormat df= new SimpleDateFormat("yyyy-MM-dd");
-                        try {
-							birthDate =df.parse(dBirthDate.getText());
-						} catch (Exception e2) {
-							// TODO: handle exception
-							System.err.println(e2.getMessage());
-						}
-                       
-                        String nationality = tNationality.getText();
-                        User user= new User(name,surname, email, birthDate, userPassword, nationality);
-                        
-                        //
-                        if (serverGateway.registerUser(user)) {
-                            JOptionPane.showMessageDialog(null,"User has been created","",JOptionPane.DEFAULT_OPTION);		
-                            dispose();
-                            new LoginWindow(serverGateway);
-                        }						
-                    }else {
-                        JOptionPane.showMessageDialog(null,"The password contains an unvalid character","",JOptionPane.ERROR_MESSAGE);		
-                    }
-                }
-                else {
-                    JOptionPane.showMessageDialog(null,"Passwords do not match","",JOptionPane.ERROR_MESSAGE);
-                }
-                
-            }
-        });
-        JTextField loginText = new JTextField("Already have an account?");
-        loginText.setBounds(100, 390, 290, 20);
-        loginText.setForeground(Color.WHITE);
-        loginText.setBorder(null);
-        loginText.setOpaque(false);
-        loginText.setEditable(false);
-        panel.add(loginText);
-
-        // Add mouse listener to the login text field
-        loginText.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                dispose();
-                new LoginWindow(serverGateway);
-            }
-        });
-        this.setVisible(true);
+		@Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.setColor(Color.BLACK);
+            g.drawLine(0, 0, 0, getHeight());
+     }
     }
 
-    public static void main(String[] args) {
-        new RegistrationWindow(new ServerGateway());
-    }
 }
