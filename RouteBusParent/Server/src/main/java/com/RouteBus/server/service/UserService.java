@@ -1,116 +1,78 @@
 package com.RouteBus.server.service;
 
-
 import org.springframework.stereotype.Service;
-
 import com.RouteBus.server.dao.UserRepository;
 import com.RouteBus.server.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
     public enum UserServiceResult {
-		SUCCESS,
-		FAIL;
-	}
-        
+        SUCCESS,
+        USER_ALREADY_EXISTS,
+        USER_NOT_FOUND,
+        ERROR
+    }
+
+    private final UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    /**  Returning User information */
+
     public User getUserById(Long id) {
-    	Optional<User> result = userRepository.findById(id);
-    	return result.orElse(null);
+        return userRepository.findById(id).orElse(null);
     }
-    
+
     public User getUserByEmail(String email) {
-    	Optional<User> result = userRepository.findByEmail(email);
-    	return result.orElse(null);
+        return userRepository.findByEmail(email).orElse(null);
     }
-    
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    /** Creating a New User */
-	public UserServiceResult createUser(User user) {
-		Optional<User> result = userRepository.findByEmail(user.getEmail());
-		
-		if (result.isEmpty()) {
-			User savedUser = userRepository.save(user);
-			
-			if (savedUser != null) {
-				return UserServiceResult.SUCCESS;
-			}
-		}
-		
-		return UserServiceResult.FAIL;
-	}    
-   
-    /** Update an Existing User */
+    public UserServiceResult createUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return UserServiceResult.USER_ALREADY_EXISTS;
+        }
+        return userRepository.save(user) != null ? UserServiceResult.SUCCESS : UserServiceResult.ERROR;
+    }
+
     public UserServiceResult updateUser(User user, Long id) {
-    	Optional<User> result = userRepository.findById(id);
-		
-		if (!result.isEmpty()) {
-			User updatedUser = result.get();
-			
-			updatedUser.setFirstName(user.getFirstName());
-			updatedUser.setLastName(user.getLastName());
-			updatedUser.setEmail(user.getEmail());
-
-			userRepository.save(updatedUser);
-			
-			if (!userRepository.findById(id).isEmpty()) {
-				return UserServiceResult.SUCCESS;
-			}
-		}
-		
-		return UserServiceResult.FAIL;
+        return userRepository.findById(id)
+            .map(existingUser -> {
+                existingUser.setFirstName(user.getFirstName());
+                existingUser.setLastName(user.getLastName());
+                existingUser.setEmail(user.getEmail());
+                userRepository.save(existingUser);
+                return UserServiceResult.SUCCESS;
+            }).orElse(UserServiceResult.USER_NOT_FOUND);
     }
-  
-    /** Delete one User*/
+
     public UserServiceResult deleteUser(Long id) {
-    	Optional<User> result = userRepository.findById(id);
-		
-		if (!result.isEmpty()) {
-			userRepository.delete(result.get());
-
-			if (userRepository.findById(id).isEmpty()) {
-				return UserServiceResult.SUCCESS;
-			}
-		}
-		
-		return UserServiceResult.FAIL;
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return UserServiceResult.SUCCESS;
+        }
+        return UserServiceResult.USER_NOT_FOUND;
     }
-    
-    /** Delete all Users in the database  */
+
     public UserServiceResult deleteAllUsers() {
-    	UserServiceResult result = UserServiceResult.SUCCESS;
-		
-		for (User u : userRepository.findAll()) {
-			userRepository.deleteById(u.getId());
-
-			if (!userRepository.findById(u.getId()).isEmpty()) {
-				result = UserServiceResult.FAIL;
-			}
-		}
-		return result;
+        userRepository.deleteAll();
+        return UserServiceResult.SUCCESS;
     }
-    
-    /** Checks if a User exists in the database  */
+
     public boolean checkUser(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
-    
-    /** Checks the password of a given user in the database  */
+
     public boolean checkPassword(String email, String password) {
-    	return userRepository.findByEmail(email)
-            .map(User::getPassword)
-            .filter(storedPassword -> storedPassword.equals(password))
-            .isPresent();
+        return userRepository.findByEmail(email)
+                .map(User::getPassword)
+                .filter(pwd -> pwd.equals(password))
+                .isPresent();
     }
 }

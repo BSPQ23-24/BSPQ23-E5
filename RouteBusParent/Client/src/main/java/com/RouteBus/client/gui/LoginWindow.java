@@ -1,146 +1,126 @@
 package com.RouteBus.client.gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
+import javax.swing.*;
+
+import com.RouteBus.client.controller.UserController;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+public class LoginWindow extends JFrame {
+    private static final long serialVersionUID = 1L;
 
-import com.RouteBus.client.gateway.ServerGateway;
+    private JLabel emailLabel;
+    private JLabel passLabel;
+    private JLabel registerLabel;
 
+    private JTextField emailField;
+    private JPasswordField passwordField;
 
+    private JButton loginButton;
+    private JButton registerButton;
 
-public class LoginWindow extends JFrame{
+    public LoginWindow() {
+        this.setTitle("Login");
+        this.setLayout(null);
+        this.setBounds(500, 100, 420, 600);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-	private static final long serialVersionUID = 1L;
-	private ServerGateway serverGateway;
-	private JLabel appNameLabel;
-	
-	private JLabel emailLabel;
-	private JLabel labelPassword;
-	
-	private JTextField emailTField;
-	private JPasswordField passwordField;
-	
-	private JButton loginButton;
-	
-	private JLabel registerLabel;
-	private JButton registerButton;
-	
-	public LoginWindow(ServerGateway sg) {
-		
-		this.setTitle("LOGIN");
-		this.setLayout(null);
-		this.setBounds(500, 100, 420, 600);
-		this.setResizable(false);
-		
-		URL urlBackGround;
-		
-		try {
-			urlBackGround = new URL("https://www.caf.com/media/6860/las-carreteras-de-america-latina-no-estan-suficientemente-preparadas-para-enfrentar-el-cambio-climatico.jpg");
-			Image imageBackground = ImageIO.read(urlBackGround).getScaledInstance(400, 600, java.awt.Image.SCALE_SMOOTH);
-			this.setContentPane(new JLabel(new ImageIcon(imageBackground)));
-		} catch (Exception e) {
-			System.out.println("# Problem while setting the background: " + e);
-		}
-		
-		// ELEMENT CREATION
-		appNameLabel = new JLabel("RouteBus");
-		appNameLabel.setFont(new Font("Arial", Font.BOLD, 30));
-		appNameLabel.setForeground(Color.WHITE);
-        appNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		emailLabel = new JLabel("Email: ");
-		emailLabel.setForeground(Color.WHITE);
-		
-		emailTField = new JTextField();
-		
-		labelPassword = new JLabel("Password:");
-		labelPassword.setForeground(Color.WHITE);
-		
-		passwordField = new JPasswordField();
-		
-		loginButton = new JButton("LOG IN");
-		loginButton.setToolTipText("Log in");
-		
-		registerLabel = new JLabel("Not registered yet?");
-		registerLabel.setForeground(Color.WHITE);
-		
-		registerButton = new JButton("REGISTER");
-		registerButton.setToolTipText("Register");
-		
-		// POSITIONING
-        appNameLabel.setBounds(0, 100, getWidth(), 30);
-        this.add(appNameLabel);
-        
-		emailLabel.setBounds(140, 180, 150, 30);
-		this.add(emailLabel);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setBackground(Color.WHITE);
+        this.setContentPane(contentPane);
 
-		emailTField.setBounds(140, 210, 150, 30);
-		this.add(emailTField);
+        // ELEMENT CREATION
+        emailLabel = new JLabel("Email:");
+        emailLabel.setForeground(Color.BLACK);
 
-		labelPassword.setBounds(140, 250, 150, 30);
-		this.add(labelPassword);
+        passLabel = new JLabel("Password:");
+        passLabel.setForeground(Color.BLACK);
 
-		passwordField.setBounds(140, 280, 150, 30);
-		this.add(passwordField);
+        registerLabel = new JLabel("Not registered yet?");
+        registerLabel.setForeground(Color.BLACK);
 
-		loginButton.setBounds(140, 320, 150, 30);
-		this.add(loginButton);
-		this.revalidate();
+        emailField = new JTextField();
+        passwordField = new JPasswordField();
 
-		registerLabel.setBounds(140, 360, 150, 30);
-		this.add(registerLabel);
+        loginButton = new JButton("Log in");
+        loginButton.setToolTipText("Log in");
+        loginButton.setBackground(new Color(204, 153, 255));
+        loginButton.setBorder(null);
 
-		registerButton.setBounds(140, 390, 150, 30);
-		this.add(registerButton);
-		
-		this.setVisible(true);
-		
-		loginButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String password = String.valueOf(passwordField.getPassword());
-				String password_example = "SPQ23%24";
-				if(sg.checkPassword(emailTField.getText(),String.valueOf(passwordField.getPassword()))) {
-					System.out.println("login correct");
-				};
-			}
-		});
-		
-		registerButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new RegistrationWindow(sg);
-			}
-		});
-		
-			this.addWindowListener(new WindowAdapter() {
-					
-				@Override
-				public void windowClosing(WindowEvent e) {
-					System.exit(0);
-				}
-				
-			});
-			
-			this.setVisible(true);
-		}
+        registerButton = new JButton("Register");
+        registerButton.setToolTipText("Register");
+        registerButton.setBackground(new Color(204, 153, 255));
+        registerButton.setBorder(null);
+
+        // ACTION LISTENERS
+        loginButton.addActionListener(e -> performLogin());
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new RegistrationWindow();
+            }
+        });
+
+        // POSITIONING
+        emailLabel.setBounds(140, 210, 150, 30);
+        contentPane.add(emailLabel);
+
+        emailField.setBounds(140, 250, 150, 30);
+        contentPane.add(emailField);
+
+        passLabel.setBounds(140, 280, 150, 30);
+        contentPane.add(passLabel);
+
+        passwordField.setBounds(140, 320, 150, 30);
+        contentPane.add(passwordField);
+
+        loginButton.setBounds(140, 360, 150, 30);
+        contentPane.add(loginButton);
+
+        registerLabel.setBounds(140, 390, 150, 30);
+        contentPane.add(registerLabel);
+
+        registerButton.setBounds(140, 420, 150, 30);
+        contentPane.add(registerButton);
+
+        // Load and display the image
+        try {
+        	BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
+            ImageIcon icon = new ImageIcon(image);
+            JLabel imageLabel = new JLabel(icon);
+            imageLabel.setBounds(100, -30, 200, 300); // Adjust position and size as needed
+            contentPane.add(imageLabel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.setVisible(true);
+    }
+
+    private void performLogin() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean validLogin = UserController.getInstance().checkPassword(email, password);
+        if (validLogin) {
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

@@ -1,77 +1,78 @@
 package com.RouteBus.server.model;
 
+import javax.persistence.*;
 import java.util.Set;
-import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-
-
-@Table
 @Entity
+@Table(name = "buses")
 public class Bus {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	@ManyToMany(mappedBy = "buses", fetch = FetchType.EAGER)
-    private Set<Route> routes;
-    private String driver;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String licensePlate;
     private int capacity;
+    private String make;
+    private String model;
 
-    public Bus(){
-        
+    @ManyToMany(mappedBy = "buses")
+    private Set<Route> routes;
+
+    public Bus() {
     }
 
-    public Bus(Set<Route> routes, String driver, int capacity) {
-        this.driver = driver;
-        this.capacity = capacity; 
-        this.routes= routes;
-    }
-
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-  
-    public String getDriver() {
-        return driver;
-    }
-
-    public void setDriver(String driver) {
-        this.driver = driver;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
+    public Bus(String licensePlate, int capacity, String make, String model) {
+        this.licensePlate = licensePlate;
         this.capacity = capacity;
+        this.make = make;
+        this.model = model;
     }
 
-    @Override
-    public String toString() {
-        return "Bus{" +
-                "id=" + id +
-                ", driver='" + driver +
-                ", capacity=" + capacity +
-                '}';
-    }
-    
-    public boolean addRoute(Route route) {
-    	return this.routes.add(route);
-    }
+	public Long getId() {
+		return id;
+	}
 
+	public String getLicensePlate() {
+		return licensePlate;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public Set<Route> getRoutes() {
+		return routes;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setRoutes(Set<Route> routes) {
+		this.routes = routes;
+	}
 }

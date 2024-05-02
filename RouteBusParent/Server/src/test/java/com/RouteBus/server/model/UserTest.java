@@ -1,88 +1,100 @@
 package com.RouteBus.server.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.*;
+
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 
 public class UserTest {
 
+    @InjectMocks
     private User user;
-    private User user1;
-    @Before
+
+    @Mock
+    private Nationality mockNationality;
+
+    @BeforeEach
     public void setUp() {
         user = new User();
-        user1 = new User("Hector", "Fernandez", "h.fernandez@gmail.com", "123");
-        User user2= new User("Hector", "Fernandez", "h.fernandez@gmail.com",new Date(), "123","Spanish");
+        user.setId(1L);
+        user.setFirstName("John");
+        user.setLastName("Doe");
+        user.setEmail("john.doe@example.com");
+        user.setPassword("password123");
+        user.setBirthDate(new Date());
+        user.setRole(UserRole.CUSTOMER);
+        user.setNationality(mockNationality);
     }
 
     @Test
     public void testGetAndSetId() {
-        assertTrue( user.getId()!=null);
+        Long expectedId = 2L;
+        user.setId(expectedId);
+        assertEquals(expectedId, user.getId());
     }
 
     @Test
     public void testGetAndSetFirstName() {
-        String firstName = "Cristiano";
-        user.setFirstName(firstName);
-        assertEquals(firstName, user.getFirstName());
+        String expectedFirstName = "Jane";
+        user.setFirstName(expectedFirstName);
+        assertEquals(expectedFirstName, user.getFirstName());
     }
 
     @Test
     public void testGetAndSetLastName() {
-        String lastName = "Ronaldo";
-        user.setLastName(lastName);
-        assertEquals(lastName, user.getLastName());
+        String expectedLastName = "Smith";
+        user.setLastName(expectedLastName);
+        assertEquals(expectedLastName, user.getLastName());
     }
 
     @Test
     public void testGetAndSetEmail() {
-        String email = "cristiano.ronaldo7@gmail.com";
-        user.setEmail(email);
-        assertEquals(email, user.getEmail());
-    }
-
-    @Test
-    public void testGetAndSetBirthDate() {
-        Date birthDate = new Date();
-        user.setBirthDate(birthDate);
-        assertEquals(birthDate, user.getBirthDate());
+        String expectedEmail = "jane.smith@example.com";
+        user.setEmail(expectedEmail);
+        assertEquals(expectedEmail, user.getEmail());
     }
 
     @Test
     public void testGetAndSetPassword() {
-        String password = "password123";
-        user.setPassword(password);
-        assertEquals(password, user.getPassword());
+        String expectedPassword = "newpassword123";
+        user.setPassword(expectedPassword);
+        assertEquals(expectedPassword, user.getPassword());
     }
 
     @Test
     public void testGetAndSetNationality() {
-        String nationality = "Portuguese";
-        user.setNationality(nationality);
-        assertEquals(nationality, user.getNationality());
+        Nationality expectedNationality = new Nationality("British");
+        user.setNationality(expectedNationality);
+        assertEquals(expectedNationality, user.getNationality());
     }
 
     @Test
-    public void testGetAndSetMoney() {
-        double money = 1000.0;
-        user.setMoney(money);
-        assertEquals(money, user.getMoney(), 0.001);
+    public void testGetAndSetBirthDate() {
+        Date expectedBirthDate = new Date(100000000000L);
+        user.setBirthDate(expectedBirthDate);
+        assertEquals(expectedBirthDate, user.getBirthDate());
     }
 
     @Test
-    public void testToString() {
-        user.setFirstName("Cristiano");
-        user.setLastName("Ronaldo");
-        user.setEmail("cristiano.ronaldo7@gmail.com");
-        user.setNationality("Portuguese");
+    public void testGetAndSetRole() {
+        UserRole expectedRole = UserRole.ADMIN;
+        user.setRole(expectedRole);
+        assertEquals(expectedRole, user.getRole());
+    }
 
-        assertNotNull(user.toString());
+    @Test
+    public void testSetAndGetTickets() {
+        List<Ticket> tickets = new ArrayList<>();
+        Ticket mockTicket = mock(Ticket.class);
+        tickets.add(mockTicket);
+        user.setTickets(tickets);
+        assertEquals(tickets, user.getTickets());
+        verifyNoInteractions(mockTicket); 
     }
 }
