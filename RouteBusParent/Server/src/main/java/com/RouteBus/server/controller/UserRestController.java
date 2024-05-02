@@ -1,84 +1,108 @@
 package com.RouteBus.server.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.RouteBus.server.model.User;
-import com.RouteBus.server.service.UserService;
-import com.RouteBus.server.service.UserService.UserServiceResult;
+
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/user")
-public class UserRestController {
-    private final UserService userService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.RouteBus.server.model.User;
+import com.RouteBus.server.service.UserService;
+
+@RestController
+public class UserRestController {
+	private static final Logger log= LoggerFactory.getLogger(UserRestController.class);	
+
+    private UserService userService;
+    
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
-
-    @GetMapping("/all")
+    
+    @GetMapping("/user/all")
     public List<User> getUsers() {
+    	log.warn("Getting all users ...");
         return userService.getAllUsers();
     }
 
-    @GetMapping("/details/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
-        User user = userService.getUserById(id);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+    @GetMapping("/user/details/{id}")
+    public User getUser(@PathVariable Long id) {
+    	log.warn(String.format("Getting user by id {%d} ...", id));
+        return userService.getUserById(id);
     }
-
-    @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+    
+    @GetMapping("/user/email/{email}")
+    public User getUserByEmail(@PathVariable String email) {
+    	log.warn(String.format("Getting user by email {%s} ...", email));
+        return userService.getUserByEmail(email);
     }
-
-    @PostMapping("/create")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        UserServiceResult result = userService.createUser(user);
-        switch (result) {
-            case SUCCESS:
-                return ResponseEntity.ok("User created successfully.");
-            case USER_ALREADY_EXISTS:
-                return ResponseEntity.badRequest().body("User already exists.");
-            default:
-                return ResponseEntity.internalServerError().body("Error creating user.");
-        }
+             
+    @PostMapping("/user/create")
+    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    	log.warn("Creating a new User ...");
+    	
+       	switch (userService.createUser(user)) {
+       		case FAIL:
+       			return ResponseEntity.unprocessableEntity().body(String.format("User with email {%s} creation fails.", user.getEmail()));
+    	    default:
+      	    	return ResponseEntity.ok(String.format("A new User (%s) has been created.", user.getEmail()));
+    	}
     }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User user) {
-        UserServiceResult result = userService.updateUser(user, id);
-        switch (result) {
-            case SUCCESS:
-                return ResponseEntity.ok("User updated successfully.");
-            case USER_NOT_FOUND:
-                return ResponseEntity.notFound().build();
-            default:
-                return ResponseEntity.internalServerError().body("Error updating user.");
-        }
+    
+    @PutMapping("/user/update/{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable Long id, @RequestBody User user) {
+    	log.warn(String.format("Updating user with id {%d} ...", id));
+    	
+    	switch (userService.updateUser(user, id)) {
+   			case FAIL:
+   				return ResponseEntity.unprocessableEntity().body(String.format("User with email {%s} cannot be updated", user.getEmail()));
+   			default:
+   				return ResponseEntity.ok(String.format("User with email {%s} has been updated.", user.getEmail()));
+     	}
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        UserServiceResult result = userService.deleteUser(id);
-        return result == UserServiceResult.SUCCESS ? ResponseEntity.ok("User deleted successfully.") : ResponseEntity.notFound().build();
+   
+    @DeleteMapping("user/delete/{id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
+    	log.warn(String.format("Deleting user with id {%d} ...", id));
+    	
+    	switch (userService.deleteUser(id)) {    	
+			case FAIL:
+   				return ResponseEntity.unprocessableEntity().body(String.format("User with id {%s} cannot be deleted", id.toString()));
+   			default:
+   				return ResponseEntity.ok(String.format("User with email {%s} has been deleted.", id.toString()));
+    	}
     }
-
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<String> deleteUsers() {
-        userService.deleteAllUsers();
-        return ResponseEntity.ok("All users deleted successfully.");
+    
+    @DeleteMapping("/user/delete/all")
+    public ResponseEntity<Object> deleteUsers() {
+    	log.warn("Deleting ALL users ...");
+    	
+    	switch (userService.deleteAllUsers()) {
+			case FAIL:
+   				return ResponseEntity.unprocessableEntity().body("Deletion of all users fails");
+   			default:
+   				return ResponseEntity.ok("All users has been deleted.");
+    	}   
     }
-
-    @GetMapping("/check/{email}")
-    public ResponseEntity<Boolean> checkUser(@PathVariable String email) {
-        return ResponseEntity.ok(userService.checkUser(email));
+    @GetMapping("/checkUser/{Gmail}")
+    public boolean checkUser(@PathVariable String Gmail) {
+    	log.warn("Checking user gmail ...");
+    	return userService.checkUser(Gmail);
     }
-
-    @PostMapping("/check-password")
-    public ResponseEntity<Boolean> checkPassword(@RequestParam String email, @RequestParam String password) {
-        return ResponseEntity.ok(userService.checkPassword(email, password));
+                 
+    @PostMapping("/checkPassword")
+    public boolean checkPassword(@RequestParam String gmail, @RequestParam String password) {
+    	log.warn("Checking user password ...");
+    	return userService.checkPassword(gmail, password);
     }
 }

@@ -1,69 +1,66 @@
 package com.RouteBus.server.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import java.util.Date;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class TicketTest {
 
-    @InjectMocks
     private Ticket ticket;
+    private User user;
 
-    @Mock
-    private User mockUser;
-
-    @Mock
-    private Schedule mockSchedule;
-
-    @BeforeEach
+    @Before
     public void setUp() {
-        ticket = new Ticket(mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
+        user = new User();
+        ticket = new Ticket();
+        Ticket ticket2= new Ticket(user,"Albacete",15,new Date());
     }
 
     @Test
-    public void testGettersAndSetters() {
-        // Testing getters
-        assertEquals(mockUser, ticket.getUser());
-        assertEquals(25, ticket.getSeatNumber());
-        assertEquals(199.99, ticket.getPrice());
-        assertEquals(TicketStatus.RESERVED, ticket.getStatus());
-        assertEquals(mockSchedule, ticket.getSchedule());
-
-        // Testing setters
-        User newUser = mock(User.class);
-        Schedule newSchedule = mock(Schedule.class);
-        ticket.setUser(newUser);
-        assertEquals(newUser, ticket.getUser());
-
-        ticket.setSeatNumber(30);
-        assertEquals(30, ticket.getSeatNumber());
-
-        ticket.setPrice(299.99);
-        assertEquals(299.99, ticket.getPrice());
-
-        ticket.setStatus(TicketStatus.PURCHASED);
-        assertEquals(TicketStatus.PURCHASED, ticket.getStatus());
-
-        ticket.setSchedule(newSchedule);
-        assertEquals(newSchedule, ticket.getSchedule());
+    public void testGetAndSetId() {
+        assertTrue( ticket.getId()!=null);
     }
 
     @Test
-    public void testUserInteraction() {
-        ticket.setUser(mockUser);
-        verifyNoMoreInteractions(mockUser);
-        User fetchedUser = ticket.getUser();
-        assertEquals(mockUser, fetchedUser);
+    public void testGetAndSetClient() {
+        ticket.setClient(user);
+        assertEquals(user, ticket.getClient());
     }
 
     @Test
-    public void testScheduleInteraction() {
-        ticket.setSchedule(mockSchedule);
-        verifyNoMoreInteractions(mockSchedule); 
-        Schedule fetchedSchedule = ticket.getSchedule();
-        assertEquals(mockSchedule, fetchedSchedule);
+    public void testGetAndSetDestination() {
+        String destination = "Zamora";
+        ticket.setDestination(destination);
+        assertEquals(destination, ticket.getDestination());
+    }
+
+    @Test
+    public void testGetAndSetPrice() {
+        double price = 60.0;
+        ticket.setPrice(price);
+        assertEquals(price, ticket.getPrice(), 0.001);
+    }
+
+    @Test
+    public void testGetAndSetDate() {
+        Date date = new Date();
+        ticket.setDate(date);
+        assertEquals(date, ticket.getDate());
+    }
+
+    @Test
+    public void testToString() {
+        ticket.setClient(user);
+        ticket.setDestination("Destination");
+        ticket.setPrice(60.0);
+        Date date = new Date();
+        ticket.setDate(date);
+
+        assertNotNull(ticket.toString());
     }
 }

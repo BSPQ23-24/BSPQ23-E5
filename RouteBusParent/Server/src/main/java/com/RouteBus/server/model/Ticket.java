@@ -1,62 +1,52 @@
 package com.RouteBus.server.model;
 
-import javax.persistence.*;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Table
 @Entity
-@Table(name = "tickets")
 public class Ticket {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    private int seatNumber;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne
+    private User client;
+    private String destination;
     private double price;
+    private Date date;
 
-    @Enumerated(EnumType.STRING)
-    private TicketStatus status;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "schedule_id")  
-    private Schedule schedule;
-
-    public Ticket() {
+    public Ticket(){
+        
     }
 
-    public Ticket(User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
-        this.user = user;
-        this.seatNumber = seatNumber;
+    public Ticket(User client, String destination, double price, Date date) {
+        this.client = client;
+        this.destination = destination;
         this.price = price;
-        this.status = status;
-        this.schedule = schedule;
+        this.date = date;
     }
 
-    public Long getId() {
-        return id;
+    // Getters and setters
+    public User getClient() {
+        return client;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setClient(User client) {
+        this.client = client;
     }
 
-    public User getUser() {
-        return user;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public double getPrice() {
@@ -67,19 +57,25 @@ public class Ticket {
         this.price = price;
     }
 
-    public TicketStatus getStatus() {
-        return status;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStatus(TicketStatus status) {
-        this.status = status;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    public Long getId() {
+    	return id;
+    }
+    @Override
+    public String toString() {
+        return "Ticket{" +
+            "client=" + client +
+            ", destination='" + destination + '\'' +
+            ", price=" + price +
+            ", date=" + date +
+            '}';
     }
 
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
 }

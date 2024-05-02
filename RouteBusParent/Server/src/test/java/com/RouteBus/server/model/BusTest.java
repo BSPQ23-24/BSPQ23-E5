@@ -1,53 +1,59 @@
 package com.RouteBus.server.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import org.junit.Before;
+import org.junit.Test;
 
-class BusTest {
+public class BusTest {
+
     private Bus bus;
-    private Set<Route> mockRoutes;
+    private Bus bus1;
 
-    @SuppressWarnings("unchecked")
-	@BeforeEach
-    void setUp() {
-        bus = new Bus("XYZ-1234", 45, "Mercedes", "Sprinter");
-
-        mockRoutes = Mockito.mock(Set.class);
-        bus.setRoutes(mockRoutes);
+    @Before
+    public void setUp() {
+    	bus1 = new Bus();
+        bus = new Bus(new HashSet<Route>(), "Cristiano", 50);
     }
 
     @Test
-    void testBusProperties() {
-        assertEquals("XYZ-1234", bus.getLicensePlate());
-        assertEquals(45, bus.getCapacity());
-        assertEquals("Mercedes", bus.getMake());
-        assertEquals("Sprinter", bus.getModel());
+    public void testGetAndSetId() {
+        int id = 1;
+        bus.setId(id);
+        assertEquals(id, bus.getId());
     }
 
     @Test
-    void testSetRoutes() {
-        Route mockRoute = mock(Route.class);
-        HashSet<Route> routes = new HashSet<>();
-        routes.add(mockRoute);
-        bus.setRoutes(routes);
-
-        assertTrue(bus.getRoutes().contains(mockRoute));
+    public void testGetAndSetDriver() {
+        String driver = "Cristiano";
+        bus.setDriver(driver);
+        assertEquals(driver, bus.getDriver());
     }
 
     @Test
-    void testInteractionWithRoutes() {
-        bus.getRoutes().clear();
-        verify(mockRoutes).clear();
+    public void testGetAndSetCapacity() {
+        int capacity = 50;
+        bus.setCapacity(capacity);
+        assertEquals(capacity, bus.getCapacity());
+    }
 
-        Route testRoute = new Route();
-        bus.getRoutes().add(testRoute);
-        verify(mockRoutes).add(testRoute);
+    @Test
+    public void testToString() {
+        String driver = "Cristiano";
+        int capacity = 50;
+        bus = new Bus(null, driver, capacity);
+
+        String expected = "Bus{id=" + bus.getId() + ", driver='" + driver + ", capacity=" + capacity + '}';
+        assertEquals(expected, bus.toString());
+    }
+
+    @Test
+    public void testAddRoute() {
+        Route route = new Route();
+        assertTrue(bus.addRoute(route)); //salta nullPointer
     }
 }

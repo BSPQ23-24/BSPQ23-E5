@@ -1,140 +1,125 @@
 package com.RouteBus.server.model;
 
-import javax.persistence.*;
-
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+@Table(name = "userTable")
 @Entity
-@Table(name = "users")
 public class User {
-
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
-    private String email;
     private String firstName;
     private String lastName;
-    private String password;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "nationality_id")
-    private Nationality nationality;
-    
-    @Temporal(TemporalType.DATE)
+    private String email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date birthDate;
+    private String password;
+    private String nationality;
+    private double money;
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Ticket> tickets;
     
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Ticket> tickets;
-
     public User() {
+    	
     }
-
-    public User(String firstName, String lastName, String email, String password, Date birthDate, UserRole role) {
-        this.firstName = firstName;
+    public User(String name, String lastName, String email, Date birthDate, String password, String nationality) {
+        this.firstName = name;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.birthDate = birthDate;
-        this.role = role;
+        this.password = password;
+        this.nationality = nationality;
     }
 
-	public Long getId() {
-		return id;
+    public User(String firstName, String lastName, String email, String password) {
+    	this(firstName, lastName, email, null, password, null);
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setFirstName(String name) {
+        this.firstName = name;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public Date getBirthDate() {
+        return birthDate;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public Nationality getNationality() {
-		return nationality;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setNationality(Nationality nationality) {
-		this.nationality = nationality;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Date getBirthDate() {
-		return birthDate;
-	}
+    public String getNationality() {
+        return nationality;
+    }
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 
-	public UserRole getRole() {
-		return role;
+    public double getMoney() {
+		return money;
 	}
-
-	public void setRole(UserRole role) {
-		this.role = role;
+	public void setMoney(double money) {
+		if(money>=0) {
+			this.money = money;
+		}
 	}
-
-	public List<Ticket> getTickets() {
-		return tickets;
-	}
-
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-
 	@Override
-    public boolean equals(Object o) {
-    	if(o instanceof User) return ((User) o).id.equals(id);
-    	return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
     public String toString() {
         return "User{" +
-               "id=" + id +
-               ", firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               ", role=" + role +
-               '}';
+            "id=" + id +
+            ", name='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", email='" + email + '\'' +
+            ", birthDate=" + birthDate +
+            ", password='" + password + '\'' +
+            ", nationality='" + nationality + '\'' +
+            '}';
     }
+	
+	public boolean addTicket(Ticket ticket) {
+		return this.tickets.add(ticket);
+	}
 }
