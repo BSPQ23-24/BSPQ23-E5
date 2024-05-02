@@ -3,17 +3,20 @@ package com.RouteBus.client.dto;
 import java.util.Date;
 
 public class UserDTO {
+    public enum UserRole {
+        ADMIN,
+        CUSTOMER,
+    }
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String nationality;
     private Date birthDate;
-    private String role;
-
+    private UserRole role;
     public UserDTO() {}
 
-	public UserDTO(String firstName, String lastName, String email, String password, String nationality, Date birthDate, String role) {
+	public UserDTO(String firstName, String lastName, String email, String password, String nationality, Date birthDate, UserRole role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -21,6 +24,16 @@ public class UserDTO {
 		this.nationality = nationality;
 		this.birthDate = birthDate;
 		this.role = role;
+	}
+	
+	public UserDTO(String firstName, String lastName, String email, String password, String nationality, Date birthDate) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.nationality = nationality;
+		this.birthDate = birthDate;
+		this.role = UserRole.CUSTOMER;
 	}
 
 	public String getFirstName() {
@@ -71,11 +84,7 @@ public class UserDTO {
 		this.birthDate = birthDate;
 	}
 
-	public String getRole() {
+	public UserRole getRole() {
 		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 }

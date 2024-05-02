@@ -162,7 +162,7 @@ public class RegistrationWindow extends JFrame{
             return;
         }
 
-        UserDTO newUser = new UserDTO(name, name, email, email, nationality, birthDate, passwordText);
+        UserDTO newUser = new UserDTO(name, surname, email, passwordText, nationality, birthDate);
         boolean created = UserController.getInstance().createUser(newUser);
         if (created) {
             JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);

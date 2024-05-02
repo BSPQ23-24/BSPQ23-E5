@@ -1,60 +1,71 @@
 package com.RouteBus.server.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+@RunWith(MockitoJUnitRunner.class)
 public class StationTest {
 
-    @InjectMocks
     private Station station;
 
     @Mock
     private Set<Route> mockRoutes;
 
-    @BeforeEach
+    @Before
     public void setUp() {
-        station = new Station("Central", "Downtown");
-        station.setRoutes(mockRoutes);  
+        station = new Station("Central", "123 Main St");
+        station.setRoutes(mockRoutes);
     }
 
     @Test
-    public void testStationCreation() {
-        Station newStation = new Station("New Station", "New Location");
-        assertEquals("New Station", newStation.getName());
-        assertEquals("New Location", newStation.getLocation());
-        newStation.setRoutes(new HashSet<>());  
-        assertEquals(0, newStation.getRoutes().size());
+    public void testConstructorAndProperties() {
+        assertEquals("Central", station.getName());
+        assertEquals("123 Main St", station.getLocation());
     }
 
     @Test
-    public void testGettersAndSetters() {
-        station.setName("East Side");
-        assertEquals("East Side", station.getName());
+    public void testSetAndGetId() {
+        station.setId(1L);
+        assertEquals(Long.valueOf(1), station.getId());
+    }
 
-        station.setLocation("Uptown");
-        assertEquals("Uptown", station.getLocation());
+    @Test
+    public void testSetAndGetName() {
+        station.setName("East Station");
+        assertEquals("East Station", station.getName());
+    }
 
+    @Test
+    public void testSetAndGetLocation() {
+        station.setLocation("456 Elm St");
+        assertEquals("456 Elm St", station.getLocation());
+    }
+
+    @Test
+    public void testSetAndGetRoutes() {
         Set<Route> newRoutes = new HashSet<>();
+        Route mockRoute = new Route();
+        newRoutes.add(mockRoute);
         station.setRoutes(newRoutes);
+
         assertEquals(newRoutes, station.getRoutes());
     }
-
+    
     @Test
-    public void testInteractionWithRoutes() {
-        station.getRoutes();
-        verify(mockRoutes, times(1)).iterator();  
-        
-        Route mockRoute = mock(Route.class);
-        station.getRoutes().add(mockRoute);
-        verify(mockRoutes).add(mockRoute); 
-        station.getRoutes().remove(mockRoute);
-        verify(mockRoutes).remove(mockRoute);  
+    public void testConstructorWithoutParameters() {
+    	Station station = new Station();
+    	assertNull(station.getId());
+    	assertNull(station.getLocation());
+    	assertNull(station.getName());
+    	assertNull(station.getRoutes());
     }
 }

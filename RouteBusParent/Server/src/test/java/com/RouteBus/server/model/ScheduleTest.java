@@ -1,72 +1,99 @@
 package com.RouteBus.server.model;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+
+@RunWith(MockitoJUnitRunner.class)
 public class ScheduleTest {
 
-    @InjectMocks
     private Schedule schedule;
 
     @Mock
     private Route mockRoute;
-    
     @Mock
     private List<Ticket> mockTickets;
 
-    private AutoCloseable closeable;
+    private Date departureTime;
+    private Date arrivalTime;
+    private Date date;
 
-    @BeforeEach
+    @Before
     public void setUp() {
-        closeable = MockitoAnnotations.openMocks(this);
-        Date now = new Date();
-        schedule = new Schedule(mockRoute, now, new Date(now.getTime() + 10000), now);  
-    }
+        departureTime = new Date();
+        arrivalTime = new Date();
+        date = new Date();
 
-    @AfterEach
-    public void releaseMocks() throws Exception {
-        closeable.close();
+        // Set times for testing
+        departureTime.setTime(1620000000L); // Some arbitrary timestamp
+        arrivalTime.setTime(1620003600L); // Arbitrary, but after departure
+        date.setTime(1620000000L); // The date of the schedule
+
+        schedule = new Schedule(mockRoute, departureTime, arrivalTime, date);
+        schedule.setTickets(mockTickets);
     }
 
     @Test
-    public void testGetters() {
+    public void testConstructorAndProperties() {
         assertEquals(mockRoute, schedule.getRoute());
-        assertNotNull(schedule.getDepartureTime());
-        assertNotNull(schedule.getArrivalTime());
-        assertNotNull(schedule.getDate());
-        assertEquals(schedule.getDepartureTime().getTime() + 10000, schedule.getArrivalTime().getTime());
+        assertEquals(departureTime, schedule.getDepartureTime());
+        assertEquals(arrivalTime, schedule.getArrivalTime());
+        assertEquals(date, schedule.getDate());
     }
 
     @Test
-    public void testSetters() {
-        Route newRoute = mock(Route.class);
+    public void testSetAndGetId() {
+        schedule.setId(1L);
+        assertEquals(Long.valueOf(1), schedule.getId());
+    }
+
+    @Test
+    public void testSetAndGetRoute() {
+        Route newRoute = new Route();
         schedule.setRoute(newRoute);
         assertEquals(newRoute, schedule.getRoute());
+    }
 
+    @Test
+    public void testSetAndGetDepartureTime() {
         Date newDepartureTime = new Date();
+        newDepartureTime.setTime(1620007200L);
         schedule.setDepartureTime(newDepartureTime);
         assertEquals(newDepartureTime, schedule.getDepartureTime());
+    }
 
-        Date newArrivalTime = new Date(newDepartureTime.getTime() + 20000);  
+    @Test
+    public void testSetAndGetArrivalTime() {
+        Date newArrivalTime = new Date();
+        newArrivalTime.setTime(1620010800L);
         schedule.setArrivalTime(newArrivalTime);
         assertEquals(newArrivalTime, schedule.getArrivalTime());
+    }
 
+    @Test
+    public void testSetAndGetDate() {
         Date newDate = new Date();
+        newDate.setTime(1620090000L);
         schedule.setDate(newDate);
         assertEquals(newDate, schedule.getDate());
+    }
 
+    @Test
+    public void testSetAndGetTickets() {
         List<Ticket> newTickets = new ArrayList<>();
+        Ticket ticket = new Ticket();
+        newTickets.add(ticket);
         schedule.setTickets(newTickets);
+
         assertEquals(newTickets, schedule.getTickets());
     }
 }

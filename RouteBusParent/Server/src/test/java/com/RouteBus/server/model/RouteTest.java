@@ -1,74 +1,85 @@
 package com.RouteBus.server.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
+
+@RunWith(MockitoJUnitRunner.class)
 public class RouteTest {
 
-    @InjectMocks
     private Route route;
 
+    @Mock
     private Set<Station> mockStations;
+    @Mock
     private Set<Bus> mockBuses;
 
-    private AutoCloseable closeable;
-
-    @SuppressWarnings("unchecked")
-	@BeforeEach
+    @Before
     public void setUp() {
-        closeable = MockitoAnnotations.openMocks(this);
-        mockStations = mock(Set.class);
-        mockBuses = mock(Set.class);
-        
-        route = new Route("Route 66", "Start City", "End City", 100.0);
+        route = new Route("Route A", "Start Point", "End Point", 120.5);
         route.setStations(mockStations);
         route.setBuses(mockBuses);
     }
 
-    @AfterEach
-    public void releaseMocks() throws Exception {
-        closeable.close();
+    @Test
+    public void testConstructorAndProperties() {
+        assertEquals("Route A", route.getName());
+        assertEquals("Start Point", route.getStartPoint());
+        assertEquals("End Point", route.getEndPoint());
+        assertEquals(120.5, route.getTotalDistance(), 0.0);
     }
 
     @Test
-    public void testGettersAndSetters() {
-        assertEquals("Route 66", route.getName());
-        assertEquals("Start City", route.getStartPoint());
-        assertEquals("End City", route.getEndPoint());
-        assertEquals(100.0, route.getTotalDistance(), 0.01);
+    public void testSetAndGetId() {
+        route.setId(1L);
+        assertEquals(Long.valueOf(1), route.getId());
+    }
 
-        route.setName("New Route");
+    @Test
+    public void testSetAndGetName() {
+        route.setName("Route B");
+        assertEquals("Route B", route.getName());
+    }
+
+    @Test
+    public void testSetAndGetStartPoint() {
         route.setStartPoint("New Start");
-        route.setEndPoint("New End");
-        route.setTotalDistance(150.0);
-
-        assertEquals("New Route", route.getName());
         assertEquals("New Start", route.getStartPoint());
+    }
+
+    @Test
+    public void testSetAndGetEndPoint() {
+        route.setEndPoint("New End");
         assertEquals("New End", route.getEndPoint());
-        assertEquals(150.0, route.getTotalDistance(), 0.01);
     }
 
     @Test
-    public void testSetStations() {
-        Set<Station> anotherSet = new HashSet<>();
-        route.setStations(anotherSet);
-        assertEquals(anotherSet, route.getStations());
-        verify(mockStations, never()).add(any(Station.class));  
+    public void testSetAndGetTotalDistance() {
+        route.setTotalDistance(150.0);
+        assertEquals(150.0, route.getTotalDistance(), 0.0);
     }
 
     @Test
-    public void testSetBuses() {
-        Set<Bus> anotherSet = new HashSet<>();
-        route.setBuses(anotherSet);
-        assertEquals(anotherSet, route.getBuses());
-        verify(mockBuses, never()).add(any(Bus.class));   
+    public void testSetAndGetStations() {
+        Set<Station> newStations = new HashSet<>();
+        route.setStations(newStations);
+        assertEquals(newStations, route.getStations());
+    }
+
+    @Test
+    public void testSetAndGetBuses() {
+        Set<Bus> newBuses = new HashSet<>();
+        route.setBuses(newBuses);
+        assertEquals(newBuses.size(), route.getBuses().size());
+        assertTrue(route.getBuses().containsAll(newBuses));
     }
 }

@@ -1,65 +1,42 @@
 package com.RouteBus.server.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.mockito.*;
-import static org.mockito.Mockito.*;
-import javax.persistence.EntityManager;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(MockitoJUnitRunner.class)
 public class NationalityTest {
 
-    @InjectMocks
     private Nationality nationality;
 
-    @Mock
-    private EntityManager entityManager;
-
-    private AutoCloseable closeable;
-
-    @BeforeEach
+    @Before
     public void setUp() {
-        closeable = MockitoAnnotations.openMocks(this);
-        nationality = new Nationality("Spanish");
-    }
-
-    @AfterEach
-    public void releaseMocks() throws Exception {
-        closeable.close();
+        nationality = new Nationality("American");
     }
 
     @Test
-    public void testGetId() {
-        Long id = 1L;
-        nationality.setId(id);
-        assertEquals(id, nationality.getId());
+    public void testDefaultConstructor() {
+        Nationality defaultNationality = new Nationality();
+        assertEquals(null, defaultNationality.getName());
     }
 
     @Test
-    public void testGetName() {
-        assertEquals("Spanish", nationality.getName());
+    public void testConstructorWithName() {
+        assertEquals("American", nationality.getName());
     }
 
     @Test
-    public void testSetName() {
-        String newName = "French";
-        nationality.setName(newName);
-        assertEquals(newName, nationality.getName());
-    }
-
-    @Test
-    public void testPersistNationality() {
+    public void testSetAndGetId() {
         nationality.setId(1L);
-        entityManager.persist(nationality);
-        verify(entityManager).persist(nationality);
+        assertEquals(Long.valueOf(1), nationality.getId());
     }
 
     @Test
-    public void testFindNationalityById() {
-        when(entityManager.find(Nationality.class, 1L)).thenReturn(nationality);
-        Nationality found = entityManager.find(Nationality.class, 1L);
-        assertEquals(nationality, found);
+    public void testSetAndGetName() {
+        nationality.setName("British");
+        assertEquals("British", nationality.getName());
     }
 }

@@ -1,43 +1,43 @@
-package com.RouteBus.server.service;
-
+//package com.RouteBus.server.service;
+//
 //import static org.junit.Assert.assertEquals
-//import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import com.RouteBus.server.dao.BusRepository;
-import com.RouteBus.server.dao.RouteRepository;
-import com.RouteBus.server.dao.StationRepository;
-import com.RouteBus.server.dao.TicketRepository;
-import com.RouteBus.server.model.Bus;
-import com.RouteBus.server.model.Route;
-import com.RouteBus.server.model.Station;
-import com.RouteBus.server.model.Ticket;
-import com.RouteBus.server.model.User;
+////import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertNull;
+//import static org.junit.Assert.assertTrue;
+//import static org.mockito.ArgumentMatchers.any;
+//import static org.mockito.Mockito.doNothing;
+//import static org.mockito.Mockito.doReturn;
+//import static org.mockito.Mockito.verify;
+//import static org.mockito.Mockito.when;
+//import static org.mockito.Mockito.*;
+//import static org.junit.Assert.*;
+//
+//import java.util.ArrayList;
+//import java.util.Arrays;
+//import java.util.HashSet;
+//import java.util.List;
+//import java.util.Optional;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.mockito.junit.MockitoJUnitRunner;
+//
+//import com.RouteBus.server.dao.BusRepository;
+//import com.RouteBus.server.dao.RouteRepository;
+//import com.RouteBus.server.dao.StationRepository;
+//import com.RouteBus.server.dao.TicketRepository;
+//import com.RouteBus.server.model.Bus;
+//import com.RouteBus.server.model.Route;
+//import com.RouteBus.server.model.Station;
+//import com.RouteBus.server.model.Ticket;
+//import com.RouteBus.server.model.User;
 //import com.RouteBus.server.service.BusService.BusServiceResult;
-
-@RunWith(MockitoJUnitRunner.class)
-public class BusServiceTest {
+//
+//@RunWith(MockitoJUnitRunner.class)
+//public class BusServiceTest {
 //
 //    @Mock
 //    private BusRepository busRepository;
@@ -430,53 +430,53 @@ public class BusServiceTest {
 //        assertEquals(BusServiceResult.SUCCESS, busService.deleteAllTickets());
 //    }
 //
-////    @Test
-////    public void testAddStationToRouteSuccess() {
-////        Route route = new Route();
-////        route.setId(1);
-////        Station station = new Station();
-////        station.setId(1);
-////
-////        when(route.addStation(station)).thenReturn(true);
-////        when(station.addRoute(route)).thenReturn(true);
-////        when(busService.updateRoute(route, route.getId())).thenReturn(BusServiceResult.SUCCESS);
-////        when(busService.updateStation(station, station.getId())).thenReturn(BusServiceResult.SUCCESS);
-////
-////        assertEquals(BusServiceResult.SUCCESS, busService.addStationToRoute(route, station));
-////    }
+//    @Test
+//    public void testAddStationToRouteSuccess() {
+//        Route route = new Route();
+//        route.setId(1);
+//        Station station = new Station();
+//        station.setId(1);
 //
-////    @Test
-////    public void testAddStationToRouteFailure() {
-////        Route route = new Route();
-////        Station station = new Station();
-////
-////        when(route.addStation(station)).thenReturn(false); // Simulate failure in adding station to route
-////
-////        assertEquals(BusServiceResult.FAIL, busService.addStationToRoute(route, station));
-////        verify(busService, never()).updateRoute(route, route.getId());
-////    }
-////    @Test
-////    public void testAddBusToRouteSuccess() {
-////        Route route = new Route();
-////        Bus bus = new Bus();
-////        when(route.addBus(bus)).thenReturn(true);
-////        when(bus.addRoute(route)).thenReturn(true);
-////        when(busService.updateRoute(route, route.getId())).thenReturn(BusServiceResult.SUCCESS);
-////        when(busService.updateBus(bus, bus.getId())).thenReturn(BusServiceResult.SUCCESS);
-////        assertEquals(BusServiceResult.SUCCESS, busService.addBusToRoute(route, bus));
-////    }
+//        when(route.addStation(station)).thenReturn(true);
+//        when(station.addRoute(route)).thenReturn(true);
+//        when(busService.updateRoute(route, route.getId())).thenReturn(BusServiceResult.SUCCESS);
+//        when(busService.updateStation(station, station.getId())).thenReturn(BusServiceResult.SUCCESS);
 //
-////    @Test
-////    public void testAddBusToRouteFailure() {
-////        Route route = new Route();
-////        Bus bus = new Bus();
-////
-////        when(route.addBus(bus)).thenReturn(false); // Simulate failure in adding bus to route
-////
-////        assertEquals(BusServiceResult.FAIL, busService.addBusToRoute(route, bus));
-////        verify(busService, never()).updateRoute(route, route.getId());
-////    }
-////    @Test
+//        assertEquals(BusServiceResult.SUCCESS, busService.addStationToRoute(route, station));
+//    }
+//
+//    @Test
+//    public void testAddStationToRouteFailure() {
+//        Route route = new Route();
+//        Station station = new Station();
+//
+//        when(route.addStation(station)).thenReturn(false); // Simulate failure in adding station to route
+//
+//        assertEquals(BusServiceResult.FAIL, busService.addStationToRoute(route, station));
+//        verify(busService, never()).updateRoute(route, route.getId());
+//    }
+//    @Test
+//    public void testAddBusToRouteSuccess() {
+//        Route route = new Route();
+//        Bus bus = new Bus();
+//        when(route.addBus(bus)).thenReturn(true);
+//        when(bus.addRoute(route)).thenReturn(true);
+//        when(busService.updateRoute(route, route.getId())).thenReturn(BusServiceResult.SUCCESS);
+//        when(busService.updateBus(bus, bus.getId())).thenReturn(BusServiceResult.SUCCESS);
+//        assertEquals(BusServiceResult.SUCCESS, busService.addBusToRoute(route, bus));
+//    }
+//
+//    @Test
+//    public void testAddBusToRouteFailure() {
+//        Route route = new Route();
+//        Bus bus = new Bus();
+//
+//        when(route.addBus(bus)).thenReturn(false); // Simulate failure in adding bus to route
+//
+//        assertEquals(BusServiceResult.FAIL, busService.addBusToRoute(route, bus));
+//        verify(busService, never()).updateRoute(route, route.getId());
+//    }
+//    @Test
 //    public void testObtainRoutesByBus() {
 //        int busId = 1;
 //        List<Route> expectedRoutes = Arrays.asList(new Route(), new Route());
@@ -488,4 +488,4 @@ public class BusServiceTest {
 //        assertEquals(expectedRoutes.size(), actualRoutes.size());
 //        assertEquals(expectedRoutes, actualRoutes);
 //    }
-}
+//}

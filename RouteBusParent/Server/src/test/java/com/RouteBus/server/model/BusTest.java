@@ -1,30 +1,32 @@
 package com.RouteBus.server.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-class BusTest {
+@RunWith(MockitoJUnitRunner.class)
+public class BusTest {
     private Bus bus;
+
+    @Mock
     private Set<Route> mockRoutes;
 
-    @SuppressWarnings("unchecked")
-	@BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         bus = new Bus("XYZ-1234", 45, "Mercedes", "Sprinter");
-
-        mockRoutes = Mockito.mock(Set.class);
         bus.setRoutes(mockRoutes);
     }
 
     @Test
-    void testBusProperties() {
+    public void testConstructorWithParameters() {
         assertEquals("XYZ-1234", bus.getLicensePlate());
         assertEquals(45, bus.getCapacity());
         assertEquals("Mercedes", bus.getMake());
@@ -32,22 +34,65 @@ class BusTest {
     }
 
     @Test
-    void testSetRoutes() {
-        Route mockRoute = mock(Route.class);
-        HashSet<Route> routes = new HashSet<>();
-        routes.add(mockRoute);
-        bus.setRoutes(routes);
-
-        assertTrue(bus.getRoutes().contains(mockRoute));
+    public void testConstructorWithoutParameters() {
+        Bus emptyBus = new Bus();
+        assertNull(emptyBus.getLicensePlate());
+        assertEquals(0, emptyBus.getCapacity());
+        assertNull(emptyBus.getMake());
+        assertNull(emptyBus.getModel());
+        assertNull(emptyBus.getRoutes());
     }
 
     @Test
-    void testInteractionWithRoutes() {
+    public void testSetAndGetId() {
+        bus.setId(10L);
+        assertEquals(Long.valueOf(10), bus.getId());
+    }
+
+    @Test
+    public void testSetAndGetLicensePlate() {
+        bus.setLicensePlate("ABCD-1234");
+        assertEquals("ABCD-1234", bus.getLicensePlate());
+    }
+
+    @Test
+    public void testSetAndGetCapacity() {
+        bus.setCapacity(50);
+        assertEquals(50, bus.getCapacity());
+    }
+
+    @Test
+    public void testSetAndGetMake() {
+        bus.setMake("Ford");
+        assertEquals("Ford", bus.getMake());
+    }
+
+    @Test
+    public void testSetAndGetModel() {
+        bus.setModel("Transit");
+        assertEquals("Transit", bus.getModel());
+    }
+
+    @Test
+    public void testSetAndGetRoutes() {
+        Set<Route> newRoutes = new HashSet<>();
+        Route route = new Route();
+        newRoutes.add(route);
+        bus.setRoutes(newRoutes);
+        assertSame(newRoutes, bus.getRoutes());
+        assertTrue(bus.getRoutes().contains(route));
+    }
+
+    @Test
+    public void testInteractionWithRoutes() {
+        Route mockRoute = mock(Route.class);
+        bus.getRoutes().add(mockRoute);
+        verify(mockRoutes).add(mockRoute);
+
+        bus.getRoutes().remove(mockRoute);
+        verify(mockRoutes).remove(mockRoute);
+
         bus.getRoutes().clear();
         verify(mockRoutes).clear();
-
-        Route testRoute = new Route();
-        bus.getRoutes().add(testRoute);
-        verify(mockRoutes).add(testRoute);
     }
 }

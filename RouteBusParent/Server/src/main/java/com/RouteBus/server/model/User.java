@@ -19,10 +19,10 @@ public class User {
     private String lastName;
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "nationality_id")
     private Nationality nationality;
-    
+
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     
@@ -117,14 +117,18 @@ public class User {
 	}
 
 	@Override
-    public boolean equals(Object o) {
-    	if(o instanceof User) return ((User) o).id.equals(id);
-    	return false;
-    }
+	public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (o == null || getClass() != o.getClass()) return false;
+	    User user = (User) o;
+	    if (id == null || user.id == null) return Objects.equals(email, user.email);
+	    return Objects.equals(id, user.id);
+	}
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, email);
     }
 
     @Override
