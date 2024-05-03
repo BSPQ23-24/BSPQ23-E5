@@ -8,6 +8,9 @@ import com.RouteBus.client.controller.UserController;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,36 +32,22 @@ public class MainWindow extends JFrame {
     private JMenuItem spanish;
     private JMenuItem english;
     private JMenuItem basque;
+    private JMenuItem german;
     
     private JTextArea noticia1;
     private JTextArea noticia2;
-    
-	private JLabel lName;
-	private JLabel lSurname;
-	private JLabel lEmail;
-	private JLabel lBirthDay;
-	private JLabel lNationality;
-	private JLabel lPassword;
-	private JLabel lPasswordR;
-	
-	private JTextField tName;
-	private JTextField tSurname;
-	private JTextField tEmail;
-	
-	private JDateChooser dBirthDate;
-	
-	private JComboBox<String> comboNationality;
-	
-	private JPasswordField password;
-	private JPasswordField passwordR;
 	
 	
     private JPanel contentPanel;
     private JPanel newsPanel;
     private JPanel infoPanel;
     
+	private ResourceBundle messages;
+    
     public MainWindow() {
-        this.setTitle("Client main window");
+		Locale currentLocale = Locale.getDefault();
+		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
+        this.setTitle(messages.getString("windowTitle"));
         this.setLayout(null);
         this.setBounds(500, 100, 850, 600);
         this.setResizable(false);
@@ -80,17 +69,17 @@ public class MainWindow extends JFrame {
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(204, 153, 255));
         
-        new JMenu("User");
-        myInformation = new JMenu("My Information");
-        myRoutes = new JMenu("My Routes");
-        myBusTickets = new JMenu("My Bus Tickets");
-        language = new JMenu("Language");
-        logout = new JMenu("Log out");
+        new JMenu(messages.getString("userMenu"));
+        myInformation = new JMenu(messages.getString("myInformationMenu"));
+        myRoutes = new JMenu(messages.getString("myRoutesMenu"));
+        myBusTickets = new JMenu(messages.getString("myBusTicketsMenu"));
+        language = new JMenu(messages.getString("languageMenu"));
+        logout = new JMenu(messages.getString("logoutMenu"));
         
-        spanish = new JMenuItem("Spanish");
-        english = new JMenuItem("English");
-        basque = new JMenuItem("Basque");
-        
+        spanish = new JMenuItem(messages.getString("spanish"));
+        english = new JMenuItem(messages.getString("english"));
+        basque = new JMenuItem(messages.getString("basque"));
+        german = new JMenuItem(messages.getString("german")); 
         // Add menu items to the user menu
         menuBar.add(myInformation);
         menuBar.add(myRoutes);
@@ -101,16 +90,17 @@ public class MainWindow extends JFrame {
         language.add(spanish);
         language.add(english);
         language.add(basque);
-
+        language.add(german);
         this.setJMenuBar(menuBar);
                 
         // Initialize text areas for news
-        noticia1 = new JTextArea("New routes available!\n\nExplore exciting destinations with our state-of-the-art bus services. Book your tickets now and embark on an unforgettable journey. Don't miss out on our limited-time offer!");
+        
+        noticia1 = new JTextArea(messages.getString("new1Content"));
         noticia1.setEditable(false); // Make it read-only
         noticia1.setLineWrap(true); // Wrap text to next line if necessary
         noticia1.setBackground(new Color(223, 169, 245));
         
-        noticia2 = new JTextArea("Spring special offer!\n\nBook your tickets now and get a 20% discount on all selected routes. Don't miss out on this limited-time deal and start planning your next adventure today! Explore new destinations and make unforgettable memories with RouteBus.");
+        noticia2 = new JTextArea(messages.getString("new2Content"));
         noticia2.setEditable(false); // Make it read-only
         noticia2.setLineWrap(true); // Wrap text to next line if necessary
         noticia2.setBackground(new Color(223, 169, 245));

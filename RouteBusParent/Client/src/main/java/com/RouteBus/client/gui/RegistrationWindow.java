@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class RegistrationWindow extends JFrame{
 
@@ -41,7 +43,11 @@ public class RegistrationWindow extends JFrame{
 	
 	private JButton bRegister;
 	
+	private ResourceBundle messages;
+	
 	public RegistrationWindow() {
+		Locale currentLocale = Locale.getDefault();
+		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
 		this.setTitle("Registration Window");
 		this.setLayout(null);
 		this.setBounds(300, 100, 750, 600);
@@ -53,13 +59,13 @@ public class RegistrationWindow extends JFrame{
 		contentPane.setBackground(Color.WHITE);
 		this.setContentPane(contentPane);
 		
-		lName = new JLabel("Name: ");
-		lSurname = new JLabel("Surname: ");
-		lEmail = new JLabel("Email: ");
-		lBirthDay = new JLabel("Birthdate: ");
-		lNationality = new JLabel("Nationality: ");
-		lPassword = new JLabel("Password: ");
-		lPasswordR = new JLabel("Repeat password: ");
+		lName = new JLabel(messages.getString("nameLabel"));
+		lSurname = new JLabel(messages.getString("surnameLabel"));
+		lEmail = new JLabel(messages.getString("email"));
+		lBirthDay = new JLabel(messages.getString("birthDateLabel"));
+		lNationality = new JLabel(messages.getString("nationalityLabel"));
+		lPassword = new JLabel(messages.getString("password"));
+		lPasswordR = new JLabel(messages.getString("repeatPasswordLabel"));
 		
 		tName = new JTextField();
 		tSurname = new JTextField();
@@ -73,7 +79,7 @@ public class RegistrationWindow extends JFrame{
 		password = new JPasswordField();
 		passwordR = new JPasswordField();
 		
-		bRegister = new JButton("Register");
+		bRegister = new JButton(messages.getString("registerButton"));
 		bRegister.setBackground(new Color(204, 153, 255));
 		bRegister.setBorder(null);
 		
@@ -154,22 +160,22 @@ public class RegistrationWindow extends JFrame{
         String passwordRText = new String(passwordR.getPassword());
 
         if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality.isEmpty() || passwordText.isEmpty() || passwordRText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, messages.getString("fillFieldsError"), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (!passwordText.equals(passwordRText)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, messages.getString("passwordMismatchError"), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         UserDTO newUser = new UserDTO(name, surname, email, passwordText, new NationalityDTO(nationality), birthDate);
         boolean created = UserController.getInstance().createUser(newUser);
         if (created) {
-            JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, messages.getString("registrationSuccess"), "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Registration failed. User may already exist.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, messages.getString("registrationFailError"), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 	
