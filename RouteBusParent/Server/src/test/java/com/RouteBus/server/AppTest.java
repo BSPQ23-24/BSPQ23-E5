@@ -34,7 +34,7 @@ public class AppTest {
         CommandLineRunner runner = app.demo(nationalityRepository);
         runner.run(new String[]{});
 
-        verify(nationalityRepository, times(9)).save(any(Nationality.class));
+        verify(nationalityRepository, times(App.getNumberOfNationalities())).save(any(Nationality.class));
     }
 
     @Test

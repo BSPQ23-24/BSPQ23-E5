@@ -15,6 +15,38 @@ public class App {
 
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
+    private static final Nationality[] nationalities = {
+            new Nationality("American", "en"),
+            new Nationality("British", "en"),
+            new Nationality("Chinese", "zh"),
+            new Nationality("French", "fr"),
+            new Nationality("German", "de"),
+            new Nationality("Indian", "hi"),
+            new Nationality("Japanese", "ja"),
+            new Nationality("Russian", "ru"),
+            new Nationality("Spanish", "es"),
+            new Nationality("Italian", "it"),
+            new Nationality("Portuguese", "pt"),
+            new Nationality("Dutch", "nl"),
+            new Nationality("Swedish", "sv"),
+            new Nationality("Korean", "ko"),
+            new Nationality("Arabic", "ar"),
+            new Nationality("Turkish", "tr"),
+            new Nationality("Greek", "el"),
+            new Nationality("Polish", "pl"),
+            new Nationality("Vietnamese", "vi"),
+            new Nationality("Thai", "th"),
+            new Nationality("Indonesian", "id"),
+            new Nationality("Finnish", "fi"),
+            new Nationality("Czech", "cs"),
+            new Nationality("Danish", "da"),
+            new Nationality("Hungarian", "hu"),
+            new Nationality("Malay", "ms"),
+            new Nationality("Norwegian", "no"),
+            new Nationality("Romanian", "ro"),
+            new Nationality("Slovak", "sk")
+        };
+    
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
@@ -22,38 +54,6 @@ public class App {
     @Bean
     CommandLineRunner demo(NationalityRepository nationalityRepository) {
         return (args) -> {
-            Nationality[] nationalities = {
-                new Nationality("American", "en"),
-                new Nationality("British", "en"),
-                new Nationality("Chinese", "zh"),
-                new Nationality("French", "fr"),
-                new Nationality("German", "de"),
-                new Nationality("Indian", "hi"),
-                new Nationality("Japanese", "ja"),
-                new Nationality("Russian", "ru"),
-                new Nationality("Spanish", "es"),
-                new Nationality("Italian", "it"),
-                new Nationality("Portuguese", "pt"),
-                new Nationality("Dutch", "nl"),
-                new Nationality("Swedish", "sv"),
-                new Nationality("Korean", "ko"),
-                new Nationality("Arabic", "ar"),
-                new Nationality("Turkish", "tr"),
-                new Nationality("Greek", "el"),
-                new Nationality("Polish", "pl"),
-                new Nationality("Vietnamese", "vi"),
-                new Nationality("Thai", "th"),
-                new Nationality("Indonesian", "id"),
-                new Nationality("Finnish", "fi"),
-                new Nationality("Czech", "cs"),
-                new Nationality("Danish", "da"),
-                new Nationality("Hungarian", "hu"),
-                new Nationality("Malay", "ms"),
-                new Nationality("Norwegian", "no"),
-                new Nationality("Romanian", "ro"),
-                new Nationality("Slovak", "sk")
-            };
-
             if (nationalityRepository.count() == 0) {
                 int count = 0;
                 for (Nationality nationality : nationalities) {
@@ -64,5 +64,9 @@ public class App {
                 logger.info("Nationalities are already loaded.");
             }
         };
+    }
+    
+    public static int getNumberOfNationalities() {
+    	return nationalities.length;
     }
 }

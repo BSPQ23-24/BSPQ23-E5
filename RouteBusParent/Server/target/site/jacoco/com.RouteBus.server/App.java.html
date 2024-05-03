@@ -15,25 +15,59 @@ import com.RouteBus.server.model.Nationality;
 
 <span class="fc" id="L16">    private static final Logger logger = LoggerFactory.getLogger(App.class);</span>
 
+<span class="fc" id="L18">    private static final Nationality[] nationalities = {</span>
+            new Nationality(&quot;American&quot;, &quot;en&quot;),
+            new Nationality(&quot;British&quot;, &quot;en&quot;),
+            new Nationality(&quot;Chinese&quot;, &quot;zh&quot;),
+            new Nationality(&quot;French&quot;, &quot;fr&quot;),
+            new Nationality(&quot;German&quot;, &quot;de&quot;),
+            new Nationality(&quot;Indian&quot;, &quot;hi&quot;),
+            new Nationality(&quot;Japanese&quot;, &quot;ja&quot;),
+            new Nationality(&quot;Russian&quot;, &quot;ru&quot;),
+            new Nationality(&quot;Spanish&quot;, &quot;es&quot;),
+            new Nationality(&quot;Italian&quot;, &quot;it&quot;),
+            new Nationality(&quot;Portuguese&quot;, &quot;pt&quot;),
+            new Nationality(&quot;Dutch&quot;, &quot;nl&quot;),
+            new Nationality(&quot;Swedish&quot;, &quot;sv&quot;),
+            new Nationality(&quot;Korean&quot;, &quot;ko&quot;),
+            new Nationality(&quot;Arabic&quot;, &quot;ar&quot;),
+            new Nationality(&quot;Turkish&quot;, &quot;tr&quot;),
+            new Nationality(&quot;Greek&quot;, &quot;el&quot;),
+            new Nationality(&quot;Polish&quot;, &quot;pl&quot;),
+            new Nationality(&quot;Vietnamese&quot;, &quot;vi&quot;),
+            new Nationality(&quot;Thai&quot;, &quot;th&quot;),
+            new Nationality(&quot;Indonesian&quot;, &quot;id&quot;),
+            new Nationality(&quot;Finnish&quot;, &quot;fi&quot;),
+            new Nationality(&quot;Czech&quot;, &quot;cs&quot;),
+            new Nationality(&quot;Danish&quot;, &quot;da&quot;),
+            new Nationality(&quot;Hungarian&quot;, &quot;hu&quot;),
+            new Nationality(&quot;Malay&quot;, &quot;ms&quot;),
+            new Nationality(&quot;Norwegian&quot;, &quot;no&quot;),
+            new Nationality(&quot;Romanian&quot;, &quot;ro&quot;),
+            new Nationality(&quot;Slovak&quot;, &quot;sk&quot;)
+        };
+    
     public static void main(String[] args) {
-<span class="fc" id="L19">        SpringApplication.run(App.class, args);</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L51">        SpringApplication.run(App.class, args);</span>
+<span class="fc" id="L52">    }</span>
 
     @Bean
     CommandLineRunner demo(NationalityRepository nationalityRepository) {
-<span class="fc" id="L24">        return (args) -&gt; {</span>
-<span class="fc" id="L25">            String[] nationalities = {&quot;American&quot;, &quot;British&quot;, &quot;Chinese&quot;, &quot;French&quot;, &quot;German&quot;, &quot;Indian&quot;, &quot;Japanese&quot;, &quot;Russian&quot;, &quot;Spanish&quot;};</span>
-
-<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (nationalityRepository.count() == 0) {</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">                for (String name : nationalities) {</span>
-<span class="fc" id="L29">                    Nationality nationality = new Nationality(name);</span>
-<span class="fc" id="L30">                    nationalityRepository.save(nationality);</span>
+<span class="fc" id="L56">        return (args) -&gt; {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (nationalityRepository.count() == 0) {</span>
+<span class="fc" id="L58">                int count = 0;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                for (Nationality nationality : nationalities) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">                    if(nationalityRepository.save(nationality) != null)	count++;</span>
                 }
-<span class="fc" id="L32">                logger.info(&quot;Nationalities loaded into the database.&quot;);</span>
-            } else {
-<span class="fc" id="L34">                logger.info(&quot;Nationalities are already loaded.&quot;);</span>
+<span class="fc" id="L62">                logger.info(count + &quot; nationalities loaded into the database.&quot;);</span>
+<span class="fc" id="L63">            } else {</span>
+<span class="fc" id="L64">                logger.info(&quot;Nationalities are already loaded.&quot;);</span>
             }
-<span class="fc" id="L36">        };</span>
+<span class="fc" id="L66">        };</span>
+    }
+    
+    public static int getNumberOfNationalities() {
+<span class="fc" id="L70">    	return nationalities.length;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

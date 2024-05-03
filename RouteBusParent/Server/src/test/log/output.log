@@ -16,3 +16,48 @@
 2024-05-03 19:14:04,719 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
 2024-05-03 19:14:04,719 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
 2024-05-03 19:14:04,720 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
+2024-05-03 19:57:01,736 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setRoutes and getRoutes methods
+2024-05-03 19:57:01,737 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor without parameters
+2024-05-03 19:57:01,737 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setMake and getMake methods
+2024-05-03 19:57:01,738 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor with parameters
+2024-05-03 19:57:01,738 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setModel and getModel methods
+2024-05-03 19:57:01,738 [main] DEBUG com.RouteBus.server.model.BusTest - Testing interaction with Routes
+2024-05-03 19:57:01,766 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
+2024-05-03 19:57:01,767 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
+2024-05-03 19:57:01,767 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
+2024-05-03 19:57:17,734 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setRoutes and getRoutes methods
+2024-05-03 19:57:17,734 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor without parameters
+2024-05-03 19:57:17,734 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setMake and getMake methods
+2024-05-03 19:57:17,735 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor with parameters
+2024-05-03 19:57:17,735 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setModel and getModel methods
+2024-05-03 19:57:17,735 [main] DEBUG com.RouteBus.server.model.BusTest - Testing interaction with Routes
+2024-05-03 19:57:17,736 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
+2024-05-03 19:57:17,736 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
+2024-05-03 19:57:17,736 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
+2024-05-03 19:59:02,652 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setRoutes and getRoutes methods
+2024-05-03 19:59:02,653 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor without parameters
+2024-05-03 19:59:02,653 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setMake and getMake methods
+2024-05-03 19:59:02,654 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor with parameters
+2024-05-03 19:59:02,654 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setModel and getModel methods
+2024-05-03 19:59:02,654 [main] DEBUG com.RouteBus.server.model.BusTest - Testing interaction with Routes
+2024-05-03 19:59:02,655 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
+2024-05-03 19:59:02,655 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
+2024-05-03 19:59:02,655 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
+2024-05-03 19:59:21,686 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setRoutes and getRoutes methods
+2024-05-03 19:59:21,686 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor without parameters
+2024-05-03 19:59:21,686 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setMake and getMake methods
+2024-05-03 19:59:21,687 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor with parameters
+2024-05-03 19:59:21,687 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setModel and getModel methods
+2024-05-03 19:59:21,687 [main] DEBUG com.RouteBus.server.model.BusTest - Testing interaction with Routes
+2024-05-03 19:59:21,712 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
+2024-05-03 19:59:21,713 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
+2024-05-03 19:59:21,713 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
+2024-05-03 19:59:54,404 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setRoutes and getRoutes methods
+2024-05-03 19:59:54,405 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor without parameters
+2024-05-03 19:59:54,405 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setMake and getMake methods
+2024-05-03 19:59:54,405 [main] DEBUG com.RouteBus.server.model.BusTest - Testing constructor with parameters
+2024-05-03 19:59:54,405 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setModel and getModel methods
+2024-05-03 19:59:54,406 [main] DEBUG com.RouteBus.server.model.BusTest - Testing interaction with Routes
+2024-05-03 19:59:54,434 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setId and getId methods
+2024-05-03 19:59:54,434 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setCapacity and getCapacity methods
+2024-05-03 19:59:54,434 [main] DEBUG com.RouteBus.server.model.BusTest - Testing setLicensePlate and getLicensePlate methods
