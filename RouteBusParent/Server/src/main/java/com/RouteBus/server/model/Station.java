@@ -55,4 +55,8 @@ public class Station {
 	public void setRoutes(Set<Route> routes) {
 		this.routes = routes;
 	}
+	
+	public boolean addRoute(Route route) {
+		return this.routes.add(route);
+	}
 }

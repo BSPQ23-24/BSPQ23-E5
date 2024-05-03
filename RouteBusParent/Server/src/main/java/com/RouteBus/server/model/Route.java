@@ -96,4 +96,10 @@ public class Route {
 	public void setBuses(Set<Bus> buses) {
 		this.buses = buses;
 	}
+	public boolean addBus(Bus bus) {
+		return this.buses.add(bus);
+	}
+	public boolean addStation(Station station) {
+		return this.stations.add(station);
+	}
 }

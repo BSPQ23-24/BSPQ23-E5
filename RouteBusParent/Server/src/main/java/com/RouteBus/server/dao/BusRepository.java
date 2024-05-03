@@ -6,5 +6,6 @@ import com.RouteBus.server.model.Bus;
 import java.util.Optional;
 
 @Repository
-public interface BusRepository extends JpaRepository<Bus, Integer> {
+public interface BusRepository extends JpaRepository<Bus, Long> {
+	Optional<Bus> findByLicensePlate(String licensePlate);
 }

@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RouteRepository extends JpaRepository<Route, Integer> {
-	List<Route> findByBusesId(int id);
-	List<Route> findByStationsId(int id);
+public interface RouteRepository extends JpaRepository<Route, Long> {
+	List<Route> findByBusesId(Long id);
+	List<Route> findByStationsId(Long id);
+	Optional<Route> findByName(String name);
 }

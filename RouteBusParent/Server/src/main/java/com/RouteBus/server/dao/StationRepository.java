@@ -7,6 +7,6 @@ import com.RouteBus.server.model.Station;
 import java.util.Optional;
 
 @Repository
-public interface StationRepository extends JpaRepository<Station, Integer> {
-
+public interface StationRepository extends JpaRepository<Station, Long> {
+	Optional<Station> findByName(String name);
 }
