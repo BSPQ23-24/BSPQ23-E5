@@ -33,7 +33,7 @@ public class NationalityRestControllerTest {
 
     @Before
     public void setUp() {
-        logger.info("Setting up test...");
+        logger.debug("Setting up test...");
 
         mockNationalities = Arrays.asList(
                 new Nationality("USA", "en"),
@@ -42,12 +42,12 @@ public class NationalityRestControllerTest {
         );
         when(nationalityService.getAllNationalities()).thenReturn(mockNationalities);
 
-        logger.info("Test setup completed.");
+        logger.debug("Test setup completed.");
     }
 
     @Test
     public void testGetAllNationalities() {
-        logger.info("Starting test testGetAllNationalities...");
+        logger.debug("Starting test testGetAllNationalities...");
 
         ResponseEntity<List<Nationality>> response = nationalityRestController.getAllNationalities();
 
@@ -56,6 +56,6 @@ public class NationalityRestControllerTest {
 
         verify(nationalityService, times(1)).getAllNationalities();
 
-        logger.info("Test testGetAllNationalities passed successfully.");
+        logger.debug("Test testGetAllNationalities passed successfully.");
     }
 }
