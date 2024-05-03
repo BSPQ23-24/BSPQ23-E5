@@ -1,6 +1,7 @@
 package com.RouteBus.client.controller;
 
 import com.RouteBus.client.gateway.UserGateway;
+import com.RouteBus.client.dto.NationalityDTO;
 import com.RouteBus.client.dto.UserDTO;
 import java.util.List;
 
@@ -43,9 +44,9 @@ public class UserController {
         }
     }
 
-    public boolean updateUser(String email, UserDTO user) {
+    public boolean updateUser(UserDTO user) {
         try {
-            return userGateway.updateUser(email, user);
+            return userGateway.updateUser(user);
         } catch (Exception e) {
             System.err.println("Failed to update user: " + e.getMessage());
             return false;
@@ -79,7 +80,7 @@ public class UserController {
         }
     }
     
-    public List<String> getNationalities() {
+    public List<NationalityDTO> getNationalities() {
         return userGateway.getNationalities();
     }
 

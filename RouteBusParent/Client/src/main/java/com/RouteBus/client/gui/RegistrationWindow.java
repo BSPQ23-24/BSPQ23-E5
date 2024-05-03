@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import com.RouteBus.client.controller.UserController;
+import com.RouteBus.client.dto.NationalityDTO;
 import com.RouteBus.client.dto.UserDTO;
 import com.toedter.calendar.JDateChooser;
 
@@ -162,7 +163,7 @@ public class RegistrationWindow extends JFrame{
             return;
         }
 
-        UserDTO newUser = new UserDTO(name, surname, email, passwordText, nationality, birthDate);
+        UserDTO newUser = new UserDTO(name, surname, email, passwordText, new NationalityDTO(nationality), birthDate);
         boolean created = UserController.getInstance().createUser(newUser);
         if (created) {
             JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -184,9 +185,9 @@ public class RegistrationWindow extends JFrame{
     }
     
     private void loadNationalities() {
-       List<String> nationalities = UserController.getInstance().getNationalities();
-        for (String nationality : nationalities) {
-            comboNationality.addItem(nationality);
+       List<NationalityDTO> nationalities = UserController.getInstance().getNationalities();
+        for (NationalityDTO nationality : nationalities) {
+            comboNationality.addItem(nationality.getName());
         }
     }
 }

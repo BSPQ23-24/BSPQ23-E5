@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.service;
+
+import org.springframework.stereotype.Service;
+import com.RouteBus.server.dao.UserRepository;
+import com.RouteBus.server.model.User;
+
+import java.util.List;
+
+@Service
+public class UserService {
+
+<span class="fc" id="L12">    public enum UserServiceResult {</span>
+<span class="fc" id="L13">        SUCCESS,</span>
+<span class="fc" id="L14">        USER_ALREADY_EXISTS,</span>
+<span class="fc" id="L15">        USER_NOT_FOUND,</span>
+<span class="fc" id="L16">        ERROR</span>
+    }
+
+    private final UserRepository userRepository;
+
+<span class="fc" id="L21">    public UserService(UserRepository userRepository) {</span>
+<span class="fc" id="L22">        this.userRepository = userRepository;</span>
+<span class="fc" id="L23">    }</span>
+
+    public User getUserById(Long id) {
+<span class="fc" id="L26">        return userRepository.findById(id).orElse(null);</span>
+    }
+
+    public User getUserByEmail(String email) {
+<span class="fc" id="L30">        return userRepository.findByEmail(email).orElse(null);</span>
+    }
+
+    public List&lt;User&gt; getAllUsers() {
+<span class="fc" id="L34">        return userRepository.findAll();</span>
+    }
+
+    public UserServiceResult createUser(User user) {
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (userRepository.findByEmail(user.getEmail()).isPresent()) {</span>
+<span class="fc" id="L39">            return UserServiceResult.USER_ALREADY_EXISTS;</span>
+        }
+        try {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            return userRepository.save(user) == null ? UserServiceResult.ERROR: UserServiceResult.SUCCESS;</span>
+<span class="fc" id="L43">        } catch (Exception e) {</span>
+<span class="fc" id="L44">            return UserServiceResult.ERROR;</span>
+        }
+    }
+
+    //Only updates non dependent fields
+    public UserServiceResult updateUser(User user) {
+<span class="fc" id="L50">        return userRepository.findByEmail(user.getEmail())</span>
+<span class="fc" id="L51">            .map(existingUser -&gt; {</span>
+<span class="fc" id="L52">                existingUser.setFirstName(user.getFirstName());</span>
+<span class="fc" id="L53">                existingUser.setLastName(user.getLastName());</span>
+<span class="fc" id="L54">                existingUser.setEmail(user.getEmail());</span>
+<span class="fc" id="L55">                existingUser.setPassword(user.getPassword());</span>
+<span class="fc" id="L56">                existingUser.setNationality(user.getNationality());</span>
+<span class="fc" id="L57">                existingUser.setBirthDate(user.getBirthDate());</span>
+<span class="fc" id="L58">                existingUser.setRole(user.getRole());</span>
+<span class="fc" id="L59">                userRepository.save(existingUser);</span>
+<span class="fc" id="L60">                return UserServiceResult.SUCCESS;</span>
+            })
+<span class="fc" id="L62">            .orElse(UserServiceResult.USER_NOT_FOUND);</span>
+    }
+
+
+
+    public UserServiceResult deleteUser(String email) {
+<span class="fc" id="L68">        return userRepository.findByEmail(email)</span>
+<span class="fc" id="L69">                .map(user -&gt; {</span>
+<span class="fc" id="L70">                    userRepository.delete(user);</span>
+<span class="fc" id="L71">                    return UserServiceResult.SUCCESS;</span>
+<span class="fc" id="L72">                }).orElse(UserServiceResult.USER_NOT_FOUND);</span>
+    }
+
+    public UserServiceResult deleteAllUsers() {
+<span class="fc" id="L76">        userRepository.deleteAll();</span>
+<span class="fc" id="L77">        return UserServiceResult.SUCCESS;</span>
+    }
+
+    public boolean checkUser(String email) {
+<span class="fc" id="L81">        return userRepository.findByEmail(email).isPresent();</span>
+    }
+
+    public boolean checkPassword(String email, String password) {
+<span class="fc" id="L85">        return userRepository.findByEmail(email)</span>
+<span class="fc" id="L86">                .map(User::getPassword)</span>
+<span class="fc" id="L87">                .filter(pwd -&gt; pwd.equals(password))</span>
+<span class="fc" id="L88">                .isPresent();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

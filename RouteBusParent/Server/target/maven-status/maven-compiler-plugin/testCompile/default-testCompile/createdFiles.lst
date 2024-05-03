@@ -1,7 +1,12 @@
 com\RouteBus\server\model\BusTest.class
 com\RouteBus\server\model\TicketTest.class
-com\RouteBus\server\model\NationalityTest.class
-com\RouteBus\server\model\RouteTest.class
 com\RouteBus\server\model\StationTest.class
 com\RouteBus\server\model\ScheduleTest.class
+com\RouteBus\server\controller\UserRestControllerTest.class
 com\RouteBus\server\model\UserTest.class
+com\RouteBus\server\service\NationalityServiceTest.class
+com\RouteBus\server\service\UserServiceTest.class
+com\RouteBus\server\model\NationalityTest.class
+com\RouteBus\server\model\RouteTest.class
+com\RouteBus\server\AppTest.class
+com\RouteBus\server\controller\NationalityRestControllerTest.class

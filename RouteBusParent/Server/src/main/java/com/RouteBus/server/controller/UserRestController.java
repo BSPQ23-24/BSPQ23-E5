@@ -47,9 +47,9 @@ public class UserRestController {
         }
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User user) {
-        UserServiceResult result = userService.updateUser(user, id);
+    @PutMapping("/update")
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+        UserServiceResult result = userService.updateUser(user);
         switch (result) {
             case SUCCESS:
                 return ResponseEntity.ok("User updated successfully.");
@@ -60,9 +60,9 @@ public class UserRestController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
-        UserServiceResult result = userService.deleteUser(id);
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<String> deleteUser(@PathVariable String email) {
+        UserServiceResult result = userService.deleteUser(email);
         return result == UserServiceResult.SUCCESS ? ResponseEntity.ok("User deleted successfully.") : ResponseEntity.notFound().build();
     }
 

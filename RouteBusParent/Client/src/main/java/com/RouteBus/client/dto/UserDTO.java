@@ -4,19 +4,20 @@ import java.util.Date;
 
 public class UserDTO {
     public enum UserRole {
-        ADMIN,
-        CUSTOMER,
+        ADMIN, CUSTOMER,
     }
+
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String nationality;
+    private NationalityDTO nationality;
     private Date birthDate;
     private UserRole role;
+    
     public UserDTO() {}
 
-	public UserDTO(String firstName, String lastName, String email, String password, String nationality, Date birthDate, UserRole role) {
+	public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality, Date birthDate, UserRole role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -26,7 +27,7 @@ public class UserDTO {
 		this.role = role;
 	}
 	
-	public UserDTO(String firstName, String lastName, String email, String password, String nationality, Date birthDate) {
+	public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality, Date birthDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -68,14 +69,14 @@ public class UserDTO {
 		this.password = password;
 	}
 
-	public String getNationality() {
+	public NationalityDTO getNationality() {
 		return nationality;
 	}
 
-	public void setNationality(String nationality) {
+	public void setNationality(NationalityDTO nationality) {
 		this.nationality = nationality;
 	}
-
+	
 	public Date getBirthDate() {
 		return birthDate;
 	}

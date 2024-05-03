@@ -80,7 +80,7 @@ public class UserTest {
 
     @Test
     public void testSetAndGetNationality() {
-        Nationality newNationality = new Nationality("American");
+        Nationality newNationality = new Nationality("American", "en");
         user.setNationality(newNationality);
         assertEquals(newNationality, user.getNationality());
     }

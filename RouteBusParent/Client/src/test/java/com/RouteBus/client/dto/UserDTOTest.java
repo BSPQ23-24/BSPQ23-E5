@@ -16,7 +16,7 @@ public class UserDTOTest {
 
     @Before
     public void setUp() {
-        userDTO = new UserDTO("Nico", "Williams", "nico.williams11@gmail.com", "panterita", "Spanish", new Date());
+        userDTO = new UserDTO("Nico", "Williams", "nico.williams11@gmail.com", "panterita", new NationalityDTO("Spanish"), new Date());
     }
 
     @Test
@@ -65,13 +65,13 @@ public class UserDTOTest {
 
     @Test
     public void testGetNationality() {
-        assertEquals("Spanish", userDTO.getNationality());
+        assertEquals("Spanish", userDTO.getNationality().getName());
     }
 
     @Test
     public void testSetNationality() {
-        userDTO.setNationality("Vasque");
-        assertEquals("Vasque", userDTO.getNationality());
+        userDTO.setNationality(new NationalityDTO("Vasque"));
+        assertEquals("Vasque", userDTO.getNationality().getName());
     }
 
     @Test

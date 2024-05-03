@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/nationalities")
@@ -18,10 +17,9 @@ public class NationalityRestController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<String>> getAllNationalities() {
+    public ResponseEntity<List<Nationality>> getAllNationalities() {
         List<Nationality> nationalities = nationalityService.getAllNationalities();
-        List<String> names = nationalities.stream().map(Nationality::getName).collect(Collectors.toList());
-        return ResponseEntity.ok(names);
+        return ResponseEntity.ok(nationalities);
     }
 
 }

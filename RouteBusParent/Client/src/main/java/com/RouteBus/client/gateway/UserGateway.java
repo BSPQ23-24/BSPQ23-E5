@@ -3,6 +3,8 @@ package com.RouteBus.client.gateway;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import com.RouteBus.client.dto.NationalityDTO;
 import com.RouteBus.client.dto.UserDTO;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +36,8 @@ public class UserGateway extends BaseGateway {
         return response.getStatusCode().is2xxSuccessful();
     }
 
-    public boolean updateUser(String email, UserDTO user) {
-        ResponseEntity<String> response = sendRequest("/user/update/" + email, HttpMethod.PUT, user, String.class);
+    public boolean updateUser(UserDTO user) {
+        ResponseEntity<String> response = sendRequest("/user/update", HttpMethod.PUT, user, String.class);
         return response.getStatusCode().is2xxSuccessful();
     }
 
@@ -55,8 +57,8 @@ public class UserGateway extends BaseGateway {
         return response.getBody() != null && response.getBody();
     }
     
-    public List<String> getNationalities() {
-        ResponseEntity<String[]> response = sendRequest("/nationalities/all", HttpMethod.GET, null, String[].class);
+    public List<NationalityDTO> getNationalities() {
+        ResponseEntity<NationalityDTO[]> response = sendRequest("/nationalities/all", HttpMethod.GET, null, NationalityDTO[].class);
         return Arrays.asList(response.getBody());
     }
 }

@@ -6,14 +6,16 @@ import javax.persistence.*;
 @Table(name = "nationalities")
 public class Nationality {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String language;
 
     public Nationality() {}
 
-    public Nationality(String name) {
+    public Nationality(String name, String language) {
         this.name = name;
+        this.language = language;
     }
 
     public Long getId() {
@@ -30,5 +32,13 @@ public class Nationality {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getLanguage() {
+    	return language;
+    }
+    
+    public void setLanguage(String language) {
+    	this.language = language;
     }
 }

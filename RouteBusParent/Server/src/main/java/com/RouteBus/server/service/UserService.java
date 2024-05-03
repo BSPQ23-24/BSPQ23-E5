@@ -38,26 +38,38 @@ public class UserService {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return UserServiceResult.USER_ALREADY_EXISTS;
         }
-        return userRepository.save(user) != null ? UserServiceResult.SUCCESS : UserServiceResult.ERROR;
+        try {
+            return userRepository.save(user) == null ? UserServiceResult.ERROR: UserServiceResult.SUCCESS;
+        } catch (Exception e) {
+            return UserServiceResult.ERROR;
+        }
     }
 
-    public UserServiceResult updateUser(User user, Long id) {
-        return userRepository.findById(id)
+    //Only updates non dependent fields
+    public UserServiceResult updateUser(User user) {
+        return userRepository.findByEmail(user.getEmail())
             .map(existingUser -> {
                 existingUser.setFirstName(user.getFirstName());
                 existingUser.setLastName(user.getLastName());
                 existingUser.setEmail(user.getEmail());
+                existingUser.setPassword(user.getPassword());
+                existingUser.setNationality(user.getNationality());
+                existingUser.setBirthDate(user.getBirthDate());
+                existingUser.setRole(user.getRole());
                 userRepository.save(existingUser);
                 return UserServiceResult.SUCCESS;
-            }).orElse(UserServiceResult.USER_NOT_FOUND);
+            })
+            .orElse(UserServiceResult.USER_NOT_FOUND);
     }
 
-    public UserServiceResult deleteUser(Long id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return UserServiceResult.SUCCESS;
-        }
-        return UserServiceResult.USER_NOT_FOUND;
+
+
+    public UserServiceResult deleteUser(String email) {
+        return userRepository.findByEmail(email)
+                .map(user -> {
+                    userRepository.delete(user);
+                    return UserServiceResult.SUCCESS;
+                }).orElse(UserServiceResult.USER_NOT_FOUND);
     }
 
     public UserServiceResult deleteAllUsers() {

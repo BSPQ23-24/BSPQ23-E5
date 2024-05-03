@@ -14,7 +14,7 @@ public class NationalityTest {
 
     @Before
     public void setUp() {
-        nationality = new Nationality("American");
+        nationality = new Nationality("American", "en");
     }
 
     @Test
@@ -38,5 +38,11 @@ public class NationalityTest {
     public void testSetAndGetName() {
         nationality.setName("British");
         assertEquals("British", nationality.getName());
+    }
+    
+    @Test
+    public void testSetAndGetLanguage() {
+        nationality.setLanguage("en");
+        assertEquals("en", nationality.getLanguage());
     }
 }
