@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Built-By: murci
 Build-Jdk: 17.0.10
-Implementation-Title: Client
+Implementation-Title: Server
 Implementation-Version: 1.0-SNAPSHOT
 Implementation-Vendor-Id: com.RouteBusApp
 Implementation-URL: http://maven.apache.org

@@ -167,6 +167,7 @@ public class RegistrationWindow extends JFrame{
         if (created) {
             JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
+            new MainWindow();
         } else {
             JOptionPane.showMessageDialog(this, "Registration failed. User may already exist.", "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -119,6 +119,7 @@ public class LoginWindow extends JFrame {
         if (validLogin) {
             JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
+            new MainWindow();
         } else {
             JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed", JOptionPane.ERROR_MESSAGE);
         }
