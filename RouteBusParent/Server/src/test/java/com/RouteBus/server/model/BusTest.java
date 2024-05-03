@@ -30,73 +30,72 @@ public class BusTest {
 
     @Test
     public void testConstructorWithParameters() {
-        logger.debug("Testing constructor with parameters");
         assertEquals("XYZ-1234", bus.getLicensePlate());
         assertEquals(45, bus.getCapacity());
         assertEquals("Mercedes", bus.getMake());
         assertEquals("Sprinter", bus.getModel());
+        logger.debug("Test constructor with parameters passed succesfully");
     }
 
     @Test
     public void testConstructorWithoutParameters() {
-        logger.debug("Testing constructor without parameters");
         Bus emptyBus = new Bus();
         assertNull(emptyBus.getLicensePlate());
         assertEquals(0, emptyBus.getCapacity());
         assertNull(emptyBus.getMake());
         assertNull(emptyBus.getModel());
         assertNull(emptyBus.getRoutes());
+        logger.debug("Test constructor without parameters passed succesfully");
     }
 
     @Test
     public void testSetAndGetId() {
-        logger.debug("Testing setId and getId methods");
         bus.setId(10L);
         assertEquals(Long.valueOf(10), bus.getId());
+        logger.debug("Test setId and getId methods passed succesfully");
     }
-
+    
     @Test
     public void testSetAndGetLicensePlate() {
-        logger.debug("Testing setLicensePlate and getLicensePlate methods");
         bus.setLicensePlate("ABCD-1234");
         assertEquals("ABCD-1234", bus.getLicensePlate());
+        logger.debug("Test setLicensePlate and getLicensePlate methods passed succesfully");
     }
 
     @Test
     public void testSetAndGetCapacity() {
-        logger.debug("Testing setCapacity and getCapacity methods");
         bus.setCapacity(50);
         assertEquals(50, bus.getCapacity());
+        logger.debug("Test setCapacity and getCapacity methods passed succesfully");
     }
 
     @Test
     public void testSetAndGetMake() {
-        logger.debug("Testing setMake and getMake methods");
         bus.setMake("Ford");
         assertEquals("Ford", bus.getMake());
+        logger.debug("Test setMake and getMake methods passed succesfully");        
     }
 
     @Test
     public void testSetAndGetModel() {
-        logger.debug("Testing setModel and getModel methods");
         bus.setModel("Transit");
         assertEquals("Transit", bus.getModel());
+        logger.debug("Test setModel and getModel methods passed succesfully");
     }
 
     @Test
     public void testSetAndGetRoutes() {
-        logger.debug("Testing setRoutes and getRoutes methods");
         Set<Route> newRoutes = new HashSet<>();
         Route route = new Route();
         newRoutes.add(route);
         bus.setRoutes(newRoutes);
         assertSame(newRoutes, bus.getRoutes());
         assertTrue(bus.getRoutes().contains(route));
+        logger.debug("Test setRoutes and getRoutes methods passed succesfully");    
     }
 
     @Test
-    public void testInteractionWithRoutes() {
-        logger.debug("Testing interaction with Routes");
+    public void testInteractionWithRoutes() {        
         Route mockRoute = mock(Route.class);
         bus.getRoutes().add(mockRoute);
         verify(mockRoutes).add(mockRoute);
@@ -106,5 +105,7 @@ public class BusTest {
 
         bus.getRoutes().clear();
         verify(mockRoutes).clear();
+        
+        logger.debug("Test interaction with Routes passed succesfully");
     }
 }

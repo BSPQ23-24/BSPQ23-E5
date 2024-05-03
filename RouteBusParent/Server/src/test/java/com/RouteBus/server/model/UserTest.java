@@ -1,5 +1,6 @@
 package com.RouteBus.server.model;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserTest {
+
+    private static final Logger logger = Logger.getLogger(UserTest.class);
 
     private User user;
 
@@ -44,38 +47,42 @@ public class UserTest {
         assertEquals(birthDate, user.getBirthDate());
         assertEquals(UserRole.CUSTOMER, user.getRole());
         assertEquals(mockNationality, user.getNationality());
+        logger.info("Test testConstructorAndProperties passed successfully.");
     }
-    
-    
 
     @Test
     public void testSetAndGetId() {
         user.setId(1L);
         assertEquals(Long.valueOf(1), user.getId());
+        logger.info("Test testSetAndGetId passed successfully.");
     }
 
     @Test
     public void testSetAndGetEmail() {
         user.setEmail("newemail@example.com");
         assertEquals("newemail@example.com", user.getEmail());
+        logger.info("Test testSetAndGetEmail passed successfully.");
     }
 
     @Test
     public void testSetAndGetFirstName() {
         user.setFirstName("Jane");
         assertEquals("Jane", user.getFirstName());
+        logger.info("Test testSetAndGetFirstName passed successfully.");
     }
 
     @Test
     public void testSetAndGetLastName() {
         user.setLastName("Smith");
         assertEquals("Smith", user.getLastName());
+        logger.info("Test testSetAndGetLastName passed successfully.");
     }
 
     @Test
     public void testSetAndGetPassword() {
         user.setPassword("newPassword");
         assertEquals("newPassword", user.getPassword());
+        logger.info("Test testSetAndGetPassword passed successfully.");
     }
 
     @Test
@@ -83,6 +90,7 @@ public class UserTest {
         Nationality newNationality = new Nationality("American", "en");
         user.setNationality(newNationality);
         assertEquals(newNationality, user.getNationality());
+        logger.info("Test testSetAndGetNationality passed successfully.");
     }
 
     @Test
@@ -90,12 +98,14 @@ public class UserTest {
         Date newBirthDate = new Date();
         user.setBirthDate(newBirthDate);
         assertEquals(newBirthDate, user.getBirthDate());
+        logger.info("Test testSetAndGetBirthDate passed successfully.");
     }
 
     @Test
     public void testSetAndGetRole() {
         user.setRole(UserRole.ADMIN);
         assertEquals(UserRole.ADMIN, user.getRole());
+        logger.info("Test testSetAndGetRole passed successfully.");
     }
 
     @Test
@@ -106,6 +116,7 @@ public class UserTest {
         user.setTickets(newTickets);
 
         assertEquals(newTickets, user.getTickets());
+        logger.info("Test testSetAndGetTickets passed successfully.");
     }
 
     @Test
@@ -120,6 +131,7 @@ public class UserTest {
         assertNull(user.getNationality());
         assertNull(user.getId());
         assertNull(user.getTickets());
+        logger.info("Test testConstructorWithoutParameters passed successfully.");
     }
 
     @Test
@@ -131,6 +143,7 @@ public class UserTest {
 
         assertEquals(user, sameUser);
         assertEquals(user.hashCode(), sameUser.hashCode());
+        logger.info("Test testEqualsAndHashCode passed successfully.");
 
         User differentUser = new User("John", "Doe", "johndoe@example.com", "password123", birthDate, UserRole.CUSTOMER);
         differentUser.setId(999L);
@@ -147,20 +160,19 @@ public class UserTest {
         assertEquals(user.hashCode(), nullIdUser2.hashCode());
 
         User nullIdDifferentEmailUser = new User("John", "Doe", "different@example.com", "password123", birthDate, UserRole.CUSTOMER);
-        nullIdDifferentEmailUser.setId(null);  
+        nullIdDifferentEmailUser.setId(null);
         assertNotEquals(user, nullIdDifferentEmailUser);
         assertNotEquals(user.hashCode(), nullIdDifferentEmailUser.hashCode());
 
-        assertNotEquals(user, null); 
-        assertNotEquals(user, new Object()); 
+        assertNotEquals(user, null);
+        assertNotEquals(user, new Object());
     }
-
-
 
     @Test
     public void testToString() {
-        String expectedString = "User{id=" + user.getId() + 
-                                ", firstName='John', lastName='Doe', email='johndoe@example.com', role=CUSTOMER}";
+        String expectedString = "User{id=" + user.getId() +
+                ", firstName='John', lastName='Doe', email='johndoe@example.com', role=CUSTOMER}";
         assertEquals(expectedString, user.toString());
+        logger.info("Test testToString passed successfully.");
     }
 }

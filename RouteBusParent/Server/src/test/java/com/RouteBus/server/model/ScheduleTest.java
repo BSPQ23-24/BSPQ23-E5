@@ -1,5 +1,6 @@
 package com.RouteBus.server.model;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,8 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ScheduleTest {
+
+    private static final Logger logger = Logger.getLogger(ScheduleTest.class);
 
     private Schedule schedule;
 
@@ -47,12 +50,14 @@ public class ScheduleTest {
         assertEquals(departureTime, schedule.getDepartureTime());
         assertEquals(arrivalTime, schedule.getArrivalTime());
         assertEquals(date, schedule.getDate());
+        logger.debug("Test testConstructorAndProperties passed successfully.");
     }
 
     @Test
     public void testSetAndGetId() {
         schedule.setId(1L);
         assertEquals(Long.valueOf(1), schedule.getId());
+        logger.debug("Test testSetAndGetId passed successfully.");
     }
 
     @Test
@@ -60,6 +65,7 @@ public class ScheduleTest {
         Route newRoute = new Route();
         schedule.setRoute(newRoute);
         assertEquals(newRoute, schedule.getRoute());
+        logger.debug("Test testSetAndGetRoute passed successfully.");
     }
 
     @Test
@@ -68,6 +74,7 @@ public class ScheduleTest {
         newDepartureTime.setTime(1620007200L);
         schedule.setDepartureTime(newDepartureTime);
         assertEquals(newDepartureTime, schedule.getDepartureTime());
+        logger.debug("Test testSetAndGetDepartureTime passed successfully.");
     }
 
     @Test
@@ -76,6 +83,7 @@ public class ScheduleTest {
         newArrivalTime.setTime(1620010800L);
         schedule.setArrivalTime(newArrivalTime);
         assertEquals(newArrivalTime, schedule.getArrivalTime());
+        logger.debug("Test testSetAndGetArrivalTime passed successfully.");
     }
 
     @Test
@@ -84,6 +92,7 @@ public class ScheduleTest {
         newDate.setTime(1620090000L);
         schedule.setDate(newDate);
         assertEquals(newDate, schedule.getDate());
+        logger.debug("Test testSetAndGetDate passed successfully.");
     }
 
     @Test
@@ -94,5 +103,6 @@ public class ScheduleTest {
         schedule.setTickets(newTickets);
 
         assertEquals(newTickets, schedule.getTickets());
+        logger.debug("Test testSetAndGetTickets passed successfully.");
     }
 }
