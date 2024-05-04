@@ -2,6 +2,8 @@ package com.RouteBus.client.dto;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class TicketDTO {
 
 	public enum TicketStatus {
@@ -11,11 +13,14 @@ public class TicketDTO {
 	}
 	
 	private String id;
-    private UserDTO user;
     private int seatNumber;
     private double price;
     private TicketStatus status;
+    @JsonBackReference("user-back")
+    private UserDTO user;
+    @JsonBackReference("schedule-back")
     private ScheduleDTO schedule;
+
 
     public TicketDTO() {
     }

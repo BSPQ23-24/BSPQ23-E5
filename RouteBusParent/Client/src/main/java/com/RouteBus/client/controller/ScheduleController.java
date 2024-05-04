@@ -2,7 +2,7 @@ package com.RouteBus.client.controller;
 
 import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.gateway.ScheduleGateway;
-import java.util.List;
+import java.util.Set;
 
 public class ScheduleController {
     private static final ScheduleController INSTANCE = new ScheduleController();
@@ -16,7 +16,7 @@ public class ScheduleController {
         return INSTANCE;
     }
 
-    public List<ScheduleDTO> getAllSchedules() {
+    public Set<ScheduleDTO> getAllSchedules() {
         try {
             return scheduleGateway.getAllSchedules();
         } catch (Exception e) {

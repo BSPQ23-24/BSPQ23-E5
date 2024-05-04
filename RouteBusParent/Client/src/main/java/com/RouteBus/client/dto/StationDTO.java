@@ -1,5 +1,6 @@
 package com.RouteBus.client.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -8,12 +9,21 @@ public class StationDTO {
     private String name;
     private String location;
     private Set<RouteDTO> routes;
+  
     public StationDTO() {
     }
+    
+    public StationDTO(String name, String location, Set<RouteDTO> routes) {
+		super();
+		this.name = name;
+		this.location = location;
+		this.routes = routes;
+	}
 
-    public StationDTO(String name, String location) {
+	public StationDTO(String name, String location) {
         this.name = name;
         this.location = location;
+        this.routes = new HashSet<RouteDTO>();
     }
 
 	public String getName() {

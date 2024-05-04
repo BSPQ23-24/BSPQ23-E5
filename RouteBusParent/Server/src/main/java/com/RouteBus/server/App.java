@@ -16,7 +16,7 @@ public class App {
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     private static final Nationality[] nationalities = {
-            new Nationality("American", "en"),
+            new Nationality("American", "en_US"),
             new Nationality("British", "en"),
             new Nationality("Chinese", "zh"),
             new Nationality("French", "fr"),

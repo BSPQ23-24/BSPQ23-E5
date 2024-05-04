@@ -1,6 +1,8 @@
 package com.RouteBus.server.service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.ScheduleRepository;
 import com.RouteBus.server.model.Schedule;
@@ -21,8 +23,8 @@ public class ScheduleService {
 		return scheduleRepository.findById(id).orElse(null);
 	}
 
-	public List<Schedule> getAllSchedules() {
-		return scheduleRepository.findAll();
+	public Set<Schedule> getAllSchedules() {
+		return new HashSet<Schedule>(scheduleRepository.findAll());
 	}
 
 	public ScheduleServiceResult createSchedule(Schedule schedule) {

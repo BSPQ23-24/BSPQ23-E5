@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class ScheduleGateway extends BaseGateway {
@@ -21,9 +22,9 @@ public class ScheduleGateway extends BaseGateway {
         return INSTANCE;
     }
     
-    public List<ScheduleDTO> getAllSchedules() {
+    public Set<ScheduleDTO> getAllSchedules() {
         ResponseEntity<ScheduleDTO[]> response = sendRequest("/Schedule/all", HttpMethod.GET, null, ScheduleDTO[].class);
-        return Arrays.asList(response.getBody());
+        return new HashSet<ScheduleDTO>(Arrays.asList(response.getBody()));
     }
 
     public ScheduleDTO getScheduleById(String id) {

@@ -57,25 +57,6 @@ public class RouteRestController {
             ResponseEntity.notFound().build();
     }
     
-	@GetMapping("/route/{routeName}/buses/{licensePlate}")
-	public ResponseEntity<Object> addBusToRoute(@PathVariable String routeName, @PathVariable String licensePlate) {
-		switch (routeService.addBusToRoute(routeName, licensePlate)) {
-		case ERROR:
-			return ResponseEntity.unprocessableEntity().body("Addition of bus to route failed");
-		default:
-			return ResponseEntity.ok("Bus added correctly to the route.");
-		}
-	}
-
-	@GetMapping("/route/{routeName}/stations/{stationName}")
-	public ResponseEntity<Object> addStationToRoute(@PathVariable String routeName, @PathVariable String stationName) {
-		switch (routeService.addStationToRoute(routeName, stationName)) {
-		case ERROR:
-			return ResponseEntity.unprocessableEntity().body("Addition of station to route failed");
-		default:
-			return ResponseEntity.ok("Station added correctly to the route.");
-		}
-	}
 	@GetMapping("bus/{licensePlate}/routes")
 	public List<Route> obtainRoutesByBus(@PathVariable String licensePlate) {
         return routeService.obtainRoutesByBus(licensePlate);

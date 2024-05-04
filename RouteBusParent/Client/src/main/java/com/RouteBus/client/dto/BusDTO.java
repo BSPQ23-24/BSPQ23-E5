@@ -1,5 +1,6 @@
 package com.RouteBus.client.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,12 +14,22 @@ public class BusDTO {
 
     public BusDTO() {
     }
+    
+    public BusDTO(String licensePlate, int capacity, String make, String model, Set<RouteDTO> routes) {
+		super();
+		this.licensePlate = licensePlate;
+		this.capacity = capacity;
+		this.make = make;
+		this.model = model;
+		this.routes = routes;
+	}
 
-    public BusDTO(String licensePlate, int capacity, String make, String model) {
+	public BusDTO(String licensePlate, int capacity, String make, String model) {
         this.licensePlate = licensePlate;
         this.capacity = capacity;
         this.make = make;
         this.model = model;
+        this.routes = new HashSet<RouteDTO>();
     }
 
 	public String getLicensePlate() {

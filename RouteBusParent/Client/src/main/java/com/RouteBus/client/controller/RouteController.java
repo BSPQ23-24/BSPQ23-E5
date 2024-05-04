@@ -61,24 +61,6 @@ public class RouteController {
         }
     }
     
-    public boolean addBusToRoute(String routeName, String licensePlate) {
-        try {
-            return routeGateway.addBusToRoute(routeName, licensePlate);
-        } catch (Exception e) {
-            System.err.println("Failed to add bus to route: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean addStationToRoute(String routeName, String stationName) {
-        try {
-            return routeGateway.addStationToRoute(routeName, stationName);
-        } catch (Exception e) {
-            System.err.println("Failed to add station to route: " + e.getMessage());
-            return false;
-        }
-    }
-
     public List<RouteDTO> obtainRoutesByBus(String licensePlate) {
         try {
             return routeGateway.obtainRoutesByBus(licensePlate);

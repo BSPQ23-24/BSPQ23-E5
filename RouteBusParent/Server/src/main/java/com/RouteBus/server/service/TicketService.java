@@ -1,6 +1,8 @@
 package com.RouteBus.server.service;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.TicketRepository;
 import com.RouteBus.server.model.Ticket;
@@ -38,11 +40,11 @@ public class TicketService {
 			existingTicket.setPrice(ticket.getPrice());
 			existingTicket.setStatus(ticket.getStatus());
 			existingTicket.setSeatNumber(ticket.getSeatNumber());
-			if (!existingTicket.getUser().equals(ticket.getUser())) {
-				existingTicket.setUser(ticket.getUser());
+			if (!Objects.equals(existingTicket.getUser(), ticket.getUser())) {
+			    existingTicket.setUser(ticket.getUser());
 			}
-			if (!existingTicket.getSchedule().equals(ticket.getSchedule())) {
-				existingTicket.setSchedule(ticket.getSchedule());
+			if (!Objects.equals(existingTicket.getSchedule(), ticket.getSchedule())) {
+			    existingTicket.setSchedule(ticket.getSchedule());
 			}
 			ticketRepository.save(existingTicket);
 			return TicketServiceResult.SUCCESS;

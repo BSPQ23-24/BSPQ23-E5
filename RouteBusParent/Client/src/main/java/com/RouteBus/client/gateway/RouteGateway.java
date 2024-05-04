@@ -46,18 +46,6 @@ public class RouteGateway extends BaseGateway {
         return response.getStatusCode().is2xxSuccessful();
     }
 
-    public boolean addBusToRoute(String routeName, String licensePlate) {
-        String url = String.format("/Route/route/%s/buses/%s", routeName, licensePlate);
-        ResponseEntity<String> response = sendRequest(url, HttpMethod.GET, null, String.class);
-        return response.getStatusCode().is2xxSuccessful();
-    }
-
-    public boolean addStationToRoute(String routeName, String stationName) {
-        String url = String.format("/Route/route/%s/stations/%s", routeName, stationName);
-        ResponseEntity<String> response = sendRequest(url, HttpMethod.GET, null, String.class);
-        return response.getStatusCode().is2xxSuccessful();
-    }
-
     public List<RouteDTO> obtainRoutesByBus(String licensePlate) {
         String url = String.format("/Route/bus/%s/routes", licensePlate);
         ResponseEntity<RouteDTO[]> response = sendRequest(url, HttpMethod.GET, null, RouteDTO[].class);

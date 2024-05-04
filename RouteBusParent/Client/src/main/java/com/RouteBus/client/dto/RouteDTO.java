@@ -1,5 +1,6 @@
 package com.RouteBus.client.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,11 +16,24 @@ public class RouteDTO {
     public RouteDTO() {
     }
 
-    public RouteDTO(String name, String startPoint, String endPoint, double totalDistance) {
+    public RouteDTO(String name, String startPoint, String endPoint, double totalDistance, Set<StationDTO> stations,
+			Set<BusDTO> buses) {
+		super();
+		this.name = name;
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+		this.totalDistance = totalDistance;
+		this.stations = stations;
+		this.buses = buses;
+	}
+
+	public RouteDTO(String name, String startPoint, String endPoint, double totalDistance) {
         this.name = name;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.totalDistance = totalDistance;
+        this.stations = new HashSet<StationDTO>();
+        this.buses = new HashSet<BusDTO>();
     }
 
 	public String getName() {

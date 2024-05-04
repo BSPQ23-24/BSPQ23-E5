@@ -1,6 +1,7 @@
 package com.RouteBus.client.dto;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class UserDTO {
     private NationalityDTO nationality;
     private Date birthDate;
     private UserRole role;
-    @JsonManagedReference
+    @JsonManagedReference("user-back")
     private Set<TicketDTO> tickets;
     
     public UserDTO() {}
@@ -44,7 +45,7 @@ public class UserDTO {
 		this.nationality = nationality;
 		this.birthDate = birthDate;
 		this.role = UserRole.CUSTOMER;
-		this.tickets = null;
+		this.tickets = new HashSet<TicketDTO>();
 	}
 
 	public String getFirstName() {

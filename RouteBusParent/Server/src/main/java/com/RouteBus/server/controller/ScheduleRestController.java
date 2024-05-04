@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.RouteBus.server.model.Schedule;
 import com.RouteBus.server.service.ScheduleService;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Schedule")
@@ -18,7 +18,7 @@ public class ScheduleRestController {
     }
 
     @GetMapping("/all")
-    public List<Schedule> getAllSchedulees() {
+    public Set<Schedule> getAllSchedulees() {
         return scheduleService.getAllSchedules();
     }
 
