@@ -3,12 +3,11 @@ package com.RouteBus.client.gui;
 
 import javax.swing.*;
 
-import com.RouteBus.client.controller.UserController;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Locale.Category;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -60,7 +59,6 @@ public class MainWindow extends JFrame {
 	private JTextField tName;
 	private JTextField tSurname;
 	private JTextField tEmail;
-	private JTextField tID;
 	
 	private JButton bEdit;
 	private JDateChooser dBirthDate;
@@ -69,13 +67,19 @@ public class MainWindow extends JFrame {
 	
 	private ResourceBundle messages;
     
-    public MainWindow() {
-		Locale currentLocale = Locale.getDefault();
+    public MainWindow(String languageToLoad) {
+    	Locale currentLocale;
+		if(languageToLoad == null) {
+			currentLocale = Locale.getDefault();
+		}else {
+			currentLocale = Locale.getDefault(Category.valueOf(languageToLoad));
+		}
 		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
         this.setTitle(messages.getString("windowTitle"));
         this.setLayout(null);
         this.setBounds(500, 100, 850, 600);
         this.setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         contentPanel = new JPanel(null);
         contentPanel.setBounds(0, 0, this.getWidth(), this.getHeight());

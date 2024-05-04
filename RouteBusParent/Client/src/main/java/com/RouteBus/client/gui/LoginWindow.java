@@ -132,7 +132,7 @@ public class LoginWindow extends JFrame {
 			if (user.getRole() == UserRole.ADMIN) {
 				new AdministratorWindow();
 			} else {
-				new MainWindow();
+				new MainWindow(user.getNationality().getLanguage());
 			}
 		} else {
 			JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed",

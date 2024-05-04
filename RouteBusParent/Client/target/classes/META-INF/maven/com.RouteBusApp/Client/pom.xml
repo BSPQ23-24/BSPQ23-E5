@@ -54,11 +54,6 @@
 			<groupId>com.toedter</groupId>
 			<artifactId>jcalendar</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.RouteBusApp</groupId>
-			<artifactId>Server</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
