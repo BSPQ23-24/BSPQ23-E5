@@ -3,7 +3,7 @@ package com.RouteBus.server.model;
 import javax.persistence.*;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +11,6 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(unique = true)
     private String email;
     private String firstName;
     private String lastName;
@@ -32,7 +29,7 @@ public class User {
     private UserRole role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Ticket> tickets;
+    private Set<Ticket> tickets;
 
     public User() {
     }
@@ -46,15 +43,7 @@ public class User {
         this.role = role;
     }
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
+    public String getEmail() {
 		return email;
 	}
 
@@ -110,11 +99,11 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Ticket> getTickets() {
+	public Set<Ticket> getTickets() {
 		return tickets;
 	}
 
-	public void setTickets(List<Ticket> tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 
@@ -123,21 +112,18 @@ public class User {
 	    if (this == o) return true;
 	    if (o == null || getClass() != o.getClass()) return false;
 	    User user = (User) o;
-	    if (id == null || user.id == null) return Objects.equals(email, user.email);
-	    return Objects.equals(id, user.id);
+	    return Objects.equals(email, user.email);
 	}
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email);
+        return Objects.hash(email);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-               "id=" + id +
-               ", firstName='" + firstName + '\'' +
+        return "User{firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +
                ", email='" + email + '\'' +
                ", role=" + role +

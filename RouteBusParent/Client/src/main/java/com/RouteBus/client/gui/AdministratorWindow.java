@@ -2,18 +2,9 @@ package com.RouteBus.client.gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -43,7 +34,7 @@ public class AdministratorWindow extends JFrame {
 
 	// Most purchased rout(es)
 	private JLabel stat2Label;
-	private JList stat2Info; // Ditto.
+	private JList<String> stat2Info; // Ditto.
 	private String routeList[] = { "Route 1", "Route 2" };
 
 	// Total revenue
@@ -96,7 +87,7 @@ public class AdministratorWindow extends JFrame {
 		// Most purchased routes
 		stat2Label = new JLabel(messages.getString("mostPurchasedRoutesLabel"));
 		stat2Label.setForeground(Color.WHITE);
-		stat2Info = new JList(routeList); // List of routes goes in
+		stat2Info = new JList<String>(routeList); // List of routes goes in
 
 		// Total revenue;
 		stat3Label = new JLabel(messages.getString("tatalRevenueLabel"));
@@ -130,10 +121,5 @@ public class AdministratorWindow extends JFrame {
 		contentPane.revalidate();
 
 		contentPane.setVisible(true);
-	}
-	
-	public static void main(String [] args) {
-		AdministratorWindow v =new AdministratorWindow();
-		v.setVisible(true);
 	}
 }

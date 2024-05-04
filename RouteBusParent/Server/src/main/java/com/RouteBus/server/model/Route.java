@@ -1,6 +1,8 @@
 package com.RouteBus.server.model;
 
 import javax.persistence.*;
+
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -8,14 +10,12 @@ import java.util.Set;
 public class Route {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name;
     private String startPoint;
     private String endPoint;
     private double totalDistance;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "route_stations",
         joinColumns = @JoinColumn(name = "route_id"),
@@ -23,7 +23,7 @@ public class Route {
     )
     private Set<Station> stations;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "route_buses",
         joinColumns = @JoinColumn(name = "route_id"),
@@ -40,10 +40,6 @@ public class Route {
         this.endPoint = endPoint;
         this.totalDistance = totalDistance;
     }
-
-	public Long getId() {
-		return id;
-	}
 
 	public String getName() {
 		return name;
@@ -69,10 +65,6 @@ public class Route {
 		return buses;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -96,10 +88,28 @@ public class Route {
 	public void setBuses(Set<Bus> buses) {
 		this.buses = buses;
 	}
+	
 	public boolean addBus(Bus bus) {
 		return this.buses.add(bus);
 	}
+	
 	public boolean addStation(Station station) {
 		return this.stations.add(station);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Route other = (Route) obj;
+		return Objects.equals(name, other.name);
+	}
+		
 }

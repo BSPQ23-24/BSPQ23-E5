@@ -96,5 +96,11 @@ public class Route {
 	public void setBuses(Set&lt;Bus&gt; buses) {
 <span class="fc" id="L97">		this.buses = buses;</span>
 <span class="fc" id="L98">	}</span>
+	public boolean addBus(Bus bus) {
+<span class="nc" id="L100">		return this.buses.add(bus);</span>
+	}
+	public boolean addStation(Station station) {
+<span class="nc" id="L103">		return this.stations.add(station);</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

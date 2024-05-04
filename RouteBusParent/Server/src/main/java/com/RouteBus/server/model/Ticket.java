@@ -1,5 +1,7 @@
 package com.RouteBus.server.model;
 
+import java.util.Objects;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,10 +9,9 @@ import javax.persistence.*;
 public class Ticket {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -35,11 +36,11 @@ public class Ticket {
         this.schedule = schedule;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -82,4 +83,19 @@ public class Ticket {
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ticket other = (Ticket) obj;
+		return Objects.equals(id, other.id);
+	}
 }

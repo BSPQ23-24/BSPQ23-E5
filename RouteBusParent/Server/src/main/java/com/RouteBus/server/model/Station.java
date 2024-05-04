@@ -1,6 +1,8 @@
 package com.RouteBus.server.model;
 
 import javax.persistence.*;
+
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -8,12 +10,10 @@ import java.util.Set;
 public class Station {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name;
     private String location;
 
-    @ManyToMany(mappedBy = "stations")
+    @ManyToMany(mappedBy = "stations", fetch = FetchType.EAGER)
     private Set<Route> routes;
 
     public Station() {
@@ -23,10 +23,6 @@ public class Station {
         this.name = name;
         this.location = location;
     }
-
-	public Long getId() {
-		return id;
-	}
 
 	public String getName() {
 		return name;
@@ -38,10 +34,6 @@ public class Station {
 
 	public Set<Route> getRoutes() {
 		return routes;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setName(String name) {
@@ -59,4 +51,20 @@ public class Station {
 	public boolean addRoute(Route route) {
 		return this.routes.add(route);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Station other = (Station) obj;
+		return Objects.equals(name, other.name);
+	}
+	
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Component
 public class UserGateway extends BaseGateway {
+	
     private static final UserGateway INSTANCE = new UserGateway();
 
     private UserGateway() {

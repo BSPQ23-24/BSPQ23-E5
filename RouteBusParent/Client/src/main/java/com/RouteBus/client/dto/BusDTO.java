@@ -1,5 +1,6 @@
 package com.RouteBus.client.dto;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class BusDTO {
@@ -59,4 +60,21 @@ public class BusDTO {
 	public void setRoutes(Set<RouteDTO> routes) {
 		this.routes = routes;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(licensePlate);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BusDTO other = (BusDTO) obj;
+		return Objects.equals(licensePlate, other.licensePlate);
+	}
+	
+	
 }

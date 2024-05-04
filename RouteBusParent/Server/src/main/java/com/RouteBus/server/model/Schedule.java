@@ -3,16 +3,16 @@ package com.RouteBus.server.model;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "schedules")
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "route_id", nullable = false)
     private Route route;
 
@@ -22,23 +22,19 @@ public class Schedule {
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
-
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ticket> tickets;
 
     public Schedule() {
     }
 
-    public Schedule(Route route, Date departureTime, Date arrivalTime, Date date) {
+    public Schedule(Route route, Date departureTime, Date arrivalTime) {
         this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.date = date;
     }
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -54,15 +50,11 @@ public class Schedule {
 		return arrivalTime;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
 	public List<Ticket> getTickets() {
 		return tickets;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -78,11 +70,23 @@ public class Schedule {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Schedule other = (Schedule) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 }

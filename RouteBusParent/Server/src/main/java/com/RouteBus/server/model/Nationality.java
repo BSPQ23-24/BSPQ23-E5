@@ -1,13 +1,13 @@
 package com.RouteBus.server.model;
 
+import java.util.Objects;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "nationalities")
 public class Nationality {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name;
     private String language;
 
@@ -16,14 +16,6 @@ public class Nationality {
     public Nationality(String name, String language) {
         this.name = name;
         this.language = language;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,4 +33,19 @@ public class Nationality {
     public void setLanguage(String language) {
     	this.language = language;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Nationality other = (Nationality) obj;
+		return Objects.equals(name, other.name);
+	}
 }

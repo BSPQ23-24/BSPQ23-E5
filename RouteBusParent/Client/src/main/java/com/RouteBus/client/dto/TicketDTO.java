@@ -1,5 +1,6 @@
 package com.RouteBus.client.dto;
 
+import java.util.Objects;
 
 public class TicketDTO {
 
@@ -9,6 +10,7 @@ public class TicketDTO {
 	    CANCELLED
 	}
 	
+	private String id;
     private UserDTO user;
     private int seatNumber;
     private double price;
@@ -19,6 +21,7 @@ public class TicketDTO {
     }
 
     public TicketDTO(UserDTO user, int seatNumber, double price, TicketStatus status, ScheduleDTO schedule) {
+    	this.id = schedule.getId() + "-" + String.format("%04d", seatNumber) + "-" + status.toString().toLowerCase();
         this.user = user;
         this.seatNumber = seatNumber;
         this.price = price;
@@ -26,6 +29,14 @@ public class TicketDTO {
         this.schedule = schedule;
     }
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
     public UserDTO getUser() {
         return user;
     }
@@ -65,4 +76,19 @@ public class TicketDTO {
     public void setSchedule(ScheduleDTO schedule) {
         this.schedule = schedule;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TicketDTO other = (TicketDTO) obj;
+		return Objects.equals(id, other.id);
+	}
 }

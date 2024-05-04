@@ -55,5 +55,9 @@ public class Station {
 	public void setRoutes(Set&lt;Route&gt; routes) {
 <span class="fc" id="L56">		this.routes = routes;</span>
 <span class="fc" id="L57">	}</span>
+	
+	public boolean addRoute(Route route) {
+<span class="nc" id="L60">		return this.routes.add(route);</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
