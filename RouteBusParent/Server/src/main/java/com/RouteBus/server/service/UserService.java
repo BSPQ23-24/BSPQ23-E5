@@ -6,6 +6,7 @@ import com.RouteBus.server.model.User;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -40,18 +41,45 @@ public class UserService {
 	}
 
 	public UserServiceResult updateUser(User user) {
-		return userRepository.findByEmail(user.getEmail()).map(existingUser -> {
-			existingUser.setFirstName(user.getFirstName());
-			existingUser.setLastName(user.getLastName());
-			existingUser.setEmail(user.getEmail());
-			existingUser.setPassword(user.getPassword());
-			existingUser.setNationality(user.getNationality());
-			existingUser.setBirthDate(user.getBirthDate());
-			existingUser.setRole(user.getRole());
-			existingUser.setTickets(new HashSet<>(user.getTickets()));
-			userRepository.save(existingUser);
-			return UserServiceResult.SUCCESS;
-		}).orElse(UserServiceResult.USER_NOT_FOUND);
+	    return userRepository.findByEmail(user.getEmail()).map(existingUser -> {
+	        boolean updated = false;
+	        if (!Objects.equals(existingUser.getFirstName(), user.getFirstName())) {
+	            existingUser.setFirstName(user.getFirstName());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getLastName(), user.getLastName())) {
+	            existingUser.setLastName(user.getLastName());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getEmail(), user.getEmail())) {
+	            existingUser.setEmail(user.getEmail());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getPassword(), user.getPassword())) {
+	            existingUser.setPassword(user.getPassword());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getNationality(), user.getNationality())) {
+	            existingUser.setNationality(user.getNationality());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getBirthDate(), user.getBirthDate())) {
+	            existingUser.setBirthDate(user.getBirthDate());
+	            updated = true;
+	        }
+	        if (existingUser.getRole() != user.getRole()) {
+	            existingUser.setRole(user.getRole());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingUser.getTickets(), user.getTickets())) {
+	            existingUser.setTickets(new HashSet<>(user.getTickets()));
+	            updated = true;
+	        }
+	        if (updated) {
+	            userRepository.save(existingUser);
+	        }
+	        return UserServiceResult.SUCCESS;
+	    }).orElse(UserServiceResult.USER_NOT_FOUND);
 	}
 
 	public UserServiceResult deleteUser(String email) {

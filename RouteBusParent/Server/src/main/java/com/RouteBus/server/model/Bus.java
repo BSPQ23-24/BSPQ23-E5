@@ -68,10 +68,6 @@ public class Bus {
 		this.routes = routes;
 	}
 	
-	public boolean addRoute(Route route) {
-		return this.routes.add(route);
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(licensePlate);
@@ -86,6 +82,4 @@ public class Bus {
 		Bus other = (Bus) obj;
 		return Objects.equals(licensePlate, other.licensePlate);
 	}
-	
-	
 }

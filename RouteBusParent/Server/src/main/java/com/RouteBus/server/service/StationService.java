@@ -2,6 +2,8 @@ package com.RouteBus.server.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.StationRepository;
 import com.RouteBus.server.model.Station;
@@ -35,13 +37,23 @@ public class StationService {
 	}
 
 	public StationServiceResult updateStation(Station station) {
-		return stationRepository.findById(station.getName()).map(existingStation -> {
-			existingStation.setLocation(station.getLocation());
-			existingStation.setRoutes(new HashSet<>(station.getRoutes()));
-			stationRepository.save(existingStation);
-			return StationServiceResult.SUCCESS;
-		}).orElse(StationServiceResult.NOT_FOUND);
+	    return stationRepository.findById(station.getName()).map(existingStation -> {
+	        boolean updated = false;
+	        if (!Objects.equals(existingStation.getLocation(), station.getLocation())) {
+	            existingStation.setLocation(station.getLocation());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingStation.getRoutes(), station.getRoutes())) {
+	            existingStation.setRoutes(new HashSet<>(station.getRoutes()));
+	            updated = true;
+	        }
+	        if (updated) {
+	            stationRepository.save(existingStation);
+	        }
+	        return StationServiceResult.SUCCESS;
+	    }).orElse(StationServiceResult.NOT_FOUND);
 	}
+
 
 	public StationServiceResult deleteStation(String name) {
 		return stationRepository.findById(name).map(station -> {

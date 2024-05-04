@@ -18,7 +18,7 @@ public class RouteRestController {
     }
 
     @GetMapping("/all")
-    public List<Route> getAllRoutees() {
+    public List<Route> getAllRoutes() {
         return routeService.getAllRoutes();
     }
 

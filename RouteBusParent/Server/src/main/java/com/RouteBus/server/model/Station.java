@@ -48,10 +48,6 @@ public class Station {
 		this.routes = routes;
 	}
 	
-	public boolean addRoute(Route route) {
-		return this.routes.add(route);
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);

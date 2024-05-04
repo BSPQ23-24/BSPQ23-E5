@@ -36,20 +36,35 @@ public class TicketService {
 	}
 
 	public TicketServiceResult updateTicket(Ticket ticket) {
-		return ticketRepository.findById(ticket.getId()).map(existingTicket -> {
-			existingTicket.setPrice(ticket.getPrice());
-			existingTicket.setStatus(ticket.getStatus());
-			existingTicket.setSeatNumber(ticket.getSeatNumber());
-			if (!Objects.equals(existingTicket.getUser(), ticket.getUser())) {
-			    existingTicket.setUser(ticket.getUser());
-			}
-			if (!Objects.equals(existingTicket.getSchedule(), ticket.getSchedule())) {
-			    existingTicket.setSchedule(ticket.getSchedule());
-			}
-			ticketRepository.save(existingTicket);
-			return TicketServiceResult.SUCCESS;
-		}).orElse(TicketServiceResult.NOT_FOUND);
+	    return ticketRepository.findById(ticket.getId()).map(existingTicket -> {
+	        boolean updated = false;
+	        if (existingTicket.getPrice() != ticket.getPrice()) {
+	            existingTicket.setPrice(ticket.getPrice());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingTicket.getStatus(), ticket.getStatus())) {
+	            existingTicket.setStatus(ticket.getStatus());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingTicket.getSeatNumber(), ticket.getSeatNumber())) {
+	            existingTicket.setSeatNumber(ticket.getSeatNumber());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingTicket.getUser(), ticket.getUser())) {
+	            existingTicket.setUser(ticket.getUser());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingTicket.getSchedule(), ticket.getSchedule())) {
+	            existingTicket.setSchedule(ticket.getSchedule());
+	            updated = true;
+	        }
+	        if (updated) {
+	            ticketRepository.save(existingTicket);
+	        }
+	        return TicketServiceResult.SUCCESS;
+	    }).orElse(TicketServiceResult.NOT_FOUND);
 	}
+
 
 	public TicketServiceResult deleteTicket(String id) {
 		return ticketRepository.findById(id).map(ticket -> {

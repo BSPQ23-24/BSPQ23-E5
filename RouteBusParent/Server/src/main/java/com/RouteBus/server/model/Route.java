@@ -89,14 +89,6 @@ public class Route {
 		this.buses = buses;
 	}
 	
-	public boolean addBus(Bus bus) {
-		return this.buses.add(bus);
-	}
-	
-	public boolean addStation(Station station) {
-		return this.stations.add(station);
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);

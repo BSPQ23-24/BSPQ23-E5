@@ -5,6 +5,7 @@ import com.RouteBus.server.model.Bus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BusService {
@@ -35,15 +36,31 @@ public class BusService {
 	}
 
 	public BusServiceResult updateBus(Bus bus) {
-		return busRepository.findById(bus.getLicensePlate()).map(existingBus -> {
-			existingBus.setCapacity(bus.getCapacity());
-			existingBus.setMake(bus.getMake());
-			existingBus.setModel(bus.getModel());
-			existingBus.setRoutes(bus.getRoutes());
-			busRepository.save(existingBus);
-			return BusServiceResult.SUCCESS;
-		}).orElse(BusServiceResult.NOT_FOUND);
+	    return busRepository.findById(bus.getLicensePlate()).map(existingBus -> {
+	        boolean updated = false;
+	        if (existingBus.getCapacity() != bus.getCapacity()) {
+	            existingBus.setCapacity(bus.getCapacity());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingBus.getMake(), bus.getMake())) {
+	            existingBus.setMake(bus.getMake());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingBus.getModel(), bus.getModel())) {
+	            existingBus.setModel(bus.getModel());
+	            updated = true;
+	        }
+	        if (!Objects.equals(existingBus.getRoutes(), bus.getRoutes())) {
+	            existingBus.setRoutes(bus.getRoutes());
+	            updated = true;
+	        }
+	        if (updated) {
+	            busRepository.save(existingBus);
+	        }
+	        return BusServiceResult.SUCCESS;
+	    }).orElse(BusServiceResult.NOT_FOUND);
 	}
+
 
 	public BusServiceResult deleteBus(String licensePlate) {
 		if (busRepository.existsById(licensePlate)) {
