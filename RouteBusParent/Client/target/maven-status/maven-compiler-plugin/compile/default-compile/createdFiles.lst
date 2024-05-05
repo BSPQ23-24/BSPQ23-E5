@@ -1,3 +1,4 @@
+com\RouteBus\client\gui\RegistrationWindow$2.class
 com\RouteBus\client\dto\StationDTO.class
 com\RouteBus\client\gui\AdministratorWindow.class
 com\RouteBus\client\gateway\RouteGateway.class
@@ -17,6 +18,7 @@ com\RouteBus\client\gui\RegistrationWindow$VerticalLinePanel.class
 com\RouteBus\client\controller\StationController.class
 com\RouteBus\client\gui\LoginWindow.class
 com\RouteBus\client\dto\NationalityDTO.class
+com\RouteBus\client\gui\RegistrationWindow$1.class
 com\RouteBus\client\controller\ScheduleController.class
 com\RouteBus\client\controller\TicketController.class
 com\RouteBus\client\gateway\BusGateway.class
