@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.RouteBus.server.AppTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.509 s <<< FAILURE! - in com.RouteBus.server.AppTest
-testDemoMethodWhenNoNationalitiesLoaded(com.RouteBus.server.AppTest)  Time elapsed: 0.46 s  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.495 s <<< FAILURE! - in com.RouteBus.server.AppTest
+testDemoMethodWhenNoNationalitiesLoaded(com.RouteBus.server.AppTest)  Time elapsed: 0.448 s  <<< ERROR!
 org.mockito.exceptions.misusing.NotAMockException: 
 
 Argument passed to verify() is of type Logger and is not a mock!

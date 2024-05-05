@@ -115,7 +115,6 @@ public class User {
 	    return Objects.equals(email, user.email);
 	}
 
-
     @Override
     public int hashCode() {
         return Objects.hash(email);
