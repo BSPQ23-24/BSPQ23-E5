@@ -158,8 +158,8 @@ public class UserTest {
 
     @Test
     public void testToString() {
-        String expectedString = "User{id=" +
-                ", firstName='John', lastName='Doe', email='johndoe@example.com', role=CUSTOMER}";
+        String expectedString = "User{" +
+                "firstName='John', lastName='Doe', email='johndoe@example.com', role=CUSTOMER}";
         assertEquals(expectedString, user.toString());
         logger.info("Test testToString passed successfully.");
     }

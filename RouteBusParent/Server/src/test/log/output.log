@@ -1197,3 +1197,112 @@
 2024-05-05 19:28:53,378 [main] DEBUG com.RouteBus.server.controller.TicketRestControllerTest - Test testGetTicketById_TicketExists passed successfully.
 2024-05-05 19:28:53,379 [main] DEBUG com.RouteBus.server.controller.TicketRestControllerTest - Starting test testGetAllTickets...
 2024-05-05 19:28:53,379 [main] DEBUG com.RouteBus.server.controller.TicketRestControllerTest - Test testGetAllTickets passed successfully.
+2024-05-05 20:28:27,130 [main] DEBUG com.RouteBus.server.model.BusTest - Test setRoutes and getRoutes methods passed succesfully
+2024-05-05 20:28:27,131 [main] DEBUG com.RouteBus.server.model.BusTest - Test constructor without parameters passed succesfully
+2024-05-05 20:28:27,131 [main] DEBUG com.RouteBus.server.model.BusTest - Test setMake and getMake methods passed succesfully
+2024-05-05 20:28:27,131 [main] DEBUG com.RouteBus.server.model.BusTest - Test constructor with parameters passed succesfully
+2024-05-05 20:28:27,132 [main] DEBUG com.RouteBus.server.model.BusTest - Test setModel and getModel methods passed succesfully
+2024-05-05 20:28:27,152 [main] DEBUG com.RouteBus.server.model.BusTest - Test interaction with Routes passed succesfully
+2024-05-05 20:28:27,152 [main] DEBUG com.RouteBus.server.model.BusTest - Test setCapacity and getCapacity methods passed succesfully
+2024-05-05 20:28:27,152 [main] DEBUG com.RouteBus.server.model.BusTest - Test testHashCode passed successfully.
+2024-05-05 20:28:27,153 [main] DEBUG com.RouteBus.server.model.BusTest - Test setLicensePlate and getLicensePlate methods passed succesfully
+2024-05-05 20:28:27,154 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testSetAndGetLanguage passed successfully.
+2024-05-05 20:28:27,154 [main] DEBUG com.RouteBus.server.model.NationalityTest - Testing testSetAndGetName passed successfully.
+2024-05-05 20:28:27,155 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testConstructorWithName passed successfully.
+2024-05-05 20:28:27,155 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testHashCode passed successfully.
+2024-05-05 20:28:27,155 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testEquals passed successfully.
+2024-05-05 20:28:27,155 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testDefaultConstructor passed successfully.
+2024-05-05 20:28:27,157 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetEndPoint passed successfully.
+2024-05-05 20:28:27,157 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:28:27,158 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetName passed successfully.
+2024-05-05 20:28:27,158 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetBuses passed successfully.
+2024-05-05 20:28:27,158 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetStartPoint passed successfully.
+2024-05-05 20:28:27,158 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetTotalDistance passed successfully.
+2024-05-05 20:28:27,159 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetStations passed successfully.
+2024-05-05 20:28:27,178 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:28:27,178 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:28:27,179 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetRoute passed successfully.
+2024-05-05 20:28:27,179 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetArrivalTime passed successfully.
+2024-05-05 20:28:27,179 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetDepartureTime passed successfully.
+2024-05-05 20:28:27,179 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetId passed successfully.
+2024-05-05 20:28:27,180 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetTickets passed successfully.
+2024-05-05 20:28:27,180 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:28:27,181 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetRoutes passed successfully.
+2024-05-05 20:28:27,181 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetLocation passed successfully.
+2024-05-05 20:28:27,182 [main] DEBUG com.RouteBus.server.model.StationTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:28:27,182 [main] DEBUG com.RouteBus.server.model.StationTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:28:27,182 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetName passed successfully.
+2024-05-05 20:28:27,207 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetStatus passed successfully.
+2024-05-05 20:28:27,207 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:28:27,207 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetUser passed successfully.
+2024-05-05 20:28:27,207 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetPrice passed successfully.
+2024-05-05 20:28:27,208 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetSchedule passed successfully.
+2024-05-05 20:28:27,208 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetId passed successfully.
+2024-05-05 20:28:27,208 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:28:27,208 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetSeatNumber passed successfully.
+2024-05-05 20:28:27,215 [main] INFO  com.RouteBus.server.model.UserTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:28:27,215 [main] INFO  com.RouteBus.server.model.UserTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:28:27,216 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetBirthDate passed successfully.
+2024-05-05 20:28:27,222 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetRole passed successfully.
+2024-05-05 20:28:27,222 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetLastName passed successfully.
+2024-05-05 20:28:27,223 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetEmail passed successfully.
+2024-05-05 20:28:27,223 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetFirstName passed successfully.
+2024-05-05 20:28:27,223 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetNationality passed successfully.
+2024-05-05 20:28:27,223 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetTickets passed successfully.
+2024-05-05 20:28:27,223 [main] INFO  com.RouteBus.server.model.UserTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:28:27,227 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetPassword passed successfully.
+2024-05-05 20:32:02,063 [main] DEBUG com.RouteBus.server.model.BusTest - Test setRoutes and getRoutes methods passed succesfully
+2024-05-05 20:32:02,064 [main] DEBUG com.RouteBus.server.model.BusTest - Test constructor without parameters passed succesfully
+2024-05-05 20:32:02,064 [main] DEBUG com.RouteBus.server.model.BusTest - Test setMake and getMake methods passed succesfully
+2024-05-05 20:32:02,064 [main] DEBUG com.RouteBus.server.model.BusTest - Test constructor with parameters passed succesfully
+2024-05-05 20:32:02,065 [main] DEBUG com.RouteBus.server.model.BusTest - Test setModel and getModel methods passed succesfully
+2024-05-05 20:32:02,084 [main] DEBUG com.RouteBus.server.model.BusTest - Test interaction with Routes passed succesfully
+2024-05-05 20:32:02,084 [main] DEBUG com.RouteBus.server.model.BusTest - Test setCapacity and getCapacity methods passed succesfully
+2024-05-05 20:32:02,085 [main] DEBUG com.RouteBus.server.model.BusTest - Test testHashCode passed successfully.
+2024-05-05 20:32:02,085 [main] DEBUG com.RouteBus.server.model.BusTest - Test setLicensePlate and getLicensePlate methods passed succesfully
+2024-05-05 20:32:02,087 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testSetAndGetLanguage passed successfully.
+2024-05-05 20:32:02,087 [main] DEBUG com.RouteBus.server.model.NationalityTest - Testing testSetAndGetName passed successfully.
+2024-05-05 20:32:02,087 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testConstructorWithName passed successfully.
+2024-05-05 20:32:02,087 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testHashCode passed successfully.
+2024-05-05 20:32:02,088 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testEquals passed successfully.
+2024-05-05 20:32:02,089 [main] DEBUG com.RouteBus.server.model.NationalityTest - Test testDefaultConstructor passed successfully.
+2024-05-05 20:32:02,089 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetEndPoint passed successfully.
+2024-05-05 20:32:02,089 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:32:02,090 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetName passed successfully.
+2024-05-05 20:32:02,090 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetBuses passed successfully.
+2024-05-05 20:32:02,091 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetStartPoint passed successfully.
+2024-05-05 20:32:02,091 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetTotalDistance passed successfully.
+2024-05-05 20:32:02,091 [main] DEBUG com.RouteBus.server.model.RouteTest - Test testSetAndGetStations passed successfully.
+2024-05-05 20:32:02,112 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:32:02,112 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:32:02,112 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetRoute passed successfully.
+2024-05-05 20:32:02,112 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetArrivalTime passed successfully.
+2024-05-05 20:32:02,113 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetDepartureTime passed successfully.
+2024-05-05 20:32:02,113 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetId passed successfully.
+2024-05-05 20:32:02,113 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testSetAndGetTickets passed successfully.
+2024-05-05 20:32:02,114 [main] DEBUG com.RouteBus.server.model.ScheduleTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:32:02,114 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetRoutes passed successfully.
+2024-05-05 20:32:02,115 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetLocation passed successfully.
+2024-05-05 20:32:02,115 [main] DEBUG com.RouteBus.server.model.StationTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:32:02,115 [main] DEBUG com.RouteBus.server.model.StationTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:32:02,115 [main] DEBUG com.RouteBus.server.model.StationTest - Test testSetAndGetName passed successfully.
+2024-05-05 20:32:02,141 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetStatus passed successfully.
+2024-05-05 20:32:02,142 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:32:02,142 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetUser passed successfully.
+2024-05-05 20:32:02,142 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetPrice passed successfully.
+2024-05-05 20:32:02,142 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetSchedule passed successfully.
+2024-05-05 20:32:02,143 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetId passed successfully.
+2024-05-05 20:32:02,143 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:32:02,143 [main] DEBUG com.RouteBus.server.model.TicketTest - Test testSetAndGetSeatNumber passed successfully.
+2024-05-05 20:32:02,150 [main] INFO  com.RouteBus.server.model.UserTest - Test testConstructorAndProperties passed successfully.
+2024-05-05 20:32:02,150 [main] INFO  com.RouteBus.server.model.UserTest - Test testConstructorWithoutParameters passed successfully.
+2024-05-05 20:32:02,150 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetBirthDate passed successfully.
+2024-05-05 20:32:02,155 [main] INFO  com.RouteBus.server.model.UserTest - Test testToString passed successfully.
+2024-05-05 20:32:02,156 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetRole passed successfully.
+2024-05-05 20:32:02,156 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetLastName passed successfully.
+2024-05-05 20:32:02,156 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetEmail passed successfully.
+2024-05-05 20:32:02,156 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetFirstName passed successfully.
+2024-05-05 20:32:02,157 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetNationality passed successfully.
+2024-05-05 20:32:02,157 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetTickets passed successfully.
+2024-05-05 20:32:02,157 [main] INFO  com.RouteBus.server.model.UserTest - Test testEqualsAndHashCode passed successfully.
+2024-05-05 20:32:02,161 [main] INFO  com.RouteBus.server.model.UserTest - Test testSetAndGetPassword passed successfully.

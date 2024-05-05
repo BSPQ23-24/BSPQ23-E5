@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.RouteBus.server.model.UserTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in com.RouteBus.server.model.UserTest
+testEqualsAndHashCode(com.RouteBus.server.model.UserTest)  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not equal but was: <User{firstName='John', lastName='Doe', email='johndoe@example.com', role=CUSTOMER}>
+	at com.RouteBus.server.model.UserTest.testEqualsAndHashCode(UserTest.java:141)
+

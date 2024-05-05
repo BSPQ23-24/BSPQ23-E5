@@ -123,10 +123,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               ", role=" + role +
-               '}';
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role.toString() +
+                '}';
     }
 }
