@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Route.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.model</a> &gt; <span class="el_source">Route.java</span></div><h1>Route.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.model;
+
+import javax.persistence.*;
+
+import java.util.Objects;
+import java.util.Set;
+
+@Entity
+@Table(name = &quot;routes&quot;)
+public class Route {
+
+    @Id
+    private String name;
+    private String startPoint;
+    private String endPoint;
+    private double totalDistance;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = &quot;route_stations&quot;,
+        joinColumns = @JoinColumn(name = &quot;route_id&quot;),
+        inverseJoinColumns = @JoinColumn(name = &quot;station_id&quot;)
+    )
+    private Set&lt;Station&gt; stations;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = &quot;route_buses&quot;,
+        joinColumns = @JoinColumn(name = &quot;route_id&quot;),
+        inverseJoinColumns = @JoinColumn(name = &quot;bus_id&quot;)
+    )
+    private Set&lt;Bus&gt; buses;
+
+<span class="fc" id="L34">    public Route() {</span>
+<span class="fc" id="L35">    }</span>
+
+<span class="fc" id="L37">    public Route(String name, String startPoint, String endPoint, double totalDistance) {</span>
+<span class="fc" id="L38">        this.name = name;</span>
+<span class="fc" id="L39">        this.startPoint = startPoint;</span>
+<span class="fc" id="L40">        this.endPoint = endPoint;</span>
+<span class="fc" id="L41">        this.totalDistance = totalDistance;</span>
+<span class="fc" id="L42">    }</span>
+
+	public String getName() {
+<span class="fc" id="L45">		return name;</span>
+	}
+
+	public String getStartPoint() {
+<span class="fc" id="L49">		return startPoint;</span>
+	}
+
+	public String getEndPoint() {
+<span class="fc" id="L53">		return endPoint;</span>
+	}
+
+	public double getTotalDistance() {
+<span class="fc" id="L57">		return totalDistance;</span>
+	}
+
+	public Set&lt;Station&gt; getStations() {
+<span class="fc" id="L61">		return stations;</span>
+	}
+
+	public Set&lt;Bus&gt; getBuses() {
+<span class="fc" id="L65">		return buses;</span>
+	}
+
+	public void setName(String name) {
+<span class="fc" id="L69">		this.name = name;</span>
+<span class="fc" id="L70">	}</span>
+
+	public void setStartPoint(String startPoint) {
+<span class="fc" id="L73">		this.startPoint = startPoint;</span>
+<span class="fc" id="L74">	}</span>
+
+	public void setEndPoint(String endPoint) {
+<span class="fc" id="L77">		this.endPoint = endPoint;</span>
+<span class="fc" id="L78">	}</span>
+
+	public void setTotalDistance(double totalDistance) {
+<span class="fc" id="L81">		this.totalDistance = totalDistance;</span>
+<span class="fc" id="L82">	}</span>
+
+	public void setStations(Set&lt;Station&gt; stations) {
+<span class="fc" id="L85">		this.stations = stations;</span>
+<span class="fc" id="L86">	}</span>
+
+	public void setBuses(Set&lt;Bus&gt; buses) {
+<span class="fc" id="L89">		this.buses = buses;</span>
+<span class="fc" id="L90">	}</span>
+	
+	@Override
+	public int hashCode() {
+<span class="fc" id="L94">		return Objects.hash(name);</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc bfc" id="L99" title="All 2 branches covered.">	    if (this == obj) return true;</span>
+<span class="fc bfc" id="L100" title="All 4 branches covered.">	    if (obj == null || getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L101">		Route other = (Route) obj;</span>
+<span class="fc" id="L102">		return Objects.equals(name, other.name);</span>
+	}
+		
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

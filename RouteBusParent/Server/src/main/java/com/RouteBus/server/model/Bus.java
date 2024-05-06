@@ -26,7 +26,17 @@ public class Bus {
         this.capacity = capacity;
         this.make = make;
         this.model = model;
+        this.routes = null;
     }
+    
+	public Bus(String licensePlate, int capacity, String make, String model, Set<Route> routes) {
+		super();
+		this.licensePlate = licensePlate;
+		this.capacity = capacity;
+		this.make = make;
+		this.model = model;
+		this.routes = routes;
+	}
 
 	public String getLicensePlate() {
 		return licensePlate;
@@ -77,8 +87,6 @@ public class Bus {
 	public boolean equals(Object obj) {
 	    if (this == obj) return true;
 	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Bus other = (Bus) obj;
 		return Objects.equals(licensePlate, other.licensePlate);
 	}

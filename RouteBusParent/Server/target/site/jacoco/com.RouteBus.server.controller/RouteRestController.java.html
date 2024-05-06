@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteRestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.controller</a> &gt; <span class="el_source">RouteRestController.java</span></div><h1>RouteRestController.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.RouteBus.server.model.Route;
+import com.RouteBus.server.service.RouteService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/Route&quot;)
+public class RouteRestController {
+    private final RouteService routeService;
+
+<span class="fc" id="L16">    public RouteRestController(RouteService routeService) {</span>
+<span class="fc" id="L17">        this.routeService = routeService;</span>
+<span class="fc" id="L18">    }</span>
+
+    @GetMapping(&quot;/all&quot;)
+    public List&lt;Route&gt; getAllRoutes() {
+<span class="fc" id="L22">        return routeService.getAllRoutes();</span>
+    }
+
+    @GetMapping(&quot;/{name}&quot;)
+    public ResponseEntity&lt;Route&gt; getRouteById(@PathVariable String name) {
+<span class="fc" id="L27">        Route Route = routeService.getRouteById(name);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        return Route != null ? ResponseEntity.ok(Route) : ResponseEntity.notFound().build();</span>
+    }
+
+    @PostMapping(&quot;/create&quot;)
+    public ResponseEntity&lt;String&gt; createRoute(@RequestBody Route Route) {
+<span class="fc" id="L33">        RouteService.RouteServiceResult result = routeService.createRoute(Route);</span>
+<span class="fc bfc" id="L34" title="All 3 branches covered.">        switch (result) {</span>
+            case SUCCESS:
+<span class="fc" id="L36">                return ResponseEntity.ok(&quot;Route created successfully.&quot;);</span>
+            case ERROR:
+<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;Failed to create Route.&quot;);</span>
+            default:
+<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+        }
+    }
+
+    @PutMapping(&quot;/update&quot;)
+    public ResponseEntity&lt;String&gt; updateRoute(@RequestBody Route Route) {
+<span class="fc" id="L46">        RouteService.RouteServiceResult result = routeService.updateRoute(Route);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
+<span class="fc" id="L48">            ResponseEntity.ok(&quot;Route updated successfully.&quot;) :</span>
+<span class="fc" id="L49">            ResponseEntity.notFound().build();</span>
+    }
+
+    @DeleteMapping(&quot;/delete/{name}&quot;)
+    public ResponseEntity&lt;String&gt; deleteRoute(@PathVariable String name) {
+<span class="fc" id="L54">        RouteService.RouteServiceResult result = routeService.deleteRoute(name);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
+<span class="fc" id="L56">            ResponseEntity.ok(&quot;Route deleted successfully.&quot;) :</span>
+<span class="fc" id="L57">            ResponseEntity.notFound().build();</span>
+    }
+    
+	@GetMapping(&quot;bus/{licensePlate}/routes&quot;)
+	public List&lt;Route&gt; obtainRoutesByBus(@PathVariable String licensePlate) {
+<span class="fc" id="L62">        return routeService.obtainRoutesByBus(licensePlate);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,57 +1,77 @@
-/*package com.RouteBus.server;
+package com.RouteBus.server;
 
-import com.RouteBus.server.dao.NationalityRepository;
-import com.RouteBus.server.model.Nationality;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.RouteBus.server.dao.NationalityRepository;
+import com.RouteBus.server.model.Nationality;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Method;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
-
     @Mock
     private NationalityRepository nationalityRepository;
 
     @InjectMocks
-    private App app = new App();
+    private App app;
 
     @Before
     public void setUp() {
+    }
+
+    @Test
+    public void testDemoWithEmptyDatabase() throws Exception {
         when(nationalityRepository.count()).thenReturn(0L);
-    }
-
-    @Test
-    public void testDemoMethodWhenNoNationalitiesLoaded() throws Exception {
-        CommandLineRunner demo = app.demo(nationalityRepository);
-        String[] args = {};
-        demo.run(args);
-
+        CommandLineRunner runner = app.demo(nationalityRepository);
+        runner.run(new String[]{});
         verify(nationalityRepository, times(App.getNumberOfNationalities())).save(any(Nationality.class));
-        verify(logger).debug("30 nationalities loaded into the database.");
+        verify(nationalityRepository, atLeastOnce()).count();
+        verifyNoMoreInteractions(nationalityRepository);
     }
 
     @Test
-    public void testDemoMethodWhenNationalitiesAlreadyLoaded() throws Exception {
-        when(nationalityRepository.count()).thenReturn(30L);
-
-        CommandLineRunner demo = app.demo(nationalityRepository);
-        String[] args = {};
-        demo.run(args);
-
+    public void testDemoWithNonEmptyDatabase() throws Exception {
+        when(nationalityRepository.count()).thenReturn(1L);
+        CommandLineRunner runner = app.demo(nationalityRepository);
+        runner.run(new String[]{});
         verify(nationalityRepository, never()).save(any(Nationality.class));
-        verify(logger).debug("Nationalities are already loaded.");
+        verify(nationalityRepository, atLeastOnce()).count();
+        verifyNoMoreInteractions(nationalityRepository);
     }
+
+    @Test
+    public void testGetNumberOfNationalities() {
+        int expected = 29;
+        assertEquals(expected, App.getNumberOfNationalities());
+    }
+
+    @Test
+    public void testGetNumberOfLoadedNationalities() {
+        assertEquals(0, App.getNumberOfLoadedNationalities());
+    }
+
+    @Test
+    public void testMainMethod() throws Exception {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Method mainMethod = App.class.getMethod("main", String[].class);
+        mainMethod.invoke(null, (Object) new String[]{});
+        System.setOut(System.out);
+        String expectedOutput = "Started App";
+        assertTrue(outContent.toString().contains(expectedOutput));
+    }
+
 }
-*/

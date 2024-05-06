@@ -13,6 +13,8 @@ import com.RouteBus.server.model.Nationality;
 @SpringBootApplication
 public class App {
 
+	private static int numberOfLoadedNationalities = 0;
+	
     private static final Logger logger = LoggerFactory.getLogger(App.class);
 
     private static final Nationality[] nationalities = {
@@ -55,11 +57,11 @@ public class App {
     CommandLineRunner demo(NationalityRepository nationalityRepository) {
         return (args) -> {
             if (nationalityRepository.count() == 0) {
-                int count = 0;
+                numberOfLoadedNationalities = 0;
                 for (Nationality nationality : nationalities) {
-                    if(nationalityRepository.save(nationality) != null)	count++;
+                    if(nationalityRepository.save(nationality) != null)	numberOfLoadedNationalities++;
                 }
-                logger.info(count + " nationalities loaded into the database.");
+                logger.info(numberOfLoadedNationalities + " nationalities loaded into the database out of " + nationalities.length);
             } else {
                 logger.info("Nationalities are already loaded.");
             }
@@ -68,5 +70,9 @@ public class App {
     
     public static int getNumberOfNationalities() {
     	return nationalities.length;
+    }
+    
+    public static int getNumberOfLoadedNationalities() {
+    	return numberOfLoadedNationalities;
     }
 }

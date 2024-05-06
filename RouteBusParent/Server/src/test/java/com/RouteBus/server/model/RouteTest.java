@@ -12,11 +12,12 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteTest {
 
-    private static final Logger logger = Logger.getLogger(RouteTest.class);
+    private final Logger logger = Logger.getLogger(RouteTest.class);
 
     private Route route;
 
@@ -84,5 +85,23 @@ public class RouteTest {
         assertEquals(newBuses.size(), route.getBuses().size());
         assertTrue(route.getBuses().containsAll(newBuses));
         logger.debug("Test testSetAndGetBuses passed successfully.");
+    }
+    
+    @Test
+    public void testEqualsAndHashCode() {
+        Route route1 = new Route("Route A", "Start Point", "End Point", 120.5);
+        Route route2 = new Route("Route A", "Start Point", "End Point", 120.5);
+        Route route3 = new Route("Route B", "Start Point", "End Point", 120.5);
+
+        assertEquals(route1, route2);
+        assertEquals(route1.hashCode(), route2.hashCode());
+
+        assertNotEquals(route1, route3);
+        assertNotEquals(route1.hashCode(), route3.hashCode());
+
+        assertNotEquals(route1, null);
+        assertNotEquals(route1, new Object());
+
+        logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
 }

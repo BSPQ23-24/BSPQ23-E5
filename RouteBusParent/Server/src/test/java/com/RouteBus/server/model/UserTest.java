@@ -7,10 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class UserTest {
 
-    private static final Logger logger = Logger.getLogger(UserTest.class);
+    private final Logger logger = Logger.getLogger(UserTest.class);
 
     private User user;
 
@@ -34,9 +32,7 @@ public class UserTest {
     @Before
     public void setUp() {
         birthDate = new Date();
-        user = new User("John", "Doe", "johndoe@example.com", "password123", birthDate, UserRole.CUSTOMER);
-        user.setNationality(mockNationality);
-        user.setTickets(mockTickets);
+        user = new User("John", "Doe", "johndoe@example.com" ,"password123", mockNationality, birthDate, UserRole.CUSTOMER, mockTickets);
     }
 
     @Test
@@ -126,38 +122,29 @@ public class UserTest {
         assertNull(user.getTickets());
         logger.info("Test testConstructorWithoutParameters passed successfully.");
     }
-/*
+
     @Test
     public void testEqualsAndHashCode() {
-        assertEquals(user, user);
+        User user1 = new User("John", "Doe", "john@example.com", "password123", null, new Date(), UserRole.CUSTOMER, null);
+        User user2 = new User("John", "Doe", "john@example.com", "password123", null, new Date(), UserRole.CUSTOMER, null);
+        User user3 = new User("Jane", "Doe", "jane@example.com", "password123", null, new Date(), UserRole.CUSTOMER, null);
+        User notAUser = null;  // para probar la igualdad con `null`
+        Object differentClass = new String("I am not a user!");
 
-        User sameUser = new User("John", "Doe", "johndoe@example.com", "password123", birthDate, UserRole.CUSTOMER);
+        assertEquals(user1, user2);
+        assertEquals(user1.hashCode(), user2.hashCode());
 
-        assertEquals(user, sameUser);
-        assertEquals(user.hashCode(), sameUser.hashCode());
-        logger.info("Test testEqualsAndHashCode passed successfully.");
+        assertNotEquals(user1, user3);
+        assertNotEquals(user1.hashCode(), user3.hashCode());
 
-        // Crear un nuevo usuario con el mismo correo electrónico pero diferente contraseña
-        User differentUser = new User("John", "Doe", "johndoe@example.com", "differentPassword", birthDate, UserRole.CUSTOMER);
-        assertNotEquals(user, differentUser);
-        assertNotEquals(user.hashCode(), differentUser.hashCode());
+        assertNotEquals(user1, notAUser);
 
-        User nullIdUser1 = new User("John", "Doe", "johndoe@example.com", "password123", birthDate, UserRole.CUSTOMER);
-        assertEquals(user, nullIdUser1);
+        assertNotEquals(user1, differentClass);
 
-        User nullIdUser2 = new User("John", "Doe", "johndoe@example.com", "password123", birthDate, UserRole.CUSTOMER);
-        assertEquals(user, nullIdUser2);
-        assertEquals(user.hashCode(), nullIdUser2.hashCode());
-
-        // Crear un nuevo usuario con un correo electrónico diferente
-        User differentEmailUser = new User("John", "Doe", "different@example.com", "password123", birthDate, UserRole.CUSTOMER);
-        assertNotEquals(user, differentEmailUser);
-        assertNotEquals(user.hashCode(), differentEmailUser.hashCode());
-
-        assertNotEquals(user, null);
-        assertNotEquals(user, new Object());
+        logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
-*/
+
+    
     @Test
     public void testToString() {
         String expectedString = "User{" +

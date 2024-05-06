@@ -4,23 +4,23 @@ import com.RouteBus.server.model.Bus;
 import com.RouteBus.server.service.BusService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class BusRestControllerTest {
+@RunWith(MockitoJUnitRunner.class)
+public class BusRestControllerTest {
 
     private static final Logger logger = LogManager.getLogger(BusRestControllerTest.class);
 
@@ -33,173 +33,102 @@ class BusRestControllerTest {
     private List<Bus> mockBuses;
     private Bus mockBus;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         mockBuses = new ArrayList<>();
         mockBuses.add(new Bus("ABC123", 50, "Mercedes", "Sprinter"));
         mockBuses.add(new Bus("DEF456", 40, "Volvo", "B7R"));
-
         mockBus = new Bus("ABC123", 50, "Mercedes", "Sprinter");
     }
 
     @Test
-    void testGetAllBuses() {
-        // Arrange
+    public void testGetAllBuses() {
         when(busService.getAllBuses()).thenReturn(mockBuses);
-
-        // Act
         List<Bus> result = busRestController.getAllBuses();
-
-        // Assert
         assertEquals(mockBuses, result);
-
-        // Logging
         logger.debug("Test getAllBuses completed successfully.");
     }
 
     @Test
-    void testGetBusByIdFound() {
-        // Arrange
+    public void testGetBusByIdFound() {
         String licensePlate = "ABC123";
         Bus expectedBus = new Bus("ABC123", 50, "Mercedes", "Sprinter");
         when(busService.getBusById(licensePlate)).thenReturn(expectedBus);
-
-        // Act
         ResponseEntity<Bus> responseEntity = busRestController.getBusById(licensePlate);
-
-        // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(expectedBus, responseEntity.getBody());
-
-        // Logging
         logger.debug("Test getBusByIdFound completed successfully.");
     }
 
     @Test
-    void testGetBusByIdNotFound() {
-        // Arrange
+    public void testGetBusByIdNotFound() {
         String licensePlate = "XYZ789";
         when(busService.getBusById(licensePlate)).thenReturn(null);
-
-        // Act
         ResponseEntity<Bus> responseEntity = busRestController.getBusById(licensePlate);
-
-        // Assert
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-
-        // Logging
         logger.debug("Test getBusByIdNotFound completed successfully.");
     }
 
     @Test
-    void testCreateBusSuccess() {
-        // Arrange
+    public void testCreateBusSuccess() {
         when(busService.createBus(mockBus)).thenReturn(BusService.BusServiceResult.SUCCESS);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.createBus(mockBus);
-
-        // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("Bus created successfully.", responseEntity.getBody());
-
-        // Logging
         logger.debug("Test createBusSuccess completed successfully.");
     }
 
     @Test
-    void testCreateBusError() {
-        // Arrange
+    public void testCreateBusError() {
         when(busService.createBus(mockBus)).thenReturn(BusService.BusServiceResult.ERROR);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.createBus(mockBus);
-
-        // Assert
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         assertEquals("Failed to create bus.", responseEntity.getBody());
-
-        // Logging
         logger.debug("Test createBusError completed successfully.");
     }
 
     @Test
-    void testCreateBusInternalServerError() {
-        // Arrange
+    public void testCreateBusInternalServerError() {
         when(busService.createBus(mockBus)).thenReturn(BusService.BusServiceResult.NOT_FOUND);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.createBus(mockBus);
-
-        // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
         assertEquals("Internal server error.", responseEntity.getBody());
-
-        // Logging
         logger.debug("Test createBusInternalServerError completed successfully.");
     }
 
     @Test
-    void testUpdateBusSuccess() {
-        // Arrange
+    public void testUpdateBusSuccess() {
         when(busService.updateBus(mockBus)).thenReturn(BusService.BusServiceResult.SUCCESS);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.updateBus(mockBus);
-
-        // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("Bus updated successfully.", responseEntity.getBody());
-
-        // Logging
         logger.debug("Test updateBusSuccess completed successfully.");
     }
 
     @Test
-    void testUpdateBusNotFound() {
-        // Arrange
+    public void testUpdateBusNotFound() {
         when(busService.updateBus(mockBus)).thenReturn(BusService.BusServiceResult.NOT_FOUND);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.updateBus(mockBus);
-
-        // Assert
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-
-        // Logging
         logger.debug("Test updateBusNotFound completed successfully.");
     }
 
     @Test
-    void testDeleteBusSuccess() {
-        // Arrange
+    public void testDeleteBusSuccess() {
         String licensePlate = "ABC123";
         when(busService.deleteBus(licensePlate)).thenReturn(BusService.BusServiceResult.SUCCESS);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.deleteBus(licensePlate);
-
-        // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals("Bus deleted successfully.", responseEntity.getBody());
-
-        // Logging
         logger.debug("Test deleteBusSuccess completed successfully.");
     }
 
     @Test
-    void testDeleteBusNotFound() {
-        // Arrange
+    public void testDeleteBusNotFound() {
         String licensePlate = "XYZ789";
         when(busService.deleteBus(licensePlate)).thenReturn(BusService.BusServiceResult.NOT_FOUND);
-
-        // Act
         ResponseEntity<String> responseEntity = busRestController.deleteBus(licensePlate);
-
-        // Assert
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-
-        // Logging
         logger.debug("Test deleteBusNotFound completed successfully.");
     }
 }

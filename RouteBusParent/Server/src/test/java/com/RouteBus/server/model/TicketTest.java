@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class TicketTest {
 
-    private static final Logger logger = Logger.getLogger(TicketTest.class);
+    private final Logger logger = Logger.getLogger(TicketTest.class);
 
     private Ticket ticket;
 
@@ -82,21 +82,26 @@ public class TicketTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        Ticket ticket1 = new Ticket();
-        ticket1.setId("1");
+        Ticket ticket1 = new Ticket("1", mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
+        Ticket ticket2 = new Ticket("1", mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
 
-        Ticket ticket2 = new Ticket();
-        ticket2.setId("1");
+        Ticket ticket3 = new Ticket("2", mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
+
+        Ticket ticketNullComparison = new Ticket("1", mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
+        
+        Object differentClassObject = new Object();
 
         assertEquals(ticket1, ticket2);
         assertEquals(ticket1.hashCode(), ticket2.hashCode());
 
-        Ticket ticket3 = new Ticket();
-        ticket3.setId("2");
-
         assertNotEquals(ticket1, ticket3);
         assertNotEquals(ticket1.hashCode(), ticket3.hashCode());
 
+        assertNotEquals(ticketNullComparison, null);
+        
+        assertNotEquals(ticket1, differentClassObject);
+
         logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
+
 }

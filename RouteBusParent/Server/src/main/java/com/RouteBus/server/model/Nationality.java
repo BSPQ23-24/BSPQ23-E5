@@ -43,8 +43,6 @@ public class Nationality {
 	public boolean equals(Object obj) {
 	    if (this == obj) return true;
 	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Nationality other = (Nationality) obj;
 		return Objects.equals(name, other.name);
 	}

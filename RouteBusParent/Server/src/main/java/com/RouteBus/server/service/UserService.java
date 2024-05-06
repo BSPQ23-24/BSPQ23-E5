@@ -51,10 +51,6 @@ public class UserService {
 	            existingUser.setLastName(user.getLastName());
 	            updated = true;
 	        }
-	        if (!Objects.equals(existingUser.getEmail(), user.getEmail())) {
-	            existingUser.setEmail(user.getEmail());
-	            updated = true;
-	        }
 	        if (!Objects.equals(existingUser.getPassword(), user.getPassword())) {
 	            existingUser.setPassword(user.getPassword());
 	            updated = true;

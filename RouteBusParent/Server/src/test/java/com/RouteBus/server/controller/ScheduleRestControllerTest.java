@@ -1,26 +1,29 @@
 package com.RouteBus.server.controller;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.RouteBus.server.model.Route;
 import com.RouteBus.server.model.Schedule;
 import com.RouteBus.server.service.ScheduleService;
 
-class ScheduleRestControllerTest {
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
+
+@RunWith(MockitoJUnitRunner.class)
+public class ScheduleRestControllerTest {
+
+    private static final Logger logger = LogManager.getLogger(ScheduleRestControllerTest.class);
 
     @Mock
     private ScheduleService scheduleService;
@@ -28,162 +31,114 @@ class ScheduleRestControllerTest {
     @InjectMocks
     private ScheduleRestController scheduleRestController;
 
-    private static final Logger logger = LogManager.getLogger(ScheduleRestControllerTest.class);
+    private Schedule mockSchedule;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Before
+    public void setUp() {
+        mockSchedule = new Schedule();
+        mockSchedule.setId("1");
     }
 
     @Test
-    void testGetAllSchedules() {
-        logger.debug("Testing getAllSchedules method...");
-        // Arrange
+    public void testGetAllSchedulees() {
         Set<Schedule> schedules = new HashSet<>();
-        schedules.add(new Schedule(new Route(), new Date(), new Date()));
+        schedules.add(mockSchedule);
         when(scheduleService.getAllSchedules()).thenReturn(schedules);
 
-        // Act
         Set<Schedule> result = scheduleRestController.getAllSchedulees();
-
-        // Assert
-        assert(result.size() == 1);
-        verify(scheduleService, times(1)).getAllSchedules();
-        logger.debug("getAllSchedules method test successful.");
+        assertEquals(schedules, result);
+        verify(scheduleService).getAllSchedules();
+        logger.debug("getAllSchedulees method test completed successfully.");
     }
 
     @Test
-    void testGetScheduleById() {
-        logger.debug("Testing getScheduleById method...");
-        // Arrange
-        String id = "1";
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.getScheduleById(id)).thenReturn(schedule);
-
-        // Act
-        ResponseEntity<Schedule> result = scheduleRestController.getScheduleById(id);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 200);
-        verify(scheduleService, times(1)).getScheduleById(id);
-        logger.debug("getScheduleById method test successful.");
+    public void testGetScheduleByIdFound() {
+        when(scheduleService.getScheduleById("1")).thenReturn(mockSchedule);
+        ResponseEntity<Schedule> response = scheduleRestController.getScheduleById("1");
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(mockSchedule, response.getBody());
+        verify(scheduleService).getScheduleById("1");
+        logger.debug("getScheduleById method test completed successfully for found case.");
     }
 
     @Test
-    void testCreateSchedule_Success() {
-        logger.debug("Testing createSchedule method - SUCCESS...");
-        // Arrange
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.createSchedule(schedule)).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
-
-        // Act
-        ResponseEntity<String> result = scheduleRestController.createSchedule(schedule);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 200);
-        assert(result.getBody().equals("Schedule created successfully."));
-        verify(scheduleService, times(1)).createSchedule(schedule);
-        logger.debug("createSchedule method test for SUCCESS case successful.");
+    public void testGetScheduleByIdNotFound() {
+        when(scheduleService.getScheduleById("2")).thenReturn(null);
+        ResponseEntity<Schedule> response = scheduleRestController.getScheduleById("2");
+        assertEquals(404, response.getStatusCodeValue());
+        assertNull(response.getBody());
+        verify(scheduleService).getScheduleById("2");
+        logger.debug("getScheduleById method test completed successfully for not found case.");
     }
 
     @Test
-    void testCreateSchedule_Error() {
-        logger.debug("Testing createSchedule method - ERROR...");
-        // Arrange
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.createSchedule(schedule)).thenReturn(ScheduleService.ScheduleServiceResult.ERROR);
-
-        // Act
-        ResponseEntity<String> result = scheduleRestController.createSchedule(schedule);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 400);
-        assert(result.getBody().equals("Failed to create Schedule."));
-        verify(scheduleService, times(1)).createSchedule(schedule);
-        logger.debug("createSchedule method test for ERROR case successful.");
+    public void testCreateScheduleSuccess() {
+        when(scheduleService.createSchedule(mockSchedule)).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
+        ResponseEntity<String> response = scheduleRestController.createSchedule(mockSchedule);
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("Schedule created successfully.", response.getBody());
+        verify(scheduleService).createSchedule(mockSchedule);
+        logger.debug("createSchedule method test completed successfully for SUCCESS case.");
     }
 
     @Test
-    void testCreateSchedule_Default() {
-        logger.debug("Testing createSchedule method - DEFAULT...");
-        // Arrange
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.createSchedule(schedule)).thenReturn(ScheduleService.ScheduleServiceResult.NOT_FOUND);
-
-        // Act
-        ResponseEntity<String> result = scheduleRestController.createSchedule(schedule);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 500);
-        assert(result.getBody().equals("Internal server error."));
-        verify(scheduleService, times(1)).createSchedule(schedule);
+    public void testCreateScheduleDefault() {
+        when(scheduleService.createSchedule(mockSchedule)).thenReturn(ScheduleService.ScheduleServiceResult.ERROR);
+        ResponseEntity<String> response = scheduleRestController.createSchedule(mockSchedule);
+        assertEquals(400, response.getStatusCodeValue());
+        assertEquals("Failed to create Schedule.", response.getBody());
+        verify(scheduleService).createSchedule(mockSchedule);
         logger.debug("createSchedule method test for DEFAULT case successful.");
     }
 
-
     @Test
-    void testUpdateSchedule_Success() {
-        logger.debug("Testing updateSchedule method - SUCCESS...");
-        // Arrange
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.updateSchedule(schedule)).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
+    public void testCreateScheduleNullResult() {
+        when(scheduleService.createSchedule(mockSchedule)).thenReturn(null);
 
-        // Act
-        ResponseEntity<String> result = scheduleRestController.updateSchedule(schedule);
+        ResponseEntity<String> responseEntity = scheduleRestController.createSchedule(mockSchedule);
 
-        // Assert
-        assert(result.getStatusCodeValue() == 200);
-        assert(result.getBody().equals("Schedule updated successfully."));
-        verify(scheduleService, times(1)).updateSchedule(schedule);
-        logger.debug("updateSchedule method test for SUCCESS case successful.");
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+        assertEquals("Internal server error.", responseEntity.getBody());
+        logger.debug("Test createScheduleNullResult completed successfully.");
     }
 
     @Test
-    void testUpdateSchedule_NotFound() {
-        logger.debug("Testing updateSchedule method - NOT FOUND...");
-        // Arrange
-        Schedule schedule = new Schedule(new Route(), new Date(), new Date());
-        when(scheduleService.updateSchedule(schedule)).thenReturn(ScheduleService.ScheduleServiceResult.NOT_FOUND);
-
-        // Act
-        ResponseEntity<String> result = scheduleRestController.updateSchedule(schedule);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 404);
-        verify(scheduleService, times(1)).updateSchedule(schedule);
-        logger.debug("updateSchedule method test for NOT FOUND case successful.");
+    public void testUpdateScheduleSuccess() {
+        when(scheduleService.updateSchedule(mockSchedule)).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
+        ResponseEntity<String> response = scheduleRestController.updateSchedule(mockSchedule);
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("Schedule updated successfully.", response.getBody());
+        verify(scheduleService).updateSchedule(mockSchedule);
+        logger.debug("updateSchedule method test completed successfully for SUCCESS case.");
     }
 
     @Test
-    void testDeleteSchedule_Success() {
-        logger.debug("Testing deleteSchedule method - SUCCESS...");
-        // Arrange
-        String id = "1";
-        when(scheduleService.deleteSchedule(id)).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
-
-        // Act
-        ResponseEntity<String> result = scheduleRestController.deleteSchedule(id);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 200);
-        assert(result.getBody().equals("Schedule deleted successfully."));
-        verify(scheduleService, times(1)).deleteSchedule(id);
-        logger.debug("deleteSchedule method test for SUCCESS case successful.");
+    public void testUpdateScheduleNotFound() {
+        when(scheduleService.updateSchedule(mockSchedule)).thenReturn(ScheduleService.ScheduleServiceResult.NOT_FOUND);
+        ResponseEntity<String> response = scheduleRestController.updateSchedule(mockSchedule);
+        assertEquals(404, response.getStatusCodeValue());
+        assertNull(response.getBody());
+        verify(scheduleService).updateSchedule(mockSchedule);
+        logger.debug("updateSchedule method test completed successfully for NOT FOUND case.");
     }
 
     @Test
-    void testDeleteSchedule_NotFound() {
-        logger.debug("Testing deleteSchedule method - NOT FOUND...");
-        // Arrange
-        String id = "1";
-        when(scheduleService.deleteSchedule(id)).thenReturn(ScheduleService.ScheduleServiceResult.NOT_FOUND);
+    public void testDeleteScheduleSuccess() {
+        when(scheduleService.deleteSchedule("1")).thenReturn(ScheduleService.ScheduleServiceResult.SUCCESS);
+        ResponseEntity<String> response = scheduleRestController.deleteSchedule("1");
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals("Schedule deleted successfully.", response.getBody());
+        verify(scheduleService).deleteSchedule("1");
+        logger.debug("deleteSchedule method test completed successfully for SUCCESS case.");
+    }
 
-        // Act
-        ResponseEntity<String> result = scheduleRestController.deleteSchedule(id);
-
-        // Assert
-        assert(result.getStatusCodeValue() == 404);
-        verify(scheduleService, times(1)).deleteSchedule(id);
-        logger.debug("deleteSchedule method test for NOT FOUND case successful.");
+    @Test
+    public void testDeleteScheduleNotFound() {
+        when(scheduleService.deleteSchedule("2")).thenReturn(ScheduleService.ScheduleServiceResult.NOT_FOUND);
+        ResponseEntity<String> response = scheduleRestController.deleteSchedule("2");
+        assertEquals(404, response.getStatusCodeValue());
+        assertNull(response.getBody());
+        verify(scheduleService).deleteSchedule("2");
+        logger.debug("deleteSchedule method test completed successfully for NOT FOUND case.");
     }
 }

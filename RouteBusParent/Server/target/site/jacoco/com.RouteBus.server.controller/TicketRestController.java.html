@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketRestController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.controller</a> &gt; <span class="el_source">TicketRestController.java</span></div><h1>TicketRestController.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.RouteBus.server.model.Ticket;
+import com.RouteBus.server.service.TicketService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/Ticket&quot;)
+public class TicketRestController {
+    private final TicketService ticketService;
+
+<span class="fc" id="L16">    public TicketRestController(TicketService TicketService) {</span>
+<span class="fc" id="L17">        this.ticketService = TicketService;</span>
+<span class="fc" id="L18">    }</span>
+
+    @GetMapping(&quot;/all&quot;)
+    public List&lt;Ticket&gt; getAllTicketes() {
+<span class="fc" id="L22">        return ticketService.getAllTickets();</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Ticket&gt; getTicketById(@PathVariable String id) {
+<span class="fc" id="L27">        Ticket Ticket = ticketService.getTicketById(id);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        return Ticket != null ? ResponseEntity.ok(Ticket) : ResponseEntity.notFound().build();</span>
+    }
+
+    @PostMapping(&quot;/create&quot;)
+    public ResponseEntity&lt;String&gt; createTicket(@RequestBody Ticket Ticket) {
+<span class="fc" id="L33">        TicketService.TicketServiceResult result = ticketService.createTicket(Ticket);</span>
+<span class="fc bfc" id="L34" title="All 3 branches covered.">        switch (result) {</span>
+            case SUCCESS:
+<span class="fc" id="L36">                return ResponseEntity.ok(&quot;Ticket created successfully.&quot;);</span>
+            case ERROR:
+<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;Failed to create Ticket.&quot;);</span>
+            default:
+<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+        }
+    }
+
+    @PutMapping(&quot;/update&quot;)
+    public ResponseEntity&lt;String&gt; updateTicket(@RequestBody Ticket Ticket) {
+<span class="fc" id="L46">        TicketService.TicketServiceResult result = ticketService.updateTicket(Ticket);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        return result == TicketService.TicketServiceResult.SUCCESS ?</span>
+<span class="fc" id="L48">            ResponseEntity.ok(&quot;Ticket updated successfully.&quot;) :</span>
+<span class="fc" id="L49">            ResponseEntity.notFound().build();</span>
+    }
+
+    @DeleteMapping(&quot;/delete/{id}&quot;)
+    public ResponseEntity&lt;String&gt; deleteTicket(@PathVariable String id) {
+<span class="fc" id="L54">        TicketService.TicketServiceResult result = ticketService.deleteTicket(id);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        return result == TicketService.TicketServiceResult.SUCCESS ?</span>
+<span class="fc" id="L56">            ResponseEntity.ok(&quot;Ticket deleted successfully.&quot;) :</span>
+<span class="fc" id="L57">            ResponseEntity.notFound().build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

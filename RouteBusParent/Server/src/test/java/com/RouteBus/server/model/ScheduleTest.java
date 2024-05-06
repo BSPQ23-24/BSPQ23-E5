@@ -7,10 +7,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -19,14 +18,14 @@ import static org.junit.Assert.assertNull;
 @RunWith(MockitoJUnitRunner.class)
 public class ScheduleTest {
 
-    private static final Logger logger = Logger.getLogger(ScheduleTest.class);
+    private final Logger logger = Logger.getLogger(ScheduleTest.class);
 
     private Schedule schedule;
 
     @Mock
     private Route mockRoute;
     @Mock
-    private List<Ticket> mockTickets;
+    private Set<Ticket> mockTickets;
 
     private Date departureTime;
     private Date arrivalTime;
@@ -38,10 +37,9 @@ public class ScheduleTest {
         arrivalTime = new Date();
         date = new Date();
 
-        // Set times for testing
-        departureTime.setTime(1620000000L); // Some arbitrary timestamp
-        arrivalTime.setTime(1620003600L); // Arbitrary, but after departure
-        date.setTime(1620000000L); // The date of the schedule
+        departureTime.setTime(1620000000L);
+        arrivalTime.setTime(1620003600L);
+        date.setTime(1620000000L); 
 
         schedule = new Schedule(mockRoute, departureTime, arrivalTime);
         schedule.setTickets(mockTickets);
@@ -91,7 +89,7 @@ public class ScheduleTest {
 
     @Test
     public void testSetAndGetTickets() {
-        List<Ticket> newTickets = new ArrayList<>();
+        Set<Ticket> newTickets = new HashSet<>();
         Ticket ticket = new Ticket();
         newTickets.add(ticket);
         schedule.setTickets(newTickets);
@@ -112,21 +110,26 @@ public class ScheduleTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        Schedule schedule1 = new Schedule();
-        schedule1.setId("1");
+        Schedule schedule1 = new Schedule("1", mockRoute, departureTime, arrivalTime, mockTickets);
+        Schedule schedule2 = new Schedule("1", mockRoute, new Date(departureTime.getTime() + 10000), new Date(arrivalTime.getTime() + 10000), mockTickets);
 
-        Schedule schedule2 = new Schedule();
-        schedule2.setId("1");
+        Schedule schedule3 = new Schedule("2", mockRoute, departureTime, arrivalTime, mockTickets);
+
+        Schedule scheduleNull = null;
+
+        Object differentClassObject = new Object();
 
         assertEquals(schedule1, schedule2);
         assertEquals(schedule1.hashCode(), schedule2.hashCode());
 
-        Schedule schedule3 = new Schedule();
-        schedule3.setId("2");
-
         assertNotEquals(schedule1, schedule3);
         assertNotEquals(schedule1.hashCode(), schedule3.hashCode());
 
+        assertNotEquals(schedule1, scheduleNull);
+
+        assertNotEquals(schedule1, differentClassObject);
+
         logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
+
 }

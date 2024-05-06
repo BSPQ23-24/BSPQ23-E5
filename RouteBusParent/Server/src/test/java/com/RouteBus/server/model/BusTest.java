@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BusTest {
-    private static final Logger logger = Logger.getLogger(BusTest.class);
+    private final Logger logger = Logger.getLogger(BusTest.class);
 
     private Bus bus;
 
@@ -88,12 +88,21 @@ public class BusTest {
     }
 
     @Test
-    public void testHashCode() {
-        Bus bus1 = new Bus("ABC123", 50, "Mercedes", "Sprinter");
-        Bus bus2 = new Bus("ABC123", 50, "Mercedes", "Sprinter");
-        
+    public void testEqualsAndHashCode() {
+        Bus bus1 = new Bus("XYZ-1234", 45, "Mercedes", "Sprinter");
+        Bus bus2 = new Bus("XYZ-1234", 45, "Mercedes", "Sprinter");
+        Bus bus3 = new Bus("XYZ-5678", 50, "Mercedes", "Sprinter");
+
+        assertEquals(bus1, bus2);
         assertEquals(bus1.hashCode(), bus2.hashCode());
-        logger.debug("Test testHashCode passed successfully.");
+
+        assertNotEquals(bus1, bus3);
+        assertNotEquals(bus1.hashCode(), bus3.hashCode());
+
+        assertNotEquals(bus1, null);
+        assertNotEquals(bus1, new Object());
+
+        logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
     
     @Test

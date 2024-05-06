@@ -14,6 +14,33 @@
 	<name>Server</name>
 	<url>http://maven.apache.org</url>
 
+<profiles>
+    <profile>
+        <id>only-unit-tests</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/*PerformanceTest.java</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+
+
 	<dependencies>
 		<!-- JUnit for unit testing -->
 		<dependency>
@@ -25,7 +52,6 @@
 			<groupId>com.github.noconnor</groupId>
 			<artifactId>junitperf</artifactId>
 		</dependency>
-
 		<!-- Mockito for unit testing -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -100,7 +126,7 @@
 					</execution>
 					<execution>
 						<id>default-report</id>
-						<phase>prepare-package</phase>
+						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -132,6 +158,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>
+						${argLine}
 						--add-opens java.base/java.lang=ALL-UNNAMED
 						--add-opens java.base/java.lang.invoke=ALL-UNNAMED
 						--add-opens java.base/java.util=ALL-UNNAMED

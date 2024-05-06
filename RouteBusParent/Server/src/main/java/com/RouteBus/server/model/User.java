@@ -34,16 +34,30 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Date birthDate, UserRole role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.birthDate = birthDate;
-        this.role = role;
-    }
+    public User(String firstName, String lastName, String email, String password, Nationality nationality,
+			Date birthDate, UserRole role, Set<Ticket> tickets) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.nationality = nationality;
+		this.birthDate = birthDate;
+		this.role = role;
+		this.tickets = tickets;
+	}
 
-    public String getEmail() {
+	public User(String firstName, String lastName, String email, String password, Nationality nationality, Date birthDate) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.nationality = nationality;
+		this.birthDate = birthDate;
+		this.role = UserRole.CUSTOMER;
+		this.tickets = null;
+	}
+
+	public String getEmail() {
 		return email;
 	}
 

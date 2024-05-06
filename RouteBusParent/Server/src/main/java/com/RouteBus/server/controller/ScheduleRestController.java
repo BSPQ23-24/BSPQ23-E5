@@ -31,13 +31,14 @@ public class ScheduleRestController {
     @PostMapping("/create")
     public ResponseEntity<String> createSchedule(@RequestBody Schedule Schedule) {
         ScheduleService.ScheduleServiceResult result = scheduleService.createSchedule(Schedule);
+        if (result == null) {
+        	return ResponseEntity.internalServerError().body("Internal server error.");
+        }
         switch (result) {
             case SUCCESS:
                 return ResponseEntity.ok("Schedule created successfully.");
-            case ERROR:
-                return ResponseEntity.badRequest().body("Failed to create Schedule.");
             default:
-                return ResponseEntity.internalServerError().body("Internal server error.");
+                return ResponseEntity.badRequest().body("Failed to create Schedule.");
         }
     }
 

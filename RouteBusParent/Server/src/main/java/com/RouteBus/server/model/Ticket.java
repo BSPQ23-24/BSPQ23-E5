@@ -27,8 +27,19 @@ public class Ticket {
 
     public Ticket() {
     }
+    
+    
 
-    public Ticket(User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
+    public Ticket(String id, User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
+		this.id = id;
+		this.user = user;
+		this.seatNumber = seatNumber;
+		this.price = price;
+		this.status = status;
+		this.schedule = schedule;
+	}
+
+	public Ticket(User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
         this.user = user;
         this.seatNumber = seatNumber;
         this.price = price;
@@ -93,8 +104,6 @@ public class Ticket {
 	public boolean equals(Object obj) {
 	    if (this == obj) return true;
 	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Ticket other = (Ticket) obj;
 		return Objects.equals(id, other.id);
 	}

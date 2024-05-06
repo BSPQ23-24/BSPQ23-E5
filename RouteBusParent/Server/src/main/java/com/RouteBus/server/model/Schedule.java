@@ -2,8 +2,8 @@ package com.RouteBus.server.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "schedules")
@@ -23,7 +23,7 @@ public class Schedule {
     private Date arrivalTime;
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Ticket> tickets;
+    private Set<Ticket> tickets;
 
     public Schedule() {
     }
@@ -32,6 +32,15 @@ public class Schedule {
         this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
+        this.tickets = null;
+    }
+    
+    public Schedule(String id, Route route, Date departureTime, Date arrivalTime, Set<Ticket> tickets) {
+    	this.id = id;
+        this.route = route;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.tickets = tickets;
     }
 
 	public String getId() {
@@ -50,7 +59,7 @@ public class Schedule {
 		return arrivalTime;
 	}
 
-	public List<Ticket> getTickets() {
+	public Set<Ticket> getTickets() {
 		return tickets;
 	}
 
@@ -70,7 +79,7 @@ public class Schedule {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public void setTickets(List<Ticket> tickets) {
+	public void setTickets(Set<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 
@@ -83,8 +92,6 @@ public class Schedule {
 	public boolean equals(Object obj) {
 	    if (this == obj) return true;
 	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
 		Schedule other = (Schedule) obj;
 		return Objects.equals(id, other.id);
 	}
