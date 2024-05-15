@@ -48,6 +48,8 @@ public class MainWindow extends JFrame {
     private JTextArea noticia1;
     private JTextArea noticia2;
     
+    private JLabel titleLabel;
+    private JLabel infotitle;
     private JLabel lUserPic;
     private JLabel lName;
 	private JLabel lSurname;
@@ -66,13 +68,18 @@ public class MainWindow extends JFrame {
 	private JComboBox<String> comboNationality;
 	
 	private ResourceBundle messages;
+
+	
+
+	
     
     public MainWindow(String languageToLoad) {
     	Locale currentLocale;
 		if(languageToLoad == null) {
 			currentLocale = Locale.getDefault();
+			System.out.println(currentLocale);
 		}else {
-			currentLocale = Locale.getDefault(Category.valueOf(languageToLoad));
+			currentLocale = new Locale(languageToLoad);
 		}
 		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
         this.setTitle(messages.getString("windowTitle"));
@@ -99,7 +106,6 @@ public class MainWindow extends JFrame {
         menuBar = new JMenuBar();
         menuBar.setBackground(new Color(204, 153, 255));
         
-        //new JMenu(messages.getString("userMenu"));
         busRouteInfo = new JMenu(messages.getString("BusRouteInfo"));
         myInformation = new JMenu(messages.getString("myInformationMenu"));
         myRoutes = new JMenu(messages.getString("myRoutesMenu"));
@@ -142,7 +148,7 @@ public class MainWindow extends JFrame {
         
         // News Panel
         // Initialize text areas for news
-        JLabel titleLabel = new JLabel(messages.getString("welcome"));
+        titleLabel = new JLabel(messages.getString("welcome"));
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20)); // Set font and size
         titleLabel.setForeground(Color.BLACK); // Set text color
         titleLabel.setBounds(300, 50, 300, 30); // Adjust position and size as needed
@@ -171,7 +177,7 @@ public class MainWindow extends JFrame {
         
         // Information Panel
         // title
-        JLabel infotitle = new JLabel(messages.getString("persInfoWelcome"));
+        infotitle = new JLabel(messages.getString("persInfoWelcome"));
         infotitle.setFont(new Font("Arial", Font.BOLD, 20)); 
         infotitle.setForeground(Color.BLACK); 
         infotitle.setBounds(300, 50, 250, 50); 
@@ -256,12 +262,61 @@ public class MainWindow extends JFrame {
 			}
 		});
         
+        spanish.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("es");
+			}
+		});
+        
+        english.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("es_US");
+			}
+		});
+        
+        basque.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("eus");
+			}
+		});
+        
+        german.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("de");
+			}
+		});
+        
+        out.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				
+				new LoginWindow();
+			}
+		});
+        
+        
         // Images
         try {
             BufferedImage logo = ImageIO.read(getClass().getResource("/images/icon.jpg"));
             BufferedImage imag1 = ImageIO.read(getClass().getResource("/images/imag1.jpg"));
             BufferedImage imag2 = ImageIO.read(getClass().getResource("/images/imag2.jpg"));
             BufferedImage imagUser = ImageIO.read(getClass().getResource("/images/imagUser.jpg"));
+            BufferedImage iconImage= ImageIO.read(getClass().getResource("/images/iconBus.png"));
             
             ImageIcon icon = new ImageIcon(logo);
             ImageIcon icon2 = new ImageIcon(logo);
@@ -274,6 +329,8 @@ public class MainWindow extends JFrame {
             JLabel imageLabel3 = new JLabel(imagIcon1);
             JLabel imageLabel4 = new JLabel(imagIcon2);
             JLabel imageLabelU = new JLabel(imagIconU);
+            
+            this.setIconImage(iconImage);
             
             imageLabel.setBounds(590, -70, 200, 300); // Adjust position and size as needed
             imageLabel2.setBounds(590,-70, 200, 300);
@@ -292,5 +349,50 @@ public class MainWindow extends JFrame {
         }
         
         this.setVisible(true);
+    }
+    private void changeLanguage(String selectedLocale) {
+    	//
+    	Locale locale = new Locale(selectedLocale);
+    	messages = ResourceBundle.getBundle("multilingual/messages", locale);
+    	
+    	// Update UI components with new language messages
+        this.setTitle(messages.getString("windowTitle"));
+        
+        // Titles
+        titleLabel.setText(messages.getString("welcome"));
+        infotitle.setText(messages.getString("persInfoWelcome"));
+        
+        // Menu
+        busRouteInfo.setText(messages.getString("BusRouteInfo"));
+        myInformation.setText(messages.getString("myInformationMenu"));
+        myRoutes.setText(messages.getString("myRoutesMenu"));
+        myBusTickets.setText(messages.getString("myBusTicketsMenu"));
+        language.setText(messages.getString("languageMenu"));
+        logout.setText(messages.getString("OptionsMenu"));
+        busInfo.setText(messages.getString("News"));
+        information.setText(messages.getString("MyInformation"));
+        routes.setText(messages.getString("MyRoutes"));
+        tickets.setText(messages.getString("MyTickets"));
+        out.setText(messages.getString("Logout"));
+
+        // Update labels, buttons, etc. with new language messages
+        lUserPic.setText(messages.getString("userPic"));
+        lName.setText(messages.getString("nameLabel"));
+        lSurname.setText(messages.getString("surnameLabel"));
+        lBirthDay.setText(messages.getString("birthDateLabel"));
+        lNationality.setText(messages.getString("nationalityLabel"));
+        lEmail.setText(messages.getString("email"));
+        bEdit.setText(messages.getString("editButton"));
+        
+        // News
+        noticia1.setText(messages.getString("new1Content"));
+        noticia2.setText(messages.getString("new2Content"));
+        
+        contentPanel.revalidate();
+        contentPanel.repaint();
+    	
+    }
+    public static void main(String[] args) {
+    	new MainWindow("eus");
     }
 }
