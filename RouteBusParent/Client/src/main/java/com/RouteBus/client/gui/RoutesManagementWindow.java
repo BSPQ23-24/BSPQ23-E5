@@ -168,6 +168,9 @@ public class RoutesManagementWindow extends JFrame {
             
             imageLabel.setBounds(590, -70, 200, 300); // Adjust position and size as needed
             
+         // Agrega el JLabel al panel de agregar ruta
+            addRoutePanel.add(imageLabel);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -217,15 +220,31 @@ public class RoutesManagementWindow extends JFrame {
         JScrollPane scrollPane = new JScrollPane(routesTable);
         scrollPane.setPreferredSize(new Dimension(800, 400));
 
-        // Mostrar el JScrollPane en una ventana nueva
-        JFrame frame = new JFrame(messages.getString("viewRoutesTitle"));
-        frame.getContentPane().setBackground(Color.WHITE);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.add(scrollPane);
-        frame.pack();
-        frame.setLocationRelativeTo(this);
-        frame.setVisible(true);
+        //  Images
+        try {     
+            BufferedImage iconImage = ImageIO.read(getClass().getResource("/images/iconBus.png"));
+
+            if (iconImage != null) {
+                ImageIcon icon = new ImageIcon(iconImage);
+
+                JFrame frame = new JFrame(messages.getString("viewRoutesTitle"));
+                frame.getContentPane().setBackground(Color.WHITE);
+
+                frame.setIconImage(iconImage);
+
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.add(scrollPane);
+                frame.pack();
+                frame.setLocationRelativeTo(this);
+                frame.setVisible(true);
+            } else {
+                System.err.println("No se pudo cargar la imagen del icono de la ventana.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 
     public static void main(String[] args) {
