@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -49,11 +50,15 @@ public class BusServiceTest {
 
     @Test
     public void testGetAllBuses() {
-        List<Bus> busList = List.of(new Bus(), new Bus());
+        List<Bus> busList = List.of(
+            new Bus("ABC123", 50, "Mercedes", "Sprinter"),
+            new Bus("XYZ789", 60, "Volvo", "R3")
+        );
         when(busRepository.findAll()).thenReturn(busList);
 
-        List<Bus> result = busService.getAllBuses();
-        assertEquals(busList, result);
+        Set<Bus> expectedBusSet = new HashSet<>(busList);
+        Set<Bus> result = busService.getAllBuses();
+        assertEquals(expectedBusSet, result);
 
         logger.info("getAllBuses test passed.");
     }
@@ -92,8 +97,12 @@ public class BusServiceTest {
         BusServiceResult result = busService.updateBus(updatedBus);
         assertEquals(BusServiceResult.SUCCESS, result);
         assertEquals(60, existingBus.getCapacity());
+        assertEquals("Volvo", existingBus.getMake());
+        assertEquals("R3", existingBus.getModel());
         verify(busRepository, times(1)).findById("ABC123");
         verify(busRepository, times(1)).save(existingBus);
+
+        logger.info("updateBus_BusFound test passed.");
     }
 
     @Test
@@ -106,6 +115,8 @@ public class BusServiceTest {
         assertEquals(BusServiceResult.SUCCESS, result);
         verify(busRepository, times(1)).findById("ABC123");
         verify(busRepository, never()).save(any(Bus.class));
+
+        logger.info("updateBus_NoChange test passed.");
     }
 
     @Test

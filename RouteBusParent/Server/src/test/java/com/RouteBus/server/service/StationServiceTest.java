@@ -1,14 +1,13 @@
 package com.RouteBus.server.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -45,8 +44,8 @@ public class StationServiceTest {
 
         when(stationRepository.findAll()).thenReturn(stations);
 
-        List<Station> result = stationService.getAllStations();
-        assertEquals(stations, result);
+        Set<Station> result = stationService.getAllStations();
+        assertEquals(new HashSet<>(stations), result);
 
         logger.info("getAllStations test passed.");
     }
@@ -61,6 +60,9 @@ public class StationServiceTest {
         StationServiceResult result = stationService.createStation(newStation);
         assertEquals(StationServiceResult.SUCCESS, result);
 
+        verify(stationRepository, times(1)).findById(newStation.getName());
+        verify(stationRepository, times(1)).save(newStation);
+
         logger.info("createStation_StationDoesNotExist test passed.");
     }
 
@@ -72,6 +74,9 @@ public class StationServiceTest {
 
         StationServiceResult result = stationService.createStation(existingStation);
         assertEquals(StationServiceResult.ERROR, result);
+
+        verify(stationRepository, times(1)).findById(existingStation.getName());
+        verify(stationRepository, times(0)).save(existingStation);
 
         logger.info("createStation_StationAlreadyExists test passed.");
     }
@@ -86,9 +91,12 @@ public class StationServiceTest {
         StationServiceResult result = stationService.createStation(newStation);
         assertEquals(StationServiceResult.ERROR, result);
 
+        verify(stationRepository, times(1)).findById(newStation.getName());
+        verify(stationRepository, times(1)).save(newStation);
+
         logger.info("createStation_SaveError test passed.");
     }
-    
+
     @Test
     public void testGetStationById_Exists() {
         String name = "Station1";
@@ -158,6 +166,9 @@ public class StationServiceTest {
         StationServiceResult result = stationService.updateStation(updatedStation);
         assertEquals(StationServiceResult.NOT_FOUND, result);
 
+        verify(stationRepository, times(1)).findById("NonExistingStation");
+        verify(stationRepository, times(0)).save(updatedStation);
+
         logger.info("updateStation_StationNotFound test passed.");
     }
 
@@ -171,6 +182,9 @@ public class StationServiceTest {
         StationServiceResult result = stationService.deleteStation(name);
         assertEquals(StationServiceResult.SUCCESS, result);
 
+        verify(stationRepository, times(1)).findById(name);
+        verify(stationRepository, times(1)).delete(stationToDelete);
+
         logger.info("deleteStation_StationFound test passed.");
     }
 
@@ -182,6 +196,9 @@ public class StationServiceTest {
 
         StationServiceResult result = stationService.deleteStation(name);
         assertEquals(StationServiceResult.NOT_FOUND, result);
+
+        verify(stationRepository, times(1)).findById(name);
+        verify(stationRepository, times(0)).delete(any(Station.class));
 
         logger.info("deleteStation_StationNotFound test passed.");
     }

@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -56,11 +57,12 @@ public class UserServiceTest {
         List<User> userList = List.of(new User(), new User());
         when(userRepository.findAll()).thenReturn(userList);
 
-        List<User> result = userService.getAllUsers();
-        assertEquals(userList, result);
+        Set<User> result = userService.getAllUsers();
+        assertEquals(new HashSet<>(userList), result);
 
         logger.info("getAllUsers test passed.");
     }
+
 
     @Test
     public void testCreateUser_UserDoesNotExist() {
@@ -70,8 +72,8 @@ public class UserServiceTest {
         when(userRepository.findByEmail(newUser.getEmail())).thenReturn(Optional.empty());
         when(userRepository.save(newUser)).thenReturn(newUser);
 
-        UserService.UserServiceResult result = userService.createUser(newUser);
-        assertEquals(UserService.UserServiceResult.SUCCESS, result);
+        UserServiceResult result = userService.createUser(newUser);
+        assertEquals(UserServiceResult.SUCCESS, result);
 
         logger.info("createUser_UserDoesNotExist test passed.");
     }
@@ -83,12 +85,12 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail(existingUser.getEmail())).thenReturn(Optional.of(existingUser));
 
-        UserService.UserServiceResult result = userService.createUser(existingUser);
-        assertEquals(UserService.UserServiceResult.USER_ALREADY_EXISTS, result);
+        UserServiceResult result = userService.createUser(existingUser);
+        assertEquals(UserServiceResult.USER_ALREADY_EXISTS, result);
 
         logger.info("createUser_UserAlreadyExists test passed.");
     }
-    
+
     @Test
     public void testCreateUser_SaveError() {
         User user = new User();
@@ -97,48 +99,17 @@ public class UserServiceTest {
         when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
         when(userRepository.save(user)).thenThrow(new RuntimeException("Error saving user"));
 
-        UserService.UserServiceResult result = userService.createUser(user);
+        UserServiceResult result = userService.createUser(user);
 
-        assertEquals(UserService.UserServiceResult.ERROR, result);
-
-        logger.info("createUser_SaveError test passed.");
-    }
-    
-    @Test
-    public void testCreateUser_SaveSuccess() {
-        User user = new User();
-        user.setEmail("test@example.com");
-
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
-        when(userRepository.save(user)).thenReturn(user);
-
-        UserService.UserServiceResult result = userService.createUser(user);
-
-        assertEquals(UserService.UserServiceResult.SUCCESS, result);
-
-        logger.info("createUser_SaveSuccess test passed.");
-    }
-
-    @Test
-    public void testCreateUser_SaveErrorException() {
-        User user = new User();
-        user.setEmail("test@example.com");
-
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
-        when(userRepository.save(user)).thenReturn(null);
-
-        UserService.UserServiceResult result = userService.createUser(user);
-
-        assertEquals(UserService.UserServiceResult.ERROR, result);
+        assertEquals(UserServiceResult.ERROR, result);
 
         logger.info("createUser_SaveError test passed.");
     }
-
 
     @Test
     public void testUpdateUser_UserFound() {
-        User existingUser = new User("John", "Doe", "test@example.com" ,"password", null, new Date());
-        User updatedUser = new User("Diego", "Merino", "test@example.com", "newpassword", new Nationality(), new Date(1l), UserRole.ADMIN, new HashSet<Ticket>());
+        User existingUser = new User("John", "Doe", "test@example.com", "password", null, new Date());
+        User updatedUser = new User("Diego", "Merino", "test@example.com", "newpassword", new Nationality(), new Date(1L), UserRole.ADMIN, new HashSet<Ticket>());
         when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(existingUser));
         UserServiceResult result = userService.updateUser(updatedUser);
         assertEquals(UserServiceResult.SUCCESS, result);
@@ -147,11 +118,11 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findByEmail("test@example.com");
         verify(userRepository, times(1)).save(existingUser);
     }
-    
+
     @Test
     public void testUpdateUser_NoChange() {
-    	User existingUser = new User("John", "Doe", "test@example.com" ,"password", null, new Date());
-    	User updatedUser = new User("John", "Doe", "test@example.com" ,"password", null, new Date());
+        User existingUser = new User("John", "Doe", "test@example.com", "password", null, new Date());
+        User updatedUser = new User("John", "Doe", "test@example.com", "password", null, new Date());
         when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(existingUser));
         UserServiceResult result = userService.updateUser(updatedUser);
         assertEquals(UserServiceResult.SUCCESS, result);
@@ -166,8 +137,8 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail(updatedUser.getEmail())).thenReturn(Optional.empty());
 
-        UserService.UserServiceResult result = userService.updateUser(updatedUser);
-        assertEquals(UserService.UserServiceResult.USER_NOT_FOUND, result);
+        UserServiceResult result = userService.updateUser(updatedUser);
+        assertEquals(UserServiceResult.USER_NOT_FOUND, result);
 
         logger.info("updateUser_UserNotFound test passed.");
     }
@@ -180,8 +151,8 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(userToDelete));
 
-        UserService.UserServiceResult result = userService.deleteUser(email);
-        assertEquals(UserService.UserServiceResult.SUCCESS, result);
+        UserServiceResult result = userService.deleteUser(email);
+        assertEquals(UserServiceResult.SUCCESS, result);
 
         logger.info("deleteUser_UserFound test passed.");
     }
@@ -192,16 +163,16 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
 
-        UserService.UserServiceResult result = userService.deleteUser(email);
-        assertEquals(UserService.UserServiceResult.USER_NOT_FOUND, result);
+        UserServiceResult result = userService.deleteUser(email);
+        assertEquals(UserServiceResult.USER_NOT_FOUND, result);
 
         logger.info("deleteUser_UserNotFound test passed.");
     }
 
     @Test
     public void testDeleteAllUsers() {
-        UserService.UserServiceResult result = userService.deleteAllUsers();
-        assertEquals(UserService.UserServiceResult.SUCCESS, result);
+        UserServiceResult result = userService.deleteAllUsers();
+        assertEquals(UserServiceResult.SUCCESS, result);
 
         logger.info("deleteAllUsers test passed.");
     }

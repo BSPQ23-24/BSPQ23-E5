@@ -13,10 +13,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.Assert.assertEquals;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -30,19 +30,19 @@ public class NationalityRestControllerTest {
     @InjectMocks
     private NationalityRestController nationalityRestController;
 
-    private List<Nationality> mockNationalities;
+    private Set<Nationality> mockNationalities;
 
     @Before
     public void setUp() {
-        mockNationalities = new ArrayList<>();
+        mockNationalities = new HashSet<>();
         mockNationalities.add(new Nationality("USA", "English"));
         mockNationalities.add(new Nationality("Germany", "German"));
     }
-    
+
     @Test
     public void testGetAllNationalities() {
         when(nationalityService.getAllNationalities()).thenReturn(mockNationalities);
-        ResponseEntity<List<Nationality>> responseEntity = nationalityRestController.getAllNationalities();
+        ResponseEntity<Set<Nationality>> responseEntity = nationalityRestController.getAllNationalities();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(mockNationalities, responseEntity.getBody());
         logger.debug("Test getAllNationalities completed successfully.");

@@ -2,6 +2,7 @@ package com.RouteBus.server.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,11 +11,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import com.RouteBus.server.model.Station;
 import com.RouteBus.server.service.StationService;
@@ -30,117 +31,126 @@ public class StationRestControllerTest {
     @InjectMocks
     private StationRestController stationController;
 
+    private Station mockStation;
+
+    @Before
+    public void setUp() {
+        mockStation = new Station();
+        mockStation.setName("Station1");
+        mockStation.setLocation("Location1");
+    }
 
     @Test
     public void testGetAllStationes() {
-        List<Station> stations = new ArrayList<>();
-        stations.add(new Station("Station1", "Location1"));
-        stations.add(new Station("Station2", "Location2"));
+        Set<Station> stations = new HashSet<>();
+        stations.add(mockStation);
         when(stationServiceMock.getAllStations()).thenReturn(stations);
-        List<Station> result = stationController.getAllStationes();
-        assertEquals(2, result.size());
-        assertEquals("Station1", result.get(0).getName());
-        assertEquals("Location1", result.get(0).getLocation());
-        assertEquals("Station2", result.get(1).getName());
-        assertEquals("Location2", result.get(1).getLocation());
-        verify(stationServiceMock, times(1)).getAllStations();
-        logger.debug("Finishing testGetAllStationes");
+
+        ResponseEntity<Set<Station>> response = stationController.getAllStationes();
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(stations, response.getBody());
+        verify(stationServiceMock).getAllStations();
+        logger.debug("getAllStationes method test completed successfully.");
     }
 
     @Test
     public void testGetStationById_StationExists() {
         String stationName = "Station1";
-        Station station = new Station(stationName, "Location1");
-        when(stationServiceMock.getStationById(stationName)).thenReturn(station);
+        when(stationServiceMock.getStationById(stationName)).thenReturn(mockStation);
+
         ResponseEntity<Station> response = stationController.getStationById(stationName);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(station, response.getBody());
-        verify(stationServiceMock, times(1)).getStationById(stationName);
-        logger.debug("Finishing testGetStationById_StationExists");
+        assertEquals(mockStation, response.getBody());
+        verify(stationServiceMock).getStationById(stationName);
+        logger.debug("getStationById method test completed successfully for found case.");
     }
 
     @Test
     public void testGetStationById_StationNotExists() {
         String stationName = "NonExistentStation";
         when(stationServiceMock.getStationById(stationName)).thenReturn(null);
+
         ResponseEntity<Station> response = stationController.getStationById(stationName);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(stationServiceMock, times(1)).getStationById(stationName);
-        logger.debug("Finishing testGetStationById_StationNotExists");
+        assertNull(response.getBody());
+        verify(stationServiceMock).getStationById(stationName);
+        logger.debug("getStationById method test completed successfully for not found case.");
     }
 
     @Test
     public void testCreateStation_Success() {
-        Station station = new Station("Station1", "Location1");
-        when(stationServiceMock.createStation(station)).thenReturn(StationService.StationServiceResult.SUCCESS);
-        ResponseEntity<String> response = stationController.createStation(station);
+        when(stationServiceMock.createStation(mockStation)).thenReturn(StationService.StationServiceResult.SUCCESS);
+
+        ResponseEntity<String> response = stationController.createStation(mockStation);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Station created successfully.", response.getBody());
-        verify(stationServiceMock, times(1)).createStation(station);
-        logger.debug("Finishing testCreateStation_Success");
+        verify(stationServiceMock).createStation(mockStation);
+        logger.debug("createStation method test completed successfully for SUCCESS case.");
     }
 
     @Test
     public void testCreateStation_Error() {
-        Station station = new Station("Station1", "Location1");
-        when(stationServiceMock.createStation(station)).thenReturn(StationService.StationServiceResult.ERROR);
-        ResponseEntity<String> response = stationController.createStation(station);
+        when(stationServiceMock.createStation(mockStation)).thenReturn(StationService.StationServiceResult.ERROR);
+
+        ResponseEntity<String> response = stationController.createStation(mockStation);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Failed to create Station.", response.getBody());
-        verify(stationServiceMock, times(1)).createStation(station);
-        logger.debug("Finishing testCreateStation_Error");
+        verify(stationServiceMock).createStation(mockStation);
+        logger.debug("createStation method test for ERROR case successful.");
     }
 
     @Test
     public void testCreateStation_InternalServerError() {
-        Station station = new Station("Station1", "Location1");
-        when(stationServiceMock.createStation(station)).thenReturn(StationService.StationServiceResult.NOT_FOUND);
-        ResponseEntity<String> response = stationController.createStation(station);
+        when(stationServiceMock.createStation(mockStation)).thenReturn(null);
+
+        ResponseEntity<String> response = stationController.createStation(mockStation);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Internal server error.", response.getBody());
-        verify(stationServiceMock, times(1)).createStation(station);
-        logger.debug("Finishing testCreateStation_InternalServerError");
+        verify(stationServiceMock).createStation(mockStation);
+        logger.debug("createStation method test for INTERNAL_SERVER_ERROR case successful.");
     }
 
     @Test
     public void testUpdateStation_Success() {
-        Station station = new Station("Station1", "Location1");
-        when(stationServiceMock.updateStation(station)).thenReturn(StationService.StationServiceResult.SUCCESS);
-        ResponseEntity<String> response = stationController.updateStation(station);
+        when(stationServiceMock.updateStation(mockStation)).thenReturn(StationService.StationServiceResult.SUCCESS);
+
+        ResponseEntity<String> response = stationController.updateStation(mockStation);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Station updated successfully.", response.getBody());
-        verify(stationServiceMock, times(1)).updateStation(station);
-        logger.debug("Finishing testUpdateStation_Success");
+        verify(stationServiceMock).updateStation(mockStation);
+        logger.debug("updateStation method test completed successfully for SUCCESS case.");
     }
 
     @Test
     public void testUpdateStation_NotFound() {
-        Station station = new Station("Station1", "Location1");
-        when(stationServiceMock.updateStation(station)).thenReturn(StationService.StationServiceResult.NOT_FOUND);
-        ResponseEntity<String> response = stationController.updateStation(station);
+        when(stationServiceMock.updateStation(mockStation)).thenReturn(StationService.StationServiceResult.NOT_FOUND);
+
+        ResponseEntity<String> response = stationController.updateStation(mockStation);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(stationServiceMock, times(1)).updateStation(station);
-        logger.debug("Finishing testUpdateStation_NotFound");
+        verify(stationServiceMock).updateStation(mockStation);
+        logger.debug("updateStation method test completed successfully for NOT FOUND case.");
     }
 
     @Test
     public void testDeleteStation_Success() {
         String stationName = "Station1";
         when(stationServiceMock.deleteStation(stationName)).thenReturn(StationService.StationServiceResult.SUCCESS);
+
         ResponseEntity<String> response = stationController.deleteStation(stationName);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Station deleted successfully.", response.getBody());
-        verify(stationServiceMock, times(1)).deleteStation(stationName);
-        logger.debug("Finishing testDeleteStation_Success");
+        verify(stationServiceMock).deleteStation(stationName);
+        logger.debug("deleteStation method test completed successfully for SUCCESS case.");
     }
 
     @Test
     public void testDeleteStation_NotFound() {
         String stationName = "NonExistentStation";
         when(stationServiceMock.deleteStation(stationName)).thenReturn(StationService.StationServiceResult.NOT_FOUND);
+
         ResponseEntity<String> response = stationController.deleteStation(stationName);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        verify(stationServiceMock, times(1)).deleteStation(stationName);
-        logger.debug("Finishing testDeleteStation_NotFound");
+        verify(stationServiceMock).deleteStation(stationName);
+        logger.debug("deleteStation method test completed successfully for NOT FOUND case.");
     }
 }

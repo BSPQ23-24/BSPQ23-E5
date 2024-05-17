@@ -10,7 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -38,8 +40,9 @@ public class NationalityServiceTest {
         );
         when(nationalityRepository.findAll()).thenReturn(nationalityList);
 
-        List<Nationality> result = nationalityService.getAllNationalities();
-        assertEquals(nationalityList, result);
+        Set<Nationality> expectedNationalitySet = new HashSet<>(nationalityList);
+        Set<Nationality> result = nationalityService.getAllNationalities();
+        assertEquals(expectedNationalitySet, result);
 
         logger.info("getAllNationalities test passed.");
     }

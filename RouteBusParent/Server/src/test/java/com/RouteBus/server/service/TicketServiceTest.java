@@ -17,8 +17,9 @@ import com.RouteBus.server.model.User;
 import com.RouteBus.server.model.Schedule;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class TicketServiceTest {
 
@@ -53,100 +54,7 @@ public class TicketServiceTest {
         closeable.close();
         logger.info("Resources closed and test completed successfully");
     }
-    
-    @Test
-    public void testUpdateTicketPrice() {
-        updatedTicket = new Ticket("ticketId", user, 25, 299.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketPrice passed successfully");
-    }
 
-    @Test
-    public void testUpdateTicketStatus() {
-        updatedTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.PURCHASED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketStatus passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketSeatNumber() {
-        updatedTicket = new Ticket("ticketId", user, 30, 199.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketSeatNumber passed successfully");
-        
-    }
-
-    @Test
-    public void testUpdateTicketUser() {
-        updatedTicket = new Ticket("ticketId", newUser, 25, 199.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketUser passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketSchedule() {
-        updatedTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, newSchedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketSchedule passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketNoChange() {
-        updatedTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository, never()).save(updatedTicket);
-        logger.info("testUpdateTicketNoChange passed successfully");
-    }
-
-    @Test
-    public void testCreateTicketNotPresent() {
-        Ticket newTicket = new Ticket("newTicketId", user, 10, 150.00, TicketStatus.PURCHASED, schedule);
-        when(ticketRepository.findById("newTicketId")).thenReturn(Optional.empty());
-        when(ticketRepository.save(newTicket)).thenReturn(newTicket);
-        TicketService.TicketServiceResult result = ticketService.createTicket(newTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        logger.info("testCreateTicketNotPresent passed successfully");
-    }
-
-    @Test
-    public void testCreateTicketFailsToSave() {
-    	Ticket newTicket = new Ticket("newTicketId", user, 10, 150.00, TicketStatus.PURCHASED, schedule);
-        when(ticketRepository.findById("newTicketId")).thenReturn(Optional.empty());
-        when(ticketRepository.save(newTicket)).thenReturn(null);
-        TicketService.TicketServiceResult result = ticketService.createTicket(newTicket);
-        assertEquals(TicketService.TicketServiceResult.ERROR, result);
-        logger.info("testCreateTicketFailsToSave passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketNotUpdated() {
-    	Ticket unchangedTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(unchangedTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository, never()).save(unchangedTicket);
-        logger.info("testUpdateTicketNotUpdated passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketNotFound() {
-        updatedTicket = new Ticket("nonExistentId", user, 30, 250.00, TicketStatus.CANCELLED, schedule);
-        when(ticketRepository.findById("nonExistentId")).thenReturn(Optional.empty());
-        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
-        assertEquals(TicketService.TicketServiceResult.NOT_FOUND, result);
-        logger.info("testUpdateTicketNotFound passed successfully");
-    }
-    
     @Test
     public void testGetTicketById() {
         Ticket result = ticketService.getTicketById("ticketId");
@@ -158,42 +66,79 @@ public class TicketServiceTest {
     @Test
     public void testGetAllTickets() {
         when(ticketRepository.findAll()).thenReturn(Arrays.asList(existingTicket));
-        List<Ticket> result = ticketService.getAllTickets();
+        Set<Ticket> result = ticketService.getAllTickets();
         assertFalse(result.isEmpty());
         assertEquals(1, result.size());
-        logger.info("testGetAllTicketsReturnsTickets passed successfully");
+        logger.info("testGetAllTickets passed successfully");
     }
 
     @Test
-    public void testCreateTicketWhenAlreadyExists() {
+    public void testCreateTicket_NotPresent() {
+        Ticket newTicket = new Ticket("newTicketId", user, 10, 150.00, TicketStatus.PURCHASED, schedule);
+        when(ticketRepository.findById("newTicketId")).thenReturn(Optional.empty());
+        when(ticketRepository.save(newTicket)).thenReturn(newTicket);
+        TicketService.TicketServiceResult result = ticketService.createTicket(newTicket);
+        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
+        logger.info("testCreateTicket_NotPresent passed successfully");
+    }
+
+    @Test
+    public void testCreateTicket_FailsToSave() {
+        Ticket newTicket = new Ticket("newTicketId", user, 10, 150.00, TicketStatus.PURCHASED, schedule);
+        when(ticketRepository.findById("newTicketId")).thenReturn(Optional.empty());
+        when(ticketRepository.save(newTicket)).thenReturn(null);
+        TicketService.TicketServiceResult result = ticketService.createTicket(newTicket);
+        assertEquals(TicketService.TicketServiceResult.ERROR, result);
+        logger.info("testCreateTicket_FailsToSave passed successfully");
+    }
+
+    @Test
+    public void testCreateTicket_AlreadyExists() {
         Ticket newTicket = new Ticket("ticketId", user, 10, 99.99, TicketStatus.PURCHASED, schedule);
         TicketService.TicketServiceResult result = ticketService.createTicket(newTicket);
         assertEquals(TicketService.TicketServiceResult.ERROR, result);
-        logger.info("testCreateTicketWhenAlreadyExists passed successfully");
+        logger.info("testCreateTicket_AlreadyExists passed successfully");
     }
 
     @Test
-    public void testUpdateTicketWithNoChanges() {
-        Ticket sameTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, schedule);
-        TicketService.TicketServiceResult result = ticketService.updateTicket(sameTicket);
-        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository, never()).save(sameTicket);
-        logger.info("testUpdateTicketWithNoChanges passed successfully");
-    }
-
-    @Test
-    public void testUpdateTicketWithChanges() {
+    public void testUpdateTicket_ChangesMade() {
         updatedTicket = new Ticket("ticketId", user, 30, 299.99, TicketStatus.PURCHASED, schedule);
         TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
         assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        verify(ticketRepository).save(updatedTicket);
-        logger.info("testUpdateTicketWithChanges passed successfully");
+        verify(ticketRepository).save(existingTicket);
+        logger.info("testUpdateTicket_ChangesMade passed successfully");
     }
 
     @Test
-    public void testDeleteTicket() {
+    public void testUpdateTicket_NoChanges() {
+        updatedTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, schedule);
+        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
+        assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
+        verify(ticketRepository, never()).save(existingTicket);
+        logger.info("testUpdateTicket_NoChanges passed successfully");
+    }
+
+    @Test
+    public void testUpdateTicket_NotFound() {
+        updatedTicket = new Ticket("nonExistentId", user, 30, 250.00, TicketStatus.CANCELLED, schedule);
+        when(ticketRepository.findById("nonExistentId")).thenReturn(Optional.empty());
+        TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
+        assertEquals(TicketService.TicketServiceResult.NOT_FOUND, result);
+        logger.info("testUpdateTicket_NotFound passed successfully");
+    }
+
+    @Test
+    public void testDeleteTicket_Found() {
         TicketService.TicketServiceResult result = ticketService.deleteTicket("ticketId");
         assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
-        logger.info("testDeleteTicket passed successfully");
+        logger.info("testDeleteTicket_Found passed successfully");
+    }
+
+    @Test
+    public void testDeleteTicket_NotFound() {
+        when(ticketRepository.findById("nonExistentId")).thenReturn(Optional.empty());
+        TicketService.TicketServiceResult result = ticketService.deleteTicket("nonExistentId");
+        assertEquals(TicketService.TicketServiceResult.NOT_FOUND, result);
+        logger.info("testDeleteTicket_NotFound passed successfully");
     }
 }

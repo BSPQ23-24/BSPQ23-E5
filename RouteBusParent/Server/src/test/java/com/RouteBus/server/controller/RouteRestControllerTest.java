@@ -13,11 +13,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteRestControllerTest {
@@ -30,33 +31,37 @@ public class RouteRestControllerTest {
     @InjectMocks
     private RouteRestController routeRestController;
 
-    private List<Route> mockRoutes;
+    private Set<Route> mockRoutesSet;
+    private List<Route> mockRoutesList;
     private Route mockRoute;
 
     @Before
     public void setUp() {
-        mockRoutes = new ArrayList<>();
-        mockRoutes.add(new Route("Route1", "Start1", "End1", 100));
-        mockRoutes.add(new Route("Route2", "Start2", "End2", 200));
+        mockRoutesSet = new HashSet<>();
+        mockRoutesSet.add(new Route("Route1", "Start1", "End1", 100));
+        mockRoutesSet.add(new Route("Route2", "Start2", "End2", 200));
+
+        mockRoutesList = List.copyOf(mockRoutesSet);
+
         mockRoute = new Route("Route1", "Start1", "End1", 100);
     }
 
     @Test
     public void testGetAllRoutes() {
-        when(routeService.getAllRoutes()).thenReturn(mockRoutes);
-        List<Route> result = routeRestController.getAllRoutes();
-        assertEquals(mockRoutes, result);
+        when(routeService.getAllRoutes()).thenReturn(mockRoutesSet);
+        ResponseEntity<Set<Route>> responseEntity = routeRestController.getAllRoutes();
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(mockRoutesSet, responseEntity.getBody());
         logger.debug("Test getAllRoutes completed successfully.");
     }
 
     @Test
     public void testGetRouteByIdFound() {
         String name = "Route1";
-        Route expectedRoute = new Route("Route1", "Start1", "End1", 100);
-        when(routeService.getRouteById(name)).thenReturn(expectedRoute);
+        when(routeService.getRouteById(name)).thenReturn(mockRoute);
         ResponseEntity<Route> responseEntity = routeRestController.getRouteById(name);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(expectedRoute, responseEntity.getBody());
+        assertEquals(mockRoute, responseEntity.getBody());
         logger.debug("Test getRouteByIdFound completed successfully.");
     }
 
@@ -77,7 +82,6 @@ public class RouteRestControllerTest {
         assertEquals("Route created successfully.", responseEntity.getBody());
         logger.debug("Test createRouteSuccess completed successfully.");
     }
-    
 
     @Test
     public void testCreateRouteError() {
@@ -136,9 +140,9 @@ public class RouteRestControllerTest {
     @Test
     public void testObtainRoutesByBus() {
         String licensePlate = "ABC123";
-        when(routeService.obtainRoutesByBus(licensePlate)).thenReturn(mockRoutes);
+        when(routeService.obtainRoutesByBus(licensePlate)).thenReturn(mockRoutesList);
         List<Route> result = routeRestController.obtainRoutesByBus(licensePlate);
-        assertEquals(mockRoutes, result);
+        assertEquals(mockRoutesList, result);
         logger.debug("Test obtainRoutesByBus completed successfully.");
     }
 }
