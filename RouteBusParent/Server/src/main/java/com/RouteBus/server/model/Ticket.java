@@ -4,8 +4,12 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "tickets")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Ticket {
 
     @Id
@@ -40,6 +44,7 @@ public class Ticket {
 	}
 
 	public Ticket(User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
+		this.id = schedule.getId() + "-" + String.format("%04d", seatNumber) + "-" + status.toString().toLowerCase();
         this.user = user;
         this.seatNumber = seatNumber;
         this.price = price;

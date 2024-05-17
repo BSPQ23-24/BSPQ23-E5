@@ -4,7 +4,8 @@ import com.RouteBus.server.dao.NationalityRepository;
 import com.RouteBus.server.model.Nationality;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class NationalityService {
@@ -15,7 +16,7 @@ public class NationalityService {
 		this.nationalityRepository = nationalityRepository;
 	}
 
-	public List<Nationality> getAllNationalities() {
-		return nationalityRepository.findAll();
+	public Set<Nationality> getAllNationalities() {
+		return new HashSet<Nationality>(nationalityRepository.findAll());
 	}
 }

@@ -1,6 +1,7 @@
 package com.RouteBus.client.gateway;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +22,7 @@ public abstract class BaseGateway {
     protected <T> ResponseEntity<T> sendRequest(String url, HttpMethod method, Object request, Class<T> responseType) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<Object> entity = new HttpEntity<>(request, headers);
         URI uri = UriComponentsBuilder.fromHttpUrl(BASE_URL + url).build().toUri();
         return restTemplate.exchange(uri, method, entity, responseType);

@@ -6,91 +6,86 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ScheduleDTO {
 
-	private String id;
+    private String id;
     private RouteDTO route;
     private Date departureTime;
     private Date arrivalTime;
-    @JsonManagedReference("schedule-back")
-    private Set<TicketDTO> tickets;
+    private Set<TicketDTO> tickets = new HashSet<>();
 
-    public ScheduleDTO() {
-    }
+    public ScheduleDTO() {}
 
     public ScheduleDTO(String id, RouteDTO route, Date departureTime, Date arrivalTime, Set<TicketDTO> tickets) {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-    	this.id = route.getName().replaceAll("\\s+", "").toLowerCase() + "-" + sdf.format(departureTime) + "-" + sdf.format(arrivalTime);
-		this.route = route;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.tickets = tickets;
-	}
-
-	public ScheduleDTO(RouteDTO route, Date departureTime, Date arrivalTime) {
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-    	this.id = route.getName().replaceAll("\\s+", "").toLowerCase() + "-" + sdf.format(departureTime) + "-" + sdf.format(arrivalTime);
+        this.id = id;
         this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.tickets = new HashSet<TicketDTO>();
+        this.tickets = tickets;
     }
-    
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public ScheduleDTO(RouteDTO route, Date departureTime, Date arrivalTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+        this.id = route.getName().replaceAll("\\s+", "").toLowerCase() + "-" + sdf.format(departureTime) + "-" + sdf.format(arrivalTime);
+        this.route = route;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
 
-	public RouteDTO getRoute() {
-		return route;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Date getDepartureTime() {
-		return departureTime;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Date getArrivalTime() {
-		return arrivalTime;
-	}
+    public RouteDTO getRoute() {
+        return route;
+    }
 
-	public Set<TicketDTO> getTickets() {
-		return tickets;
-	}
+    public void setRoute(RouteDTO route) {
+        this.route = route;
+    }
 
-	public void setRoute(RouteDTO route) {
-		this.route = route;
-	}
+    public Date getDepartureTime() {
+        return departureTime;
+    }
 
-	public void setDepartureTime(Date departureTime) {
-		this.departureTime = departureTime;
-	}
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
 
-	public void setArrivalTime(Date arrivalTime) {
-		this.arrivalTime = arrivalTime;
-	}
+    public Date getArrivalTime() {
+        return arrivalTime;
+    }
 
-	public void setTickets(Set<TicketDTO> tickets) {
-		this.tickets = tickets;
-	}
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public Set<TicketDTO> getTickets() {
+        return tickets;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj) return true;
-	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ScheduleDTO other = (ScheduleDTO) obj;
-		return Objects.equals(id, other.id);
-	}
-	
+    public void setTickets(Set<TicketDTO> tickets) {
+        this.tickets = tickets;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ScheduleDTO other = (ScheduleDTO) obj;
+        return Objects.equals(id, other.id);
+    }
 }

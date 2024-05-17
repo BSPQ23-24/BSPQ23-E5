@@ -6,7 +6,7 @@ import com.RouteBus.server.model.User;
 import com.RouteBus.server.service.UserService;
 import com.RouteBus.server.service.UserService.UserServiceResult;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -18,8 +18,8 @@ public class UserRestController {
     }
 
     @GetMapping("/all")
-    public List<User> getUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<Set<User>> getUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @GetMapping("/email/{email}")
@@ -33,11 +33,11 @@ public class UserRestController {
         UserServiceResult result = userService.createUser(user);
         switch (result) {
             case SUCCESS:
-                return ResponseEntity.ok("User created successfully.");
+                return ResponseEntity.ok("{\"message\":\"User created successfully.\"}");
             case USER_ALREADY_EXISTS:
-                return ResponseEntity.badRequest().body("User already exists.");
+                return ResponseEntity.badRequest().body("{\"error\":\"User already exists.\"}");
             default:
-                return ResponseEntity.internalServerError().body("Error creating user.");
+                return ResponseEntity.internalServerError().body("{\"error\":\"Error creating user.\"}");
         }
     }
 
@@ -46,24 +46,24 @@ public class UserRestController {
         UserServiceResult result = userService.updateUser(user);
         switch (result) {
             case SUCCESS:
-                return ResponseEntity.ok("User updated successfully.");
+                return ResponseEntity.ok("{\"message\":\"User updated successfully.\"}");
             case USER_NOT_FOUND:
                 return ResponseEntity.notFound().build();
             default:
-                return ResponseEntity.internalServerError().body("Error updating user.");
+                return ResponseEntity.internalServerError().body("{\"error\":\"Error updating user.\"}");
         }
     }
 
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<String> deleteUser(@PathVariable String email) {
         UserServiceResult result = userService.deleteUser(email);
-        return result == UserServiceResult.SUCCESS ? ResponseEntity.ok("User deleted successfully.") : ResponseEntity.notFound().build();
+        return result == UserServiceResult.SUCCESS ? ResponseEntity.ok("{\"message\":\"User deleted successfully.\"}") : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteUsers() {
         userService.deleteAllUsers();
-        return ResponseEntity.ok("All users deleted successfully.");
+        return ResponseEntity.ok("{\"message\":\"All users deleted successfully.\"}");
     }
 
     @GetMapping("/check/{email}")

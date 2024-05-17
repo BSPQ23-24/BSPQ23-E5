@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.RouteBus.server.model.Station;
 import com.RouteBus.server.service.StationService;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Station")
@@ -18,8 +18,8 @@ public class StationRestController {
     }
 
     @GetMapping("/all")
-    public List<Station> getAllStationes() {
-        return stationService.getAllStations();
+    public ResponseEntity<Set<Station>> getAllStationes() {
+        return ResponseEntity.ok(stationService.getAllStations());
     }
 
     @GetMapping("/{name}")

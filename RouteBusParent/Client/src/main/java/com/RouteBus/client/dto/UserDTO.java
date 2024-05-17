@@ -5,9 +5,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "email")
 public class UserDTO {
+
     public enum UserRole {
         ADMIN, CUSTOMER,
     }
@@ -19,111 +22,105 @@ public class UserDTO {
     private NationalityDTO nationality;
     private Date birthDate;
     private UserRole role;
-    @JsonManagedReference("user-back")
-    private Set<TicketDTO> tickets;
-    
+    private Set<TicketDTO> tickets = new HashSet<>();
+
     public UserDTO() {}
 
-	public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality,
-			Date birthDate, UserRole role, Set<TicketDTO> tickets) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.nationality = nationality;
-		this.birthDate = birthDate;
-		this.role = role;
-		this.tickets = tickets;
-	}
+    public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality, Date birthDate, UserRole role, Set<TicketDTO> tickets) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.nationality = nationality;
+        this.birthDate = birthDate;
+        this.role = role;
+        this.tickets = tickets;
+    }
 
-	public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality, Date birthDate) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.nationality = nationality;
-		this.birthDate = birthDate;
-		this.role = UserRole.CUSTOMER;
-		this.tickets = new HashSet<TicketDTO>();
-	}
+    public UserDTO(String firstName, String lastName, String email, String password, NationalityDTO nationality, Date birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.nationality = nationality;
+        this.birthDate = birthDate;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    // Getters and Setters
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public NationalityDTO getNationality() {
-		return nationality;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Date getBirthDate() {
-		return birthDate;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public UserRole getRole() {
-		return role;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public Set<TicketDTO> getTickets() {
-		return tickets;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public NationalityDTO getNationality() {
+        return nationality;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setNationality(NationalityDTO nationality) {
+        this.nationality = nationality;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public Date getBirthDate() {
+        return birthDate;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public void setNationality(NationalityDTO nationality) {
-		this.nationality = nationality;
-	}
+    public UserRole getRole() {
+        return role;
+    }
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
-	public void setRole(UserRole role) {
-		this.role = role;
-	}
+    public Set<TicketDTO> getTickets() {
+        return tickets;
+    }
 
-	public void setTickets(Set<TicketDTO> tickets) {
-		this.tickets = tickets;
-	}
+    public void setTickets(Set<TicketDTO> tickets) {
+        this.tickets = tickets;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj) return true;
-	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserDTO other = (UserDTO) obj;
-		return Objects.equals(email, other.email);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        UserDTO other = (UserDTO) obj;
+        return Objects.equals(email, other.email);
+    }
 }

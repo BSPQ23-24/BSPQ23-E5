@@ -1,12 +1,18 @@
 package com.RouteBus.server.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "schedules")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Schedule {
 
     @Id
@@ -22,13 +28,15 @@ public class Schedule {
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Ticket> tickets;
 
     public Schedule() {
     }
 
     public Schedule(Route route, Date departureTime, Date arrivalTime) {
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+    	this.id = route.getName().replaceAll("\\s+", "").toLowerCase() + "-" + sdf.format(departureTime) + "-" + sdf.format(arrivalTime);
         this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;

@@ -18,8 +18,8 @@ public class ScheduleRestController {
     }
 
     @GetMapping("/all")
-    public Set<Schedule> getAllSchedulees() {
-        return scheduleService.getAllSchedules();
+    public ResponseEntity<Set<Schedule>> getAllSchedulees() {
+        return ResponseEntity.ok(scheduleService.getAllSchedules());
     }
 
     @GetMapping("/{id}")

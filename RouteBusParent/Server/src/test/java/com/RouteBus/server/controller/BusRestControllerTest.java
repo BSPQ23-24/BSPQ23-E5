@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -44,7 +45,7 @@ public class BusRestControllerTest {
     @Test
     public void testGetAllBuses() {
         when(busService.getAllBuses()).thenReturn(mockBuses);
-        List<Bus> result = busRestController.getAllBuses();
+        Set<Bus> result = busRestController.getAllBuses();
         assertEquals(mockBuses, result);
         logger.debug("Test getAllBuses completed successfully.");
     }

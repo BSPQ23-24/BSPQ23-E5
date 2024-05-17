@@ -2,11 +2,15 @@ package com.RouteBus.server.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "buses")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "licensePlate")
 public class Bus {
 
     @Id

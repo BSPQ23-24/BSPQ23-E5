@@ -1,7 +1,8 @@
 package com.RouteBus.server.service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.TicketRepository;
@@ -23,8 +24,8 @@ public class TicketService {
 		return ticketRepository.findById(id).orElse(null);
 	}
 
-	public List<Ticket> getAllTickets() {
-		return ticketRepository.findAll();
+	public Set<Ticket> getAllTickets() {
+		return new HashSet<Ticket>(ticketRepository.findAll());
 	}
 
 	public TicketServiceResult createTicket(Ticket ticket) {

@@ -36,7 +36,7 @@ public class App {
 	public static void testServerConnectivityForUser() {
 		UserController controller = UserController.getInstance();
 
-		NationalityDTO nationality = new NationalityDTO("American");
+		NationalityDTO nationality = new NationalityDTO("American", "en_US");
 		UserDTO newUser = new UserDTO("Test", "User", "test@example.com", "password123", nationality, new Date(),
 				UserDTO.UserRole.CUSTOMER, new HashSet<TicketDTO>());
 

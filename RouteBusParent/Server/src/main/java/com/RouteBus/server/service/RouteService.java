@@ -3,6 +3,7 @@ package com.RouteBus.server.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.RouteRepository;
@@ -24,8 +25,8 @@ public class RouteService {
 		return routeRepository.findById(id).orElse(null);
 	}
 
-	public List<Route> getAllRoutes() {
-		return routeRepository.findAll();
+	public Set<Route> getAllRoutes() {
+		return new HashSet<Route>(routeRepository.findAll());
 	}
 
 	public RouteServiceResult createRoute(Route route) {

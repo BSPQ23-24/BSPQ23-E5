@@ -4,65 +4,63 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class StationDTO {
 
     private String name;
     private String location;
-    private Set<RouteDTO> routes;
-  
-    public StationDTO() {
-    }
-    
-    public StationDTO(String name, String location, Set<RouteDTO> routes) {
-		super();
-		this.name = name;
-		this.location = location;
-		this.routes = routes;
-	}
+    private Set<RouteDTO> routes = new HashSet<>();
 
-	public StationDTO(String name, String location) {
+    public StationDTO() {}
+
+    public StationDTO(String name, String location, Set<RouteDTO> routes) {
         this.name = name;
         this.location = location;
-        this.routes = new HashSet<RouteDTO>();
+        this.routes = routes;
     }
 
-	public String getName() {
-		return name;
-	}
+    public StationDTO(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Set<RouteDTO> getRoutes() {
-		return routes;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setRoutes(Set<RouteDTO> routes) {
-		this.routes = routes;
-	}
+    public Set<RouteDTO> getRoutes() {
+        return routes;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(name);
-	}
+    public void setRoutes(Set<RouteDTO> routes) {
+        this.routes = routes;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj) return true;
-	    if (obj == null || getClass() != obj.getClass()) return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StationDTO other = (StationDTO) obj;
-		return Objects.equals(name, other.name);
-	}
-	
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        StationDTO other = (StationDTO) obj;
+        return Objects.equals(name, other.name);
+    }
 }

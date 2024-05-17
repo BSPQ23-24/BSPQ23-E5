@@ -5,7 +5,7 @@ import com.RouteBus.server.service.BusService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/bus")
@@ -17,8 +17,8 @@ public class BusRestController {
     }
 
     @GetMapping("/all")
-    public List<Bus> getAllBuses() {
-        return busService.getAllBuses();
+    public ResponseEntity<Set<Bus>> getAllBuses() {
+        return ResponseEntity.ok(busService.getAllBuses());
     }
 
     @GetMapping("/{licensePlate}")

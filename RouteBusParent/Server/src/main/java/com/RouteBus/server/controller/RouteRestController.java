@@ -7,6 +7,7 @@ import com.RouteBus.server.model.Route;
 import com.RouteBus.server.service.RouteService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Route")
@@ -18,8 +19,8 @@ public class RouteRestController {
     }
 
     @GetMapping("/all")
-    public List<Route> getAllRoutes() {
-        return routeService.getAllRoutes();
+    public ResponseEntity<Set<Route>> getAllRoutes() {
+        return ResponseEntity.ok(routeService.getAllRoutes());
     }
 
     @GetMapping("/{name}")

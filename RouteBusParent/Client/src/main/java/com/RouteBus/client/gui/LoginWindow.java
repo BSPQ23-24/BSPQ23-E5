@@ -7,17 +7,14 @@ import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.dto.UserDTO.UserRole;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginWindow extends JFrame {
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class LoginWindow extends ParentWindow {
 
 	private JLabel emailLabel;
 	private JLabel passLabel;
@@ -31,6 +28,7 @@ public class LoginWindow extends JFrame {
 	private ResourceBundle messages;
 
 	public LoginWindow() {
+		super();
 		Locale currentLocale = Locale.getDefault();
 		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
 		this.setTitle("Login");
@@ -41,7 +39,7 @@ public class LoginWindow extends JFrame {
 		setLocationRelativeTo(null);
 
 		JPanel contentPane = new JPanel(null);
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(colorBackground);
 		this.setContentPane(contentPane);
 
 		// ELEMENT CREATION
@@ -59,12 +57,12 @@ public class LoginWindow extends JFrame {
 
 		loginButton = new JButton(messages.getString("loginButton"));
 		loginButton.setToolTipText("Log in");
-		loginButton.setBackground(new Color(204, 153, 255));
+		loginButton.setBackground(colorSecondary);
 		loginButton.setBorder(null);
 
 		registerButton = new JButton((messages.getString("registerButton")));
 		registerButton.setToolTipText("Register");
-		registerButton.setBackground(new Color(204, 153, 255));
+		registerButton.setBackground(colorSecondary);
 		registerButton.setBorder(null);
 
 		// ACTION LISTENERS
@@ -74,7 +72,10 @@ public class LoginWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new RegistrationWindow();
+				SwingUtilities.invokeLater(() -> {
+					RegistrationWindow window = new RegistrationWindow();
+					window.setVisible(true);
+				});
 			}
 		});
 
@@ -101,15 +102,9 @@ public class LoginWindow extends JFrame {
 		contentPane.add(registerButton);
 
 		// Load and display the image
-		try {
-			BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
-			ImageIcon icon = new ImageIcon(image);
-			JLabel imageLabel = new JLabel(icon);
-			imageLabel.setBounds(100, -30, 200, 300); // Adjust position and size as needed
-			contentPane.add(imageLabel);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		JLabel imageLabel = loadImage("/images/busroute.jpg", 200, 200);
+		imageLabel.setBounds(110, -30, 200, 300);
+		contentPane.add(imageLabel);
 
 		this.setVisible(true);
 	}
@@ -126,17 +121,28 @@ public class LoginWindow extends JFrame {
 		boolean validLogin = UserController.getInstance().checkPassword(email, password);
 		if (validLogin) {
 			UserDTO user = UserController.getInstance().getUserByEmail(email);
-			JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
-			System.out.println(user);
 			if (user.getRole() == UserRole.ADMIN) {
-				new AdministratorWindow();
+				SwingUtilities.invokeLater(() -> {
+					AdministratorWindow window = new AdministratorWindow();
+					window.setVisible(true);
+				});
 			} else {
-				new MainWindow(user.getNationality().getLanguage());
+				SwingUtilities.invokeLater(() -> {
+					MainWindow window = new MainWindow(user.getNationality().getLanguage());
+					window.setVisible(true);
+				});
 			}
 		} else {
 			JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed",
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(() -> {
+			LoginWindow window = new LoginWindow();
+			window.setVisible(true);
+		});
 	}
 }

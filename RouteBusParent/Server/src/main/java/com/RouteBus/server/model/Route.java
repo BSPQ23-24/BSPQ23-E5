@@ -2,11 +2,15 @@ package com.RouteBus.server.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "routes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Route {
 
     @Id
@@ -30,6 +34,9 @@ public class Route {
         inverseJoinColumns = @JoinColumn(name = "bus_id")
     )
     private Set<Bus> buses;
+    
+    @OneToMany(mappedBy = "route")
+    private Set<Schedule> schedules;
 
     public Route() {
     }

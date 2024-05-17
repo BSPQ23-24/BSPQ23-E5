@@ -2,11 +2,15 @@ package com.RouteBus.server.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "stations")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Station {
 
     @Id
@@ -15,7 +19,7 @@ public class Station {
 
     @ManyToMany(mappedBy = "stations", fetch = FetchType.EAGER)
     private Set<Route> routes;
-
+    
     public Station() {
     }
 

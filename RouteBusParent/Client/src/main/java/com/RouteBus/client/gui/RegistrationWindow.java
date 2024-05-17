@@ -1,6 +1,5 @@
 package com.RouteBus.client.gui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.RouteBus.client.controller.UserController;
 import com.RouteBus.client.dto.NationalityDTO;
@@ -11,16 +10,13 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class RegistrationWindow extends JFrame {
-
-    private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class RegistrationWindow extends ParentWindow {
 
     private JLabel lName;
     private JLabel lSurname;
@@ -46,6 +42,7 @@ public class RegistrationWindow extends JFrame {
     private ResourceBundle messages;
 
     public RegistrationWindow() {
+    	super();
         Locale currentLocale = Locale.getDefault();
         messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
         this.setTitle(messages.getString("windowTitle"));
@@ -56,7 +53,7 @@ public class RegistrationWindow extends JFrame {
         setLocationRelativeTo(null);
 
         JPanel contentPane = new JPanel(null);
-        contentPane.setBackground(Color.WHITE);
+        contentPane.setBackground(colorBackground);
         this.setContentPane(contentPane);
 
         lName = new JLabel(messages.getString("nameLabel"));
@@ -91,7 +88,7 @@ public class RegistrationWindow extends JFrame {
         passwordR = new JPasswordField();
 
         bRegister = new JButton(messages.getString("registerButton"));
-        bRegister.setBackground(new Color(204, 153, 255));
+        bRegister.setBackground(colorSecondary);
         bRegister.setBorder(null);
 
         // POSITIONING
@@ -147,18 +144,9 @@ public class RegistrationWindow extends JFrame {
         linePanel.setBounds(450, 200, 1, 220);
         contentPane.add(linePanel);
 
-        try {
-            BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
-            ImageIcon icon = new ImageIcon(image);
-            JLabel imageLabel = new JLabel(icon);
-            imageLabel.setBounds(300, -40, 200, 300);
-            contentPane.add(imageLabel);
-        } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-
-        this.setVisible(true);
-
+        JLabel imageLabel = loadImage("/images/busroute.jpg", 300, 300);
+        imageLabel.setBounds(300, -40, 200, 300);
+        contentPane.add(imageLabel);
     }
 
     private void performRegistration(ActionEvent e) {
@@ -166,11 +154,11 @@ public class RegistrationWindow extends JFrame {
         String surname = tSurname.getText().trim();
         String email = tEmail.getText().trim();
         Date birthDate = dBirthDate.getDate();
-        String nationality = ((NationalityDTO) comboNationality.getSelectedItem()).getName();
+        NationalityDTO nationality = (NationalityDTO) comboNationality.getSelectedItem();
         String passwordText = new String(password.getPassword());
         String passwordRText = new String(passwordR.getPassword());
 
-        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality.isEmpty() || passwordText.isEmpty() || passwordRText.isEmpty()) {
+        if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == null || nationality == null || passwordText.isEmpty() || passwordRText.isEmpty()) {
             JOptionPane.showMessageDialog(this, messages.getString("fillFieldsError"), "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -180,12 +168,15 @@ public class RegistrationWindow extends JFrame {
             return;
         }
 
-        UserDTO newUser = new UserDTO(name, surname, email, passwordText, new NationalityDTO(nationality), birthDate);
+        UserDTO newUser = new UserDTO(name, surname, email, passwordText, nationality, birthDate);
         boolean created = UserController.getInstance().createUser(newUser);
         if (created) {
-            JOptionPane.showMessageDialog(this, messages.getString("registrationSuccess"), "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-            new MainWindow(newUser.getNationality().getLanguage());
+			SwingUtilities.invokeLater(() -> {
+				MainWindow window = new MainWindow(newUser.getNationality().getLanguage());
+				window.setVisible(true);
+			});
+
         } else {
             JOptionPane.showMessageDialog(this, messages.getString("registrationFailError"), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -208,9 +199,9 @@ public class RegistrationWindow extends JFrame {
             comboNationality.addItem(nationality);
         }
         comboNationality.setRenderer(new DefaultListCellRenderer() {
-			private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = 1L;
 
-			@Override
+            @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof NationalityDTO) {
@@ -230,5 +221,12 @@ public class RegistrationWindow extends JFrame {
         lPassword.setText(messages.getString("password"));
         lPasswordR.setText(messages.getString("repeatPasswordLabel"));
         bRegister.setText(messages.getString("registerButton"));
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            RegistrationWindow window = new RegistrationWindow();
+            window.setVisible(true);
+        });
     }
 }

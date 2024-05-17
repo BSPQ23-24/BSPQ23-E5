@@ -4,8 +4,9 @@ import com.RouteBus.server.dao.BusRepository;
 import com.RouteBus.server.model.Bus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class BusService {
@@ -23,8 +24,8 @@ public class BusService {
 		return busRepository.findById(id).orElse(null);
 	}
 
-	public List<Bus> getAllBuses() {
-		return busRepository.findAll();
+	public Set<Bus> getAllBuses() {
+		return new HashSet<Bus>(busRepository.findAll());
 	}
 
 	public BusServiceResult createBus(Bus bus) {

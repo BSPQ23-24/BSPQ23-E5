@@ -5,8 +5,8 @@ import com.RouteBus.server.dao.UserRepository;
 import com.RouteBus.server.model.User;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -25,8 +25,8 @@ public class UserService {
 		return userRepository.findByEmail(email).orElse(null);
 	}
 
-	public List<User> getAllUsers() {
-		return userRepository.findAll();
+	public Set<User> getAllUsers() {
+		return new HashSet<User>(userRepository.findAll());
 	}
 
 	public UserServiceResult createUser(User user) {

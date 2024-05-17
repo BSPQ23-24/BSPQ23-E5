@@ -1,125 +1,180 @@
 package com.RouteBus.client.gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import java.awt.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.RouteBus.client.controller.*;
+import com.RouteBus.client.dto.*;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+@SuppressWarnings("serial")
+public class AdministratorWindow extends ParentWindow {
 
-public class AdministratorWindow extends JFrame {
+    public AdministratorWindow() {
+        super();
+        setTitle("Administration Window");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-	private static final long serialVersionUID = 1L;
-	private JLabel appNameLabel;
+        // Menu bar
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(colorSecondary);
+        JMenu routeAdmin = new JMenu("Route administration");
+        JMenu busAdmin = new JMenu("Bus administration");
+        JMenu ticketsAdmin = new JMenu("Tickets administration");
+        JMenu logout = new JMenu("Log out");
+        routeAdmin.setForeground(Color.WHITE);
+        busAdmin.setForeground(Color.WHITE);
+        ticketsAdmin.setForeground(Color.WHITE);
+        logout.setForeground(Color.WHITE);
+        menuBar.add(routeAdmin);
+        menuBar.add(busAdmin);
+        menuBar.add(ticketsAdmin);
+        menuBar.add(logout);
+        setJMenuBar(menuBar);
 
-	// Subtitle bar
-	private JMenuBar menuBar;
-	private JMenu bizInt;
-	private JMenu routeAdmin;
-	private JMenu busAdmin;
-	private JMenu ticketsAdmin;
-	private JMenu logout;
+        // Main panel
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(2, 2));
+        mainPanel.setBackground(colorBackground);
 
-	// Most used bus(es)
-	private JLabel stat1Label;
-	private JList<String> stat1Info; // Turn into JTextField if all else fails
-	private String busList[] = { "Bus 1", "Bus 2" };
+        // Adding the BusRoute image
+        JLabel imageLabel = loadImage("/images/busroute.jpg", 400, 300);
+        mainPanel.add(imageLabel);
 
-	// Most purchased rout(es)
-	private JLabel stat2Label;
-	private JList<String> stat2Info; // Ditto.
-	private String routeList[] = { "Route 1", "Route 2" };
+        // Adding the line chart
+        JFreeChart lineChart = createLineChart();
+        ChartPanel lineChartPanel = new ChartPanel(lineChart);
+        lineChartPanel.setBackground(colorBackground);
+        mainPanel.add(lineChartPanel);
 
-	// Total revenue
-	private JLabel stat3Label;
-	private JTextField stat3Info;
-	private ResourceBundle messages;
-	public void AdministrativeWindow() {
-		// Idea: For 'main' showing, most used buses, most purchased routes, and total
-		// revenue (all obtained from Ticket data)
-		// Buses for maintenance, routes and revenue for BI.
-		Locale currentLocale = Locale.getDefault();
-		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
-		this.setTitle(messages.getString("administrativeWindowTitle"));
-		this.setLayout(null);
-		this.setBounds(500, 500, 800, 600);
-		this.setResizable(false);
-		this.setBackground(new Color(204, 153, 255));
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
-		JPanel contentPane = new JPanel(null);
-		contentPane.setBackground(Color.WHITE);
-		this.setContentPane(contentPane);
-		// MenuBar
-		menuBar = new JMenuBar();
-		bizInt = new JMenu(messages.getString("administrativeMenu"));
-		routeAdmin = new JMenu(messages.getString("routeAdministrationMenu"));
-		busAdmin = new JMenu(messages.getString("busAdministrationMenu"));
-		ticketsAdmin = new JMenu(messages.getString("ticketsAdministrationMenu"));
-		logout = new JMenu(messages.getString("logoutMenu"));
+        // Adding the pie chart
+        JFreeChart pieChart = createPieChart();
+        ChartPanel pieChartPanel = new ChartPanel(pieChart);
+        pieChartPanel.setBackground(colorBackground);
+        mainPanel.add(pieChartPanel);
 
-		menuBar.add(bizInt); 
-		menuBar.add(routeAdmin);
-		menuBar.add(busAdmin);
-		menuBar.add(ticketsAdmin);
-		menuBar.add(logout);
+        // Creating the top routes panel
+        JPanel topRoutesPanel = new JPanel(new BorderLayout());
+        topRoutesPanel.setBackground(colorBackground);
 
-		this.setJMenuBar(menuBar);
+        JLabel topRoutesLabel = new JLabel("Top Routes", JLabel.CENTER);
+        topRoutesLabel.setForeground(colorPrimary);
+        topRoutesLabel.setFont(pieChart.getTitle().getFont()); // Set the font to match "Routes distribution"
+        topRoutesPanel.add(topRoutesLabel, BorderLayout.NORTH);
 
-		// ELEMENT CREATION
-		appNameLabel = new JLabel(messages.getString("appNameLabel"));
-		appNameLabel.setFont(new Font("Arial", Font.BOLD, 30));
-		appNameLabel.setForeground(Color.WHITE);
-		appNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JScrollPane tableScrollPane = new JScrollPane(createTopRoutesTable());
+        topRoutesPanel.add(tableScrollPane, BorderLayout.CENTER);
+        mainPanel.add(topRoutesPanel);
 
-		// Most used buses
-		stat1Label = new JLabel(messages.getString("mostUsedBusesLabel"));
-		stat1Label.setForeground(Color.WHITE);
-		stat1Info = new JList<String>(busList); // List of buses goes in
+        add(mainPanel, BorderLayout.CENTER);
+    }
 
-		// Most purchased routes
-		stat2Label = new JLabel(messages.getString("mostPurchasedRoutesLabel"));
-		stat2Label.setForeground(Color.WHITE);
-		stat2Info = new JList<String>(routeList); // List of routes goes in
+    private JFreeChart createLineChart() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		// Total revenue;
-		stat3Label = new JLabel(messages.getString("tatalRevenueLabel"));
-		stat3Label.setForeground(Color.WHITE);
-		stat3Info = new JTextField();
-		stat3Info.setEditable(false);
-		stat3Info.setText("$1");
+        List<ScheduleDTO> schedules = ScheduleController.getInstance().getAllSchedules().stream().collect(Collectors.toList());
+        int week = 1;
+        for (ScheduleDTO schedule : schedules) {
+            dataset.addValue(schedule.getTickets().size(), "Travellers", "Week " + week);
+            week++;
+        }
 
-		// Adding things...
-		appNameLabel.setBounds(0, 100, getWidth(), 30);
-		contentPane.add(appNameLabel);
+        JFreeChart lineChart = ChartFactory.createLineChart(
+                "Nº travellers per week",
+                "Week",
+                "Travellers",
+                dataset,
+                PlotOrientation.VERTICAL,
+                false, true, false);
 
-		stat1Label.setBounds(140, 180, 150, 30);
-		contentPane.add(stat1Label);
+        lineChart.setBackgroundPaint(colorBackground);
+        lineChart.getTitle().setPaint(colorPrimary);
 
-		stat2Label.setBounds(140, 250, 150, 30);
-		contentPane.add(stat2Label);
+        CategoryPlot plot = lineChart.getCategoryPlot();
+        plot.setBackgroundPaint(colorBackground);
+        plot.setDomainGridlinePaint(colorPrimary);
+        plot.setRangeGridlinePaint(colorPrimary);
+        plot.getDomainAxis().setLabelPaint(colorPrimary);
+        plot.getRangeAxis().setLabelPaint(colorPrimary);
+        plot.getRenderer().setSeriesPaint(0, colorPrimary);
 
-		stat3Label.setBounds(140, 320, 150, 30);
-		contentPane.add(stat3Label);
+        return lineChart;
+    }
 
-		stat1Info.setBounds(240, 180, 150, 30);
-		contentPane.add(stat1Label);
+    private JFreeChart createPieChart() {
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
-		stat2Info.setBounds(240, 250, 150, 30);
-		contentPane.add(stat2Label);
+        List<RouteDTO> routes = RouteController.getInstance().getAllRoutes();
+        for (RouteDTO route : routes) {
+            dataset.setValue(route.getName(), route.getBuses().size());
+        }
 
-		stat3Info.setBounds(240, 320, 30, 30);
-		contentPane.add(stat3Label);
+        JFreeChart pieChart = ChartFactory.createPieChart(
+                "Routes distribution",
+                dataset,
+                true, true, false);
 
-		contentPane.revalidate();
+        @SuppressWarnings("unchecked")
+        PiePlot<String> plot = (PiePlot<String>) pieChart.getPlot();
+        plot.setBackgroundPaint(colorBackground);
+        pieChart.setBackgroundPaint(colorBackground);
+        pieChart.getTitle().setPaint(colorPrimary);
 
-		contentPane.setVisible(true);
-	}
+        // Customize pie chart colors
+        int colorIndex = 0;
+        Color[] pieColors = {colorPrimary, colorSecondary, colorTertiary};
+        for (String key : dataset.getKeys()) {
+            plot.setSectionPaint(key, pieColors[colorIndex % pieColors.length]);
+            colorIndex++;
+        }
+
+        // Set label colors
+        plot.setLabelBackgroundPaint(colorTertiary);
+        plot.setLabelPaint(Color.BLACK);
+
+        return pieChart;
+    }
+
+    private JTable createTopRoutesTable() {
+        String[] columns = {"Popularity", "Route", "Travellers"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+        List<RouteDTO> routes = RouteController.getInstance().getAllRoutes();
+        routes.sort((r1, r2) -> Integer.compare(r2.getBuses().size(), r1.getBuses().size()));
+
+        for (int i = 0; i < Math.min(3, routes.size()); i++) {
+            RouteDTO route = routes.get(i);
+            model.addRow(new Object[]{i + 1, route.getName(), route.getBuses().size()});
+        }
+
+        JTable table = new JTable(model);
+        table.setBackground(colorBackground);
+        table.setForeground(Color.BLACK);
+        table.setFillsViewportHeight(true);
+
+        JTableHeader header = table.getTableHeader();
+        header.setBackground(colorSecondary);
+        header.setForeground(Color.WHITE);
+
+        return table;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            AdministratorWindow window = new AdministratorWindow();
+            window.setVisible(true);
+        });
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.RouteBus.server.model.Ticket;
 import com.RouteBus.server.service.TicketService;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Ticket")
@@ -18,8 +18,8 @@ public class TicketRestController {
     }
 
     @GetMapping("/all")
-    public List<Ticket> getAllTicketes() {
-        return ticketService.getAllTickets();
+    public ResponseEntity<Set<Ticket>> getAllTicketes() {
+        return ResponseEntity.ok(ticketService.getAllTickets());
     }
 
     @GetMapping("/{id}")

@@ -1,8 +1,8 @@
 package com.RouteBus.server.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.StationRepository;
@@ -20,12 +20,12 @@ public class StationService {
 		SUCCESS, NOT_FOUND, ERROR
 	}
 
+	public Set<Station> getAllStations() {
+		return new HashSet<Station>(stationRepository.findAll());
+	}
+	
 	public Station getStationById(String name) {
 		return stationRepository.findById(name).orElse(null);
-	}
-
-	public List<Station> getAllStations() {
-		return stationRepository.findAll();
 	}
 
 	public StationServiceResult createStation(Station station) {
