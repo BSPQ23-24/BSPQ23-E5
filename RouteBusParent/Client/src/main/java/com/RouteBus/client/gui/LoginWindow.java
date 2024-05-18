@@ -139,10 +139,4 @@ public class LoginWindow extends ParentWindow {
 		}
 	}
 
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			LoginWindow window = new LoginWindow();
-			window.setVisible(true);
-		});
-	}
 }

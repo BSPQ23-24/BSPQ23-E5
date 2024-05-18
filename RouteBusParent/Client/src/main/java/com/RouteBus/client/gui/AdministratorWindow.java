@@ -171,10 +171,4 @@ public class AdministratorWindow extends ParentWindow {
         return table;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            AdministratorWindow window = new AdministratorWindow();
-            window.setVisible(true);
-        });
-    }
 }

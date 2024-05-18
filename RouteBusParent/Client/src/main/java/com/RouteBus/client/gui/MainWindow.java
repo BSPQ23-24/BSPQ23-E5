@@ -322,11 +322,4 @@ public class MainWindow extends ParentWindow {
         contentPanel.revalidate();
         contentPanel.repaint();
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MainWindow window = new MainWindow("es");
-            window.setVisible(true);
-        });
-    }
 }
