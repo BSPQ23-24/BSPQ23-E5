@@ -149,10 +149,14 @@ public class RegistrationWindow extends JFrame {
 
         try {
             BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
+            BufferedImage iconImage = ImageIO.read(getClass().getResource("/images/iconBus.png"));
+            
             ImageIcon icon = new ImageIcon(image);
             JLabel imageLabel = new JLabel(icon);
             imageLabel.setBounds(300, -40, 200, 300);
             contentPane.add(imageLabel);
+            
+            this.setIconImage(iconImage);
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }

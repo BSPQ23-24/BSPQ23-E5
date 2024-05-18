@@ -33,6 +33,7 @@ public class LoginWindow extends JFrame {
 	public LoginWindow() {
 		Locale currentLocale = Locale.getDefault();
 		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
+		
 		this.setTitle("Login");
 		this.setLayout(null);
 		this.setBounds(500, 100, 420, 600);
@@ -91,22 +92,27 @@ public class LoginWindow extends JFrame {
 		passwordField.setBounds(140, 320, 150, 30);
 		contentPane.add(passwordField);
 
-		loginButton.setBounds(140, 360, 150, 30);
+		loginButton.setBounds(140, 370, 150, 30);
 		contentPane.add(loginButton);
 
-		registerLabel.setBounds(140, 390, 150, 30);
+		registerLabel.setBounds(140, 420, 200, 30);
 		contentPane.add(registerLabel);
 
-		registerButton.setBounds(140, 420, 150, 30);
+		registerButton.setBounds(140, 450, 150, 30);
 		contentPane.add(registerButton);
 
 		// Load and display the image
 		try {
 			BufferedImage image = ImageIO.read(getClass().getResource("/images/icon.jpg"));
+			BufferedImage iconImage = ImageIO.read(getClass().getResource("/images/iconBus.png"));
+			
 			ImageIcon icon = new ImageIcon(image);
 			JLabel imageLabel = new JLabel(icon);
+			
 			imageLabel.setBounds(100, -30, 200, 300); // Adjust position and size as needed
 			contentPane.add(imageLabel);
+			
+			this.setIconImage(iconImage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

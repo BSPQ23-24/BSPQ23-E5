@@ -2,18 +2,22 @@ package com.RouteBus.client.gui;
 
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
-import java.util.Locale.Category;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.RouteBus.client.controller.UserController;
+import com.RouteBus.client.dto.NationalityDTO;
 import com.toedter.calendar.JDateChooser;
 
 public class MainWindow extends JFrame {
@@ -24,6 +28,10 @@ public class MainWindow extends JFrame {
     private JPanel contentPanel;
     private JPanel newsPanel;
     private JPanel infoPanel;
+    private JPanel ticketPanel;
+    
+ // ScrollPane
+    private JScrollPane tablePane;
     
     // Menu
     private JMenuBar menuBar;
@@ -50,12 +58,15 @@ public class MainWindow extends JFrame {
     
     private JLabel titleLabel;
     private JLabel infotitle;
+    private JLabel ticketTitle;
     private JLabel lUserPic;
     private JLabel lName;
 	private JLabel lSurname;
 	private JLabel lEmail;
 	private JLabel lBirthDay;
 	private JLabel lNationality;
+	private JLabel lOrigin;
+	private JLabel lDestination;
 
 	
 	private JTextField tName;
@@ -63,15 +74,18 @@ public class MainWindow extends JFrame {
 	private JTextField tEmail;
 	
 	private JButton bEdit;
+	
 	private JDateChooser dBirthDate;
 	
-	private JComboBox<String> comboNationality;
+	private JComboBox<NationalityDTO> comboNationality;
+	private JComboBox<String> comboOrigin;
+	private JComboBox<String> comboDestination;
+	
+	private JTable tableJourneys;
+	
 	
 	private ResourceBundle messages;
 
-	
-
-	
     
     public MainWindow(String languageToLoad) {
     	Locale currentLocale;
@@ -99,6 +113,10 @@ public class MainWindow extends JFrame {
         infoPanel = new JPanel(null);
         infoPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         infoPanel.setBackground(Color.WHITE);
+
+        ticketPanel = new JPanel(null);
+        ticketPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        ticketPanel.setBackground(Color.WHITE);
         
         contentPanel.add(newsPanel);
         
@@ -212,9 +230,10 @@ public class MainWindow extends JFrame {
         tSurname.setBounds(350,200,150,30);
         dBirthDate = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
         dBirthDate.setBounds(350, 260, 150, 30);
-        comboNationality = new JComboBox<String>();
+        comboNationality = new JComboBox<NationalityDTO>();
         comboNationality.setBounds(350, 320, 150,30);
         //loadNationalities();
+        
         tEmail = new JTextField();
         tEmail.setBounds(350, 380, 150, 30);
         
@@ -228,10 +247,141 @@ public class MainWindow extends JFrame {
         bEdit = new JButton("Edit");
         bEdit.setBackground(new Color(204, 153, 255));
         bEdit.setBorder(null);
-        bEdit.setBounds(370, 440,100,30);
+        bEdit.setBounds(330, 440,100,30);
         infoPanel.add(bEdit);
         
+        //Tickets Panel
+        // title
+        ticketTitle = new JLabel(messages.getString("ticketWelcome"));
+        ticketTitle.setFont(new Font("Arial", Font.BOLD, 20)); 
+        ticketTitle.setForeground(Color.BLACK); 
+        ticketTitle.setBounds(300, 50, 250, 50); 
+        ticketPanel.add(ticketTitle);
+        
+        // UI Components
+        lOrigin = new JLabel(messages.getString("origin"));
+        lOrigin.setBounds(200,120,100,100);
+        
+        lDestination = new JLabel(messages.getString("destination"));
+        lDestination.setBounds(500,120,100,100);
+        
+        comboOrigin = new JComboBox<String>();
+        comboOrigin.setBounds(200,190,150,30);
+        
+        comboDestination = new JComboBox<String>();
+        comboDestination.setBounds(500, 190, 150, 30);
+        
+        ticketPanel.add(lOrigin);
+        ticketPanel.add(lDestination);
+        ticketPanel.add(comboOrigin);
+        ticketPanel.add(comboDestination);
+        
+        // Table
+        // Column names
+        String[] columnNames = {messages.getString("departuretime"), messages.getString("arrivaltime"), messages.getString("price")};
+        
+        //Table model
+        DefaultTableModel model = new DefaultTableModel(columnNames,0);
+        
+        tableJourneys = new JTable(model);
+        
+        JTableHeader header = tableJourneys.getTableHeader();
+        header.setBackground(new Color(204, 153, 255));
+        tablePane = new JScrollPane(tableJourneys);
+        tablePane.setBounds(180, 270, 500, 150);
+        
+        ticketPanel.add(tablePane);
+        // Images
+        try {
+            BufferedImage logo = ImageIO.read(getClass().getResource("/images/icon.jpg"));
+            BufferedImage imag1 = ImageIO.read(getClass().getResource("/images/imag1.jpg"));
+            BufferedImage imag2 = ImageIO.read(getClass().getResource("/images/imag2.jpg"));
+            BufferedImage imagUser = ImageIO.read(getClass().getResource("/images/imagUser.jpg"));
+            BufferedImage iconImage = ImageIO.read(getClass().getResource("/images/iconBus.png"));
+            BufferedImage delIcon = ImageIO.read(getClass().getResource("/images/deleteIcon.png"));
+            
+            ImageIcon icon = new ImageIcon(logo);
+            ImageIcon icon2 = new ImageIcon(logo);
+            ImageIcon icon3 = new ImageIcon(logo);
+            
+            ImageIcon imagIcon1 = new ImageIcon(imag1);
+            ImageIcon imagIcon2 = new ImageIcon(imag2);
+            ImageIcon imagIconU = new ImageIcon(imagUser);
+            ImageIcon imagDelIcon = new ImageIcon(delIcon);
+            
+            JLabel imageLabel = new JLabel(icon);
+            JLabel imageLabel2 = new JLabel(icon2);
+            JLabel imageLabel5 = new JLabel(icon3);
+            
+            JLabel imageLabel3 = new JLabel(imagIcon1);
+            JLabel imageLabel4 = new JLabel(imagIcon2);
+            JLabel imageLabelU = new JLabel(imagIconU);
+            JLabel imageLabelDel = new JLabel(imagDelIcon);
+            
+            this.setIconImage(iconImage);
+            
+            imageLabel.setBounds(590, -70, 200, 300); // Adjust position and size as needed
+            imageLabel2.setBounds(590,-70, 200, 300);
+            imageLabel3.setBounds(30,180,140,100);
+            imageLabel4.setBounds(30,340,140,100);
+            imageLabel5.setBounds(590, -70, 200, 300);
+            imageLabelU.setBounds(50, 160, 200, 200);
+            imageLabelDel.setBounds(450, 405, 100, 100);
+            
+            newsPanel.add(imageLabel);
+            newsPanel.add(imageLabel3);
+            newsPanel.add(imageLabel4);
+            
+            infoPanel.add(imageLabel2);
+            infoPanel.add(imageLabelU);
+            infoPanel.add(imageLabelDel);
+            
+            ticketPanel.add(imageLabel5);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        
         // Actions
+        //	// Language Actions
+        spanish.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("es");
+			}
+		});
+        
+        english.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("en_US");
+			}
+		});
+        
+        basque.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("eus");
+			}
+		});
+        
+        german.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changeLanguage("de");
+			}
+		});
+        
+        //  // Menu Actions
         information.addActionListener(new ActionListener() {
 			
 			@Override
@@ -262,41 +412,20 @@ public class MainWindow extends JFrame {
 			}
 		});
         
-        spanish.addActionListener(new ActionListener() {
+        tickets.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				changeLanguage("es");
+                getContentPane().removeAll();
+                // Add the user info panel
+                contentPanel.add(ticketPanel);
+                // Repaint the content panel
+                contentPanel.revalidate();
+                contentPanel.repaint();
 			}
 		});
         
-        english.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				changeLanguage("es_US");
-			}
-		});
-        
-        basque.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				changeLanguage("eus");
-			}
-		});
-        
-        german.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				changeLanguage("de");
-			}
-		});
         
         out.addActionListener(new ActionListener() {
 			
@@ -308,45 +437,22 @@ public class MainWindow extends JFrame {
 				new LoginWindow();
 			}
 		});
+        // Info window actions
+        bEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// AQUI HAY QUE AÑADIR LA FUNCION PARA MODIFICAR DATOS DEL USUARIO
+				
+			}
+		});
         
         
-        // Images
-        try {
-            BufferedImage logo = ImageIO.read(getClass().getResource("/images/icon.jpg"));
-            BufferedImage imag1 = ImageIO.read(getClass().getResource("/images/imag1.jpg"));
-            BufferedImage imag2 = ImageIO.read(getClass().getResource("/images/imag2.jpg"));
-            BufferedImage imagUser = ImageIO.read(getClass().getResource("/images/imagUser.jpg"));
-            BufferedImage iconImage= ImageIO.read(getClass().getResource("/images/iconBus.png"));
-            
-            ImageIcon icon = new ImageIcon(logo);
-            ImageIcon icon2 = new ImageIcon(logo);
-            ImageIcon imagIcon1 = new ImageIcon(imag1);
-            ImageIcon imagIcon2 = new ImageIcon(imag2);
-            ImageIcon imagIconU = new ImageIcon(imagUser);
-            
-            JLabel imageLabel = new JLabel(icon);
-            JLabel imageLabel2 = new JLabel(icon2);
-            JLabel imageLabel3 = new JLabel(imagIcon1);
-            JLabel imageLabel4 = new JLabel(imagIcon2);
-            JLabel imageLabelU = new JLabel(imagIconU);
-            
-            this.setIconImage(iconImage);
-            
-            imageLabel.setBounds(590, -70, 200, 300); // Adjust position and size as needed
-            imageLabel2.setBounds(590,-70, 200, 300);
-            imageLabel3.setBounds(30,180,140,100);
-            imageLabel4.setBounds(30,340,140,100);
-            imageLabelU.setBounds(50, 160, 200, 200);
-            
-            newsPanel.add(imageLabel);
-            newsPanel.add(imageLabel3);
-            newsPanel.add(imageLabel4);
-            infoPanel.add(imageLabel2);
-            infoPanel.add(imageLabelU);
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+        
+        
+        
         
         this.setVisible(true);
     }
@@ -384,15 +490,42 @@ public class MainWindow extends JFrame {
         lEmail.setText(messages.getString("email"));
         bEdit.setText(messages.getString("editButton"));
         
+        lOrigin.setText(messages.getString("origin"));
+        lDestination.setText(messages.getString("destination"));
+        
         // News
         noticia1.setText(messages.getString("new1Content"));
         noticia2.setText(messages.getString("new2Content"));
         
         contentPanel.revalidate();
         contentPanel.repaint();
+        
     	
     }
-    public static void main(String[] args) {
-    	new MainWindow("eus");
+    
+    // Functions
+    public static void main(String[] args)
+    {
+        new MainWindow("en_US");
     }
+    
+    private void loadNationalities() {
+        List<NationalityDTO> nationalities = UserController.getInstance().getNationalities();
+        for (NationalityDTO nationality : nationalities) {
+            comboNationality.addItem(nationality);
+        }
+        comboNationality.setRenderer(new DefaultListCellRenderer() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof NationalityDTO) {
+                    setText(((NationalityDTO) value).getName());
+                }
+                return this;
+            }
+        });
+    }
+    
 }
