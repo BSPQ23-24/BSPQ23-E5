@@ -5,6 +5,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -35,18 +36,36 @@ public class Route {
     )
     private Set<Bus> buses;
     
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Schedule> schedules;
 
     public Route() {
     }
 
-    public Route(String name, String startPoint, String endPoint, double totalDistance) {
+    
+    
+    public Route(String name, String startPoint, String endPoint, double totalDistance, Set<Station> stations, Set<Bus> buses) {
+		this.name = name;
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
+		this.totalDistance = totalDistance;
+		this.stations = stations;
+		this.buses = buses;
+		this.schedules = new HashSet<Schedule>();
+	}
+
+	public Route(String name, String startPoint, String endPoint, double totalDistance) {
         this.name = name;
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.totalDistance = totalDistance;
+        this.stations = new HashSet<Station>();
+        this.buses = new HashSet<Bus>();
+        this.schedules = new HashSet<Schedule>();
     }
+    
+    
+
 
 	public String getName() {
 		return name;
@@ -72,6 +91,10 @@ public class Route {
 		return buses;
 	}
 
+	public Set<Schedule> getSchedules() {
+		return schedules;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -95,7 +118,11 @@ public class Route {
 	public void setBuses(Set<Bus> buses) {
 		this.buses = buses;
 	}
-	
+
+	public void setSchedules(Set<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);
@@ -108,5 +135,4 @@ public class Route {
 		Route other = (Route) obj;
 		return Objects.equals(name, other.name);
 	}
-		
 }

@@ -20,9 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.RouteBus.server.dao.RouteRepository;
-import com.RouteBus.server.model.Bus;
 import com.RouteBus.server.model.Route;
-import com.RouteBus.server.model.Station;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteServiceTest {
