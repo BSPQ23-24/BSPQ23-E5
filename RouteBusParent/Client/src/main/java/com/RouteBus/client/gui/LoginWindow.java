@@ -105,8 +105,6 @@ public class LoginWindow extends ParentWindow {
 		JLabel imageLabel = loadImage("/images/busroute.jpg", 200, 200);
 		imageLabel.setBounds(110, -30, 200, 300);
 		contentPane.add(imageLabel);
-
-		this.setVisible(true);
 	}
 
 	private void performLogin() {

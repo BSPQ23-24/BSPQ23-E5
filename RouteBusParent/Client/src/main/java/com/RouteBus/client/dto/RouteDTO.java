@@ -94,6 +94,12 @@ public class RouteDTO {
     public void setSchedules(Set<ScheduleDTO> schedules) {
         this.schedules = schedules;
     }
+    
+    public int getTotalPassengers() {
+        return schedules.stream()
+                        .mapToInt(schedule -> schedule.getTickets().size())
+                        .sum();
+    }
 
     @Override
     public int hashCode() {

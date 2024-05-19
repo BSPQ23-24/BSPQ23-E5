@@ -21,8 +21,22 @@ public abstract class ParentWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(colorBackground);
-        setLocationRelativeTo(null);
         setWindowIcon();
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        if (visible) {
+            centerWindow();
+        }
+        super.setVisible(visible);
+    }
+
+    private void centerWindow() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - getWidth()) / 2;
+        int y = (screenSize.height - getHeight()) / 2;
+        setLocation(x, y);
     }
 
     private void loadColors() {
