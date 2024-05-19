@@ -3,6 +3,7 @@ package com.RouteBus.client.controller;
 import com.RouteBus.client.dto.BusDTO;
 import com.RouteBus.client.gateway.BusGateway;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BusController {
     private static final BusController INSTANCE = new BusController();
@@ -59,5 +60,17 @@ public class BusController {
             System.err.println("Failed to delete bus: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<BusDTO> filterBuses(String query) {
+        List<BusDTO> buses = getAllBuses();
+        if (buses != null) {
+            return buses.stream()
+                    .filter(bus -> bus.getLicensePlate().toLowerCase().contains(query.toLowerCase()) ||
+                            bus.getModel().toLowerCase().contains(query.toLowerCase()) ||
+                            String.valueOf(bus.getCapacity()).contains(query))
+                    .collect(Collectors.toList());
+        }
+        return null;
     }
 }

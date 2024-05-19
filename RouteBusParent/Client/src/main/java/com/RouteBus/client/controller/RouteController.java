@@ -3,6 +3,7 @@ package com.RouteBus.client.controller;
 import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.gateway.RouteGateway;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RouteController {
     private static final RouteController INSTANCE = new RouteController();
@@ -68,5 +69,28 @@ public class RouteController {
             System.err.println("Failed to obtain routes by bus: " + e.getMessage());
             return null;
         }
+    }
+    
+    public List<RouteDTO> getRoutesOrderedByPopularity() {
+        List<RouteDTO> routes = getAllRoutes();
+        if (routes != null) {
+            routes.sort((r1, r2) -> Integer.compare(r2.getTotalPassengers(), r1.getTotalPassengers()));
+        }
+        return routes;
+    }
+    
+    public List<RouteDTO> filterRoutes(String query) {
+        List<RouteDTO> routes = getAllRoutes();
+        if (routes != null) {
+            return routes.stream()
+                .filter(route -> route.getName().toLowerCase().contains(query.toLowerCase()) ||
+                        route.getStartPoint().toLowerCase().contains(query.toLowerCase()) ||
+                        route.getEndPoint().toLowerCase().contains(query.toLowerCase()) ||
+                        route.getStations().stream().anyMatch(station -> station.getLocation().toLowerCase().contains(query.toLowerCase())) ||
+                        route.getBuses().stream().anyMatch(bus -> bus.getLicensePlate().toLowerCase().contains(query.toLowerCase())) ||
+                        String.valueOf(route.getTotalDistance()).contains(query))
+                .collect(Collectors.toList());
+        }
+        return null;
     }
 }

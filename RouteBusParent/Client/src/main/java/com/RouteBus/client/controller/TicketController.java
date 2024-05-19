@@ -2,14 +2,16 @@ package com.RouteBus.client.controller;
 
 import com.RouteBus.client.dto.TicketDTO;
 import com.RouteBus.client.gateway.TicketGateway;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TicketController {
     private static final TicketController INSTANCE = new TicketController();
     private final TicketGateway ticketGateway;
 
     private TicketController() {
-        this.ticketGateway =TicketGateway.getInstance();
+        this.ticketGateway = TicketGateway.getInstance();
     }
 
     public static TicketController getInstance() {
@@ -59,5 +61,22 @@ public class TicketController {
             System.err.println("Failed to delete ticket: " + e.getMessage());
             return false;
         }
+    }
+
+    public List<TicketDTO> filterTickets(String query) {
+        List<TicketDTO> tickets = getAllTickets();
+        if (tickets != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return tickets.stream()
+                .filter(ticket -> ticket.getId().toLowerCase().contains(query.toLowerCase()) ||
+                        String.valueOf(ticket.getSeatNumber()).contains(query) ||
+                        String.valueOf(ticket.getPrice()).contains(query) ||
+                        ticket.getStatus().toString().toLowerCase().contains(query.toLowerCase()) ||
+                        ticket.getUser().getFirstName().toLowerCase().contains(query.toLowerCase()) ||
+                        sdf.format(ticket.getSchedule().getDepartureTime()).contains(query) ||
+                        sdf.format(ticket.getSchedule().getArrivalTime()).contains(query))
+                .collect(Collectors.toList());
+        }
+        return null;
     }
 }
