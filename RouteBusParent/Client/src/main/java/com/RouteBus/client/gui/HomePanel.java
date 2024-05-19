@@ -16,15 +16,12 @@ import org.jfree.data.general.DefaultPieDataset;
 import com.RouteBus.client.controller.RouteController;
 import com.RouteBus.client.controller.ScheduleController;
 import com.RouteBus.client.dto.RouteDTO;
-import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.util.TableUtil;
 
 import java.awt.*;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @SuppressWarnings("serial")
 public class HomePanel extends JPanel {
@@ -78,7 +75,7 @@ public class HomePanel extends JPanel {
 
         JLabel topRoutesLabel = new JLabel("Top Routes", JLabel.CENTER);
         topRoutesLabel.setForeground(colorPrimary);
-        topRoutesLabel.setFont(pieChart.getTitle().getFont()); // Set the font to match "Routes distribution"
+        topRoutesLabel.setFont(pieChart.getTitle().getFont());
         topRoutesPanel.add(topRoutesLabel, BorderLayout.NORTH);
 
         JScrollPane tableScrollPane = new JScrollPane(createTopRoutesTable());
@@ -91,22 +88,7 @@ public class HomePanel extends JPanel {
 
     private JFreeChart createLineChart() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        List<ScheduleDTO> schedules = ScheduleController.getInstance().getAllSchedules().stream().collect(Collectors.toList());
-
-        // Calculate the starting date (Monday) for each week
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = Calendar.getInstance();
-
-        Map<String, Long> weeklyTravellers = schedules.stream()
-                .collect(Collectors.groupingBy(
-                        schedule -> {
-                            cal.setTime(schedule.getDepartureTime());
-                            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                            return sdf.format(cal.getTime());
-                        },
-                        TreeMap::new,
-                        Collectors.summingLong(schedule -> schedule.getTickets().size())
-                ));
+        Map<String, Long> weeklyTravellers = ScheduleController.getInstance().getWeeklyTravellersData();
 
         weeklyTravellers.forEach((week, travellers) -> dataset.addValue(travellers, "Travellers", week));
 
@@ -128,7 +110,7 @@ public class HomePanel extends JPanel {
         plot.getDomainAxis().setLabelPaint(colorPrimary);
         plot.getRangeAxis().setLabelPaint(colorPrimary);
         plot.getRenderer().setSeriesPaint(0, colorPrimary);
-        plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Rotate labels for better visibility
+        plot.getDomainAxis().setCategoryLabelPositions(CategoryLabelPositions.UP_45);
 
         return lineChart;
     }
@@ -153,7 +135,6 @@ public class HomePanel extends JPanel {
         pieChart.setBackgroundPaint(colorBackground);
         pieChart.getTitle().setPaint(colorPrimary);
 
-        // Customize pie chart colors
         int colorIndex = 0;
         Color[] pieColors = {colorPrimary, colorSecondary, colorTertiary};
         for (String key : dataset.getKeys()) {
@@ -161,7 +142,6 @@ public class HomePanel extends JPanel {
             colorIndex++;
         }
 
-        // Set label colors
         plot.setLabelBackgroundPaint(colorTertiary);
         plot.setLabelPaint(Color.BLACK);
 
@@ -173,15 +153,11 @@ public class HomePanel extends JPanel {
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Disable cell editing
+                return false;
             }
         };
 
-        List<RouteDTO> routes = RouteController.getInstance().getAllRoutes();
-        routes.sort((r1, r2) -> Integer.compare(
-            r2.getTotalPassengers(),
-            r1.getTotalPassengers()
-        ));
+        List<RouteDTO> routes = RouteController.getInstance().getRoutesOrderedByPopularity();
 
         for (int i = 0; i < routes.size(); i++) {
             RouteDTO route = routes.get(i);

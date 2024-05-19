@@ -3,15 +3,21 @@ package com.RouteBus.client.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("serial")
 public class AdministratorWindow extends ParentWindow {
 
     private JPanel mainPanel;
     private JMenuItem homeMenuItem, routeAdminMenuItem, busAdminMenuItem, ticketsAdminMenuItem, stationAdminMenuItem, logoutMenuItem;
+    private InitialWindow initialWindow;
+    private JProgressBar progressBar;
+    private JLabel loadingLabel;
 
-    public AdministratorWindow() {
+    public AdministratorWindow(InitialWindow initialWindow) {
         super();
+        this.initialWindow = initialWindow;
         setTitle("Administration Window");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +34,13 @@ public class AdministratorWindow extends ParentWindow {
         stationAdminMenuItem = new JMenuItem("Station administration");
         logoutMenuItem = new JMenuItem("Log out");
 
+        homeMenuItem.setBackground(colorSecondary);
+        routeAdminMenuItem.setBackground(colorSecondary);
+        busAdminMenuItem.setBackground(colorSecondary);
+        ticketsAdminMenuItem.setBackground(colorSecondary);
+        stationAdminMenuItem.setBackground(colorSecondary);
+        logoutMenuItem.setBackground(colorSecondary);
+
         homeMenuItem.addActionListener(e -> showPanel("Home"));
         routeAdminMenuItem.addActionListener(e -> showPanel("RouteAdmin"));
         busAdminMenuItem.addActionListener(e -> showPanel("BusAdmin"));
@@ -43,20 +56,75 @@ public class AdministratorWindow extends ParentWindow {
         menuBar.add(logoutMenuItem);
         setJMenuBar(menuBar);
 
+        // Loading panel with progress bar
+        JPanel loadingPanel = new JPanel(new BorderLayout());
+        loadingLabel = new JLabel("Loading...", SwingConstants.CENTER);
+        loadingLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        loadingPanel.add(loadingLabel, BorderLayout.NORTH);
+
+        progressBar = new JProgressBar(0, 100);
+        progressBar.setIndeterminate(true);
+        loadingPanel.add(progressBar, BorderLayout.CENTER);
+        add(loadingPanel, BorderLayout.CENTER);
+
         // Main panel
         mainPanel = new JPanel(new CardLayout());
         mainPanel.setBackground(colorBackground);
-        add(mainPanel, BorderLayout.CENTER);
 
-        // Add panels
-        mainPanel.add(new HomePanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "Home");
-        mainPanel.add(new RouteAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "RouteAdmin");
-        mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "BusAdmin");
-        mainPanel.add(new TicketsAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "TicketsAdmin");
-        mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "StationAdmin");
+        // Load panels asynchronously
+        loadPanelsAsync();
+    }
 
-        // Show initial panel
-        showPanel("Home");
+    private void loadPanelsAsync() {
+        SwingWorker<Void, Integer> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                publish(0);
+                mainPanel.add(new HomePanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "Home");
+                publish(20);
+                Thread.sleep(200); // Simulating load time
+
+                mainPanel.add(new RouteAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "RouteAdmin");
+                publish(40);
+                Thread.sleep(200); // Simulating load time
+
+                mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "BusAdmin");
+                publish(60);
+                Thread.sleep(200); // Simulating load time
+
+                mainPanel.add(new TicketsAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "TicketsAdmin");
+                publish(80);
+                Thread.sleep(200); // Simulating load time
+
+                mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "StationAdmin");
+                publish(100);
+                Thread.sleep(200); // Simulating load time
+
+                return null;
+            }
+
+            @Override
+            protected void process(List<Integer> chunks) {
+                for (int progress : chunks) {
+                    progressBar.setValue(progress);
+                }
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    get();
+                    remove(progressBar.getParent());
+                    add(mainPanel, BorderLayout.CENTER);
+                    showPanel("Home");
+                    revalidate();
+                    repaint();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        worker.execute();
     }
 
     private void showPanel(String panelName) {
@@ -76,15 +144,14 @@ public class AdministratorWindow extends ParentWindow {
 
     private void logoutActionPerformed(ActionEvent evt) {
         this.dispose();
-        SwingUtilities.invokeLater(() -> {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> initialWindow.setVisible(true));
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            AdministratorWindow window = new AdministratorWindow();
+            InitialWindow initialWindow = new InitialWindow();
+            AdministratorWindow window = new AdministratorWindow(initialWindow);
+            initialWindow.setVisible(true);
             window.setVisible(true);
         });
     }

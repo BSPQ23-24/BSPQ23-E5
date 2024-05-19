@@ -11,7 +11,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
 public class BusAdminPanel extends AdminPanel<BusDTO> {
@@ -100,18 +99,16 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
 
     private void updateTableModel(List<BusDTO> buses) {
         tableModel.setRowCount(0);
-        for (BusDTO bus : buses) {
-            tableModel.addRow(new Object[]{bus.getLicensePlate(), bus.getModel(), bus.getCapacity()});
+        if (buses != null) {
+            for (BusDTO bus : buses) {
+                tableModel.addRow(new Object[]{bus.getLicensePlate(), bus.getModel(), bus.getCapacity()});
+            }
         }
     }
 
     @Override
     protected void filterEntities(String query) {
-        List<BusDTO> buses = BusController.getInstance().getAllBuses().stream()
-                .filter(bus -> bus.getLicensePlate().toLowerCase().contains(query.toLowerCase()) ||
-                        bus.getModel().toLowerCase().contains(query.toLowerCase()) ||
-                        String.valueOf(bus.getCapacity()).contains(query))
-                .collect(Collectors.toList());
+        List<BusDTO> buses = BusController.getInstance().filterBuses(query);
         updateTableModel(buses);
     }
 

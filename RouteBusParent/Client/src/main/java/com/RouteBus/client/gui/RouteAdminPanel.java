@@ -116,27 +116,22 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
 
     private void updateTableModel(List<RouteDTO> routes) {
         tableModel.setRowCount(0);
-        for (RouteDTO route : routes) {
-            String stations = route.getStations().stream()
+        if (routes != null) {
+            for (RouteDTO route : routes) {
+                String stations = route.getStations().stream()
                     .map(station -> station.getLocation())
                     .collect(Collectors.joining(", "));
-            String buses = route.getBuses().stream()
+                String buses = route.getBuses().stream()
                     .map(bus -> bus.getLicensePlate())
                     .collect(Collectors.joining(", "));
-            tableModel.addRow(new Object[]{route.getName(), route.getStartPoint(), route.getEndPoint(), route.getTotalDistance() + " km", stations, buses});
+                tableModel.addRow(new Object[]{route.getName(), route.getStartPoint(), route.getEndPoint(), route.getTotalDistance() + " km", stations, buses});
+            }
         }
     }
 
     @Override
     protected void filterEntities(String query) {
-        List<RouteDTO> routes = RouteController.getInstance().getAllRoutes().stream()
-                .filter(route -> route.getName().toLowerCase().contains(query.toLowerCase()) ||
-                        route.getStartPoint().toLowerCase().contains(query.toLowerCase()) ||
-                        route.getEndPoint().toLowerCase().contains(query.toLowerCase()) ||
-                        route.getStations().stream().anyMatch(station -> station.getLocation().toLowerCase().contains(query.toLowerCase())) ||
-                        route.getBuses().stream().anyMatch(bus -> bus.getLicensePlate().toLowerCase().contains(query.toLowerCase())) ||
-                        String.valueOf(route.getTotalDistance()).contains(query))
-                .collect(Collectors.toList());
+        List<RouteDTO> routes = RouteController.getInstance().filterRoutes(query);
         updateTableModel(routes);
     }
 

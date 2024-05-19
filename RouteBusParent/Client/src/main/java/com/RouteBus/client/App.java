@@ -1,14 +1,13 @@
 package com.RouteBus.client;
 
 import javax.swing.SwingUtilities;
-
-import com.RouteBus.client.gui.LoginWindow;
+import com.RouteBus.client.gui.InitialWindow;
 
 public class App {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.setVisible(true);
+            InitialWindow initialWindow = new InitialWindow();
+            initialWindow.setVisible(true);
         });
-	}
+    }
 }

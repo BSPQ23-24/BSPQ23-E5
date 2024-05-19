@@ -12,7 +12,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
 public class TicketsAdminPanel extends AdminPanel<TicketDTO> {
@@ -151,30 +150,24 @@ public class TicketsAdminPanel extends AdminPanel<TicketDTO> {
     private void updateTableModel(List<TicketDTO> tickets) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         tableModel.setRowCount(0);
-        for (TicketDTO ticket : tickets) {
-            tableModel.addRow(new Object[]{
-                    ticket.getId(),
-                    ticket.getSeatNumber(),
-                    ticket.getPrice(),
-                    ticket.getStatus(),
-                    ticket.getUser().getFirstName(),
-                    sdf.format(ticket.getSchedule().getDepartureTime()),
-                    sdf.format(ticket.getSchedule().getArrivalTime())
-            });
+        if (tickets != null) {
+            for (TicketDTO ticket : tickets) {
+                tableModel.addRow(new Object[]{
+                        ticket.getId(),
+                        ticket.getSeatNumber(),
+                        ticket.getPrice(),
+                        ticket.getStatus(),
+                        ticket.getUser().getFirstName(),
+                        sdf.format(ticket.getSchedule().getDepartureTime()),
+                        sdf.format(ticket.getSchedule().getArrivalTime())
+                });
+            }
         }
     }
 
     @Override
     protected void filterEntities(String query) {
-        List<TicketDTO> tickets = TicketController.getInstance().getAllTickets().stream()
-                .filter(ticket -> ticket.getId().toLowerCase().contains(query.toLowerCase()) ||
-                        String.valueOf(ticket.getSeatNumber()).contains(query) ||
-                        String.valueOf(ticket.getPrice()).contains(query) ||
-                        ticket.getStatus().toString().toLowerCase().contains(query.toLowerCase()) ||
-                        ticket.getUser().getFirstName().toLowerCase().contains(query.toLowerCase()) ||
-                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ticket.getSchedule().getDepartureTime()).contains(query) ||
-                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ticket.getSchedule().getArrivalTime()).contains(query))
-                .collect(Collectors.toList());
+        List<TicketDTO> tickets = TicketController.getInstance().filterTickets(query);
         updateTableModel(tickets);
     }
 
