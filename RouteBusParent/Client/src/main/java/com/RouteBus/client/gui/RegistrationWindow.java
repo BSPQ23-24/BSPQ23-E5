@@ -223,10 +223,4 @@ public class RegistrationWindow extends ParentWindow {
         bRegister.setText(messages.getString("registerButton"));
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            RegistrationWindow window = new RegistrationWindow();
-            window.setVisible(true);
-        });
-    }
 }
