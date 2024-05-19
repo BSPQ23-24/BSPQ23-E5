@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -25,24 +24,20 @@ public class RegistrationWindow extends ParentWindow {
     private JLabel lNationality;
     private JLabel lPassword;
     private JLabel lPasswordR;
-
     private JTextField tName;
     private JTextField tSurname;
     private JTextField tEmail;
-
     private JDateChooser dBirthDate;
-
     private JComboBox<NationalityDTO> comboNationality;
-
     private JPasswordField password;
     private JPasswordField passwordR;
-
     private JButton bRegister;
-
     private ResourceBundle messages;
+    private InitialWindow initialWindow;
 
-    public RegistrationWindow() {
-    	super();
+    public RegistrationWindow(InitialWindow initialWindow) {
+        super();
+        this.initialWindow = initialWindow;
         Locale currentLocale = Locale.getDefault();
         messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
         this.setTitle(messages.getString("windowTitle"));
@@ -72,15 +67,12 @@ public class RegistrationWindow extends ParentWindow {
 
         comboNationality = new JComboBox<>();
         loadNationalities();
-        comboNationality.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NationalityDTO selectedNationality = (NationalityDTO) comboNationality.getSelectedItem();
-                if (selectedNationality != null) {
-                    Locale locale = new Locale(selectedNationality.getLanguage());
-                    messages = ResourceBundle.getBundle("multilingual/messages", locale);
-                    updateLabels();
-                }
+        comboNationality.addActionListener(e -> {
+            NationalityDTO selectedNationality = (NationalityDTO) comboNationality.getSelectedItem();
+            if (selectedNationality != null) {
+                Locale locale = new Locale(selectedNationality.getLanguage());
+                messages = ResourceBundle.getBundle("multilingual/messages", locale);
+                updateLabels();
             }
         });
 
@@ -171,12 +163,12 @@ public class RegistrationWindow extends ParentWindow {
         UserDTO newUser = new UserDTO(name, surname, email, passwordText, nationality, birthDate);
         boolean created = UserController.getInstance().createUser(newUser);
         if (created) {
+            initialWindow.dispose(); // Close initial window upon successful registration
             this.dispose();
-			SwingUtilities.invokeLater(() -> {
-				MainWindow window = new MainWindow(newUser.getNationality().getLanguage());
-				window.setVisible(true);
-			});
-
+            SwingUtilities.invokeLater(() -> {
+                MainWindow window = new MainWindow(newUser.getNationality().getLanguage());
+                window.setVisible(true);
+            });
         } else {
             JOptionPane.showMessageDialog(this, messages.getString("registrationFailError"), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -222,5 +214,4 @@ public class RegistrationWindow extends ParentWindow {
         lPasswordR.setText(messages.getString("repeatPasswordLabel"));
         bRegister.setText(messages.getString("registerButton"));
     }
-
 }

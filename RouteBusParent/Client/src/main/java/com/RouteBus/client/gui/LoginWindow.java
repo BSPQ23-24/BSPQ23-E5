@@ -1,7 +1,6 @@
 package com.RouteBus.client.gui;
 
 import javax.swing.*;
-
 import com.RouteBus.client.controller.UserController;
 import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.dto.UserDTO.UserRole;
@@ -10,137 +9,122 @@ import java.awt.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 @SuppressWarnings("serial")
 public class LoginWindow extends ParentWindow {
 
-	private JLabel emailLabel;
-	private JLabel passLabel;
-	private JLabel registerLabel;
+    private JLabel emailLabel;
+    private JLabel passLabel;
+    private JLabel registerLabel;
+    private JTextField emailField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JButton registerButton;
+    private ResourceBundle messages;
+    private InitialWindow initialWindow;
 
-	private JTextField emailField;
-	private JPasswordField passwordField;
+    public LoginWindow(InitialWindow initialWindow) {
+        super();
+        this.initialWindow = initialWindow;
+        Locale currentLocale = Locale.getDefault();
+        messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
+        this.setTitle("Login");
+        this.setLayout(null);
+        this.setBounds(500, 100, 420, 600);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-	private JButton loginButton;
-	private JButton registerButton;
-	private ResourceBundle messages;
+        JPanel contentPane = new JPanel(null);
+        contentPane.setBackground(colorBackground);
+        this.setContentPane(contentPane);
 
-	public LoginWindow() {
-		super();
-		Locale currentLocale = Locale.getDefault();
-		messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
-		this.setTitle("Login");
-		this.setLayout(null);
-		this.setBounds(500, 100, 420, 600);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
+        // ELEMENT CREATION
+        emailLabel = new JLabel(messages.getString("email"));
+        emailLabel.setForeground(Color.BLACK);
 
-		JPanel contentPane = new JPanel(null);
-		contentPane.setBackground(colorBackground);
-		this.setContentPane(contentPane);
+        passLabel = new JLabel(messages.getString("password"));
+        passLabel.setForeground(Color.BLACK);
 
-		// ELEMENT CREATION
-		emailLabel = new JLabel(messages.getString("email"));
-		emailLabel.setForeground(Color.BLACK);
+        registerLabel = new JLabel(messages.getString("registerLabel"));
+        registerLabel.setForeground(Color.BLACK);
 
-		passLabel = new JLabel(messages.getString("password"));
-		passLabel.setForeground(Color.BLACK);
+        emailField = new JTextField();
+        passwordField = new JPasswordField();
 
-		registerLabel = new JLabel(messages.getString("registerLabel"));
-		registerLabel.setForeground(Color.BLACK);
+        loginButton = new JButton(messages.getString("loginButton"));
+        loginButton.setBackground(colorSecondary);
+        loginButton.setBorder(null);
 
-		emailField = new JTextField();
-		passwordField = new JPasswordField();
+        registerButton = new JButton(messages.getString("registerButton"));
+        registerButton.setBackground(colorSecondary);
+        registerButton.setBorder(null);
 
-		loginButton = new JButton(messages.getString("loginButton"));
-		loginButton.setToolTipText("Log in");
-		loginButton.setBackground(colorSecondary);
-		loginButton.setBorder(null);
+        // ACTION LISTENERS
+        loginButton.addActionListener(e -> performLogin());
 
-		registerButton = new JButton((messages.getString("registerButton")));
-		registerButton.setToolTipText("Register");
-		registerButton.setBackground(colorSecondary);
-		registerButton.setBorder(null);
+        registerButton.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                RegistrationWindow window = new RegistrationWindow(initialWindow);
+                window.setVisible(true);
+            });
+        });
 
-		// ACTION LISTENERS
-		loginButton.addActionListener(e -> performLogin());
+        // POSITIONING
+        emailLabel.setBounds(140, 210, 150, 30);
+        contentPane.add(emailLabel);
 
-		registerButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				SwingUtilities.invokeLater(() -> {
-					RegistrationWindow window = new RegistrationWindow();
-					window.setVisible(true);
-				});
-			}
-		});
+        emailField.setBounds(140, 250, 150, 30);
+        contentPane.add(emailField);
 
-		// POSITIONING
-		emailLabel.setBounds(140, 210, 150, 30);
-		contentPane.add(emailLabel);
+        passLabel.setBounds(140, 280, 150, 30);
+        contentPane.add(passLabel);
 
-		emailField.setBounds(140, 250, 150, 30);
-		contentPane.add(emailField);
+        passwordField.setBounds(140, 320, 150, 30);
+        contentPane.add(passwordField);
 
-		passLabel.setBounds(140, 280, 150, 30);
-		contentPane.add(passLabel);
+        loginButton.setBounds(140, 360, 150, 30);
+        contentPane.add(loginButton);
 
-		passwordField.setBounds(140, 320, 150, 30);
-		contentPane.add(passwordField);
+        registerLabel.setBounds(140, 390, 150, 30);
+        contentPane.add(registerLabel);
 
-		loginButton.setBounds(140, 360, 150, 30);
-		contentPane.add(loginButton);
+        registerButton.setBounds(140, 420, 150, 30);
+        contentPane.add(registerButton);
 
-		registerLabel.setBounds(140, 390, 150, 30);
-		contentPane.add(registerLabel);
+        // Load and display the image
+        JLabel imageLabel = loadImage("/images/busroute.jpg", 200, 200);
+        imageLabel.setBounds(110, -30, 200, 300);
+        contentPane.add(imageLabel);
+    }
 
-		registerButton.setBounds(140, 420, 150, 30);
-		contentPane.add(registerButton);
+    private void performLogin() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
 
-		// Load and display the image
-		JLabel imageLabel = loadImage("/images/busroute.jpg", 200, 200);
-		imageLabel.setBounds(110, -30, 200, 300);
-		contentPane.add(imageLabel);
-	}
+        if (email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-	private void performLogin() {
-		String email = emailField.getText().trim();
-		String password = new String(passwordField.getPassword());
-
-		if (email.isEmpty() || password.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-
-		boolean validLogin = UserController.getInstance().checkPassword(email, password);
-		if (validLogin) {
-			UserDTO user = UserController.getInstance().getUserByEmail(email);
-			this.dispose();
-			if (user.getRole() == UserRole.ADMIN) {
-				SwingUtilities.invokeLater(() -> {
-					AdministratorWindow window = new AdministratorWindow();
-					window.setVisible(true);
-				});
-			} else {
-				SwingUtilities.invokeLater(() -> {
-					MainWindow window = new MainWindow(user.getNationality().getLanguage());
-					window.setVisible(true);
-				});
-			}
-		} else {
-			JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed",
-					JOptionPane.ERROR_MESSAGE);
-		}
-	}
-
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			LoginWindow window = new LoginWindow();
-			window.setVisible(true);
-		});
-	}
+        boolean validLogin = UserController.getInstance().checkPassword(email, password);
+        if (validLogin) {
+            UserDTO user = UserController.getInstance().getUserByEmail(email);
+            initialWindow.dispose(); // Close initial window upon successful login
+            this.dispose();
+            if (user.getRole() == UserRole.ADMIN) {
+                SwingUtilities.invokeLater(() -> {
+                    AdministratorWindow window = new AdministratorWindow(initialWindow);
+                    window.setVisible(true);
+                });
+            } else {
+                SwingUtilities.invokeLater(() -> {
+                    MainWindow window = new MainWindow(user.getNationality().getLanguage());
+                    window.setVisible(true);
+                });
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid email or password.", "Login Failed",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
