@@ -1,20 +1,27 @@
 package com.RouteBus.client.gui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import com.RouteBus.client.dto.NationalityDTO;
 import com.toedter.calendar.JDateChooser;
 
+@SuppressWarnings("serial")
 public class MainWindow extends ParentWindow {
-    private static final long serialVersionUID = 1L;
 
     // Panels
     private JPanel contentPanel;
     private JPanel newsPanel;
     private JPanel infoPanel;
+    private JPanel ticketPanel;
+
+    // ScrollPane
+    private JScrollPane tablePane;
 
     // Menu
     private JMenuBar menuBar;
@@ -41,58 +48,68 @@ public class MainWindow extends ParentWindow {
 
     private JLabel titleLabel;
     private JLabel infotitle;
+    private JLabel ticketTitle;
     private JLabel lUserPic;
     private JLabel lName;
     private JLabel lSurname;
     private JLabel lEmail;
     private JLabel lBirthDay;
     private JLabel lNationality;
+    private JLabel lOrigin;
+    private JLabel lDestination;
 
     private JTextField tName;
     private JTextField tSurname;
     private JTextField tEmail;
 
     private JButton bEdit;
+
     private JDateChooser dBirthDate;
 
-    private JComboBox<String> comboNationality;
+    private JComboBox<NationalityDTO> comboNationality;
+    private JComboBox<String> comboOrigin;
+    private JComboBox<String> comboDestination;
+
+    private JTable tableJourneys;
 
     private ResourceBundle messages;
 
     public MainWindow(String languageToLoad) {
         super();
-
         Locale currentLocale;
         if (languageToLoad == null) {
             currentLocale = Locale.getDefault();
-            System.out.println(currentLocale);
         } else {
             currentLocale = new Locale(languageToLoad);
         }
         messages = ResourceBundle.getBundle("multilingual/messages", currentLocale);
-
         this.setTitle(messages.getString("windowTitle"));
+        this.setLayout(null);
         this.setBounds(500, 100, 850, 600);
         this.setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         contentPanel = new JPanel(null);
         contentPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        contentPanel.setBackground(colorBackground);
         this.setContentPane(contentPanel);
 
         newsPanel = new JPanel(null);
         newsPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        newsPanel.setBackground(colorBackground);
+        newsPanel.setBackground(Color.WHITE);
 
         infoPanel = new JPanel(null);
         infoPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
-        infoPanel.setBackground(colorBackground);
+        infoPanel.setBackground(Color.WHITE);
+
+        ticketPanel = new JPanel(null);
+        ticketPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        ticketPanel.setBackground(Color.WHITE);
 
         contentPanel.add(newsPanel);
 
         // Menu
         menuBar = new JMenuBar();
-        menuBar.setBackground(colorSecondary);
+        menuBar.setBackground(new Color(204, 153, 255));
 
         busRouteInfo = new JMenu(messages.getString("BusRouteInfo"));
         myInformation = new JMenu(messages.getString("myInformationMenu"));
@@ -135,21 +152,22 @@ public class MainWindow extends ParentWindow {
         this.setJMenuBar(menuBar);
 
         // News Panel
+        // Initialize text areas for news
         titleLabel = new JLabel(messages.getString("welcome"));
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        titleLabel.setForeground(colorPrimary);
-        titleLabel.setBounds(300, 50, 300, 30);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20)); // Set font and size
+        titleLabel.setForeground(Color.BLACK); // Set text color
+        titleLabel.setBounds(300, 50, 300, 30); // Adjust position and size as needed
         newsPanel.add(titleLabel);
 
         noticia1 = new JTextArea(messages.getString("new1Content"));
-        noticia1.setEditable(false);
-        noticia1.setLineWrap(true);
-        noticia1.setBackground(colorTertiary);
+        noticia1.setEditable(false); // Make it read-only
+        noticia1.setLineWrap(true); // Wrap text to next line if necessary
+        noticia1.setBackground(new Color(223, 169, 245));
 
         noticia2 = new JTextArea(messages.getString("new2Content"));
-        noticia2.setEditable(false);
-        noticia2.setLineWrap(true);
-        noticia2.setBackground(colorTertiary);
+        noticia2.setEditable(false); // Make it read-only
+        noticia2.setLineWrap(true); // Wrap text to next line if necessary
+        noticia2.setBackground(new Color(223, 169, 245));
 
         JScrollPane scrollPane1 = new JScrollPane(noticia1);
         scrollPane1.setBounds(200, 180, 600, 100);
@@ -163,12 +181,14 @@ public class MainWindow extends ParentWindow {
         newsPanel.add(scrollPane2);
 
         // Information Panel
+        // title
         infotitle = new JLabel(messages.getString("persInfoWelcome"));
         infotitle.setFont(new Font("Arial", Font.BOLD, 20));
-        infotitle.setForeground(colorPrimary);
+        infotitle.setForeground(Color.BLACK);
         infotitle.setBounds(300, 50, 250, 50);
         infoPanel.add(infotitle);
 
+        // labels
         lUserPic = new JLabel(messages.getString("userPic"));
         lUserPic.setBounds(90, 370, 150, 30);
 
@@ -190,6 +210,7 @@ public class MainWindow extends ParentWindow {
         infoPanel.add(lNationality);
         infoPanel.add(lEmail);
 
+        // fields
         tName = new JTextField();
         tName.setBounds(350, 140, 150, 30);
         tSurname = new JTextField();
@@ -198,6 +219,8 @@ public class MainWindow extends ParentWindow {
         dBirthDate.setBounds(350, 260, 150, 30);
         comboNationality = new JComboBox<>();
         comboNationality.setBounds(350, 320, 150, 30);
+        //loadNationalities();
+
         tEmail = new JTextField();
         tEmail.setBounds(350, 380, 150, 30);
 
@@ -207,13 +230,113 @@ public class MainWindow extends ParentWindow {
         infoPanel.add(comboNationality);
         infoPanel.add(tEmail);
 
-        bEdit = new JButton("Edit");
-        bEdit.setBackground(colorSecondary);
+        // button
+        bEdit = new JButton(messages.getString("editButton"));
+        bEdit.setBackground(new Color(204, 153, 255));
         bEdit.setBorder(null);
-        bEdit.setBounds(370, 440, 100, 30);
+        bEdit.setBounds(330, 440, 100, 30);
         infoPanel.add(bEdit);
 
+        // Tickets Panel
+        // title
+        ticketTitle = new JLabel(messages.getString("ticketWelcome"));
+        ticketTitle.setFont(new Font("Arial", Font.BOLD, 20));
+        ticketTitle.setForeground(Color.BLACK);
+        ticketTitle.setBounds(300, 50, 250, 50);
+        ticketPanel.add(ticketTitle);
+
+        // UI Components
+        lOrigin = new JLabel(messages.getString("origin"));
+        lOrigin.setBounds(200, 120, 100, 100);
+
+        lDestination = new JLabel(messages.getString("destination"));
+        lDestination.setBounds(500, 120, 100, 100);
+
+        comboOrigin = new JComboBox<>();
+        comboOrigin.setBounds(200, 190, 150, 30);
+
+        comboDestination = new JComboBox<>();
+        comboDestination.setBounds(500, 190, 150, 30);
+
+        ticketPanel.add(lOrigin);
+        ticketPanel.add(lDestination);
+        ticketPanel.add(comboOrigin);
+        ticketPanel.add(comboDestination);
+
+        // Table
+        // Column names
+        String[] columnNames = {messages.getString("departuretime"), messages.getString("arrivaltime"), messages.getString("price")};
+
+        // Table model
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        tableJourneys = new JTable(model);
+
+        JTableHeader header = tableJourneys.getTableHeader();
+        header.setBackground(new Color(204, 153, 255));
+        tablePane = new JScrollPane(tableJourneys);
+        tablePane.setBounds(180, 270, 500, 150);
+
+        ticketPanel.add(tablePane);
+
+        // Images
+        JLabel imageLabel = loadImage("/images/icon.jpg", 200, 300);
+        JLabel imageLabel2 = loadImage("/images/icon.jpg", 200, 300);
+        JLabel imageLabel3 = loadImage("/images/imag1.jpg", 140, 100);
+        JLabel imageLabel4 = loadImage("/images/imag2.jpg", 140, 100);
+        JLabel imageLabel5 = loadImage("/images/icon.jpg", 200, 300);
+        JLabel imageLabelU = loadImage("/images/imagUser.jpg", 200, 200);
+        JLabel imageLabelDel = loadImage("/images/deleteIcon.png", 100, 100);
+
+        imageLabel.setBounds(590, -70, 200, 300);
+        imageLabel2.setBounds(590, -70, 200, 300);
+        imageLabel3.setBounds(30, 180, 140, 100);
+        imageLabel4.setBounds(30, 340, 140, 100);
+        imageLabel5.setBounds(590, -70, 200, 300);
+        imageLabelU.setBounds(50, 160, 200, 200);
+        imageLabelDel.setBounds(450, 405, 100, 100);
+
+        newsPanel.add(imageLabel);
+        newsPanel.add(imageLabel3);
+        newsPanel.add(imageLabel4);
+
+        infoPanel.add(imageLabel2);
+        infoPanel.add(imageLabelU);
+        infoPanel.add(imageLabelDel);
+
+        ticketPanel.add(imageLabel5);
+
         // Actions
+        // Language Actions
+        spanish.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeLanguage("es");
+            }
+        });
+
+        english.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeLanguage("en_US");
+            }
+        });
+
+        basque.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeLanguage("eus");
+            }
+        });
+
+        german.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeLanguage("de");
+            }
+        });
+
+        // Menu Actions
         information.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -234,31 +357,13 @@ public class MainWindow extends ParentWindow {
             }
         });
 
-        spanish.addActionListener(new ActionListener() {
+        tickets.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                changeLanguage("es");
-            }
-        });
-
-        english.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeLanguage("es_US");
-            }
-        });
-
-        basque.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeLanguage("eus");
-            }
-        });
-
-        german.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeLanguage("de");
+                getContentPane().removeAll();
+                contentPanel.add(ticketPanel);
+                contentPanel.revalidate();
+                contentPanel.repaint();
             }
         });
 
@@ -266,36 +371,36 @@ public class MainWindow extends ParentWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new LoginWindow();
+                SwingUtilities.invokeLater(() -> {
+                    InitialWindow initialWindow = new InitialWindow();
+                    initialWindow.setVisible(true);
+                });
             }
         });
 
-        // Images
-        JLabel imageLabel1 = loadImage("/images/icon.jpg", 200, 300);
-        JLabel imageLabel2 = loadImage("/images/imag1.jpg", 140, 100);
-        imageLabel2.setBounds(30, 180, 140, 100);
-        JLabel imageLabel3 = loadImage("/images/imag2.jpg", 140, 100);
-        imageLabel3.setBounds(30, 340, 140, 100);
-        JLabel imageLabel4 = loadImage("/images/icon.jpg", 200, 300);
-        JLabel imageLabel5 = loadImage("/images/imagUser.jpg", 200, 200);
-        imageLabel5.setBounds(50, 160, 200, 200);
+        // Info window actions
+        bEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Function to edit user data
+            }
+        });
 
-        newsPanel.add(imageLabel1);
-        newsPanel.add(imageLabel2);
-        newsPanel.add(imageLabel3);
-        infoPanel.add(imageLabel4);
-        infoPanel.add(imageLabel5);
+        this.setVisible(true);
     }
 
     private void changeLanguage(String selectedLocale) {
         Locale locale = new Locale(selectedLocale);
         messages = ResourceBundle.getBundle("multilingual/messages", locale);
 
+        // Update UI components with new language messages
         this.setTitle(messages.getString("windowTitle"));
 
+        // Titles
         titleLabel.setText(messages.getString("welcome"));
         infotitle.setText(messages.getString("persInfoWelcome"));
 
+        // Menu
         busRouteInfo.setText(messages.getString("BusRouteInfo"));
         myInformation.setText(messages.getString("myInformationMenu"));
         myRoutes.setText(messages.getString("myRoutesMenu"));
@@ -308,6 +413,7 @@ public class MainWindow extends ParentWindow {
         tickets.setText(messages.getString("MyTickets"));
         out.setText(messages.getString("Logout"));
 
+        // Update labels, buttons, etc. with new language messages
         lUserPic.setText(messages.getString("userPic"));
         lName.setText(messages.getString("nameLabel"));
         lSurname.setText(messages.getString("surnameLabel"));
@@ -316,10 +422,18 @@ public class MainWindow extends ParentWindow {
         lEmail.setText(messages.getString("email"));
         bEdit.setText(messages.getString("editButton"));
 
+        lOrigin.setText(messages.getString("origin"));
+        lDestination.setText(messages.getString("destination"));
+
+        // News
         noticia1.setText(messages.getString("new1Content"));
         noticia2.setText(messages.getString("new2Content"));
 
         contentPanel.revalidate();
         contentPanel.repaint();
+    }
+
+    public static void main(String[] args) {
+        new MainWindow("en_US");
     }
 }
