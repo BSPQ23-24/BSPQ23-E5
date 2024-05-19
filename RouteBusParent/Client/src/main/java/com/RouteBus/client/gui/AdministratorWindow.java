@@ -146,13 +146,4 @@ public class AdministratorWindow extends ParentWindow {
         this.dispose();
         SwingUtilities.invokeLater(() -> initialWindow.setVisible(true));
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            InitialWindow initialWindow = new InitialWindow();
-            AdministratorWindow window = new AdministratorWindow(initialWindow);
-            initialWindow.setVisible(true);
-            window.setVisible(true);
-        });
-    }
 }

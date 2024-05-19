@@ -123,11 +123,4 @@ public class InitialWindow extends ParentWindow {
         });
         imageTimer.start();
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            InitialWindow window = new InitialWindow();
-            window.setVisible(true);
-        });
-    }
 }
