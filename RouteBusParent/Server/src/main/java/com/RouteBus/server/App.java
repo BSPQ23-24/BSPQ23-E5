@@ -57,7 +57,7 @@ public class App {
 					new User("Diego", "Merino", "admin@routebus.es", "123", nationalities[1], cal.getTime(),
 							UserRole.ADMIN, new HashSet<>()),
 					new User("Diego", "Merino", "diego.merino@opendeusto.es", "123", nationalities[1], cal.getTime()),
-					new User("Xabi", "Alonso", "xabi.alonso@gmail.com", "123", nationalities[1], cal.getTime()),
+					new User("Xabi", "Alonso", "xabi.alonso@gmail.com", "123", nationalities[4], cal.getTime()),
 					new User("Hector", "Fernandez", "hector.f.c@opendeusto.es", "123", nationalities[1], cal.getTime()),
 					new User("Robert", "Lewandowski", "rlewandowski@gmail.com", "123", nationalities[17],
 							cal.getTime()),

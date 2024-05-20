@@ -1,6 +1,7 @@
 package com.RouteBus.server.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,6 +27,9 @@ public class TicketService {
 
 	public Set<Ticket> getAllTickets() {
 		return new HashSet<Ticket>(ticketRepository.findAll());
+	}
+	public List<Ticket> getAllTicketsByUser(String email) {
+		return ticketRepository.findByUserEmail(email);
 	}
 
 	public TicketServiceResult createTicket(Ticket ticket) {
