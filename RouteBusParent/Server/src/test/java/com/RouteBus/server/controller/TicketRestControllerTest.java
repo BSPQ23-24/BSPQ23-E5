@@ -93,7 +93,7 @@ public class TicketRestControllerTest {
     @Test
     public void testCreateTicket_InternalServerError() {
         Ticket ticket = new Ticket();
-        when(ticketServiceMock.createTicket(ticket)).thenReturn(null);
+        when(ticketServiceMock.createTicket(ticket)).thenReturn(TicketService.TicketServiceResult.OTHER);
 
         ResponseEntity<String> response = ticketController.createTicket(ticket);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

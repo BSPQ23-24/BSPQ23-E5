@@ -25,7 +25,9 @@ import com.RouteBus.server.service.ScheduleService.ScheduleServiceResult;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ScheduleServiceTest {
-
+	@Mock 
+	private Route mockRoute;
+	
     @Mock
     private ScheduleRepository scheduleRepository;
 
@@ -64,7 +66,7 @@ public class ScheduleServiceTest {
 
     @Test
     public void testCreateSchedule_ScheduleDoesNotExist() {
-        Schedule newSchedule = new Schedule(new Route(), new Date(), new Date());
+        Schedule newSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(), new Date());
 
         when(scheduleRepository.findById(newSchedule.getId())).thenReturn(Optional.empty());
         when(scheduleRepository.save(newSchedule)).thenReturn(newSchedule);
@@ -77,7 +79,7 @@ public class ScheduleServiceTest {
 
     @Test
     public void testCreateSchedule_ScheduleAlreadyExists() {
-        Schedule existingSchedule = new Schedule(new Route(), new Date(), new Date());
+        Schedule existingSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(), new Date());
 
         when(scheduleRepository.findById(existingSchedule.getId())).thenReturn(Optional.of(existingSchedule));
 
@@ -89,7 +91,7 @@ public class ScheduleServiceTest {
 
     @Test
     public void testCreateSchedule_SaveError() {
-        Schedule newSchedule = new Schedule(new Route(), new Date(), new Date());
+        Schedule newSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(), new Date());
 
         when(scheduleRepository.findById(newSchedule.getId())).thenReturn(Optional.empty());
         when(scheduleRepository.save(newSchedule)).thenReturn(null);
@@ -103,7 +105,7 @@ public class ScheduleServiceTest {
     @Test
     public void testUpdateSchedule_ScheduleFound() {
         Schedule existingSchedule = new Schedule("id", null, null, null, null);
-        Schedule updatedSchedule = new Schedule("id", new Route("", "", "", 0), new Date(1L), new Date(2L), new HashSet<Ticket>());
+        Schedule updatedSchedule = new Schedule("id", new Route("route1", "start", "end", 100), new Date(1L), new Date(2L), new HashSet<Ticket>());
 
         when(scheduleRepository.findById(existingSchedule.getId())).thenReturn(Optional.of(existingSchedule));
         ScheduleServiceResult result = scheduleService.updateSchedule(updatedSchedule);
@@ -116,8 +118,8 @@ public class ScheduleServiceTest {
     
     @Test
     public void testUpdateSchedule_NoChange() {
-        Schedule existingSchedule = new Schedule(new Route(), new Date(1L), new Date(2L));
-        Schedule updatedSchedule = new Schedule(new Route(), new Date(1L), new Date(2L));
+        Schedule existingSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(1L), new Date(2L));
+        Schedule updatedSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(1L), new Date(2L));
 
         when(scheduleRepository.findById(existingSchedule.getId())).thenReturn(Optional.of(existingSchedule));
         ScheduleServiceResult result = scheduleService.updateSchedule(updatedSchedule);
@@ -129,7 +131,7 @@ public class ScheduleServiceTest {
 
     @Test
     public void testUpdateSchedule_ScheduleNotFound() {
-        Schedule updatedSchedule = new Schedule(new Route(), new Date(1L), new Date(2L));
+        Schedule updatedSchedule = new Schedule(new Route("route1", "start", "end", 100), new Date(1L), new Date(2L));
 
         when(scheduleRepository.findById(updatedSchedule.getId())).thenReturn(Optional.empty());
         ScheduleServiceResult result = scheduleService.updateSchedule(updatedSchedule);

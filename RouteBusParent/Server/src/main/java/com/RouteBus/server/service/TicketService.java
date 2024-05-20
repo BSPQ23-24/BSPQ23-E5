@@ -18,7 +18,7 @@ public class TicketService {
 	}
 
 	public enum TicketServiceResult {
-		SUCCESS, NOT_FOUND, ERROR
+		SUCCESS, NOT_FOUND, ERROR, OTHER
 	}
 
 	public Ticket getTicketById(String id) {

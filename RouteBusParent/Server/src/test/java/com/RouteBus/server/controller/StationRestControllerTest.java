@@ -101,7 +101,7 @@ public class StationRestControllerTest {
 
     @Test
     public void testCreateStation_InternalServerError() {
-        when(stationServiceMock.createStation(mockStation)).thenReturn(null);
+        when(stationServiceMock.createStation(mockStation)).thenReturn(StationService.StationServiceResult.OTHER);
 
         ResponseEntity<String> response = stationController.createStation(mockStation);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());

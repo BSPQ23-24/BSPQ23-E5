@@ -101,7 +101,9 @@ public class RouteServiceTest {
         updatedRoute.setStartPoint("newStartPoint");
         updatedRoute.setEndPoint("newEndPoint");
         updatedRoute.setTotalDistance(200.0);
-
+        updatedRoute.setStations(new HashSet<>());
+        updatedRoute.setBuses(new HashSet<>());
+        
         when(routeRepository.findById("testRoute")).thenReturn(Optional.of(existingRoute));
         when(routeRepository.save(existingRoute)).thenReturn(existingRoute);
 

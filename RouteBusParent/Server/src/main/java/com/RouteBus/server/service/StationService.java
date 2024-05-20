@@ -17,7 +17,7 @@ public class StationService {
 	}
 
 	public enum StationServiceResult {
-		SUCCESS, NOT_FOUND, ERROR
+		SUCCESS, NOT_FOUND, ERROR, OTHER
 	}
 
 	public Set<Station> getAllStations() {

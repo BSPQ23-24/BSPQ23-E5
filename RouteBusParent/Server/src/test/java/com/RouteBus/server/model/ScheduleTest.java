@@ -14,6 +14,7 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ScheduleTest {
@@ -39,8 +40,10 @@ public class ScheduleTest {
 
         departureTime.setTime(1620000000L);
         arrivalTime.setTime(1620003600L);
-        date.setTime(1620000000L); 
-
+        date.setTime(1620000000L);
+        
+        when(mockRoute.getName()).thenReturn("MockRouteName");
+        
         schedule = new Schedule(mockRoute, departureTime, arrivalTime);
         schedule.setTickets(mockTickets);
     }
