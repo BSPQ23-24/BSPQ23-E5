@@ -118,7 +118,7 @@ public class LoginWindow extends ParentWindow {
                 });
             } else {
                 SwingUtilities.invokeLater(() -> {
-                    MainWindow window = new MainWindow(user.getNationality().getLanguage());
+                    MainWindow window = new MainWindow(user.getNationality().getLanguage(),user);
                     window.setVisible(true);
                 });
             }

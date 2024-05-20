@@ -35,6 +35,16 @@ public class TicketController {
             return null;
         }
     }
+    
+    public List<TicketDTO> getTicketByUser(String email) {
+        try {
+        	
+            return ticketGateway.getAllTicketsByUser(email);
+        } catch (Exception e) {
+            System.err.println("Failed to fetch ticket: " + e.getMessage());
+            return null;
+        }
+    }
 
     public boolean createTicket(TicketDTO ticket) {
         try {

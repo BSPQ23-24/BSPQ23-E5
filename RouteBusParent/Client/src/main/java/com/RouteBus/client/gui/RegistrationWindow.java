@@ -166,7 +166,7 @@ public class RegistrationWindow extends ParentWindow {
             initialWindow.dispose(); // Close initial window upon successful registration
             this.dispose();
             SwingUtilities.invokeLater(() -> {
-                MainWindow window = new MainWindow(newUser.getNationality().getLanguage());
+                MainWindow window = new MainWindow(newUser.getNationality().getLanguage(),newUser);
                 window.setVisible(true);
             });
         } else {

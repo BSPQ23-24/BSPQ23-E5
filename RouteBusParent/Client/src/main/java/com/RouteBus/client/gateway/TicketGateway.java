@@ -26,6 +26,11 @@ public class TicketGateway extends BaseGateway {
         return Arrays.asList(response.getBody());
     }
 
+    public List<TicketDTO> getAllTicketsByUser(String name) {
+        ResponseEntity<TicketDTO[]> response = sendRequest("/Ticket/user/" + name, HttpMethod.GET, null, TicketDTO[].class);
+        return Arrays.asList(response.getBody());
+    }
+
     public TicketDTO getTicketById(String id) {
         ResponseEntity<TicketDTO> response = sendRequest("/Ticket/" + id, HttpMethod.GET, null, TicketDTO.class);
         return response.getBody();

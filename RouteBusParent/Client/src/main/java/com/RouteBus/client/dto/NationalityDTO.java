@@ -1,5 +1,7 @@
 package com.RouteBus.client.dto;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -29,5 +31,12 @@ public class NationalityDTO {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NationalityDTO that = (NationalityDTO) o;
+        return Objects.equals(name, that.name); // Comparar por ID u otro campo único
     }
 }

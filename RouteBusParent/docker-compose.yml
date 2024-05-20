@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "8081:8081"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
