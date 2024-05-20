@@ -64,6 +64,7 @@ public class AdministratorWindow extends ParentWindow {
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setIndeterminate(true);
+        progressBar.setForeground(colorSecondary);
         loadingPanel.add(progressBar, BorderLayout.CENTER);
         add(loadingPanel, BorderLayout.CENTER);
 

@@ -38,9 +38,6 @@ public class MainWindow extends ParentWindow {
     private JMenu languageMenu;
     private JMenuItem logoutMenuItem;
 
-    private JTextArea noticia1;
-    private JTextArea noticia2;
-
     private JLabel titleLabel;
     private JLabel infotitle;
     private JLabel ticketTitle;
@@ -148,8 +145,6 @@ public class MainWindow extends ParentWindow {
 
         // Show the initial panel
         showPanel("newsPanel");
-
-        this.setVisible(true);
     }
 
     private void loadLanguages() {
@@ -392,9 +387,5 @@ public class MainWindow extends ParentWindow {
 
         mainPanel.revalidate();
         mainPanel.repaint();
-    }
-
-    public static void main(String[] args) {
-        new MainWindow("en_US");
     }
 }

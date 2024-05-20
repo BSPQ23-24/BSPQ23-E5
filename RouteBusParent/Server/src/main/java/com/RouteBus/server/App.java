@@ -30,7 +30,7 @@ public class App {
 			new Nationality("Slovak", "sk") };
 
 	private static final int numberOfSchedulesPerRoute = 5;
-	private static final int scheduleIntervalDays = 2; // interval of 2 days between schedules
+	private static final int scheduleIntervalDays = 2;
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
