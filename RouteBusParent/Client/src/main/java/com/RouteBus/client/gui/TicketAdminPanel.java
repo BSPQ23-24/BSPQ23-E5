@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class TicketsAdminPanel extends AdminPanel<TicketDTO> {
+public class TicketAdminPanel extends AdminPanel<TicketDTO> {
 
     private JTextField idField;
     private JTextField seatNumberField;
@@ -24,7 +24,7 @@ public class TicketsAdminPanel extends AdminPanel<TicketDTO> {
     private JTextField departureTimeField;
     private JTextField arrivalTimeField;
 
-    public TicketsAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
+    public TicketAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
         super(colorPrimary, colorSecondary, colorTertiary, colorBackground);
     }
 

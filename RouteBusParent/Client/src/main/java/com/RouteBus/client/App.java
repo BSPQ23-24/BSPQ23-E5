@@ -2,7 +2,6 @@ package com.RouteBus.client;
 
 import javax.swing.SwingUtilities;
 
-import com.RouteBus.client.controller.TicketController;
 import com.RouteBus.client.gui.InitialWindow;
 
 public class App {
@@ -10,7 +9,6 @@ public class App {
         SwingUtilities.invokeLater(() -> {
             InitialWindow initialWindow = new InitialWindow();
             initialWindow.setVisible(true);
-            System.out.println(TicketController.getInstance().getTicketByUser("diego.merino@opendeusto.es"));
         });
     }
 }

@@ -24,14 +24,14 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class HomePanel extends JPanel {
+public class HomeAdminPanel extends JPanel {
 
     private Color colorPrimary;
     private Color colorSecondary;
     private Color colorTertiary;
     private Color colorBackground;
 
-    public HomePanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
+    public HomeAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
         this.colorPrimary = colorPrimary;
         this.colorSecondary = colorSecondary;
         this.colorTertiary = colorTertiary;

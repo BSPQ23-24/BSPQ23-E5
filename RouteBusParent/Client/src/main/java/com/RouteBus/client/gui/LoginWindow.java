@@ -113,7 +113,7 @@ public class LoginWindow extends ParentWindow {
             this.dispose();
             if (user.getRole() == UserRole.ADMIN) {
                 SwingUtilities.invokeLater(() -> {
-                    AdministratorWindow window = new AdministratorWindow(initialWindow);
+                    AdministratorWindow window = new AdministratorWindow(user.getNationality().getLanguage(), initialWindow);
                     window.setVisible(true);
                 });
             } else {
