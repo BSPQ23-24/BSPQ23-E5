@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
@@ -21,8 +22,8 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
     private JTextField endPointField;
     private JTextField totalDistanceField;
 
-    public RouteAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
-        super(colorPrimary, colorSecondary, colorTertiary, colorBackground);
+    public RouteAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
+        super(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel routeIdLabel = new JLabel("Route ID:");
+        JLabel routeIdLabel = new JLabel(messages.getString("routeIdLabel"));
         routeIdLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -44,7 +45,7 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
         gbc.gridx = 1;
         editingPanel.add(routeIdField, gbc);
 
-        JLabel startPointLabel = new JLabel("Start Point:");
+        JLabel startPointLabel = new JLabel(messages.getString("startPointLabel"));
         startPointLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -54,7 +55,7 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
         gbc.gridx = 1;
         editingPanel.add(startPointField, gbc);
 
-        JLabel endPointLabel = new JLabel("End Point:");
+        JLabel endPointLabel = new JLabel(messages.getString("endPointLabel"));
         endPointLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -64,7 +65,7 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
         gbc.gridx = 1;
         editingPanel.add(endPointField, gbc);
 
-        JLabel totalDistanceLabel = new JLabel("Total Distance:");
+        JLabel totalDistanceLabel = new JLabel(messages.getString("totalDistanceLabel"));
         totalDistanceLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -79,11 +80,11 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
         gbc.gridx = 1;
         gbc.gridy = 4;
 
-        JButton editButton = new JButton("Edit");
+        JButton editButton = new JButton(messages.getString("editButtonRoute"));
         editButton.setBackground(colorSecondary);
         buttonPanel.add(editButton);
 
-        JButton removeButton = new JButton("Remove");
+        JButton removeButton = new JButton(messages.getString("removeButtonRoute"));
         removeButton.setBackground(colorSecondary);
         buttonPanel.add(removeButton);
 
@@ -97,7 +98,7 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
 
     @Override
     protected JTable createTable() {
-        String[] columns = {"Route ID", "Start Point", "End Point", "Total Distance", "Stations", "Buses"};
+        String[] columns = messages.getString("tableColumnsRoute").split(",");
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -176,9 +177,9 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
             boolean success = RouteController.getInstance().updateRoute(selectedEntity);
             if (success) {
                 loadTableData();
-                JOptionPane.showMessageDialog(this, "Route updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("routeUpdatedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to update route", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("routeUpdatedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -191,9 +192,9 @@ public class RouteAdminPanel extends AdminPanel<RouteDTO> {
                 selectedEntity = null;
                 loadTableData();
                 clearFields();
-                JOptionPane.showMessageDialog(this, "Route deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("routeDeletedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to delete route", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("routeDeletedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }

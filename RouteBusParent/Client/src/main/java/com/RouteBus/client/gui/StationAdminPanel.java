@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
@@ -19,8 +20,8 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
     private JTextField nameField;
     private JTextField locationField;
 
-    public StationAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
-        super(colorPrimary, colorSecondary, colorTertiary, colorBackground);
+    public StationAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
+        super(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel nameLabel = new JLabel("Station Name:");
+        JLabel nameLabel = new JLabel(messages.getString("nameLabelStation"));
         nameLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -42,7 +43,7 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
         gbc.gridx = 1;
         editingPanel.add(nameField, gbc);
 
-        JLabel locationLabel = new JLabel("Location:");
+        JLabel locationLabel = new JLabel(messages.getString("locationLabel"));
         locationLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -57,7 +58,7 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
         gbc.gridx = 1;
         gbc.gridy = 2;
 
-        JButton editButton = new JButton("Edit");
+        JButton editButton = new JButton(messages.getString("editButtonStation"));
         editButton.setBackground(colorSecondary);
         buttonPanel.add(editButton);
 
@@ -70,7 +71,7 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
 
     @Override
     protected JTable createTable() {
-        String[] columns = {"Station Name", "Location"};
+        String[] columns = messages.getString("tableColumnsStation").split(",");
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -138,9 +139,9 @@ public class StationAdminPanel extends AdminPanel<StationDTO> {
             boolean success = StationController.getInstance().updateStation(selectedEntity);
             if (success) {
                 loadTableData();
-                JOptionPane.showMessageDialog(this, "Station updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("stationUpdatedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to update station", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("stationUpdatedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }

@@ -22,6 +22,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
 public class HomeAdminPanel extends JPanel {
@@ -30,12 +31,14 @@ public class HomeAdminPanel extends JPanel {
     private Color colorSecondary;
     private Color colorTertiary;
     private Color colorBackground;
+    private ResourceBundle messages;
 
-    public HomeAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
+    public HomeAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
         this.colorPrimary = colorPrimary;
         this.colorSecondary = colorSecondary;
         this.colorTertiary = colorTertiary;
         this.colorBackground = colorBackground;
+        this.messages = messages;
         setLayout(new GridBagLayout());
         setBackground(colorBackground);
         initializeComponents();
@@ -73,7 +76,7 @@ public class HomeAdminPanel extends JPanel {
         JPanel topRoutesPanel = new JPanel(new BorderLayout());
         topRoutesPanel.setBackground(colorBackground);
 
-        JLabel topRoutesLabel = new JLabel("Top Routes", JLabel.CENTER);
+        JLabel topRoutesLabel = new JLabel(messages.getString("topRoutesLabel"), JLabel.CENTER);
         topRoutesLabel.setForeground(colorPrimary);
         topRoutesLabel.setFont(pieChart.getTitle().getFont());
         topRoutesPanel.add(topRoutesLabel, BorderLayout.NORTH);
@@ -90,12 +93,12 @@ public class HomeAdminPanel extends JPanel {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         Map<String, Long> weeklyTravellers = ScheduleController.getInstance().getWeeklyTravellersData();
 
-        weeklyTravellers.forEach((week, travellers) -> dataset.addValue(travellers, "Travellers", week));
+        weeklyTravellers.forEach((week, travellers) -> dataset.addValue(travellers, messages.getString("lineChartValueLabel"), week));
 
         JFreeChart lineChart = ChartFactory.createLineChart(
-                "Nº travellers per week",
-                "Week",
-                "Travellers",
+                messages.getString("lineChartTitle"),
+                messages.getString("lineChartCategoryLabel"),
+                messages.getString("lineChartValueLabel"),
                 dataset,
                 PlotOrientation.VERTICAL,
                 false, true, false);
@@ -125,7 +128,7 @@ public class HomeAdminPanel extends JPanel {
         }
 
         JFreeChart pieChart = ChartFactory.createPieChart(
-                "Routes distribution",
+                messages.getString("pieChartTitle"),
                 dataset,
                 true, true, false);
 
@@ -149,7 +152,7 @@ public class HomeAdminPanel extends JPanel {
     }
 
     private JTable createTopRoutesTable() {
-        String[] columns = {"Popularity", "Route", "Travellers"};
+        String[] columns = messages.getString("tableColumnsHome").split(",");
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -180,7 +183,7 @@ public class HomeAdminPanel extends JPanel {
             imageLabel.setIcon(resizeIcon(icon, width, height));
             return imageLabel;
         } else {
-            JLabel imageLabel = new JLabel("Image Not Found");
+            JLabel imageLabel = new JLabel(messages.getString("imageNotFound"));
             imageLabel.setHorizontalAlignment(JLabel.CENTER);
             return imageLabel;
         }

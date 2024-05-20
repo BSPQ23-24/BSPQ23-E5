@@ -124,9 +124,4 @@ public class MainWindow extends MultilingualLoadingWindow {
         logoutMenuItem.setText(messages.getString("Logout"));
     }
 
-    public static void main(String[] args) {
-        UserDTO user = UserController.getInstance().getUserByEmail("xabi.alonso@gmail.com");
-        MainWindow v = new MainWindow("es", user);
-        v.setVisible(true);
-    }
 }

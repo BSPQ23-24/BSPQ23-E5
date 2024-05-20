@@ -8,6 +8,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
 public abstract class AdminPanel<T> extends JPanel {
@@ -20,12 +21,13 @@ public abstract class AdminPanel<T> extends JPanel {
     protected DefaultTableModel tableModel;
     protected T selectedEntity;
     private JTextField searchField;
-
-    public AdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
+    protected ResourceBundle messages;
+    public AdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground,ResourceBundle messages) {
         this.colorPrimary = colorPrimary;
         this.colorSecondary = colorSecondary;
         this.colorTertiary = colorTertiary;
         this.colorBackground = colorBackground;
+        this.messages = messages;
         setLayout(new BorderLayout());
         setBackground(colorBackground);
         initializeComponents();

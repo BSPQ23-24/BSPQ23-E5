@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
 public class BusAdminPanel extends AdminPanel<BusDTO> {
@@ -19,8 +20,8 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
     private JTextField modelField;
     private JTextField capacityField;
 
-    public BusAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
-        super(colorPrimary, colorSecondary, colorTertiary, colorBackground);
+    public BusAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
+        super(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel licensePlateLabel = new JLabel("License Plate:");
+        JLabel licensePlateLabel = new JLabel(messages.getString("licensePlateLabel"));
         licensePlateLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -42,7 +43,7 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
         gbc.gridx = 1;
         editingPanel.add(licensePlateField, gbc);
 
-        JLabel modelLabel = new JLabel("Model:");
+        JLabel modelLabel = new JLabel(messages.getString("modelLabel"));
         modelLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -52,7 +53,7 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
         gbc.gridx = 1;
         editingPanel.add(modelField, gbc);
 
-        JLabel capacityLabel = new JLabel("Capacity:");
+        JLabel capacityLabel = new JLabel(messages.getString("capacityLabel"));
         capacityLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -67,7 +68,7 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
         gbc.gridx = 1;
         gbc.gridy = 3;
 
-        JButton editButton = new JButton("Edit");
+        JButton editButton = new JButton(messages.getString("editButton"));
         editButton.setBackground(colorSecondary);
         buttonPanel.add(editButton);
 
@@ -80,7 +81,7 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
 
     @Override
     protected JTable createTable() {
-        String[] columns = {"License Plate", "Model", "Capacity"};
+        String[] columns = messages.getString("tableColumnsBus").split(",");
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -150,14 +151,15 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
             boolean success = BusController.getInstance().updateBus(selectedEntity);
             if (success) {
                 loadTableData();
-                JOptionPane.showMessageDialog(this, "Bus updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("busUpdatedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to update bus", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("busUpdatedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
     @Override
     protected void deleteEntity() {
+        // Implement deletion if necessary
     }
 }

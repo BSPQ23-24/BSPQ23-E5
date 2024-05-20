@@ -12,6 +12,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
 public class TicketAdminPanel extends AdminPanel<TicketDTO> {
@@ -24,8 +25,8 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
     private JTextField departureTimeField;
     private JTextField arrivalTimeField;
 
-    public TicketAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {
-        super(colorPrimary, colorSecondary, colorTertiary, colorBackground);
+    public TicketAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
+        super(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel idLabel = new JLabel("Ticket ID:");
+        JLabel idLabel = new JLabel(messages.getString("idLabel"));
         idLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -47,7 +48,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(idField, gbc);
 
-        JLabel seatNumberLabel = new JLabel("Seat Number:");
+        JLabel seatNumberLabel = new JLabel(messages.getString("seatNumberLabel"));
         seatNumberLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -57,7 +58,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(seatNumberField, gbc);
 
-        JLabel priceLabel = new JLabel("Price:");
+        JLabel priceLabel = new JLabel(messages.getString("priceLabel"));
         priceLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -67,7 +68,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(priceField, gbc);
 
-        JLabel statusLabel = new JLabel("Status:");
+        JLabel statusLabel = new JLabel(messages.getString("statusLabel"));
         statusLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -77,7 +78,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(statusField, gbc);
 
-        JLabel userLabel = new JLabel("User:");
+        JLabel userLabel = new JLabel(messages.getString("userLabel"));
         userLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -87,7 +88,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(userField, gbc);
 
-        JLabel departureTimeLabel = new JLabel("Departure Time:");
+        JLabel departureTimeLabel = new JLabel(messages.getString("departureTimeLabel"));
         departureTimeLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 5;
@@ -97,7 +98,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         editingPanel.add(departureTimeField, gbc);
 
-        JLabel arrivalTimeLabel = new JLabel("Arrival Time:");
+        JLabel arrivalTimeLabel = new JLabel(messages.getString("arrivalTimeLabel"));
         arrivalTimeLabel.setForeground(colorPrimary);
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -112,11 +113,11 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
         gbc.gridx = 1;
         gbc.gridy = 7;
 
-        JButton editButton = new JButton("Edit");
+        JButton editButton = new JButton(messages.getString("editButtonTicket"));
         editButton.setBackground(colorSecondary);
         buttonPanel.add(editButton);
 
-        JButton removeButton = new JButton("Remove");
+        JButton removeButton = new JButton(messages.getString("removeButtonTicket"));
         removeButton.setBackground(colorSecondary);
         buttonPanel.add(removeButton);
 
@@ -130,7 +131,7 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
 
     @Override
     protected JTable createTable() {
-        String[] columns = {"Ticket ID", "Seat Number", "Price", "Status", "User", "Departure Time", "Arrival Time"};
+        String[] columns = messages.getString("tableColumnsTicket").split(",");
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -219,9 +220,9 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
             boolean success = TicketController.getInstance().updateTicket(selectedEntity);
             if (success) {
                 loadTableData();
-                JOptionPane.showMessageDialog(this, "Ticket updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("ticketUpdatedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to update ticket", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("ticketUpdatedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -234,9 +235,9 @@ public class TicketAdminPanel extends AdminPanel<TicketDTO> {
                 selectedEntity = null;
                 loadTableData();
                 clearFields();
-                JOptionPane.showMessageDialog(this, "Ticket deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("ticketDeletedSuccess"), messages.getString("successTitle"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Failed to delete ticket", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, messages.getString("ticketDeletedError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             }
         }
     }

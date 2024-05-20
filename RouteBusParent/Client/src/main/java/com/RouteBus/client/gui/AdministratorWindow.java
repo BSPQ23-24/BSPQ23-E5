@@ -15,7 +15,7 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
         this.initialWindow = initialWindow;
         setTitle(messages.getString("adminWindowTitle"));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        System.out.println(this.messages);
         initializeMenuItems();
     }
 
@@ -48,11 +48,11 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
 
     @Override
     protected void loadPanels() {
-        mainPanel.add(new HomeAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "Home");
-        mainPanel.add(new RouteAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "RouteAdmin");
-        mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "BusAdmin");
-        mainPanel.add(new TicketAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "TicketsAdmin");
-        mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground), "StationAdmin");
+        mainPanel.add(new HomeAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "Home");
+        mainPanel.add(new RouteAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "RouteAdmin");
+        mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "BusAdmin");
+        mainPanel.add(new TicketAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "TicketsAdmin");
+        mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "StationAdmin");
     }
 
     private void showPanel(String panelName) {
@@ -108,11 +108,5 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
         ticketsAdminMenuItem.setText(messages.getString("ticketsAdmin"));
         stationAdminMenuItem.setText(messages.getString("stationAdmin"));
         logoutMenuItem.setText(messages.getString("logout"));
-    }
-
-    public static void main(String[] args) {
-        InitialWindow initialWindow = new InitialWindow();
-        AdministratorWindow adminWindow = new AdministratorWindow("es", initialWindow);
-        adminWindow.setVisible(true);
     }
 }
