@@ -44,14 +44,11 @@ public abstract class MultilingualLoadingWindow extends ParentWindow {
         loadingPanel.add(progressBar, BorderLayout.CENTER);
         add(loadingPanel, BorderLayout.CENTER);
 
-        // Main panel
         mainPanel = new JPanel(new CardLayout());
         mainPanel.setBackground(colorBackground);
 
-        // Load panels asynchronously
         loadPanelsAsync(loadingPanel, progressBar);
 
-        // Initialize menu bar
         initializeMenuBar();
     }
 

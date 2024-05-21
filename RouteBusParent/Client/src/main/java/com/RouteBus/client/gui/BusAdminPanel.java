@@ -159,7 +159,5 @@ public class BusAdminPanel extends AdminPanel<BusDTO> {
     }
 
     @Override
-    protected void deleteEntity() {
-        // Implement deletion if necessary
-    }
+    protected void deleteEntity() {}
 }

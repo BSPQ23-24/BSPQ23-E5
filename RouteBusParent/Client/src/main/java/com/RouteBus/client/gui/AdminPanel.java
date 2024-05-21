@@ -22,7 +22,8 @@ public abstract class AdminPanel<T> extends JPanel {
     protected T selectedEntity;
     private JTextField searchField;
     protected ResourceBundle messages;
-    public AdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground,ResourceBundle messages) {
+
+    public AdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {
         this.colorPrimary = colorPrimary;
         this.colorSecondary = colorSecondary;
         this.colorTertiary = colorTertiary;
@@ -103,7 +104,7 @@ public abstract class AdminPanel<T> extends JPanel {
         gbcSearch.gridy = 0;
         gbcSearch.anchor = GridBagConstraints.CENTER;
 
-        JLabel searchLabel = new JLabel("Search: ");
+        JLabel searchLabel = new JLabel(messages.getString("searchLabel"));
         searchLabel.setForeground(colorSecondary);
         searchPanel.add(searchLabel, gbcSearch);
 

@@ -15,7 +15,6 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
         this.initialWindow = initialWindow;
         setTitle(messages.getString("adminWindowTitle"));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        System.out.println(this.messages);
         initializeMenuItems();
     }
 
@@ -53,6 +52,8 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
         mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "BusAdmin");
         mainPanel.add(new TicketAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "TicketsAdmin");
         mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "StationAdmin");
+        
+        showPanel("Home");
     }
 
     private void showPanel(String panelName) {
@@ -72,25 +73,7 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
     }
 
     private void applyPanelBackgroundColor(String activePanel) {
-        switch (activePanel) {
-            case "Home":
-                mainPanel.setBackground(colorPrimary);
-                break;
-            case "RouteAdmin":
-                mainPanel.setBackground(colorPrimary);
-                break;
-            case "BusAdmin":
-                mainPanel.setBackground(colorPrimary);
-                break;
-            case "TicketsAdmin":
-                mainPanel.setBackground(colorPrimary);
-                break;
-            case "StationAdmin":
-                mainPanel.setBackground(colorPrimary);
-                break;
-            default:
-                break;
-        }
+        mainPanel.setBackground(colorPrimary);
     }
 
     private void logoutActionPerformed(ActionEvent evt) {

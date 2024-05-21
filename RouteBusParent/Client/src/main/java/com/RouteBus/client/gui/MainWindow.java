@@ -1,6 +1,5 @@
 package com.RouteBus.client.gui;
 
-import com.RouteBus.client.controller.UserController;
 import com.RouteBus.client.dto.UserDTO;
 
 import javax.swing.*;
@@ -123,5 +122,4 @@ public class MainWindow extends MultilingualLoadingWindow {
         ticketsMenuItem.setText(messages.getString("myBusTicketsMenu"));
         logoutMenuItem.setText(messages.getString("Logout"));
     }
-
 }
