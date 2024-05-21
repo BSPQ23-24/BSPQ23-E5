@@ -14,7 +14,7 @@ public class MainWindow extends MultilingualLoadingWindow {
     private MyInfoPanel infoPanel;
     private MyTicketsPanel ticketPanel;
     private MyRoutesPanel routesPanel;
-    private TicketPurchasePanel ticketPurchasePanel;
+    private PurchaseTicketsPanel purchaseTicketsPanel;
 
     private JMenuItem busInfoMenuItem;
     private JMenuItem informationMenuItem;
@@ -78,13 +78,13 @@ public class MainWindow extends MultilingualLoadingWindow {
         infoPanel = new MyInfoPanel(messages, user, colorBackground, colorPrimary);
         ticketPanel = new MyTicketsPanel(messages, user, colorBackground, colorPrimary);
         routesPanel = new MyRoutesPanel(messages, user, colorBackground, colorPrimary, colorSecondary, colorTertiary);
-        ticketPurchasePanel = new TicketPurchasePanel(messages, user, colorBackground, colorPrimary, colorSecondary);
+        purchaseTicketsPanel = new PurchaseTicketsPanel(messages, user, colorBackground, colorPrimary, colorSecondary);
 
         leftPanel.add(newsPanel, "newsPanel");
         leftPanel.add(infoPanel, "infoPanel");
         leftPanel.add(routesPanel, "routesPanel");
         leftPanel.add(ticketPanel, "ticketPanel");
-        leftPanel.add(ticketPurchasePanel, "ticketPurchasePanel");
+        leftPanel.add(purchaseTicketsPanel, "ticketPurchasePanel");
 
         JLabel imageLabel = loadImage("/images/busroute.jpg", 600, 800);
         rightPanel.add(imageLabel, new GridBagConstraints());

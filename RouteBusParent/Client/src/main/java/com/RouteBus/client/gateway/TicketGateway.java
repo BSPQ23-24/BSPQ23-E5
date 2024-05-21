@@ -1,9 +1,6 @@
 package com.RouteBus.client.gateway;
 
-import com.RouteBus.client.dto.RouteDTO;
-import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.dto.TicketDTO;
-import com.RouteBus.client.dto.UserDTO;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Component
 public class TicketGateway extends BaseGateway {
@@ -53,18 +49,6 @@ public class TicketGateway extends BaseGateway {
 
     public boolean deleteTicket(String id) {
         ResponseEntity<String> response = sendRequest("/Ticket/delete/" + id, HttpMethod.DELETE, null, String.class);
-        return response.getStatusCode().is2xxSuccessful();
-    }
-    
-    public boolean createTicketForUser(UserDTO user,ScheduleDTO schedule) {
-        TicketDTO ticket = new TicketDTO();
-        ticket.setUser(user);
-        ticket.setSchedule(schedule);
-        ticket.setStatus(TicketDTO.TicketStatus.PURCHASED);
-        Random random = new Random();
-        ticket.setSeatNumber(random.nextInt(1,55));
-        ticket.setPrice(random.nextDouble(1,100));
-        ResponseEntity<String> response = sendRequest("/Ticket/createForUser", HttpMethod.POST, ticket, String.class);
         return response.getStatusCode().is2xxSuccessful();
     }
 }

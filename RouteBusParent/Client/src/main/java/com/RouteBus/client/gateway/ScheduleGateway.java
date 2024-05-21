@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Component
 public class ScheduleGateway extends BaseGateway {
@@ -46,4 +47,17 @@ public class ScheduleGateway extends BaseGateway {
         ResponseEntity<String> response = sendRequest("/Schedule/delete/" + id, HttpMethod.DELETE, null, String.class);
         return response.getStatusCode().is2xxSuccessful();
     }
+
+    public List<ScheduleDTO> getSchedulesByRoute(String routeId) {
+        String url = String.format("/Schedule/route/%s", routeId);
+        ResponseEntity<ScheduleDTO[]> response = sendRequest(url, HttpMethod.GET, null, ScheduleDTO[].class);
+        return Arrays.asList(response.getBody());
+    }
+
+    public ScheduleDTO getScheduleByRouteAndDepartureTime(String routeId, String departureTime) {
+        String url = String.format("/Schedule/route/%s/departureTime/%s", routeId, departureTime);
+        ResponseEntity<ScheduleDTO> response = sendRequest(url, HttpMethod.GET, null, ScheduleDTO.class);
+        return response.getBody();
+    }
+
 }

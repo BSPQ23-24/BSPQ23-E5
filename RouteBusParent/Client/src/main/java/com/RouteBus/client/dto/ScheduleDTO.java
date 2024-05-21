@@ -75,6 +75,10 @@ public class ScheduleDTO {
     public void setTickets(Set<TicketDTO> tickets) {
         this.tickets = tickets;
     }
+    
+    public boolean addTicket(TicketDTO ticket) {
+    	return tickets.add(ticket);
+    }
 
     @Override
     public int hashCode() {

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -51,4 +52,10 @@ public class RouteGateway extends BaseGateway {
         ResponseEntity<RouteDTO[]> response = sendRequest(url, HttpMethod.GET, null, RouteDTO[].class);
         return Arrays.asList(response.getBody());
     }
+
+    public List<RouteDTO> getRoutesByStations(String origin, String destination) {
+        ResponseEntity<RouteDTO[]> response = sendRequest("/Route/stations?origin=" + origin + "&destination=" + destination, HttpMethod.GET, null, RouteDTO[].class);
+        return response.getStatusCode().is2xxSuccessful() ? Arrays.asList(response.getBody()) : Collections.emptyList();
+    }
+
 }
