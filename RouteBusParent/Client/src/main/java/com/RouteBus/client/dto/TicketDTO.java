@@ -1,6 +1,7 @@
 package com.RouteBus.client.dto;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -22,7 +23,7 @@ public class TicketDTO {
     public TicketDTO() {}
 
     public TicketDTO(UserDTO user, int seatNumber, double price, TicketStatus status, ScheduleDTO schedule) {
-        this.id = schedule.getId() + "-" + String.format("%04d", seatNumber) + "-" + status.toString().toLowerCase();
+        this.id = UUID.randomUUID().toString();
         this.user = user;
         this.seatNumber = seatNumber;
         this.price = price;

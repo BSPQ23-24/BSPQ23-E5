@@ -19,7 +19,7 @@ public abstract class MultilingualLoadingWindow extends ParentWindow {
     protected JPanel mainPanel;
     protected JMenu languageMenu;
 
-    public MultilingualLoadingWindow(String languageToLoad) {
+	public MultilingualLoadingWindow(String languageToLoad) {
         super();
         Locale currentLocale;
         if (languageToLoad == null) {

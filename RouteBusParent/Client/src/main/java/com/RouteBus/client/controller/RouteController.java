@@ -2,6 +2,8 @@ package com.RouteBus.client.controller;
 
 import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.gateway.RouteGateway;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,5 +95,14 @@ public class RouteController {
                 .collect(Collectors.toList());
         }
         return null;
+    }
+    
+    public List<RouteDTO> getRoutesByStations(String origin, String destination) {
+        try {
+            return routeGateway.getRoutesByStations(origin, destination);
+        } catch (Exception e) {
+            System.err.println("Failed to fetch routes by stations: " + e.getMessage());
+            return Collections.emptyList();
+        }
     }
 }

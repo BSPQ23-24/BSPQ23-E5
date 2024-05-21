@@ -1,5 +1,6 @@
 package com.RouteBus.client.controller;
 
+import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.gateway.ScheduleGateway;
 import java.text.SimpleDateFormat;
@@ -82,5 +83,14 @@ public class ScheduleController {
                         TreeMap::new,
                         Collectors.summingLong(schedule -> schedule.getTickets().size())
                 ));
+    }
+    
+    public List<ScheduleDTO> getSchedulesByRoute(RouteDTO route) {
+        try {
+            return scheduleGateway.getSchedulesByRoute(route.getName());
+        } catch (Exception e) {
+            System.err.println("Failed to fetch schedules by route: " + e.getMessage());
+            return null;
+        }
     }
 }

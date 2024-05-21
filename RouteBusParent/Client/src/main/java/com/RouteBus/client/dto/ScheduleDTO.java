@@ -1,10 +1,10 @@
 package com.RouteBus.client.dto;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -20,17 +20,8 @@ public class ScheduleDTO {
 
     public ScheduleDTO() {}
 
-    public ScheduleDTO(String id, RouteDTO route, Date departureTime, Date arrivalTime, Set<TicketDTO> tickets) {
-        this.id = id;
-        this.route = route;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.tickets = tickets;
-    }
-
     public ScheduleDTO(RouteDTO route, Date departureTime, Date arrivalTime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-        this.id = route.getName().replaceAll("\\s+", "").toLowerCase() + "-" + sdf.format(departureTime) + "-" + sdf.format(arrivalTime);
+    	this.id = UUID.randomUUID().toString();
         this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;

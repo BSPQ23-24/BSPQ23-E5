@@ -160,7 +160,6 @@ public class PurchaseTicketsPanel extends JPanel {
 
         List<RouteDTO> routes = RouteController.getInstance().getRoutesByStations(origin, destination);
         if (routes == null || routes.isEmpty()) {
-            JOptionPane.showMessageDialog(this, messages.getString("noRoutesError"), messages.getString("errorTitle"), JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -203,7 +202,6 @@ public class PurchaseTicketsPanel extends JPanel {
                 Date arrivalDateTime = dateTimeFormat.parse(arrivalDate + " " + arrivalTime);
 
                 String scheduleId = selectedRoute.getName().replaceAll("\\s+", "").toLowerCase() + "-" + idDateFormat.format(departureDateTime) + "-" + idDateFormat.format(arrivalDateTime);
-                
                 ScheduleDTO selectedSchedule = ScheduleController.getInstance().getScheduleById(scheduleId);
 
                 if (selectedSchedule != null) {
@@ -226,4 +224,5 @@ public class PurchaseTicketsPanel extends JPanel {
             }
         }
     }
+
 }

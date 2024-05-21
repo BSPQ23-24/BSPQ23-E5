@@ -18,7 +18,6 @@ public class MainWindow extends MultilingualLoadingWindow {
 
     private JMenuItem busInfoMenuItem;
     private JMenuItem informationMenuItem;
-    private JMenuItem routesMenuItem;
     private JMenuItem ticketsMenuItem;
     private JMenuItem buyTicketsMenuItem;
     private JMenuItem logoutMenuItem;
@@ -37,21 +36,18 @@ public class MainWindow extends MultilingualLoadingWindow {
 
         busInfoMenuItem = new JMenuItem(messages.getString("BusRouteInfo"));
         informationMenuItem = new JMenuItem(messages.getString("myInformationMenu"));
-        routesMenuItem = new JMenuItem(messages.getString("myRoutesMenu"));
         ticketsMenuItem = new JMenuItem(messages.getString("myBusTicketsMenu"));
         buyTicketsMenuItem = new JMenuItem(messages.getString("buyTickets"));
         logoutMenuItem = new JMenuItem(messages.getString("Logout"));
 
         menuBar.add(busInfoMenuItem);
         menuBar.add(informationMenuItem);
-        menuBar.add(routesMenuItem);
         menuBar.add(ticketsMenuItem);
         menuBar.add(buyTicketsMenuItem);
         menuBar.add(logoutMenuItem);
 
         busInfoMenuItem.addActionListener(e -> showPanel("newsPanel"));
         informationMenuItem.addActionListener(e -> showPanel("infoPanel"));
-        routesMenuItem.addActionListener(e -> showPanel("routesPanel"));
         ticketsMenuItem.addActionListener(e -> showPanel("ticketPanel"));
         buyTicketsMenuItem.addActionListener(e -> showPanel("ticketPurchasePanel"));
         logoutMenuItem.addActionListener(this::logoutActionPerformed);
@@ -101,7 +97,6 @@ public class MainWindow extends MultilingualLoadingWindow {
     private void updateMenuColors(String activePanel) {
         busInfoMenuItem.setBackground(activePanel.equals("newsPanel") ? colorPrimary : colorSecondary);
         informationMenuItem.setBackground(activePanel.equals("infoPanel") ? colorPrimary : colorSecondary);
-        routesMenuItem.setBackground(activePanel.equals("routesPanel") ? colorPrimary : colorSecondary);
         ticketsMenuItem.setBackground(activePanel.equals("ticketPanel") ? colorPrimary : colorSecondary);
         buyTicketsMenuItem.setBackground(activePanel.equals("ticketPurchasePanel") ? colorPrimary : colorSecondary);
         logoutMenuItem.setBackground(colorSecondary);
@@ -126,7 +121,6 @@ public class MainWindow extends MultilingualLoadingWindow {
 
         busInfoMenuItem.setText(messages.getString("BusRouteInfo"));
         informationMenuItem.setText(messages.getString("myInformationMenu"));
-        routesMenuItem.setText(messages.getString("myRoutesMenu"));
         ticketsMenuItem.setText(messages.getString("myBusTicketsMenu"));
         buyTicketsMenuItem.setText(messages.getString("buyTickets"));
         logoutMenuItem.setText(messages.getString("Logout"));

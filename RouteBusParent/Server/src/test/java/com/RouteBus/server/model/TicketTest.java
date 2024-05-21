@@ -24,7 +24,8 @@ public class TicketTest {
 
     @Before
     public void setUp() {
-        ticket = new Ticket(mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
+    	
+        ticket = new Ticket("1", mockUser, 25, 199.99, TicketStatus.RESERVED, mockSchedule);
     }
 
     @Test

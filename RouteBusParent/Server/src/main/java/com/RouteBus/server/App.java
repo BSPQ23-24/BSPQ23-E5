@@ -150,7 +150,7 @@ public class App {
             startCalendar.set(2024, Calendar.JUNE, 10, 8, 0);
 
             List<Schedule> allSchedules = new ArrayList<>();
-            List<Ticket> allTickets = new ArrayList<>();
+            // List<Ticket> allTickets = new ArrayList<>(); // Comentado para no crear tickets
 
             for (Route route : routes) {
                 Set<Schedule> routeSchedules = new HashSet<>();
@@ -165,19 +165,20 @@ public class App {
                     startCalendar.add(Calendar.HOUR, -6); // reset to departure time
                     startCalendar.add(Calendar.DAY_OF_YEAR, scheduleIntervalDays);
 
-                    for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
-                        User user = users.get(seatNumber % users.size());
-                        double price = 50.0 + (seatNumber % 100);
-                        TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
-                        Ticket ticket = new Ticket(user, seatNumber, price, status, schedule);
-                        allTickets.add(ticket);
-                    }
+                    // Comentado para no crear tickets
+                    // for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
+                    //     User user = users.get(seatNumber % users.size());
+                    //     double price = 50.0 + (seatNumber % 100);
+                    //     TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
+                    //     Ticket ticket = new Ticket(user, seatNumber, price, status, schedule);
+                    //     allTickets.add(ticket);
+                    // }
                 }
                 route.setSchedules(routeSchedules);
             }
 
             scheduleRepository.saveAll(allSchedules);
-            ticketRepository.saveAll(allTickets);
+            // ticketRepository.saveAll(allTickets); // Comentado para no crear tickets
             routeRepository.saveAll(routes);
 
             logger.info("Data loading complete.");

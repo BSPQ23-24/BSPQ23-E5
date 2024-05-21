@@ -32,8 +32,6 @@ public class Ticket {
     public Ticket() {
     }
     
-    
-
     public Ticket(String id, User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
 		this.id = id;
 		this.user = user;
@@ -42,15 +40,6 @@ public class Ticket {
 		this.status = status;
 		this.schedule = schedule;
 	}
-
-	public Ticket(User user, int seatNumber, double price, TicketStatus status, Schedule schedule) {
-		this.id = schedule.getId() + "-" + String.format("%04d", seatNumber) + "-" + status.toString().toLowerCase();
-        this.user = user;
-        this.seatNumber = seatNumber;
-        this.price = price;
-        this.status = status;
-        this.schedule = schedule;
-    }
 
     public String getId() {
         return id;

@@ -35,8 +35,7 @@ public class TicketRestController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createTicket(@RequestBody Ticket ticket) {
-    	Ticket ticket2 = new Ticket(ticket.getUser(),ticket.getSeatNumber(),ticket.getPrice(),ticket.getStatus(),ticket.getSchedule());
-        TicketService.TicketServiceResult result = ticketService.createTicket(ticket2);
+        TicketService.TicketServiceResult result = ticketService.createTicket(ticket);
         switch (result) {
             case SUCCESS:
                 return ResponseEntity.ok("Ticket created successfully.");
