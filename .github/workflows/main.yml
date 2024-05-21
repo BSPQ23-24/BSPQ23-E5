@@ -36,4 +36,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: RouteBusParent/target/doxygen/html # Directory with generated documentation
+        publish_dir: RouteBusParent/target/doxify/html # Directory with generated documentation
