@@ -20,26 +20,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B -X package com.github.ferstl:depgraph-maven-plugin:4.0.1:graph
-      working-directory: RouteBusParent
-  name: Maven Package
-
-on:
-  release:
-    types: [created]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
+        
     - name: Build with Maven
       run: |
         cd RouteBusParent
