@@ -1,6 +1,7 @@
 package com.RouteBus.client.controller;
 
 import com.RouteBus.client.dto.RouteDTO;
+import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.dto.TicketDTO;
 import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.gateway.TicketGateway;
@@ -92,9 +93,9 @@ public class TicketController {
         return null;
     }
     
-    public boolean createTicketForUser(UserDTO user, RouteDTO route) {
+    public boolean createTicketForUser(UserDTO user, ScheduleDTO schedule) {
         try {
-            return ticketGateway.createTicketForUser(user, route);
+            return ticketGateway.createTicketForUser(user, schedule);
         } catch (Exception e) {
             System.err.println("Failed to create ticket: " + e.getMessage());
             return false;

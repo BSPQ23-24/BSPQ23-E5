@@ -1,6 +1,7 @@
 package com.RouteBus.server.controller;
 
 import com.RouteBus.server.model.Ticket;
+import com.RouteBus.server.model.TicketStatus;
 import com.RouteBus.server.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,19 @@ public class TicketRestController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createTicket(@RequestBody Ticket ticket) {
+    	Ticket ticket2 = new Ticket(ticket.getUser(),ticket.getSeatNumber(),ticket.getPrice(),ticket.getStatus(),ticket.getSchedule());
+        TicketService.TicketServiceResult result = ticketService.createTicket(ticket2);
+        switch (result) {
+            case SUCCESS:
+                return ResponseEntity.ok("Ticket created successfully.");
+            case ERROR:
+                return ResponseEntity.badRequest().body("Failed to create ticket.");
+            default:
+                return ResponseEntity.internalServerError().body("Internal server error.");
+        }
+    }
+    @PostMapping("/createForUser")
+    public ResponseEntity<String> createTicketForUser(@RequestBody Ticket ticket) {
         TicketService.TicketServiceResult result = ticketService.createTicket(ticket);
         switch (result) {
             case SUCCESS:

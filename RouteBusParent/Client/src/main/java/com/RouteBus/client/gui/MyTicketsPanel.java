@@ -1,10 +1,14 @@
 package com.RouteBus.client.gui;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.dto.StationDTO;
 import com.RouteBus.client.dto.TicketDTO;
 import com.RouteBus.client.dto.RouteDTO;
+import com.RouteBus.client.dto.ScheduleDTO;
 import com.RouteBus.client.controller.StationController;
 import com.RouteBus.client.controller.TicketController;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +25,7 @@ public class MyTicketsPanel extends JPanel {
     private JComboBox<String> comboOrigin;
     private JComboBox<String> comboDestination;
     private JTable tableJourneys;
+    private JButton buy;
     private UserDTO user;
 
     public MyTicketsPanel(ResourceBundle messages, UserDTO user, Color colorBackground, Color colorSecondary) {
@@ -78,13 +83,31 @@ public class MyTicketsPanel extends JPanel {
         JScrollPane tablePane = new JScrollPane(tableJourneys);
         tablePane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         this.add(tablePane, BorderLayout.CENTER);
-
+        tableJourneys.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tableJourneys.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedRow = tableJourneys.getSelectedRow();
+                    if (selectedRow != -1) {
+                        System.out.println("Selected Row: " + selectedRow);
+                        // Aquí puedes manejar la fila seleccionada
+                        // Por ejemplo, obtener los datos de la fila seleccionada
+                        Object departureTime = tableJourneys.getValueAt(selectedRow, 0);
+                        Object arrivalTime = tableJourneys.getValueAt(selectedRow, 1);
+                        Object price = tableJourneys.getValueAt(selectedRow, 2);
+                        System.out.println("Selected Ticket - Departure: " + departureTime + ", Arrival: " + arrivalTime + ", Price: " + price);
+                    }
+                }
+            }
+        });
         comboOrigin.addActionListener(e -> loadTicketsData((DefaultTableModel) tableJourneys.getModel()));
         comboDestination.addActionListener(e -> loadTicketsData((DefaultTableModel) tableJourneys.getModel()));
         setupComboBoxes();
         loadTicketsData(model);
-    }
+        buy = new JButton("Buy");
 
+    }
     private void loadStations() {
         List<StationDTO> stations = StationController.getInstance().getAllStations();
         for (StationDTO station : stations) {
@@ -124,19 +147,27 @@ public class MyTicketsPanel extends JPanel {
     private void loadTicketsData(DefaultTableModel model) {
         model.setRowCount(0);
 
-        List<TicketDTO> tickets = TicketController.getInstance().getTicketByUser(user.getEmail());
+        List<TicketDTO> tickets = TicketController.getInstance().getAllTickets();
 
-        StationDTO selectedOrigin = StationController.getInstance().getStationById((String) comboOrigin.getSelectedItem());
-        StationDTO selectedDestination = StationController.getInstance().getStationById((String) comboDestination.getSelectedItem());
+        String selectedOrigin = (String) comboOrigin.getSelectedItem();
+        String selectedDestination = (String) comboDestination.getSelectedItem();
 
         if (selectedOrigin == null || selectedDestination == null) {
             return;
         }
 
+        StationDTO originStation = StationController.getInstance().getStationById(selectedOrigin);
+        StationDTO destinationStation = StationController.getInstance().getStationById(selectedDestination);
+
+        if (originStation == null || destinationStation == null) {
+            return;
+        }
+
         for (TicketDTO ticket : tickets) {
             RouteDTO route = ticket.getSchedule().getRoute();
-            if (route.getStations().contains(selectedOrigin) && route.getStations().contains(selectedDestination)) {
+            if (route.getStations().contains(originStation) && route.getStations().contains(destinationStation)) {
                 Object[] rowData = {
+                    ticket.getId(),
                     ticket.getSchedule().getDepartureTime(),
                     ticket.getSchedule().getArrivalTime(),
                     ticket.getPrice()
