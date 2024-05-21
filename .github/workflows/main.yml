@@ -35,8 +35,8 @@ jobs:
     # Execute mvn doxygen:report to generate the documentation
     - name: Generate Doxygen documentation
       run: |
-      cd RouteBusApp
-      mvn doxygen:report
+        cd RouteBusApp
+        mvn doxygen:report
 
     # Deploy the documentation to GitHub Pages
     - name: Deploy to GitHub Pages
