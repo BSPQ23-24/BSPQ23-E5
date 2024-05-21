@@ -1,6 +1,9 @@
 package com.RouteBus.client.gateway;
 
+import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.dto.TicketDTO;
+import com.RouteBus.client.dto.UserDTO;
+
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -48,6 +51,15 @@ public class TicketGateway extends BaseGateway {
 
     public boolean deleteTicket(String id) {
         ResponseEntity<String> response = sendRequest("/Ticket/delete/" + id, HttpMethod.DELETE, null, String.class);
+        return response.getStatusCode().is2xxSuccessful();
+    }
+    
+    public boolean createTicketForUser(UserDTO user, RouteDTO route) {
+        TicketDTO ticket = new TicketDTO();
+        ticket.setUser(user);
+        ticket.setSchedule(route.getSchedules().iterator().next());
+        ticket.setStatus(TicketDTO.TicketStatus.PURCHASED);
+        ResponseEntity<String> response = sendRequest("/Ticket/createForUser", HttpMethod.POST, ticket, String.class);
         return response.getStatusCode().is2xxSuccessful();
     }
 }

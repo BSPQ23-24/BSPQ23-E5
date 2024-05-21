@@ -1,6 +1,8 @@
 package com.RouteBus.client.controller;
 
+import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.dto.TicketDTO;
+import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.gateway.TicketGateway;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -88,5 +90,14 @@ public class TicketController {
                 .collect(Collectors.toList());
         }
         return null;
+    }
+    
+    public boolean createTicketForUser(UserDTO user, RouteDTO route) {
+        try {
+            return ticketGateway.createTicketForUser(user, route);
+        } catch (Exception e) {
+            System.err.println("Failed to create ticket: " + e.getMessage());
+            return false;
+        }
     }
 }

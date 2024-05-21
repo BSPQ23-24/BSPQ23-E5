@@ -41,7 +41,6 @@ public class App {
 			RouteRepository routeRepository, ScheduleRepository scheduleRepository, StationRepository stationRepository,
 			TicketRepository ticketRepository, UserRepository userRepository) {
 		return (args) -> {
-			// Load Nationalities
 			if (nationalityRepository.count() == 0) {
 				List<Nationality> nationalitiesList = Arrays.asList(nationalities);
 				nationalityRepository.saveAll(nationalitiesList);
@@ -161,7 +160,6 @@ public class App {
 					startCalendar.add(Calendar.HOUR, -6); // reset to departure time
 					startCalendar.add(Calendar.DAY_OF_YEAR, scheduleIntervalDays);
 
-					// Create tickets for the schedule
 					for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity)
 							.sum(); seatNumber++) {
 						User user = users.get(seatNumber % users.size());

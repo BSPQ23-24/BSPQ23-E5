@@ -13,7 +13,7 @@ public class TableUtil {
         JTable table = new JTable(model) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Disable cell editing
+                return false;
             }
         };
 

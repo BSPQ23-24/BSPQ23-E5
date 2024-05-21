@@ -49,9 +49,9 @@ public class AdministratorWindow extends MultilingualLoadingWindow {
     protected void loadPanels() {
         mainPanel.add(new HomeAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "Home");
         mainPanel.add(new RouteAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "RouteAdmin");
-        mainPanel.add(new BusAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "BusAdmin");
-        mainPanel.add(new TicketAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "TicketsAdmin");
-        mainPanel.add(new StationAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "StationAdmin");
+        mainPanel.add(new BusesAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "BusAdmin");
+        mainPanel.add(new TicketsAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "TicketsAdmin");
+        mainPanel.add(new StationsAdminPanel(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), "StationAdmin");
         
         showPanel("Home");
     }

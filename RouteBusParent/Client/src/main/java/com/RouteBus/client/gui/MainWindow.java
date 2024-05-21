@@ -11,14 +11,16 @@ public class MainWindow extends MultilingualLoadingWindow {
 
     private JPanel leftPanel;
     private NewsPanel newsPanel;
-    private InfoPanel infoPanel;
-    private TicketPanel ticketPanel;
-    private RoutesPanel routesPanel;
+    private MyInfoPanel infoPanel;
+    private MyTicketsPanel ticketPanel;
+    private MyRoutesPanel routesPanel;
+    private TicketPurchasePanel ticketPurchasePanel;
 
     private JMenuItem busInfoMenuItem;
     private JMenuItem informationMenuItem;
     private JMenuItem routesMenuItem;
     private JMenuItem ticketsMenuItem;
+    private JMenuItem buyTicketsMenuItem;
     private JMenuItem logoutMenuItem;
 
     private UserDTO user;
@@ -37,18 +39,21 @@ public class MainWindow extends MultilingualLoadingWindow {
         informationMenuItem = new JMenuItem(messages.getString("myInformationMenu"));
         routesMenuItem = new JMenuItem(messages.getString("myRoutesMenu"));
         ticketsMenuItem = new JMenuItem(messages.getString("myBusTicketsMenu"));
+        buyTicketsMenuItem = new JMenuItem(messages.getString("buyTickets"));
         logoutMenuItem = new JMenuItem(messages.getString("Logout"));
 
         menuBar.add(busInfoMenuItem);
         menuBar.add(informationMenuItem);
         menuBar.add(routesMenuItem);
         menuBar.add(ticketsMenuItem);
+        menuBar.add(buyTicketsMenuItem);
         menuBar.add(logoutMenuItem);
 
         busInfoMenuItem.addActionListener(e -> showPanel("newsPanel"));
         informationMenuItem.addActionListener(e -> showPanel("infoPanel"));
         routesMenuItem.addActionListener(e -> showPanel("routesPanel"));
         ticketsMenuItem.addActionListener(e -> showPanel("ticketPanel"));
+        buyTicketsMenuItem.addActionListener(e -> showPanel("ticketPurchasePanel"));
         logoutMenuItem.addActionListener(this::logoutActionPerformed);
 
         applyMenuColors();
@@ -69,15 +74,17 @@ public class MainWindow extends MultilingualLoadingWindow {
         rightPanel.setBackground(colorBackground);
         mainPanelStructure.add(rightPanel, BorderLayout.EAST);
 
-        newsPanel = new NewsPanel(messages, colorPrimary, colorSecondary, colorSecondary, colorBackground);
-        infoPanel = new InfoPanel(messages, user, colorBackground, colorSecondary);
-        ticketPanel = new TicketPanel(messages, user, colorBackground, colorSecondary);
-        routesPanel = new RoutesPanel(messages, user, colorBackground);
+        newsPanel = new NewsPanel(messages, colorPrimary, colorSecondary, colorTertiary, colorBackground);
+        infoPanel = new MyInfoPanel(messages, user, colorBackground, colorPrimary);
+        ticketPanel = new MyTicketsPanel(messages, user, colorBackground, colorPrimary);
+        routesPanel = new MyRoutesPanel(messages, user, colorBackground, colorPrimary, colorSecondary, colorTertiary);
+        ticketPurchasePanel = new TicketPurchasePanel(messages, user, colorBackground, colorPrimary, colorSecondary);
 
         leftPanel.add(newsPanel, "newsPanel");
         leftPanel.add(infoPanel, "infoPanel");
         leftPanel.add(routesPanel, "routesPanel");
         leftPanel.add(ticketPanel, "ticketPanel");
+        leftPanel.add(ticketPurchasePanel, "ticketPurchasePanel");
 
         JLabel imageLabel = loadImage("/images/busroute.jpg", 600, 800);
         rightPanel.add(imageLabel, new GridBagConstraints());
@@ -96,6 +103,7 @@ public class MainWindow extends MultilingualLoadingWindow {
         informationMenuItem.setBackground(activePanel.equals("infoPanel") ? colorPrimary : colorSecondary);
         routesMenuItem.setBackground(activePanel.equals("routesPanel") ? colorPrimary : colorSecondary);
         ticketsMenuItem.setBackground(activePanel.equals("ticketPanel") ? colorPrimary : colorSecondary);
+        buyTicketsMenuItem.setBackground(activePanel.equals("ticketPurchasePanel") ? colorPrimary : colorSecondary);
         logoutMenuItem.setBackground(colorSecondary);
     }
 
@@ -120,6 +128,7 @@ public class MainWindow extends MultilingualLoadingWindow {
         informationMenuItem.setText(messages.getString("myInformationMenu"));
         routesMenuItem.setText(messages.getString("myRoutesMenu"));
         ticketsMenuItem.setText(messages.getString("myBusTicketsMenu"));
+        buyTicketsMenuItem.setText(messages.getString("buyTickets"));
         logoutMenuItem.setText(messages.getString("Logout"));
     }
 }

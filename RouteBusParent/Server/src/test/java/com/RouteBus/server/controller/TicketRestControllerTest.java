@@ -35,7 +35,7 @@ public class TicketRestControllerTest {
         tickets.add(new Ticket());
         when(ticketServiceMock.getAllTickets()).thenReturn(tickets);
 
-        ResponseEntity<Set<Ticket>> response = ticketController.getAllTicketes();
+        ResponseEntity<Set<Ticket>> response = ticketController.getAllTickets();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(tickets, response.getBody());
         verify(ticketServiceMock, times(1)).getAllTickets();
