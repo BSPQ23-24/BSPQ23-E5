@@ -2,7 +2,6 @@ var classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket =
 [
     [ "Ticket", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#a52f99ad5a544b42692833df820bd3494", null ],
     [ "Ticket", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#aa7b6c454be70c36927fa0c3840fec8d6", null ],
-    [ "Ticket", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#a13bc46f9ec33d6fdbe66f9f369574177", null ],
     [ "equals", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#a3a977a437aafbfcc4673dae48a6fd857", null ],
     [ "getId", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#ab1484bcdac6db573937a2eb9a3936957", null ],
     [ "getPrice", "classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html#a5c17d0567092676bfffc4342eee0339a", null ],

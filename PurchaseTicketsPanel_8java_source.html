@@ -247,73 +247,72 @@ $(document).ready(function(){initNavTree('PurchaseTicketsPanel_8java_source.html
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        List&lt;RouteDTO&gt; routes = RouteController.getInstance().getRoutesByStations(origin, destination);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">if</span> (routes == <span class="keyword">null</span> || routes.isEmpty()) {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;noRoutesError&quot;</span>), messages.getString(<span class="stringliteral">&quot;errorTitle&quot;</span>), JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        SimpleDateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;dd/MM/yyyy&quot;</span>);</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        SimpleDateFormat timeFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;HH:mm&quot;</span>);</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">for</span> (RouteDTO route : routes) {</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            List&lt;ScheduleDTO&gt; schedules = ScheduleController.getInstance().getSchedulesByRoute(route);</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordflow">for</span> (ScheduleDTO schedule : schedules) {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                Object[] rowData = {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    originStation,</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    destinationStation,</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    route.getTotalDistance(),</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    dateFormat.format(schedule.getDepartureTime()),</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    timeFormat.format(schedule.getDepartureTime()),</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    dateFormat.format(schedule.getArrivalTime()),</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    timeFormat.format(schedule.getArrivalTime())</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                };</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                model.addRow(rowData);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> buyTicket() {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordtype">int</span> selectedRow = combinedTable.getSelectedRow();</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">if</span> (selectedRow &gt;= 0) {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            String origin = (String) comboOrigin.getSelectedItem();</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            String destination = (String) comboDestination.getSelectedItem();</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            String departureDate = (String) combinedTable.getValueAt(selectedRow, 3);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            String departureTime = (String) combinedTable.getValueAt(selectedRow, 4);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            String arrivalDate = (String) combinedTable.getValueAt(selectedRow, 5);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            String arrivalTime = (String) combinedTable.getValueAt(selectedRow, 6);</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            SimpleDateFormat dateTimeFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;dd/MM/yyyy HH:mm&quot;</span>);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            SimpleDateFormat idDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;yyyyMMddHHmm&quot;</span>);</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                RouteDTO selectedRoute = RouteController.getInstance().getRoutesByStations(origin, destination).get(0);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                Date departureDateTime = dateTimeFormat.parse(departureDate + <span class="stringliteral">&quot; &quot;</span> + departureTime);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                Date arrivalDateTime = dateTimeFormat.parse(arrivalDate + <span class="stringliteral">&quot; &quot;</span> + arrivalTime);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                String scheduleId = selectedRoute.getName().replaceAll(<span class="stringliteral">&quot;\\s+&quot;</span>, <span class="stringliteral">&quot;&quot;</span>).toLowerCase() + <span class="stringliteral">&quot;-&quot;</span> + idDateFormat.format(departureDateTime) + <span class="stringliteral">&quot;-&quot;</span> + idDateFormat.format(arrivalDateTime);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                ScheduleDTO selectedSchedule = ScheduleController.getInstance().getScheduleById(scheduleId);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">if</span> (selectedSchedule != <span class="keyword">null</span>) {</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    <span class="keywordtype">int</span> seatNumber = ThreadLocalRandom.current().nextInt(1, selectedRoute.getBuses().iterator().next().getCapacity() + 1);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    <span class="keywordtype">double</span> price = ThreadLocalRandom.current().nextDouble(50, 101);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    TicketDTO newTicket = <span class="keyword">new</span> TicketDTO(user, seatNumber, price, TicketDTO.TicketStatus.PURCHASED, selectedSchedule);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                    user.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a9518160509f9443701104be244748783">addTicket</a>(newTicket);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                    selectedSchedule.addTicket(newTicket);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordtype">boolean</span> success = TicketController.getInstance().createTicket(newTicket);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    <span class="keywordflow">if</span> (success) {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                        JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;ticketPurchaseSuccess&quot;</span>), messages.getString(<span class="stringliteral">&quot;successTitle&quot;</span>), JOptionPane.INFORMATION_MESSAGE);</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                        JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;ticketPurchaseError&quot;</span>), messages.getString(<span class="stringliteral">&quot;errorTitle&quot;</span>), JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                    }</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                }</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            } <span class="keywordflow">catch</span> (Exception e) {</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                e.printStackTrace();</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;noRoutesError&quot;</span>), messages.getString(<span class="stringliteral">&quot;errorTitle&quot;</span>), JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        }</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        SimpleDateFormat dateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;dd/MM/yyyy&quot;</span>);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        SimpleDateFormat timeFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;HH:mm&quot;</span>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">for</span> (RouteDTO route : routes) {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            List&lt;ScheduleDTO&gt; schedules = ScheduleController.getInstance().getSchedulesByRoute(route);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">for</span> (ScheduleDTO schedule : schedules) {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                Object[] rowData = {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                    originStation,</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    destinationStation,</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    route.getTotalDistance(),</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    dateFormat.format(schedule.getDepartureTime()),</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    timeFormat.format(schedule.getDepartureTime()),</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    dateFormat.format(schedule.getArrivalTime()),</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    timeFormat.format(schedule.getArrivalTime())</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                };</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                model.addRow(rowData);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> buyTicket() {</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="keywordtype">int</span> selectedRow = combinedTable.getSelectedRow();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordflow">if</span> (selectedRow &gt;= 0) {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            String origin = (String) comboOrigin.getSelectedItem();</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            String destination = (String) comboDestination.getSelectedItem();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            String departureDate = (String) combinedTable.getValueAt(selectedRow, 3);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            String departureTime = (String) combinedTable.getValueAt(selectedRow, 4);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            String arrivalDate = (String) combinedTable.getValueAt(selectedRow, 5);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            String arrivalTime = (String) combinedTable.getValueAt(selectedRow, 6);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            SimpleDateFormat dateTimeFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;dd/MM/yyyy HH:mm&quot;</span>);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            SimpleDateFormat idDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="stringliteral">&quot;yyyyMMddHHmm&quot;</span>);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                RouteDTO selectedRoute = RouteController.getInstance().getRoutesByStations(origin, destination).get(0);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                Date departureDateTime = dateTimeFormat.parse(departureDate + <span class="stringliteral">&quot; &quot;</span> + departureTime);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                Date arrivalDateTime = dateTimeFormat.parse(arrivalDate + <span class="stringliteral">&quot; &quot;</span> + arrivalTime);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                String scheduleId = selectedRoute.getName().replaceAll(<span class="stringliteral">&quot;\\s+&quot;</span>, <span class="stringliteral">&quot;&quot;</span>).toLowerCase() + <span class="stringliteral">&quot;-&quot;</span> + idDateFormat.format(departureDateTime) + <span class="stringliteral">&quot;-&quot;</span> + idDateFormat.format(arrivalDateTime);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                ScheduleDTO selectedSchedule = ScheduleController.getInstance().getScheduleById(scheduleId);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">if</span> (selectedSchedule != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <span class="keywordtype">int</span> seatNumber = ThreadLocalRandom.current().nextInt(1, selectedRoute.getBuses().iterator().next().getCapacity() + 1);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    <span class="keywordtype">double</span> price = ThreadLocalRandom.current().nextDouble(50, 101);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    TicketDTO newTicket = <span class="keyword">new</span> TicketDTO(user, seatNumber, price, TicketDTO.TicketStatus.PURCHASED, selectedSchedule);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    user.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a9518160509f9443701104be244748783">addTicket</a>(newTicket);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    selectedSchedule.addTicket(newTicket);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                    <span class="keywordtype">boolean</span> success = TicketController.getInstance().createTicket(newTicket);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="keywordflow">if</span> (success) {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;ticketPurchaseSuccess&quot;</span>), messages.getString(<span class="stringliteral">&quot;successTitle&quot;</span>), JOptionPane.INFORMATION_MESSAGE);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                        JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;ticketPurchaseError&quot;</span>), messages.getString(<span class="stringliteral">&quot;errorTitle&quot;</span>), JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            } <span class="keywordflow">catch</span> (Exception e) {</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                e.printStackTrace();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;noRoutesError&quot;</span>), messages.getString(<span class="stringliteral">&quot;errorTitle&quot;</span>), JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            }</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    }</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;}</div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">com.RouteBus.client.controller.StationController</a></div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00007">StationController.java:7</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html_a09326fefc087b1f492290a7d6367c026"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a09326fefc087b1f492290a7d6367c026">com.RouteBus.client.controller.StationController.getInstance</a></div><div class="ttdeci">static StationController getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00015">StationController.java:15</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html_a21a15c0bbdc6f14114df75ddcaf2ea44"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a21a15c0bbdc6f14114df75ddcaf2ea44">com.RouteBus.client.controller.StationController.getAllStations</a></div><div class="ttdeci">List&lt; StationDTO &gt; getAllStations()</div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00019">StationController.java:19</a></div></div>

@@ -1,7 +1,6 @@
 var classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO =
 [
     [ "ScheduleDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO.html#aabcc18da1ecb2d02b2414f169381fdee", null ],
-    [ "ScheduleDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO.html#ab1f7d7a9ca9760da1877e324d8c215b2", null ],
     [ "ScheduleDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO.html#aa7588c84ba5c65821baa0af667ec4049", null ],
     [ "addTicket", "classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO.html#a2f093dc24fbc50f272dd0f728dff73b6", null ],
     [ "equals", "classcom_1_1RouteBus_1_1client_1_1dto_1_1ScheduleDTO.html#abb6043919c0a361c19900b64fb2af18c", null ],
