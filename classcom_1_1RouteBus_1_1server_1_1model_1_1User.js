@@ -1,0 +1,25 @@
+var classcom_1_1RouteBus_1_1server_1_1model_1_1User =
+[
+    [ "User", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#adf9b6e1a06dc9bc7ea5374c0ccd1310b", null ],
+    [ "User", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a6b3d0879203e5ce949966f800c8f86d8", null ],
+    [ "User", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a0d48577003714d47d7181b571daa213e", null ],
+    [ "equals", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a2f2468758cea01182200ad5bebc8568a", null ],
+    [ "getBirthDate", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ad3fce84ea5d618654c2eaffcd66ba3ca", null ],
+    [ "getEmail", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a58d13b1b649e881f0ac14e1ee10d17cb", null ],
+    [ "getFirstName", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a5a5d657d5272b8a048fd9293476a7517", null ],
+    [ "getLastName", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ac0c4144f80958de7007e3fe31d0d7caa", null ],
+    [ "getNationality", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a2d7384ea27dcbadec16525339a86130e", null ],
+    [ "getPassword", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a3bc25ec5e5a69e3f641369194aa80a93", null ],
+    [ "getRole", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#aae0d2c16e7d5d9a72044d376b0141d6e", null ],
+    [ "getTickets", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a59024c8c1c49d090eb2ae3f918b573a0", null ],
+    [ "hashCode", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#afe7e737522ceb95263e63300dde3984d", null ],
+    [ "setBirthDate", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#acaca8e98f8aec2ffe538fc89f16eb5ba", null ],
+    [ "setEmail", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ad62be26ab2d7e5acff350ba25df8ded9", null ],
+    [ "setFirstName", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a7bff537b4a55881097596125196c127e", null ],
+    [ "setLastName", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a748ae76d9f42c45caa99d03a4a136ed1", null ],
+    [ "setNationality", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ac884a209dd2dfa2dc54c76e2b76423a6", null ],
+    [ "setPassword", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ab81c471c01ce2c2f73bfee25ddc6204c", null ],
+    [ "setRole", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a5eed33c575b2132d164afb0394d4859a", null ],
+    [ "setTickets", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#a512c2af7c410b6306e5602c3e9bf946f", null ],
+    [ "toString", "classcom_1_1RouteBus_1_1server_1_1model_1_1User.html#ac7ee18a00898dfd8562fba5ce443c437", null ]
+];
