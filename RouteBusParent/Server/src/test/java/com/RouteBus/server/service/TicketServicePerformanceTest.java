@@ -44,7 +44,7 @@ public class TicketServicePerformanceTest {
     }
 
     @Test
-    @JUnitPerfTest(threads = 50, durationMs = 5000, warmUpMs = 1000, maxExecutionsPerSecond = 100)
+    @JUnitPerfTest(threads = 50, durationMs = 15000, warmUpMs = 1000, maxExecutionsPerSecond = 100)
     public void testCreateTicketPerformance() {
         Ticket newTicket = mockTicket(UUID.randomUUID().toString());
         when(ticketRepository.findById(newTicket.getId())).thenReturn(Optional.empty());
