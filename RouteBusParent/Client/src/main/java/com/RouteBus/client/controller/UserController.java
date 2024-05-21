@@ -5,7 +5,11 @@ import com.RouteBus.client.dto.NationalityDTO;
 import com.RouteBus.client.dto.UserDTO;
 import java.util.List;
 
+/**
+ * Controller class for managing user-related operations.
+ */
 public class UserController {
+
     private static final UserController INSTANCE = new UserController();
     private final UserGateway userGateway;
 
@@ -13,10 +17,18 @@ public class UserController {
         this.userGateway = UserGateway.getInstance();
     }
 
+    /**
+     * Retrieves the singleton instance of UserController.
+     * @return The singleton instance of UserController.
+     */
     public static UserController getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Retrieves all users.
+     * @return A list of UserDTO objects representing all users.
+     */
     public List<UserDTO> getAllUsers() {
         try {
             return userGateway.getAllUsers();
@@ -26,6 +38,11 @@ public class UserController {
         }
     }
 
+    /**
+     * Retrieves a user by email.
+     * @param email The email of the user to retrieve.
+     * @return The UserDTO object representing the user with the specified email, or null if not found.
+     */
     public UserDTO getUserByEmail(String email) {
         try {
             return userGateway.getUserByEmail(email);
@@ -35,51 +52,11 @@ public class UserController {
         }
     }
 
-    public boolean createUser(UserDTO user) {
-        try {
-            return userGateway.createUser(user);
-        } catch (Exception e) {
-            System.err.println("Failed to create user: " + e.getMessage());
-            return false;
-        }
-    }
 
-    public boolean updateUser(UserDTO user) {
-        try {
-            return userGateway.updateUser(user);
-        } catch (Exception e) {
-            System.err.println("Failed to update user: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean deleteUser(String email) {
-        try {
-            return userGateway.deleteUser(email);
-        } catch (Exception e) {
-            System.err.println("Failed to delete user: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean checkUser(String email) {
-        try {
-            return userGateway.checkUser(email);
-        } catch (Exception e) {
-            System.err.println("Failed to check user existence: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean checkPassword(String email, String password) {
-        try {
-            return userGateway.checkPassword(email, password);
-        } catch (Exception e) {
-            System.err.println("Failed to verify password: " + e.getMessage());
-            return false;
-        }
-    }
-    
+    /**
+     * Retrieves a list of all nationalities.
+     * @return A list of NationalityDTO objects representing all nationalities.
+     */
     public List<NationalityDTO> getNationalities() {
         return userGateway.getNationalities();
     }

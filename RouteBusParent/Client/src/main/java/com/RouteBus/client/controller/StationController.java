@@ -4,6 +4,9 @@ import com.RouteBus.client.dto.StationDTO;
 import com.RouteBus.client.gateway.StationGateway;
 import java.util.List;
 
+/**
+ * Controller class for managing station-related operations.
+ */
 public class StationController {
     private static final StationController INSTANCE = new StationController();
     private final StationGateway stationGateway;
@@ -12,10 +15,18 @@ public class StationController {
         this.stationGateway = StationGateway.getInstance();
     }
 
+    /**
+     * Retrieves the singleton instance of StationController.
+     * @return The singleton instance of StationController.
+     */
     public static StationController getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Retrieves all stations.
+     * @return A list of StationDTO objects representing all stations.
+     */
     public List<StationDTO> getAllStations() {
         try {
             return stationGateway.getAllStations();
@@ -25,6 +36,11 @@ public class StationController {
         }
     }
 
+    /**
+     * Retrieves a station by name.
+     * @param name The name of the station to retrieve.
+     * @return The StationDTO object representing the station with the specified name, or null if not found.
+     */
     public StationDTO getStationById(String name) {
         try {
             return stationGateway.getStationById(name);
@@ -34,6 +50,11 @@ public class StationController {
         }
     }
 
+    /**
+     * Creates a new station.
+     * @param station The StationDTO object representing the station to be created.
+     * @return true if the station is successfully created, false otherwise.
+     */
     public boolean createStation(StationDTO station) {
         try {
             return stationGateway.createStation(station);
@@ -43,6 +64,11 @@ public class StationController {
         }
     }
 
+    /**
+     * Updates an existing station.
+     * @param station The StationDTO object representing the updated station information.
+     * @return true if the station is successfully updated, false otherwise.
+     */
     public boolean updateStation(StationDTO station) {
         try {
             return stationGateway.updateStation(station);
@@ -52,6 +78,11 @@ public class StationController {
         }
     }
 
+    /**
+     * Deletes a station by name.
+     * @param name The name of the station to delete.
+     * @return true if the station is successfully deleted, false otherwise.
+     */
     public boolean deleteStation(String name) {
         try {
             return stationGateway.deleteStation(name);

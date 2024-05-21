@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class for managing ticket-related operations.
+ */
 public class TicketController {
     private static final TicketController INSTANCE = new TicketController();
     private final TicketGateway ticketGateway;
@@ -14,10 +17,18 @@ public class TicketController {
         this.ticketGateway = TicketGateway.getInstance();
     }
 
+    /**
+     * Retrieves the singleton instance of TicketController.
+     * @return The singleton instance of TicketController.
+     */
     public static TicketController getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Retrieves all tickets.
+     * @return A list of TicketDTO objects representing all tickets.
+     */
     public List<TicketDTO> getAllTickets() {
         try {
             return ticketGateway.getAllTickets();
@@ -27,6 +38,11 @@ public class TicketController {
         }
     }
 
+    /**
+     * Retrieves a ticket by ID.
+     * @param id The ID of the ticket to retrieve.
+     * @return The TicketDTO object representing the ticket with the specified ID, or null if not found.
+     */
     public TicketDTO getTicketById(String id) {
         try {
             return ticketGateway.getTicketById(id);
@@ -36,9 +52,13 @@ public class TicketController {
         }
     }
     
+    /**
+     * Retrieves all tickets associated with a user.
+     * @param email The email of the user.
+     * @return A list of TicketDTO objects representing tickets associated with the user.
+     */
     public List<TicketDTO> getTicketByUser(String email) {
         try {
-        	
             return ticketGateway.getAllTicketsByUser(email);
         } catch (Exception e) {
             System.err.println("Failed to fetch ticket: " + e.getMessage());
@@ -46,6 +66,11 @@ public class TicketController {
         }
     }
 
+    /**
+     * Creates a new ticket.
+     * @param ticket The TicketDTO object representing the ticket to be created.
+     * @return true if the ticket is successfully created, false otherwise.
+     */
     public boolean createTicket(TicketDTO ticket) {
         try {
             return ticketGateway.createTicket(ticket);
@@ -55,6 +80,11 @@ public class TicketController {
         }
     }
 
+    /**
+     * Updates an existing ticket.
+     * @param ticket The TicketDTO object representing the updated ticket information.
+     * @return true if the ticket is successfully updated, false otherwise.
+     */
     public boolean updateTicket(TicketDTO ticket) {
         try {
             return ticketGateway.updateTicket(ticket);
@@ -64,6 +94,11 @@ public class TicketController {
         }
     }
 
+    /**
+     * Deletes a ticket by ID.
+     * @param id The ID of the ticket to delete.
+     * @return true if the ticket is successfully deleted, false otherwise.
+     */
     public boolean deleteTicket(String id) {
         try {
             return ticketGateway.deleteTicket(id);
@@ -73,6 +108,11 @@ public class TicketController {
         }
     }
 
+    /**
+     * Filters tickets based on the specified query string.
+     * @param query The query string used for filtering.
+     * @return A list of TicketDTO objects that match the filter criteria.
+     */
     public List<TicketDTO> filterTickets(String query) {
         List<TicketDTO> tickets = getAllTickets();
         if (tickets != null) {
@@ -89,5 +129,4 @@ public class TicketController {
         }
         return null;
     }
-    
 }

@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class for managing schedule-related operations.
+ */
 public class ScheduleController {
     private static final ScheduleController INSTANCE = new ScheduleController();
     private final ScheduleGateway scheduleGateway;
@@ -15,10 +18,18 @@ public class ScheduleController {
         this.scheduleGateway = ScheduleGateway.getInstance();
     }
 
+    /**
+     * Retrieves the singleton instance of ScheduleController.
+     * @return The singleton instance of ScheduleController.
+     */
     public static ScheduleController getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Retrieves all schedules.
+     * @return A set of ScheduleDTO objects representing all schedules.
+     */
     public Set<ScheduleDTO> getAllSchedules() {
         try {
             return scheduleGateway.getAllSchedules();
@@ -28,6 +39,11 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Retrieves a schedule by ID.
+     * @param id The ID of the schedule to retrieve.
+     * @return The ScheduleDTO object representing the schedule with the specified ID, or null if not found.
+     */
     public ScheduleDTO getScheduleById(String id) {
         try {
             return scheduleGateway.getScheduleById(id);
@@ -37,6 +53,11 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Creates a new schedule.
+     * @param schedule The ScheduleDTO object representing the schedule to be created.
+     * @return true if the schedule is successfully created, false otherwise.
+     */
     public boolean createSchedule(ScheduleDTO schedule) {
         try {
             return scheduleGateway.createSchedule(schedule);
@@ -46,6 +67,11 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Updates an existing schedule.
+     * @param schedule The ScheduleDTO object representing the updated schedule information.
+     * @return true if the schedule is successfully updated, false otherwise.
+     */
     public boolean updateSchedule(ScheduleDTO schedule) {
         try {
             return scheduleGateway.updateSchedule(schedule);
@@ -55,6 +81,11 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Deletes a schedule by ID.
+     * @param id The ID of the schedule to delete.
+     * @return true if the schedule is successfully deleted, false otherwise.
+     */
     public boolean deleteSchedule(String id) {
         try {
             return scheduleGateway.deleteSchedule(id);
@@ -64,6 +95,10 @@ public class ScheduleController {
         }
     }
 
+    /**
+     * Retrieves weekly travelers' data.
+     * @return A map where keys are dates (Mondays) and values are the total number of travelers for each week.
+     */
     public Map<String, Long> getWeeklyTravellersData() {
         Set<ScheduleDTO> schedules = getAllSchedules();
         if (schedules == null) {
@@ -85,6 +120,11 @@ public class ScheduleController {
                 ));
     }
     
+    /**
+     * Retrieves schedules by route.
+     * @param route The RouteDTO object representing the route.
+     * @return A list of ScheduleDTO objects representing schedules for the specified route.
+     */
     public List<ScheduleDTO> getSchedulesByRoute(RouteDTO route) {
         try {
             return scheduleGateway.getSchedulesByRoute(route.getName());
