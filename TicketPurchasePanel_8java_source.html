@@ -88,164 +88,261 @@ $(document).ready(function(){initNavTree('TicketPurchasePanel_8java_source.html'
 <a href="TicketPurchasePanel_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> javax.swing.table.DefaultTableModel;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.RouteController;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.TicketController;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.StationController;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.RouteDTO;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.StationDTO;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.TicketDTO;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.UserDTO;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> java.util.stream.Collectors;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">   19</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">TicketPurchasePanel</a> extends JPanel {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span> JTable routesTable;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span> JComboBox&lt;String&gt; comboOrigin;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">private</span> JComboBox&lt;String&gt; comboDestination;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span> JButton buyButton;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">   26</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">TicketPurchasePanel</a>(ResourceBundle messages, <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user, Color colorBackground, Color colorPrimary, Color colorSecondary) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        this.user = user;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        this.setLayout(<span class="keyword">new</span> BorderLayout());</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        this.setBackground(colorBackground);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        JPanel headerPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridBagLayout());</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        headerPanel.setBackground(colorBackground);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        GridBagConstraints gbc = <span class="keyword">new</span> GridBagConstraints();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        gbc.insets = <span class="keyword">new</span> Insets(10, 10, 10, 10);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        gbc.fill = GridBagConstraints.HORIZONTAL;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> javax.swing.event.ListSelectionEvent;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> javax.swing.event.ListSelectionListener;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> javax.swing.table.DefaultTableModel;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.RouteController;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.TicketController;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.StationController;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.RouteDTO;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.ScheduleDTO;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.StationDTO;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.TicketDTO;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.TicketDTO.TicketStatus;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.UserDTO;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">import</span> java.util.Date;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">import</span> java.util.Random;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">import</span> java.util.Set;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">import</span> java.util.stream.Collectors;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">   29</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">TicketPurchasePanel</a> extends JPanel {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> JTable routesTable;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> JTable schedulesTable;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> JComboBox&lt;String&gt; comboOrigin;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> JComboBox&lt;String&gt; comboDestination;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> JButton buyButton;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO.html">RouteDTO</a> selectedRoute;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        JLabel routesLabel = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;availableRoutes&quot;</span>));</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        routesLabel.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 24));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        routesLabel.setForeground(colorPrimary);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        gbc.gridwidth = 2;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        gbc.gridx = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        gbc.gridy = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        headerPanel.add(routesLabel, gbc);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        this.add(headerPanel, BorderLayout.NORTH);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        JPanel filterPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridBagLayout());</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        filterPanel.setBackground(colorBackground);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        filterPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        gbc.gridwidth = 1;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        JLabel lOrigin = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;origin&quot;</span>));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        lOrigin.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 18));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        gbc.gridx = 0;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        gbc.gridy = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        filterPanel.add(lOrigin, gbc);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        comboOrigin = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        gbc.gridx = 1;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        gbc.gridy = 0;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        filterPanel.add(comboOrigin, gbc);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        JLabel lDestination = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;destination&quot;</span>));</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        lDestination.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 18));</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        gbc.gridx = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        gbc.gridy = 1;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        filterPanel.add(lDestination, gbc);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        comboDestination = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        gbc.gridx = 1;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        gbc.gridy = 1;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        filterPanel.add(comboDestination, gbc);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        this.add(filterPanel, BorderLayout.WEST);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        String[] columnNames = {messages.getString(<span class="stringliteral">&quot;routeName&quot;</span>), messages.getString(<span class="stringliteral">&quot;startPoint&quot;</span>),</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                messages.getString(<span class="stringliteral">&quot;endPoint&quot;</span>), messages.getString(<span class="stringliteral">&quot;totalDistance&quot;</span>)};</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        DefaultTableModel model = <span class="keyword">new</span> DefaultTableModel(columnNames, 0) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            @Override</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">boolean</span> isCellEditable(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        };</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        routesTable = <span class="keyword">new</span> JTable(model);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        routesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        JScrollPane tablePane = <span class="keyword">new</span> JScrollPane(routesTable);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        tablePane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        this.add(tablePane, BorderLayout.CENTER);</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">   38</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">TicketPurchasePanel</a>(ResourceBundle messages, <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user, Color colorBackground, Color colorPrimary, Color colorSecondary) {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        this.user = user;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        this.setLayout(<span class="keyword">new</span> BorderLayout());</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        this.setBackground(colorBackground);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        JPanel headerPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridBagLayout());</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        headerPanel.setBackground(colorBackground);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        GridBagConstraints gbc = <span class="keyword">new</span> GridBagConstraints();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        gbc.insets = <span class="keyword">new</span> Insets(10, 10, 10, 10);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        gbc.fill = GridBagConstraints.HORIZONTAL;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        JLabel routesLabel = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;availableRoutes&quot;</span>));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        routesLabel.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 24));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        routesLabel.setForeground(colorPrimary);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        gbc.gridwidth = 2;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        gbc.gridx = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        gbc.gridy = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        headerPanel.add(routesLabel, gbc);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        this.add(headerPanel, BorderLayout.NORTH);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        JPanel filterPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridBagLayout());</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        filterPanel.setBackground(colorBackground);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        filterPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        gbc.gridwidth = 1;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        JLabel lOrigin = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;origin&quot;</span>));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        lOrigin.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 18));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        gbc.gridx = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        gbc.gridy = 0;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        filterPanel.add(lOrigin, gbc);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        comboOrigin = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        gbc.gridx = 1;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        gbc.gridy = 0;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        filterPanel.add(comboOrigin, gbc);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        comboOrigin.setSelectedItem(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        JLabel lDestination = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;destination&quot;</span>));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        lDestination.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Arial&quot;</span>, Font.BOLD, 18));</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        gbc.gridx = 0;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        gbc.gridy = 1;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        filterPanel.add(lDestination, gbc);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        comboDestination = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        gbc.gridx = 1;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        gbc.gridy = 1;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        filterPanel.add(comboDestination, gbc);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        comboDestination.setSelectedItem(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        this.add(filterPanel, BorderLayout.WEST);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        String[] columnNames = {messages.getString(<span class="stringliteral">&quot;routeName&quot;</span>), messages.getString(<span class="stringliteral">&quot;startPoint&quot;</span>),</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                messages.getString(<span class="stringliteral">&quot;endPoint&quot;</span>), messages.getString(<span class="stringliteral">&quot;totalDistance&quot;</span>)};</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        buyButton = <span class="keyword">new</span> JButton(messages.getString(<span class="stringliteral">&quot;buyTicket&quot;</span>));</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        buyButton.setBackground(colorSecondary);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        this.add(buyButton, BorderLayout.SOUTH);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        comboOrigin.addActionListener(e -&gt; loadRoutesData((DefaultTableModel) routesTable.getModel()));</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        comboDestination.addActionListener(e -&gt; loadRoutesData((DefaultTableModel) routesTable.getModel()));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        buyButton.addActionListener(this::performPurchase);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        setupComboBoxes();</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        loadRoutesData(model);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> setupComboBoxes() {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        List&lt;StationDTO&gt; stations = <a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">StationController</a>.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a09326fefc087b1f492290a7d6367c026">getInstance</a>().<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a21a15c0bbdc6f14114df75ddcaf2ea44">getAllStations</a>();</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1StationDTO.html">StationDTO</a> station : stations) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            comboDestination.addItem(station.getName());</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            comboOrigin.addItem(station.getName());</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadRoutesData(DefaultTableModel model) {</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        model.setRowCount(0);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        List&lt;RouteDTO&gt; routes = RouteController.getInstance().getAllRoutes();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        String selectedOrigin = (String) comboOrigin.getSelectedItem();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        String selectedDestination = (String) comboDestination.getSelectedItem();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        List&lt;TicketDTO&gt; userTickets = TicketController.getInstance().getTicketByUser(user.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a787182ed3ca782204e2506a4d254877e">getEmail</a>());</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        List&lt;RouteDTO&gt; userRoutes = userTickets.stream()</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                .map(ticket -&gt; ticket.getSchedule().getRoute())</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                .collect(Collectors.toList());</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        routes = routes.stream()</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                .filter(route -&gt; !userRoutes.contains(route))</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                .filter(route -&gt; selectedOrigin == <span class="keyword">null</span> || route.getStartPoint().equals(selectedOrigin))</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                .filter(route -&gt; selectedDestination == <span class="keyword">null</span> || route.getEndPoint().equals(selectedDestination))</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                .collect(Collectors.toList());</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">for</span> (RouteDTO route : routes) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            model.addRow(<span class="keyword">new</span> Object[]{route.getName(), route.getStartPoint(), route.getEndPoint(), route.getTotalDistance()});</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> performPurchase(ActionEvent e) {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordtype">int</span> selectedRow = routesTable.getSelectedRow();</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">if</span> (selectedRow &gt;= 0) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            String routeName = (String) routesTable.getValueAt(selectedRow, 0);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            RouteDTO selectedRoute = RouteController.getInstance().getRouteById(routeName);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keywordflow">if</span> (selectedRoute != <span class="keyword">null</span>) {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="keywordtype">boolean</span> success = TicketController.getInstance().createTicketForUser(user, selectedRoute);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordflow">if</span> (success) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;ticketPurchasedSuccess&quot;</span>, <span class="stringliteral">&quot;successTitle&quot;</span>, JOptionPane.INFORMATION_MESSAGE);</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    loadRoutesData((DefaultTableModel) routesTable.getModel());</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                    JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;ticketPurchasedError&quot;</span>, <span class="stringliteral">&quot;errorTitle&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        }</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        DefaultTableModel model = <span class="keyword">new</span> DefaultTableModel(columnNames, 0) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            @Override</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">boolean</span> isCellEditable(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        };</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        routesTable = <span class="keyword">new</span> JTable(model);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        routesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        routesTable.getSelectionModel().addListSelectionListener(<span class="keyword">new</span> ListSelectionListener() {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            @Override</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> valueChanged(ListSelectionEvent e) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">if</span> (!e.getValueIsAdjusting()) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    <span class="keywordtype">int</span> selectedRow = routesTable.getSelectedRow();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    <span class="keywordflow">if</span> (selectedRow != -1) {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        loadSchedulesData();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        });</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        String[] scheduleColumnNames = {<span class="stringliteral">&quot;departureTime&quot;</span>, <span class="stringliteral">&quot;arrivalTime&quot;</span>};</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        DefaultTableModel scheduleModel = <span class="keyword">new</span> DefaultTableModel(scheduleColumnNames, 0) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            @Override</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">boolean</span> isCellEditable(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> column) {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        schedulesTable = <span class="keyword">new</span> JTable(scheduleModel);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        schedulesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        JScrollPane scheduleTablePane = <span class="keyword">new</span> JScrollPane(schedulesTable);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        scheduleTablePane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        JScrollPane tablePane = <span class="keyword">new</span> JScrollPane(routesTable);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        tablePane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        JPanel centerPanel = <span class="keyword">new</span> JPanel(<span class="keyword">new</span> GridLayout(1, 2));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        centerPanel.add(tablePane);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        centerPanel.add(scheduleTablePane);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        this.add(centerPanel, BorderLayout.CENTER);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        buyButton = <span class="keyword">new</span> JButton(messages.getString(<span class="stringliteral">&quot;buyTicket&quot;</span>));</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        buyButton.setBackground(colorSecondary);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        this.add(buyButton, BorderLayout.SOUTH);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        comboOrigin.addActionListener(e -&gt; loadRoutesDataFiltered((DefaultTableModel) routesTable.getModel()));</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        comboDestination.addActionListener(e -&gt; loadRoutesDataFiltered((DefaultTableModel) routesTable.getModel()));</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        buyButton.addActionListener(this::performPurchase);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        setupComboBoxes();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        loadRoutesData(model);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> setupComboBoxes() {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        List&lt;StationDTO&gt; stations = <a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">StationController</a>.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a09326fefc087b1f492290a7d6367c026">getInstance</a>().<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a21a15c0bbdc6f14114df75ddcaf2ea44">getAllStations</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1StationDTO.html">StationDTO</a> station : stations) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            comboDestination.addItem(station.getName());</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            comboOrigin.addItem(station.getName());</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadRoutesDataFiltered(DefaultTableModel model) {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        model.setRowCount(0);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        List &lt;RouteDTO&gt; routes = RouteController.getInstance().getAllRoutes();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        String selectedOrigin = (String) comboOrigin.getSelectedItem();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        String selectedDestination = (String) comboDestination.getSelectedItem();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        StationDTO originStation = StationController.getInstance().getStationById(selectedOrigin);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        StationDTO destinationStation = StationController.getInstance().getStationById(selectedDestination);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">for</span> (RouteDTO route : routes) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">if</span> (route.getStations().contains(originStation) &amp;&amp; route.getStations().contains(destinationStation)) {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                model.addRow(<span class="keyword">new</span> Object[]{route.getName(), route.getStartPoint(), route.getEndPoint(), route.getTotalDistance()});</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadRoutesData(DefaultTableModel model) {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        model.setRowCount(0);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        List &lt;RouteDTO&gt; routes = RouteController.getInstance().getAllRoutes();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">for</span> (RouteDTO route : routes) {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                model.addRow(<span class="keyword">new</span> Object[]{route.getName(), route.getStartPoint(), route.getEndPoint(), route.getTotalDistance()});</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadSchedulesData() {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        DefaultTableModel scheduleModel = (DefaultTableModel) schedulesTable.getModel();</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        scheduleModel.setRowCount(0);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordtype">int</span> selectedRow = routesTable.getSelectedRow();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keywordflow">if</span> (selectedRow &gt;= 0) {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            String routeName = (String) routesTable.getValueAt(selectedRow, 0);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            selectedRoute = RouteController.getInstance().getRouteById(routeName);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">if</span> (selectedRoute != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                Set&lt;ScheduleDTO&gt; schedules = selectedRoute.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO.html#a11f4d46f11708b39060d0c1d26ffb89c">getSchedules</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                <span class="keywordflow">for</span> (ScheduleDTO schedule : schedules) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    scheduleModel.addRow(<span class="keyword">new</span> Object[]{schedule.getDepartureTime(), schedule.getArrivalTime()});</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        }</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> performPurchase(ActionEvent e) {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">int</span> selectedRouteRow = routesTable.getSelectedRow();</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordtype">int</span> selectedScheduleRow = schedulesTable.getSelectedRow();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">if</span> (selectedRouteRow &gt;= 0 &amp;&amp; selectedScheduleRow &gt;= 0) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            <span class="comment">// Obtener el nombre de la ruta seleccionada</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            String routeName = (String) routesTable.getValueAt(selectedRouteRow, 0);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            RouteDTO selectedRoute = RouteController.getInstance().getRouteById(routeName);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="comment">// Obtener el horario seleccionado</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            Date departureTime = (Date) schedulesTable.getValueAt(selectedScheduleRow, 0);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            Date arrivalTime = (Date) schedulesTable.getValueAt(selectedScheduleRow, 1);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            ScheduleDTO selectedSchedule = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keywordflow">for</span> (ScheduleDTO schedule : selectedRoute.getSchedules()) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                <span class="keywordflow">if</span> (schedule.getDepartureTime().equals(departureTime) &amp;&amp; schedule.getArrivalTime().equals(arrivalTime)) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                    selectedSchedule = schedule;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            <span class="keywordflow">if</span> (selectedSchedule != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="comment">// Generar un número de asiento aleatorio</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                Random random = <span class="keyword">new</span> Random();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                <span class="keywordtype">int</span> seatNumber = random.nextInt(100) + 1; <span class="comment">// Genera un número entre 1 y 100</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                <span class="comment">// Crear el nuevo TicketDTO con valores válidos</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                TicketDTO ticket = <span class="keyword">new</span> TicketDTO();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                ticket.setUser(user);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                ticket.setSeatNumber(seatNumber);</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                ticket.setPrice(55.0); <span class="comment">// Asegúrate de que este sea el precio correcto</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                ticket.setSchedule(selectedSchedule);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                ticket.setStatus(TicketStatus.PURCHASED);</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                ticket.setId(ticket.getSchedule().getId() + <span class="stringliteral">&quot;-&quot;</span> + String.format(<span class="stringliteral">&quot;%04d&quot;</span>, ticket.getSeatNumber()) + <span class="stringliteral">&quot;-&quot;</span> + ticket.getStatus().toString().toLowerCase());</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                <span class="comment">// Verificar el JSON que se enviará</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                    String json = mapper.writeValueAsString(ticket);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    System.out.println(<span class="stringliteral">&quot;JSON enviado: &quot;</span> + json);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                } <span class="keywordflow">catch</span> (JsonProcessingException ex) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                    ex.printStackTrace();</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <span class="comment">// Enviar el ticket al servidor</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                <span class="keywordtype">boolean</span> success = TicketController.getInstance().createTicket(ticket);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                <span class="keywordflow">if</span> (success) {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                    JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;Ticket purchased successfully!&quot;</span>, <span class="stringliteral">&quot;Success&quot;</span>, JOptionPane.INFORMATION_MESSAGE);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                    loadRoutesData((DefaultTableModel) routesTable.getModel());</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                    JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;Error purchasing ticket.&quot;</span>, <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;Selected schedule is invalid.&quot;</span>, <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="stringliteral">&quot;Please select a route and a schedule.&quot;</span>, <span class="stringliteral">&quot;Warning&quot;</span>, JOptionPane.WARNING_MESSAGE);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;}</div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">com.RouteBus.client.controller.StationController</a></div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00007">StationController.java:7</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html_a09326fefc087b1f492290a7d6367c026"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a09326fefc087b1f492290a7d6367c026">com.RouteBus.client.controller.StationController.getInstance</a></div><div class="ttdeci">static StationController getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00015">StationController.java:15</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1StationController_html_a21a15c0bbdc6f14114df75ddcaf2ea44"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html#a21a15c0bbdc6f14114df75ddcaf2ea44">com.RouteBus.client.controller.StationController.getAllStations</a></div><div class="ttdeci">List&lt; StationDTO &gt; getAllStations()</div><div class="ttdef"><b>Definition:</b> <a href="StationController_8java_source.html#l00019">StationController.java:19</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO.html">com.RouteBus.client.dto.RouteDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="RouteDTO_8java_source.html#l00011">RouteDTO.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO_html_a11f4d46f11708b39060d0c1d26ffb89c"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1RouteDTO.html#a11f4d46f11708b39060d0c1d26ffb89c">com.RouteBus.client.dto.RouteDTO.getSchedules</a></div><div class="ttdeci">Set&lt; ScheduleDTO &gt; getSchedules()</div><div class="ttdef"><b>Definition:</b> <a href="RouteDTO_8java_source.html#l00090">RouteDTO.java:90</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1StationDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1StationDTO.html">com.RouteBus.client.dto.StationDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="StationDTO_8java_source.html#l00011">StationDTO.java:11</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">com.RouteBus.client.dto.UserDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="UserDTO_8java_source.html#l00012">UserDTO.java:12</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO_html_a787182ed3ca782204e2506a4d254877e"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a787182ed3ca782204e2506a4d254877e">com.RouteBus.client.dto.UserDTO.getEmail</a></div><div class="ttdeci">String getEmail()</div><div class="ttdef"><b>Definition:</b> <a href="UserDTO_8java_source.html#l00066">UserDTO.java:66</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">com.RouteBus.client.gui.TicketPurchasePanel</a></div><div class="ttdef"><b>Definition:</b> <a href="TicketPurchasePanel_8java_source.html#l00019">TicketPurchasePanel.java:19</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel_html_a845849d3d5ce274ca8214a6257be4025"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">com.RouteBus.client.gui.TicketPurchasePanel.TicketPurchasePanel</a></div><div class="ttdeci">TicketPurchasePanel(ResourceBundle messages, UserDTO user, Color colorBackground, Color colorPrimary, Color colorSecondary)</div><div class="ttdef"><b>Definition:</b> <a href="TicketPurchasePanel_8java_source.html#l00026">TicketPurchasePanel.java:26</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html">com.RouteBus.client.gui.TicketPurchasePanel</a></div><div class="ttdef"><b>Definition:</b> <a href="TicketPurchasePanel_8java_source.html#l00029">TicketPurchasePanel.java:29</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel_html_a845849d3d5ce274ca8214a6257be4025"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html#a845849d3d5ce274ca8214a6257be4025">com.RouteBus.client.gui.TicketPurchasePanel.TicketPurchasePanel</a></div><div class="ttdeci">TicketPurchasePanel(ResourceBundle messages, UserDTO user, Color colorBackground, Color colorPrimary, Color colorSecondary)</div><div class="ttdef"><b>Definition:</b> <a href="TicketPurchasePanel_8java_source.html#l00038">TicketPurchasePanel.java:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('Ticket_8java_source.html',''); initRes
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    @Enumerated(EnumType.STRING)</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span> <a class="code" href="enumcom_1_1RouteBus_1_1server_1_1model_1_1TicketStatus.html">TicketStatus</a> status;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    @ManyToOne(fetch = FetchType.EAGER)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    @JoinColumn(name = <span class="stringliteral">&quot;schedule_id&quot;</span>)  </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Schedule.html">Schedule</a> schedule;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>

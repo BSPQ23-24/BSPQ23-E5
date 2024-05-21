@@ -6,6 +6,7 @@ var classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService =
     [ "deleteRoute", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#ad1939aced05c8c4cf756134acf069f83", null ],
     [ "getAllRoutes", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#a52f74a59e06dd24c29ee3a4006581969", null ],
     [ "getRouteById", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#aefab0ff845ce01c04c779f0b92fa4a2a", null ],
+    [ "getRoutesByStations", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#a54a14bb6c06cc6f23da17294d343d362", null ],
     [ "obtainRoutesByBus", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#a1555f2256181cfa171d4c022f6c98365", null ],
     [ "updateRoute", "classcom_1_1RouteBus_1_1server_1_1service_1_1RouteService.html#ac85719fb429f2bf43d532825a09ded0f", null ]
 ];

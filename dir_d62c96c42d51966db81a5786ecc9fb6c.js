@@ -10,7 +10,7 @@ var dir_d62c96c42d51966db81a5786ecc9fb6c =
       [ "RouteRepository", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository" ]
     ] ],
     [ "ScheduleRepository.java", "ScheduleRepository_8java.html", [
-      [ "ScheduleRepository", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html", null ]
+      [ "ScheduleRepository", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository" ]
     ] ],
     [ "StationRepository.java", "StationRepository_8java.html", [
       [ "StationRepository", "interfacecom_1_1RouteBus_1_1server_1_1dao_1_1StationRepository.html", null ]

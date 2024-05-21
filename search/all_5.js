@@ -7,6 +7,8 @@ var searchData=
   ['findbybuseslicenseplate_88',['findByBusesLicensePlate',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html#af7a3e1f508e354de479bb37934554ca4',1,'com::RouteBus::server::dao::RouteRepository']]],
   ['findbyemail_89',['findByEmail',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1UserRepository.html#abb4cd83494a1fd28c2ffdb93fd6722cc',1,'com::RouteBus::server::dao::UserRepository']]],
   ['findbyname_90',['findByName',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html#a98f57ab9f56660fbdc9e110699e25a0d',1,'com::RouteBus::server::dao::RouteRepository']]],
-  ['findbystationsname_91',['findByStationsName',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html#a778923b0534cc8ee0c37bc70ac71568f',1,'com::RouteBus::server::dao::RouteRepository']]],
-  ['findbyuseremail_92',['findByUserEmail',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1TicketRepository.html#ac84f26cc24a8fc35afef76f62fb2cb7f',1,'com::RouteBus::server::dao::TicketRepository']]]
+  ['findbyroute_5fname_91',['findByRoute_Name',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html#a424a85a28f37ae596914a8325158a4b2',1,'com::RouteBus::server::dao::ScheduleRepository']]],
+  ['findbyroute_5fnameanddeparturetime_92',['findByRoute_NameAndDepartureTime',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html#a8495674a8ef20b5f5e397f56bf4659da',1,'com::RouteBus::server::dao::ScheduleRepository']]],
+  ['findbystationsname_93',['findByStationsName',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html#a778923b0534cc8ee0c37bc70ac71568f',1,'com::RouteBus::server::dao::RouteRepository']]],
+  ['findbyuseremail_94',['findByUserEmail',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1TicketRepository.html#ac84f26cc24a8fc35afef76f62fb2cb7f',1,'com::RouteBus::server::dao::TicketRepository']]]
 ];

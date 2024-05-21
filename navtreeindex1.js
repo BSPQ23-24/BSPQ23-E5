@@ -1,8 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6a2a4399af2de5ffa8f6c013fb7ba633":[1,0,0,0,0,0,4,6],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#ab5dda59d2e0ccd449f8922e39a7ffddb":[1,0,0,0,0,0,4,5],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#aba2f13587310eb6c50b7b9ac45be1d91":[1,0,0,0,0,0,4,3],
-"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#adb7038ed04d5c4da6b71c6fb309fce23":[1,0,0,0,0,0,4,1],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html":[1,0,0,0,0,0,5],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a1a32f3a9666bb316bd7b6e95f38e7383":[1,0,0,0,0,0,5,3],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a1f14ca7ae269f121a25d3615037d4fde":[1,0,0,0,0,0,5,1],
@@ -157,9 +157,9 @@ var NAVTREEINDEX1 =
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a32c31cb1c3a8a8462b537424231215c5":[1,0,0,0,0,2,5,6],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a7600d0ef08bf6f8500750e8c4db6b8d4":[1,0,0,0,0,2,5,4],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a8ceebc3c53d380d2b4b194d050d23e4d":[1,0,0,0,0,2,5,2],
+"classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a9db915392b27ad38ca4b191e8a899d4a":[1,0,0,0,0,2,5,1],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#aaf72110421feccae42ac0a9c22628d8b":[1,0,0,0,0,2,5,5],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#aeb5e10614c0819f9731a40074e299fd1":[1,0,0,0,0,2,5,3],
-"classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#af61ccbffe4945f0a4a2e1dbc4d7d1791":[1,0,0,0,0,2,5,1],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1UserGateway.html":[1,0,0,0,0,2,6],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1UserGateway.html#a234d3c108a86c6f0cfcc3cb04129b598":[1,0,0,0,0,2,6,6],
 "classcom_1_1RouteBus_1_1client_1_1gateway_1_1UserGateway.html#a34cdae64dd19d3ff7ce6a9ecc0db55a8":[1,0,0,0,0,2,6,7],
