@@ -58,8 +58,14 @@ public class RouteRestController {
             ResponseEntity.notFound().build();
     }
     
-	@GetMapping("bus/{licensePlate}/routes")
-	public List<Route> obtainRoutesByBus(@PathVariable String licensePlate) {
+    @GetMapping("/bus/{licensePlate}/routes")
+    public List<Route> obtainRoutesByBus(@PathVariable String licensePlate) {
         return routeService.obtainRoutesByBus(licensePlate);
+    }
+    
+    @GetMapping("/stations")
+    public ResponseEntity<List<Route>> getRoutesByStations(@RequestParam String origin, @RequestParam String destination) {
+        List<Route> routes = routeService.getRoutesByStations(origin, destination);
+        return routes != null ? ResponseEntity.ok(routes) : ResponseEntity.notFound().build();
     }
 }
