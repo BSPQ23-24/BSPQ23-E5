@@ -1,7 +1,6 @@
 package com.RouteBus.server.controller;
 
 import com.RouteBus.server.model.Ticket;
-import com.RouteBus.server.model.TicketStatus;
 import com.RouteBus.server.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

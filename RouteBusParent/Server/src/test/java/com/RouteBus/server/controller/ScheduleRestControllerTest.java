@@ -45,7 +45,7 @@ public class ScheduleRestControllerTest {
         schedules.add(mockSchedule);
         when(scheduleService.getAllSchedules()).thenReturn(schedules);
 
-        ResponseEntity<Set<Schedule>> response = scheduleRestController.getAllSchedulees();
+        ResponseEntity<Set<Schedule>> response = scheduleRestController.getAllSchedules();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(schedules, response.getBody());
         verify(scheduleService).getAllSchedules();

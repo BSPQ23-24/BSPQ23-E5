@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.RouteBus.server.model.Route;
 import com.RouteBus.server.model.Ticket;
 
 @Repository
