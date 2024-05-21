@@ -85,7 +85,7 @@ public class TicketRestControllerTest {
 
         ResponseEntity<String> response = ticketController.createTicket(ticket);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Failed to create Ticket.", response.getBody());
+        assertEquals("Failed to create ticket.", response.getBody());
         verify(ticketServiceMock, times(1)).createTicket(ticket);
         logger.debug("Test testCreateTicket_Error passed successfully.");
     }
