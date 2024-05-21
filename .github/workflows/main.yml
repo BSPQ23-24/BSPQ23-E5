@@ -34,7 +34,7 @@ jobs:
         
     # Execute mvn doxygen:report to generate the documentation
     - name: Generate Doxygen documentation
-      run: 
+      run: |
       cd RouteBusApp
       mvn doxygen:report
 
