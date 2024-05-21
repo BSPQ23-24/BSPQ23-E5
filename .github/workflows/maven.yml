@@ -21,7 +21,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Generate Dependency Graph
-      run: mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph --file RouteBusParent/pom.xml
+      run: mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph --file pom.xml
+      working-directory: RouteBusParent
     - name: Build and install RouteBusParent
       run: mvn -B package --file RouteBusParent/pom.xml  # Primero construimos e instalamos RouteBusParent
 
