@@ -22,7 +22,8 @@ jobs:
         cache: maven
    
     - name: Build and install RouteBusParent
-      run: mvn -B package --file RouteBusParent/pom.xml  # Primero construimos e instalamos RouteBusParent
+      run: mvn -B package
+      working-directory: RouteBusParent # Primero construimos e instalamos RouteBusParent
 
     #- name: Build and install Client
      # run: mvn -B clean install --file RouteBusParent/Client/pom.xml  # Luego construimos e instalamos Client
