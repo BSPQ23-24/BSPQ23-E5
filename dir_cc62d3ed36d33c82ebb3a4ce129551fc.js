@@ -39,6 +39,9 @@ var dir_cc62d3ed36d33c82ebb3a4ce129551fc =
     [ "ParentWindow.java", "ParentWindow_8java.html", [
       [ "ParentWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow" ]
     ] ],
+    [ "PurchaseTicketsPanel.java", "PurchaseTicketsPanel_8java.html", [
+      [ "PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel" ]
+    ] ],
     [ "RegistrationWindow.java", "RegistrationWindow_8java.html", [
       [ "RegistrationWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow" ]
     ] ],
@@ -47,9 +50,6 @@ var dir_cc62d3ed36d33c82ebb3a4ce129551fc =
     ] ],
     [ "StationsAdminPanel.java", "StationsAdminPanel_8java.html", [
       [ "StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel" ]
-    ] ],
-    [ "TicketPurchasePanel.java", "TicketPurchasePanel_8java.html", [
-      [ "TicketPurchasePanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel" ]
     ] ],
     [ "TicketsAdminPanel.java", "TicketsAdminPanel_8java.html", [
       [ "TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel" ]

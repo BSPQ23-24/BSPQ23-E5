@@ -43,10 +43,10 @@ var annotated_dup =
             [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel" ],
             [ "NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel" ],
             [ "ParentWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow" ],
+            [ "PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel" ],
             [ "RegistrationWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow" ],
             [ "RouteAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel" ],
             [ "StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel" ],
-            [ "TicketPurchasePanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel" ],
             [ "TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel" ]
           ] ],
           [ "util", "namespacecom_1_1RouteBus_1_1client_1_1util.html", [

@@ -51,7 +51,7 @@ var hierarchy =
       [ "com.RouteBus.client.gui.MyRoutesPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel.html", null ],
       [ "com.RouteBus.client.gui.MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", null ],
       [ "com.RouteBus.client.gui.NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", null ],
-      [ "com.RouteBus.client.gui.TicketPurchasePanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketPurchasePanel.html", null ]
+      [ "com.RouteBus.client.gui.PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", null ]
     ] ],
     [ "com.RouteBus.server.model.Nationality", "classcom_1_1RouteBus_1_1server_1_1model_1_1Nationality.html", null ],
     [ "com.RouteBus.client.dto.NationalityDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html", null ],

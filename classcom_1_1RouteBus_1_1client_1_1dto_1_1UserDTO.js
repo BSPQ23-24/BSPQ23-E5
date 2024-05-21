@@ -4,6 +4,7 @@ var classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO =
     [ "UserDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#ae1cfa1996140859f29d2427a241258e6", null ],
     [ "UserDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a2a022c43977c884d18923a4767be0962", null ],
     [ "UserDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#ad96ac7f33320fce53b2b23d4f4ad1987", null ],
+    [ "addTicket", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a9518160509f9443701104be244748783", null ],
     [ "equals", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#ad04ece11688904e64a9bb03eb7082699", null ],
     [ "getBirthDate", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a56d098c29e69f1a950bf8bf3c05cd21c", null ],
     [ "getEmail", "classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a787182ed3ca782204e2506a4d254877e", null ],

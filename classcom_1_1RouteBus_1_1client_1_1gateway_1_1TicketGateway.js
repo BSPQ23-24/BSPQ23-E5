@@ -1,7 +1,6 @@
 var classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway =
 [
     [ "createTicket", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a03c1d22603fbed8962bb6b68e8a992dd", null ],
-    [ "createTicketForUser", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a9db915392b27ad38ca4b191e8a899d4a", null ],
     [ "deleteTicket", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a8ceebc3c53d380d2b4b194d050d23e4d", null ],
     [ "getAllTickets", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#aeb5e10614c0819f9731a40074e299fd1", null ],
     [ "getAllTicketsByUser", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html#a7600d0ef08bf6f8500750e8c4db6b8d4", null ],
