@@ -122,7 +122,8 @@ var annotated_dup =
             [ "UserServicePerformanceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest" ],
             [ "UserServiceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest" ]
           ] ],
-          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ]
+          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ],
+          [ "AppTest", "classcom_1_1RouteBus_1_1server_1_1AppTest.html", "classcom_1_1RouteBus_1_1server_1_1AppTest" ]
         ] ],
         [ "App", "classcom_1_1RouteBus_1_1App.html", null ],
         [ "AppTest", "classcom_1_1RouteBus_1_1AppTest.html", "classcom_1_1RouteBus_1_1AppTest" ]

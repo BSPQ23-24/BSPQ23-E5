@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6877a148f9bbc07a17cac2e87f309842":[1,0,0,0,0,0,4,0],
-"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6a2a4399af2de5ffa8f6c013fb7ba633":[1,0,0,0,0,0,4,5],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#ab5dda59d2e0ccd449f8922e39a7ffddb":[1,0,0,0,0,0,4,4],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#aba2f13587310eb6c50b7b9ac45be1d91":[1,0,0,0,0,0,4,2],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html":[1,0,0,0,0,0,5],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html":[1,0,0,0,0,3,14],
 "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f":[1,0,0,0,0,3,14,0],
 "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html":[1,0,0,0,0,3,15],
-"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a26b33a97f1bab674a4d4f1db7b647ee0":[1,0,0,0,0,3,15,2]
+"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a26b33a97f1bab674a4d4f1db7b647ee0":[1,0,0,0,0,3,15,2],
+"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a2e15dd465cbdab638dbca25725993868":[1,0,0,0,0,3,15,5],
+"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a55c61f3498557c8375c1bdf5e61caf72":[1,0,0,0,0,3,15,4]
 };

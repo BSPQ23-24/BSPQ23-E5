@@ -1,7 +1,5 @@
 var NAVTREEINDEX0 =
 {
-"":[0,0,0],
-"":[0,0,0,0],
 "AdminPanel_8java.html":[2,0,0,0,0,0,0,0,0,3,1],
 "AdminPanel_8java_source.html":[2,0,0,0,0,0,0,0,0,3,1],
 "AdministratorWindow_8java.html":[2,0,0,0,0,0,0,0,0,3,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html":[1,0,0,0,0,0,4],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a13ce00bd1999b54cbab15b677a03b7ae":[1,0,0,0,0,0,4,3],
 "classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a2937fd1e630b0062e23ea246615554bb":[1,0,0,0,0,0,4,6],
-"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a334c3b4a75344783f7d8e267004cc0f0":[1,0,0,0,0,0,4,1]
+"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a334c3b4a75344783f7d8e267004cc0f0":[1,0,0,0,0,0,4,1],
+"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6877a148f9bbc07a17cac2e87f309842":[1,0,0,0,0,0,4,0],
+"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6a2a4399af2de5ffa8f6c013fb7ba633":[1,0,0,0,0,0,4,5]
 };

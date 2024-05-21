@@ -46,11 +46,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"",
-"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#a6877a148f9bbc07a17cac2e87f309842",
-"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a2e15dd465cbdab638dbca25725993868",
-"classcom_1_1RouteBus_1_1server_1_1model_1_1Schedule.html#adaf0069095dd81b80adffd30f58e67bc",
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#ad7df15e3602df22ff5a35b5506bd7451"
+"AdminPanel_8java.html",
+"classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html#ab5dda59d2e0ccd449f8922e39a7ffddb",
+"classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html#a61ead890e82da56b24b3aa888d8811e9",
+"classcom_1_1RouteBus_1_1server_1_1model_1_1Schedule.html#abedebc321f0cc061e74c54873c90c9b7",
+"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a969a065b5538082f97808d2682477532"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loginwindow_609',['LoginWindow',['../classcom_1_1RouteBus_1_1client_1_1gui_1_1LoginWindow.html',1,'com::RouteBus::client::gui']]]
+  ['loginwindow_612',['LoginWindow',['../classcom_1_1RouteBus_1_1client_1_1gui_1_1LoginWindow.html',1,'com::RouteBus::client::gui']]]
 ];
