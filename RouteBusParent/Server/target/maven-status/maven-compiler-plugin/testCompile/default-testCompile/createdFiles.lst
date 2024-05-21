@@ -24,6 +24,5 @@ com\RouteBus\server\model\RouteTest.class
 com\RouteBus\server\service\RouteServiceTest.class
 com\RouteBus\server\service\RouteServicePerformanceTest.class
 com\RouteBus\server\service\NationalityServicePerformanceTest.class
-com\RouteBus\server\AppTest.class
 com\RouteBus\server\service\BusServicePerformanceTest.class
 com\RouteBus\server\controller\NationalityRestControllerTest.class

@@ -87,7 +87,7 @@ public class ScheduleRestControllerTest {
         when(scheduleService.createSchedule(mockSchedule)).thenReturn(ScheduleService.ScheduleServiceResult.ERROR);
         ResponseEntity<String> response = scheduleRestController.createSchedule(mockSchedule);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-        assertEquals("Failed to create Schedule.", response.getBody());
+        assertEquals("Failed to create schedule.", response.getBody());
         verify(scheduleService).createSchedule(mockSchedule);
         logger.debug("createSchedule method test for ERROR case successful.");
     }
