@@ -20,12 +20,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+   
+    - name: Build and install RouteBusParent
+      run: mvn -B package --file RouteBusParent/pom.xml  # Primero construimos e instalamos RouteBusParent
     - name: Generate Dependency Graph
       run: mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph --file pom.xml
       working-directory: RouteBusParent
-    - name: Build and install RouteBusParent
-      run: mvn -B package --file RouteBusParent/pom.xml  # Primero construimos e instalamos RouteBusParent
-
     #- name: Build and install Client
      # run: mvn -B clean install --file RouteBusParent/Client/pom.xml  # Luego construimos e instalamos Client
     #- name: Generate Dependency Graph
