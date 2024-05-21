@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.RouteBus.server.service.UserServicePerformanceTest
--------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.575 s - in com.RouteBus.server.service.UserServicePerformanceTest
