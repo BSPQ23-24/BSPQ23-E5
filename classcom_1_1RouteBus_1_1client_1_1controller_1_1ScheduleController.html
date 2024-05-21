@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.client.controller.ScheduleController Class Reference</title>
+<title>Bus Route: com.RouteBus.client.controller.ScheduleController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -113,8 +115,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a0078abf5af0dcf46f77dd5d137857d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00010">10</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<div class="textblock"><p>Controller class for managing schedule-related operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00013">13</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa73f818389f81a6bd518930be64ba3da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa73f818389f81a6bd518930be64ba3da">&#9670;&nbsp;</a></span>createSchedule()</h2>
@@ -131,8 +134,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a new schedule. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">schedule</td><td>The ScheduleDTO object representing the schedule to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the schedule is successfully created, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00040">40</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00061">61</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -151,8 +161,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a schedule by ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the schedule to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the schedule is successfully deleted, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00058">58</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00089">89</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -170,8 +187,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all schedules. </p><dl class="section return"><dt>Returns</dt><dd>A set of ScheduleDTO objects representing all schedules. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00022">22</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00033">33</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -197,8 +215,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1ScheduleController.html">ScheduleController</a>. </p><dl class="section return"><dt>Returns</dt><dd>The singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1ScheduleController.html">ScheduleController</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00018">18</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00025">25</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -217,8 +236,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a schedule by ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the schedule to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ScheduleDTO object representing the schedule with the specified ID, or null if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00031">31</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00047">47</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -237,8 +263,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves schedules by route. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">route</td><td>The RouteDTO object representing the route. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of ScheduleDTO objects representing schedules for the specified route. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00088">88</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00128">128</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -256,8 +289,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves weekly travelers' data. </p><dl class="section return"><dt>Returns</dt><dd>A map where keys are dates (Mondays) and values are the total number of travelers for each week. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00067">67</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00102">102</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>
@@ -276,8 +310,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing schedule. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">schedule</td><td>The ScheduleDTO object representing the updated schedule information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the schedule is successfully updated, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00049">49</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleController_8java_source.html#l00075">75</a> of file <a class="el" href="ScheduleController_8java_source.html">ScheduleController.java</a>.</p>
 
 </div>
 </div>

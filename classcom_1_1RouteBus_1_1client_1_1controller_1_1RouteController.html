@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.client.controller.RouteController Class Reference</title>
+<title>Bus Route: com.RouteBus.client.controller.RouteController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -117,8 +119,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:aaa9c296e34202e46e894c99c6924e844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00010">10</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<div class="textblock"><p>Controller class responsible for handling route-related operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00013">13</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a36344ce65822e4c2fa631ee8336131f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36344ce65822e4c2fa631ee8336131f5">&#9670;&nbsp;</a></span>createRoute()</h2>
@@ -135,8 +138,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a new route.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">route</td><td>The RouteDTO representing the route to create. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the route is successfully created, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00041">41</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00065">65</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -155,8 +166,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a route by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The ID of the route to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the route is successfully deleted, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00059">59</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00095">95</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -175,8 +194,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Filters routes based on a query string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The query string to filter routes by. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of RouteDTO representing the filtered routes, or null if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00085">85</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00138">138</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -194,8 +221,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all routes.</p>
+<dl class="section return"><dt>Returns</dt><dd>A list of RouteDTO representing all routes, or null if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00022">22</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00035">35</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -221,8 +250,10 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1RouteController.html">RouteController</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>The singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1RouteController.html">RouteController</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00018">18</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00026">26</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -241,8 +272,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a route by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The ID of the route to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The RouteDTO representing the route, or null if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00031">31</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00050">50</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -271,8 +310,17 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves routes by stations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin</td><td>The origin station. </td></tr>
+    <tr><td class="paramname">destination</td><td>The destination station. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of RouteDTO representing the routes between the given stations, or an empty list if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00100">100</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00160">160</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -290,8 +338,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves routes ordered by popularity.</p>
+<dl class="section return"><dt>Returns</dt><dd>A list of RouteDTO representing the routes ordered by popularity, or null if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00077">77</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00124">124</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -310,8 +360,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves routes associated with a specific bus.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">licensePlate</td><td>The license plate of the bus. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of RouteDTO representing the routes associated with the bus, or null if an error occurs. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00068">68</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00110">110</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>
@@ -330,8 +388,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing route.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">route</td><td>The RouteDTO representing the route to update. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the route is successfully updated, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00050">50</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RouteController_8java_source.html#l00080">80</a> of file <a class="el" href="RouteController_8java_source.html">RouteController.java</a>.</p>
 
 </div>
 </div>

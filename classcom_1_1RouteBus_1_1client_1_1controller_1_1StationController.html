@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.client.controller.StationController Class Reference</title>
+<title>Bus Route: com.RouteBus.client.controller.StationController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -109,8 +111,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a09326fefc087b1f492290a7d6367c026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00007">7</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<div class="textblock"><p>Controller class for managing station-related operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00010">10</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a17b1218dfdcea84b8f80d8e6dd4ff4ef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17b1218dfdcea84b8f80d8e6dd4ff4ef">&#9670;&nbsp;</a></span>createStation()</h2>
@@ -127,8 +130,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a new station. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station</td><td>The StationDTO object representing the station to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the station is successfully created, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00037">37</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00058">58</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>
@@ -147,8 +157,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a station by name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the station to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the station is successfully deleted, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00055">55</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00086">86</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>
@@ -166,8 +183,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all stations. </p><dl class="section return"><dt>Returns</dt><dd>A list of StationDTO objects representing all stations. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00019">19</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00030">30</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>
@@ -193,8 +211,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">StationController</a>. </p><dl class="section return"><dt>Returns</dt><dd>The singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1StationController.html">StationController</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00015">15</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00022">22</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>
@@ -213,8 +232,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a station by name. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the station to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The StationDTO object representing the station with the specified name, or null if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00028">28</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00044">44</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>
@@ -233,8 +259,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing station. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">station</td><td>The StationDTO object representing the updated station information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the station is successfully updated, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00046">46</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="StationController_8java_source.html#l00072">72</a> of file <a class="el" href="StationController_8java_source.html">StationController.java</a>.</p>
 
 </div>
 </div>

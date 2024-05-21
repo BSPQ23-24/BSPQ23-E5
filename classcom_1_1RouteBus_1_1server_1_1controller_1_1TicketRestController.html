@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.server.controller.TicketRestController Class Reference</title>
+<title>Bus Route: com.RouteBus.server.controller.TicketRestController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -109,8 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aef289146907f4cebf65a8d09d5e536dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00013">13</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<div class="textblock"><p>REST controller for managing Ticket entities. </p>
+
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00016">16</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8d7b83813d5d23ffcb56ad310ad514bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d7b83813d5d23ffcb56ad310ad514bc">&#9670;&nbsp;</a></span>TicketRestController()</h2>
@@ -127,8 +130,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor for <a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1TicketRestController.html">TicketRestController</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticketService</td><td>The TicketService instance to be used by the controller. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00016">16</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00024">24</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -148,8 +158,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to create a new ticket.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticket</td><td>The Ticket object to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if creation is successful, or error message otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00037">37</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00068">68</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -168,8 +186,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to create a new ticket for a specific user.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticket</td><td>The Ticket object to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if creation is successful, or error message otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00049">49</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00087">87</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -188,8 +214,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to delete a ticket by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the ticket to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00070">70</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00120">120</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -207,8 +241,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get all tickets.</p>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a Set of Ticket objects. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00021">21</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00034">34</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -227,8 +263,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get all tickets associated with a user.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>The email of the user to retrieve tickets for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a List of Ticket objects. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00026">26</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00045">45</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -247,8 +291,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get a ticket by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the ticket to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a Ticket object if found, or ResponseEntity.notFound() if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00031">31</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00056">56</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -267,8 +319,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to update an existing ticket.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticket</td><td>The Ticket object with updated information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00062">62</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00106">106</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>

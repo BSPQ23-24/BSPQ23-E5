@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.client.controller.BusController Class Reference</title>
+<title>Bus Route: com.RouteBus.client.controller.BusController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -111,8 +113,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a64818bf6702067d744fd419ae561527f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00008">8</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<div class="textblock"><p>Controller class for managing bus-related operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00011">11</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab564b300503c8cb074ba1fc9aa348eea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab564b300503c8cb074ba1fc9aa348eea">&#9670;&nbsp;</a></span>createBus()</h2>
@@ -129,8 +132,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a new bus.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>the BusDTO representing the bus to create </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the bus is successfully created, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00038">38</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00063">63</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -149,8 +160,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a bus by its license plate.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">licensePlate</td><td>the license plate of the bus to delete </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the bus is successfully deleted, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00056">56</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00093">93</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -169,8 +188,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Filters buses based on a query string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>the query string to filter buses by </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a list of BusDTO representing the filtered buses, or null if an error occurs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00065">65</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00108">108</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -188,8 +215,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all buses.</p>
+<dl class="section return"><dt>Returns</dt><dd>a list of BusDTO representing all buses, or null if an error occurs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00020">20</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00033">33</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -208,8 +237,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a bus by its license plate.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">licensePlate</td><td>the license plate of the bus to retrieve </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the BusDTO representing the bus, or null if an error occurs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00029">29</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00048">48</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -235,8 +272,10 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1BusController.html">BusController</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1BusController.html">BusController</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00016">16</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00024">24</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>
@@ -255,8 +294,16 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing bus.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bus</td><td>the BusDTO representing the bus to update </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the bus is successfully updated, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00047">47</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BusController_8java_source.html#l00078">78</a> of file <a class="el" href="BusController_8java_source.html">BusController.java</a>.</p>
 
 </div>
 </div>

@@ -67,7 +67,7 @@ var searchData=
   ['stationgateway_2ejava_299',['StationGateway.java',['../StationGateway_8java.html',1,'']]],
   ['stationrepository_300',['StationRepository',['../interfacecom_1_1RouteBus_1_1server_1_1dao_1_1StationRepository.html',1,'com::RouteBus::server::dao']]],
   ['stationrepository_2ejava_301',['StationRepository.java',['../StationRepository_8java.html',1,'']]],
-  ['stationrestcontroller_302',['StationRestController',['../classcom_1_1RouteBus_1_1server_1_1controller_1_1StationRestController.html',1,'com.RouteBus.server.controller.StationRestController'],['../classcom_1_1RouteBus_1_1server_1_1controller_1_1StationRestController.html#a405ab7a34cbb708506e73bad2a81bc5b',1,'com.RouteBus.server.controller.StationRestController.StationRestController()']]],
+  ['stationrestcontroller_302',['StationRestController',['../classcom_1_1RouteBus_1_1server_1_1controller_1_1StationRestController.html',1,'com.RouteBus.server.controller.StationRestController'],['../classcom_1_1RouteBus_1_1server_1_1controller_1_1StationRestController.html#ac85b39c2e987d479b318db45fdd49e45',1,'com.RouteBus.server.controller.StationRestController.StationRestController()']]],
   ['stationrestcontroller_2ejava_303',['StationRestController.java',['../StationRestController_8java.html',1,'']]],
   ['stationrestcontrollertest_304',['StationRestControllerTest',['../classcom_1_1RouteBus_1_1server_1_1controller_1_1StationRestControllerTest.html',1,'com::RouteBus::server::controller']]],
   ['stationrestcontrollertest_2ejava_305',['StationRestControllerTest.java',['../StationRestControllerTest_8java.html',1,'']]],

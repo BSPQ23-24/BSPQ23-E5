@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: Server/src/main/java/com/RouteBus/server/controller/BusRestController.java Source File</title>
+<title>Bus Route: Server/src/main/java/com/RouteBus/server/controller/BusRestController.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -94,57 +96,57 @@ $(document).ready(function(){initNavTree('BusRestController_8java_source.html','
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.util.Set;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;@RestController</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;@RequestMapping(<span class="stringliteral">&quot;/bus&quot;</span>)</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">   12</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">BusRestController</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span> <span class="keyword">final</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a> busService;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">   15</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">BusRestController</a>(<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a> busService) {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        this.busService = busService;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/all&quot;</span>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a06451dba0712d19c1c0cb8d7d1a7f8de">   20</a></span>&#160;    public ResponseEntity&lt;Set&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a>&gt;&gt; getAllBuses() {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> ResponseEntity.ok(busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a860ce722332941886ced14061273071b">getAllBuses</a>());</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/{licensePlate}&quot;</span>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a2c4f9099e502f6a0dfc16476a5688157">   25</a></span>&#160;    public ResponseEntity&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a>&gt; getBusById(@PathVariable String licensePlate) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a4858cfcd5ae75dc3379adee7b05d658b">getBusById</a>(licensePlate);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> bus != <span class="keyword">null</span> ? ResponseEntity.ok(bus) : ResponseEntity.notFound().build();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    @PostMapping(<span class="stringliteral">&quot;/create&quot;</span>)</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a9df83e91453f696dcd21170f44c349c4">   31</a></span>&#160;    public ResponseEntity&lt;String&gt; createBus(@RequestBody <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a826c41d3a1a7aba121febb951b3c6874">createBus</a>(bus);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">switch</span> (result) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">case</span> SUCCESS:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.ok(<span class="stringliteral">&quot;Bus created successfully.&quot;</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">case</span> ERROR:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.badRequest().body(<span class="stringliteral">&quot;Failed to create bus.&quot;</span>);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.internalServerError().body(<span class="stringliteral">&quot;Internal server error.&quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    @PutMapping(<span class="stringliteral">&quot;/update&quot;</span>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a19dec67e3f409e95888547f466cfc4c4">   44</a></span>&#160;    public ResponseEntity&lt;String&gt; updateBus(@RequestBody <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#abca49f23664b05fed1f0775b68558d4c">updateBus</a>(bus);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> result == <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html#a758b4740617e7b60df74d020be716812">SUCCESS</a> ?</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            ResponseEntity.ok(<span class="stringliteral">&quot;Bus updated successfully.&quot;</span>) :</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            ResponseEntity.notFound().build();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    @DeleteMapping(<span class="stringliteral">&quot;/delete/{licensePlate}&quot;</span>)</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a95fa8216e4100fd6f58801c5b7558c53">   52</a></span>&#160;    public ResponseEntity&lt;String&gt; deleteBus(@PathVariable String licensePlate) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a0f46812bac0d38e71256266b65fa8433">deleteBus</a>(licensePlate);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">return</span> result == <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html#a758b4740617e7b60df74d020be716812">SUCCESS</a> ?</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            ResponseEntity.ok(<span class="stringliteral">&quot;Bus deleted successfully.&quot;</span>) :</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            ResponseEntity.notFound().build();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">com.RouteBus.server.controller.BusRestController</a></div><div class="ttdef"><b>Definition:</b> <a href="BusRestController_8java_source.html#l00012">BusRestController.java:12</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController_html_a42fb1a7c7cbc5e731851de4d6167c6af"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">com.RouteBus.server.controller.BusRestController.BusRestController</a></div><div class="ttdeci">BusRestController(BusService busService)</div><div class="ttdef"><b>Definition:</b> <a href="BusRestController_8java_source.html#l00015">BusRestController.java:15</a></div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;@RestController</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;@RequestMapping(<span class="stringliteral">&quot;/bus&quot;</span>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">   15</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">BusRestController</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">private</span> <span class="keyword">final</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a> busService;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">   23</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">BusRestController</a>(<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a> busService) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        this.busService = busService;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/all&quot;</span>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a06451dba0712d19c1c0cb8d7d1a7f8de">   33</a></span>&#160;    public ResponseEntity&lt;Set&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a>&gt;&gt; getAllBuses() {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span> ResponseEntity.ok(busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a860ce722332941886ced14061273071b">getAllBuses</a>());</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/{licensePlate}&quot;</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a2c4f9099e502f6a0dfc16476a5688157">   44</a></span>&#160;    public ResponseEntity&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a>&gt; getBusById(@PathVariable String licensePlate) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a4858cfcd5ae75dc3379adee7b05d658b">getBusById</a>(licensePlate);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> bus != <span class="keyword">null</span> ? ResponseEntity.ok(bus) : ResponseEntity.notFound().build();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    @PostMapping(<span class="stringliteral">&quot;/create&quot;</span>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a9df83e91453f696dcd21170f44c349c4">   56</a></span>&#160;    public ResponseEntity&lt;String&gt; createBus(@RequestBody <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a826c41d3a1a7aba121febb951b3c6874">createBus</a>(bus);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">switch</span> (result) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">case</span> SUCCESS:</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.ok(<span class="stringliteral">&quot;Bus created successfully.&quot;</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">case</span> ERROR:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.badRequest().body(<span class="stringliteral">&quot;Failed to create bus.&quot;</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">return</span> ResponseEntity.internalServerError().body(<span class="stringliteral">&quot;Internal server error.&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    @PutMapping(<span class="stringliteral">&quot;/update&quot;</span>)</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a19dec67e3f409e95888547f466cfc4c4">   75</a></span>&#160;    public ResponseEntity&lt;String&gt; updateBus(@RequestBody <a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">Bus</a> bus) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#abca49f23664b05fed1f0775b68558d4c">updateBus</a>(bus);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> result == <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html#a758b4740617e7b60df74d020be716812">SUCCESS</a> ?</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                ResponseEntity.ok(<span class="stringliteral">&quot;Bus updated successfully.&quot;</span>) :</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                ResponseEntity.notFound().build();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    @DeleteMapping(<span class="stringliteral">&quot;/delete/{licensePlate}&quot;</span>)</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a95fa8216e4100fd6f58801c5b7558c53">   89</a></span>&#160;    public ResponseEntity&lt;String&gt; deleteBus(@PathVariable String licensePlate) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a> result = busService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a0f46812bac0d38e71256266b65fa8433">deleteBus</a>(licensePlate);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> result == <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">BusService</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html">BusServiceResult</a>.<a class="code" href="enumcom_1_1RouteBus_1_1server_1_1service_1_1BusService_1_1BusServiceResult.html#a758b4740617e7b60df74d020be716812">SUCCESS</a> ?</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                ResponseEntity.ok(<span class="stringliteral">&quot;Bus deleted successfully.&quot;</span>) :</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                ResponseEntity.notFound().build();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html">com.RouteBus.server.controller.BusRestController</a></div><div class="ttdef"><b>Definition:</b> <a href="BusRestController_8java_source.html#l00015">BusRestController.java:15</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController_html_a42fb1a7c7cbc5e731851de4d6167c6af"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1BusRestController.html#a42fb1a7c7cbc5e731851de4d6167c6af">com.RouteBus.server.controller.BusRestController.BusRestController</a></div><div class="ttdeci">BusRestController(BusService busService)</div><div class="ttdef"><b>Definition:</b> <a href="BusRestController_8java_source.html#l00023">BusRestController.java:23</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1model_1_1Bus_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1model_1_1Bus.html">com.RouteBus.server.model.Bus</a></div><div class="ttdef"><b>Definition:</b> <a href="Bus_8java_source.html#l00014">Bus.java:14</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1service_1_1BusService_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html">com.RouteBus.server.service.BusService</a></div><div class="ttdef"><b>Definition:</b> <a href="BusService_8java_source.html#l00012">BusService.java:12</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1service_1_1BusService_html_a0f46812bac0d38e71256266b65fa8433"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1service_1_1BusService.html#a0f46812bac0d38e71256266b65fa8433">com.RouteBus.server.service.BusService.deleteBus</a></div><div class="ttdeci">BusServiceResult deleteBus(String licensePlate)</div><div class="ttdef"><b>Definition:</b> <a href="BusService_8java_source.html#l00066">BusService.java:66</a></div></div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.client.controller.TicketController Class Reference</title>
+<title>Bus Route: com.RouteBus.client.controller.TicketController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -113,8 +115,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:aacf31b01a596a55a4e1a4c00cae9c976"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00009">9</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<div class="textblock"><p>Controller class for managing ticket-related operations. </p>
+
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00012">12</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6877a148f9bbc07a17cac2e87f309842"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6877a148f9bbc07a17cac2e87f309842">&#9670;&nbsp;</a></span>createTicket()</h2>
@@ -131,8 +134,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Creates a new ticket. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticket</td><td>The TicketDTO object representing the ticket to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the ticket is successfully created, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00049">49</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00074">74</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -151,8 +161,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes a ticket by ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the ticket to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the ticket is successfully deleted, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00067">67</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00102">102</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -171,8 +188,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Filters tickets based on the specified query string. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The query string used for filtering. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of TicketDTO objects that match the filter criteria. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00076">76</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00116">116</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -190,8 +214,9 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all tickets. </p><dl class="section return"><dt>Returns</dt><dd>A list of TicketDTO objects representing all tickets. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00021">21</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00032">32</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -217,8 +242,9 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html">TicketController</a>. </p><dl class="section return"><dt>Returns</dt><dd>The singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1TicketController.html">TicketController</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00017">17</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00024">24</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -237,8 +263,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves a ticket by ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the ticket to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The TicketDTO object representing the ticket with the specified ID, or null if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00030">30</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00046">46</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -257,8 +290,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves all tickets associated with a user. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>The email of the user. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of TicketDTO objects representing tickets associated with the user. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00039">39</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00060">60</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>
@@ -277,8 +317,15 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates an existing ticket. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticket</td><td>The TicketDTO object representing the updated ticket information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the ticket is successfully updated, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00058">58</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketController_8java_source.html#l00088">88</a> of file <a class="el" href="TicketController_8java_source.html">TicketController.java</a>.</p>
 
 </div>
 </div>

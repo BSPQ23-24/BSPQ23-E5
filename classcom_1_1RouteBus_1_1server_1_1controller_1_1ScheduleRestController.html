@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: com.RouteBus.server.controller.ScheduleRestController Class Reference</title>
+<title>Bus Route: com.RouteBus.server.controller.ScheduleRestController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -109,8 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1adc6f4f20fefdc868897ecb679ec11e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00014">14</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<div class="textblock"><p>REST controller for managing Schedule entities. </p>
+
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00017">17</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a507cd95f66aac9c616b0f8c4aa78e0ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a507cd95f66aac9c616b0f8c4aa78e0ae">&#9670;&nbsp;</a></span>ScheduleRestController()</h2>
@@ -127,8 +130,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Constructor for <a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1ScheduleRestController.html">ScheduleRestController</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scheduleService</td><td>The ScheduleService instance to be used by the controller. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00017">17</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00025">25</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -148,8 +158,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to create a new schedule.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">schedule</td><td>The Schedule object to be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if creation is successful, or error message otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00033">33</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00058">58</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -168,8 +186,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to delete a schedule by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the schedule to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00055">55</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00092">92</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -187,8 +213,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get all schedules.</p>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a Set of Schedule objects. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00022">22</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00035">35</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -207,8 +235,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get a schedule by its ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the schedule to retrieve. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a Schedule object if found, or ResponseEntity.notFound() if not found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00027">27</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00046">46</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -237,8 +273,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get a schedule by route name and departure time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">routeName</td><td>The name of the route. </td></tr>
+    <tr><td class="paramname">departureTime</td><td>The departure time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing the Schedule object if found, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00068">68</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00118">118</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -257,8 +302,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to get schedules associated with a specific route.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">routeName</td><td>The name of the route. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity containing a list of schedules associated with the route. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00063">63</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00106">106</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>
@@ -277,8 +330,16 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Endpoint to update an existing schedule.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">schedule</td><td>The Schedule object with updated information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00047">47</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ScheduleRestController_8java_source.html#l00078">78</a> of file <a class="el" href="ScheduleRestController_8java_source.html">ScheduleRestController.java</a>.</p>
 
 </div>
 </div>

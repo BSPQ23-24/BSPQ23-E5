@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: Server/src/main/java/com/RouteBus/server/controller/NationalityRestController.java Source File</title>
+<title>Bus Route: Server/src/main/java/com/RouteBus/server/controller/NationalityRestController.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -94,23 +96,23 @@ $(document).ready(function(){initNavTree('NationalityRestController_8java_source
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.util.Set;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;@RestController</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;@RequestMapping(<span class="stringliteral">&quot;/nationalities&quot;</span>)</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">   12</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">NationalityRestController</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span> <span class="keyword">final</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html">NationalityService</a> nationalityService;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">   15</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">NationalityRestController</a>(<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html">NationalityService</a> nationalityService) {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        this.nationalityService = nationalityService;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/all&quot;</span>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#af6a6fb07ba2e9725ceb3e85ac348d73c">   20</a></span>&#160;    public ResponseEntity&lt;Set&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Nationality.html">Nationality</a>&gt;&gt; getAllNationalities() {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> ResponseEntity.ok(nationalityService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html#a60f28133707df382e5b1a36b9809dc19">getAllNationalities</a>());</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">com.RouteBus.server.controller.NationalityRestController</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityRestController_8java_source.html#l00012">NationalityRestController.java:12</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController_html_a26fd36b6988fb431c37835aacdaafb29"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">com.RouteBus.server.controller.NationalityRestController.NationalityRestController</a></div><div class="ttdeci">NationalityRestController(NationalityService nationalityService)</div><div class="ttdef"><b>Definition:</b> <a href="NationalityRestController_8java_source.html#l00015">NationalityRestController.java:15</a></div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;@RestController</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;@RequestMapping(<span class="stringliteral">&quot;/nationalities&quot;</span>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">   15</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">NationalityRestController</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">private</span> <span class="keyword">final</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html">NationalityService</a> nationalityService;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">   23</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">NationalityRestController</a>(<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html">NationalityService</a> nationalityService) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        this.nationalityService = nationalityService;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    @GetMapping(<span class="stringliteral">&quot;/all&quot;</span>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#af6a6fb07ba2e9725ceb3e85ac348d73c">   33</a></span>&#160;    public ResponseEntity&lt;Set&lt;<a class="code" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Nationality.html">Nationality</a>&gt;&gt; getAllNationalities() {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span> ResponseEntity.ok(nationalityService.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html#a60f28133707df382e5b1a36b9809dc19">getAllNationalities</a>());</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html">com.RouteBus.server.controller.NationalityRestController</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityRestController_8java_source.html#l00015">NationalityRestController.java:15</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController_html_a26fd36b6988fb431c37835aacdaafb29"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1controller_1_1NationalityRestController.html#a26fd36b6988fb431c37835aacdaafb29">com.RouteBus.server.controller.NationalityRestController.NationalityRestController</a></div><div class="ttdeci">NationalityRestController(NationalityService nationalityService)</div><div class="ttdef"><b>Definition:</b> <a href="NationalityRestController_8java_source.html#l00023">NationalityRestController.java:23</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1model_1_1Nationality_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1model_1_1Nationality.html">com.RouteBus.server.model.Nationality</a></div><div class="ttdef"><b>Definition:</b> <a href="Nationality_8java_source.html#l00012">Nationality.java:12</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1service_1_1NationalityService_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html">com.RouteBus.server.service.NationalityService</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityService_8java_source.html#l00011">NationalityService.java:11</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1service_1_1NationalityService_html_a60f28133707df382e5b1a36b9809dc19"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1service_1_1NationalityService.html#a60f28133707df382e5b1a36b9809dc19">com.RouteBus.server.service.NationalityService.getAllNationalities</a></div><div class="ttdeci">Set&lt; Nationality &gt; getAllNationalities()</div><div class="ttdef"><b>Definition:</b> <a href="NationalityService_8java_source.html#l00019">NationalityService.java:19</a></div></div>

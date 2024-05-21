@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route App: Client/src/main/java/com/RouteBus/client/gui/MyInfoPanel.java Source File</title>
+<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/MyInfoPanel.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,8 +25,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Bus Route App
+   <div id="projectname">Bus Route
+   &#160;<span id="projectnumber">v1.0.0</span>
    </div>
+   <div id="projectbrief">Bus management platform: Streamlining routes, tickets.</div>
   </td>
  </tr>
  </tbody>
@@ -237,7 +239,7 @@ $(document).ready(function(){initNavTree('MyInfoPanel_8java_source.html',''); in
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        bEdit.setPreferredSize(<span class="keyword">new</span> Dimension(200, 50)); <span class="comment">// Increase height and width of the button</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        bEdit.addActionListener(e -&gt; {</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> updatedUser = <span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a>(tName.getText(), tSurname.getText(), tEmail.getText(), user.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a5bc683ec18a4b59af3fc743c99e2f6ed">getPassword</a>(), (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a>) comboNationality.getSelectedItem(), dBirthDate.getDate());</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a>.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#abfa2c38d1e99c387643d0d3a87b963a3">getInstance</a>().<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a64f18f6e6c946c4f0cf5111efc742942">updateUser</a>(updatedUser);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            <a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a>.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#abfa2c38d1e99c387643d0d3a87b963a3">getInstance</a>().updateUser(updatedUser);</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        });</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        gbc.gridwidth = 2;</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        gbc.gridx = 0;</div>
@@ -278,10 +280,9 @@ $(document).ready(function(){initNavTree('MyInfoPanel_8java_source.html',''); in
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        bEdit.setText(messages.getString(<span class="stringliteral">&quot;editButton&quot;</span>));</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">com.RouteBus.client.controller.UserController</a></div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00008">UserController.java:8</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html_a64f18f6e6c946c4f0cf5111efc742942"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a64f18f6e6c946c4f0cf5111efc742942">com.RouteBus.client.controller.UserController.updateUser</a></div><div class="ttdeci">boolean updateUser(UserDTO user)</div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00047">UserController.java:47</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html_a957240d7df69f41c6bd285ce68594822"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a957240d7df69f41c6bd285ce68594822">com.RouteBus.client.controller.UserController.getNationalities</a></div><div class="ttdeci">List&lt; NationalityDTO &gt; getNationalities()</div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00083">UserController.java:83</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html_abfa2c38d1e99c387643d0d3a87b963a3"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#abfa2c38d1e99c387643d0d3a87b963a3">com.RouteBus.client.controller.UserController.getInstance</a></div><div class="ttdeci">static UserController getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00016">UserController.java:16</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">com.RouteBus.client.controller.UserController</a></div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00011">UserController.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html_a957240d7df69f41c6bd285ce68594822"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a957240d7df69f41c6bd285ce68594822">com.RouteBus.client.controller.UserController.getNationalities</a></div><div class="ttdeci">List&lt; NationalityDTO &gt; getNationalities()</div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00060">UserController.java:60</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1controller_1_1UserController_html_abfa2c38d1e99c387643d0d3a87b963a3"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#abfa2c38d1e99c387643d0d3a87b963a3">com.RouteBus.client.controller.UserController.getInstance</a></div><div class="ttdeci">static UserController getInstance()</div><div class="ttdef"><b>Definition:</b> <a href="UserController_8java_source.html#l00024">UserController.java:24</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">com.RouteBus.client.dto.NationalityDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityDTO_8java_source.html#l00009">NationalityDTO.java:9</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">com.RouteBus.client.dto.UserDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="UserDTO_8java_source.html#l00012">UserDTO.java:12</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO_html_a56d098c29e69f1a950bf8bf3c05cd21c"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html#a56d098c29e69f1a950bf8bf3c05cd21c">com.RouteBus.client.dto.UserDTO.getBirthDate</a></div><div class="ttdeci">Date getBirthDate()</div><div class="ttdef"><b>Definition:</b> <a href="UserDTO_8java_source.html#l00090">UserDTO.java:90</a></div></div>
