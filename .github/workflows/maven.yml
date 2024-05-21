@@ -24,12 +24,17 @@ jobs:
     - name: Build with Maven
       run: |
         cd RouteBusParent
-        mvn -B package
+        mvn -B clean install
 
-    - name: Generate Dependency Graph
+    - name: Build Client
       run: |
-        cd RouteBusParent
-        mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph
+        cd RouteBusParent/Client
+        mvn clean install
+
+    - name: Build Server
+      run: |
+       cd RouteBusParent/Client
+        mvn package
 
 
     - name: Update dependency graph
