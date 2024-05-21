@@ -98,6 +98,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af1814f2a94466ed42833d22783cf13b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac85dc075ffa613a17c78dbe69e2d6610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#ac85dc075ffa613a17c78dbe69e2d6610">getUserByEmail</a> (String email)</td></tr>
 <tr class="separator:ac85dc075ffa613a17c78dbe69e2d6610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dace89e56904de7a0332ea3cfb0a486"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a6dace89e56904de7a0332ea3cfb0a486">createUser</a> (<a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user)</td></tr>
+<tr class="separator:a6dace89e56904de7a0332ea3cfb0a486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64f18f6e6c946c4f0cf5111efc742942"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a64f18f6e6c946c4f0cf5111efc742942">updateUser</a> (<a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a> user)</td></tr>
+<tr class="separator:a64f18f6e6c946c4f0cf5111efc742942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a32f3a9666bb316bd7b6e95f38e7383"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a1a32f3a9666bb316bd7b6e95f38e7383">deleteUser</a> (String email)</td></tr>
+<tr class="separator:a1a32f3a9666bb316bd7b6e95f38e7383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f14ca7ae269f121a25d3615037d4fde"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a1f14ca7ae269f121a25d3615037d4fde">checkUser</a> (String email)</td></tr>
+<tr class="separator:a1f14ca7ae269f121a25d3615037d4fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de9a280e6b03ed28f60404dcc9c1a69"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a5de9a280e6b03ed28f60404dcc9c1a69">checkPassword</a> (String email, String password)</td></tr>
+<tr class="separator:a5de9a280e6b03ed28f60404dcc9c1a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a957240d7df69f41c6bd285ce68594822"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html#a957240d7df69f41c6bd285ce68594822">getNationalities</a> ()</td></tr>
 <tr class="separator:a957240d7df69f41c6bd285ce68594822"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -107,10 +117,133 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:abfa2c38d1e99c387643d0d3a87b963a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Controller class for managing user-related operations. </p>
+<div class="textblock"><p><a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a> handles user-related operations such as fetching, creating, updating, and deleting users. </p>
 
 <p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00011">11</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5de9a280e6b03ed28f60404dcc9c1a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de9a280e6b03ed28f60404dcc9c1a69">&#9670;&nbsp;</a></span>checkPassword()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean com.RouteBus.client.controller.UserController.checkPassword </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>email</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Verifies a user's password.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>the email of the user </td></tr>
+    <tr><td class="paramname">password</td><td>the password to verify </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the password is correct, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00124">124</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+
+</div>
+</div>
+<a id="a1f14ca7ae269f121a25d3615037d4fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f14ca7ae269f121a25d3615037d4fde">&#9670;&nbsp;</a></span>checkUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean com.RouteBus.client.controller.UserController.checkUser </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>email</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Checks if a user exists by their email.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>the email of the user to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the user exists, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00108">108</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+
+</div>
+</div>
+<a id="a6dace89e56904de7a0332ea3cfb0a486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dace89e56904de7a0332ea3cfb0a486">&#9670;&nbsp;</a></span>createUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean com.RouteBus.client.controller.UserController.createUser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a>&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Creates a new user.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td>the UserDTO representing the user to create </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the user is successfully created, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00063">63</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+
+</div>
+</div>
+<a id="a1a32f3a9666bb316bd7b6e95f38e7383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a32f3a9666bb316bd7b6e95f38e7383">&#9670;&nbsp;</a></span>deleteUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean com.RouteBus.client.controller.UserController.deleteUser </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>email</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Deletes a user by their email.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">email</td><td>the email of the user to delete </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the user is successfully deleted, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00093">93</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+
+</div>
+</div>
 <a id="af1814f2a94466ed42833d22783cf13b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1814f2a94466ed42833d22783cf13b6">&#9670;&nbsp;</a></span>getAllUsers()</h2>
 
@@ -125,9 +258,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves all users. </p><dl class="section return"><dt>Returns</dt><dd>A list of UserDTO objects representing all users. </dd></dl>
+<p>Retrieves all users.</p>
+<dl class="section return"><dt>Returns</dt><dd>a list of UserDTO representing all users, or null if an error occurs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00032">32</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00033">33</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
 
 </div>
 </div>
@@ -153,7 +287,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieves the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a>. </p><dl class="section return"><dt>Returns</dt><dd>The singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a>. </dd></dl>
+<p>Returns the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>the singleton instance of <a class="el" href="classcom_1_1RouteBus_1_1client_1_1controller_1_1UserController.html">UserController</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00024">24</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
 
@@ -173,9 +308,10 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves a list of all nationalities. </p><dl class="section return"><dt>Returns</dt><dd>A list of NationalityDTO objects representing all nationalities. </dd></dl>
+<p>Retrieves a list of nationalities.</p>
+<dl class="section return"><dt>Returns</dt><dd>a list of NationalityDTO representing the nationalities </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00060">60</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00138">138</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
 
 </div>
 </div>
@@ -194,15 +330,44 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves a user by email. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Retrieves a user by their email.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">email</td><td>The email of the user to retrieve. </td></tr>
+    <tr><td class="paramname">email</td><td>the email of the user to retrieve </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The UserDTO object representing the user with the specified email, or null if not found. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the UserDTO representing the user, or null if an error occurs </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00046">46</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00048">48</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
+
+</div>
+</div>
+<a id="a64f18f6e6c946c4f0cf5111efc742942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f18f6e6c946c4f0cf5111efc742942">&#9670;&nbsp;</a></span>updateUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean com.RouteBus.client.controller.UserController.updateUser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1UserDTO.html">UserDTO</a>&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates an existing user.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td>the UserDTO representing the user to update </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the user is successfully updated, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UserController_8java_source.html#l00078">78</a> of file <a class="el" href="UserController_8java_source.html">UserController.java</a>.</p>
 
 </div>
 </div>
