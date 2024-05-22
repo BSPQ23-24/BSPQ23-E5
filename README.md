@@ -16,7 +16,7 @@ This project has been developed in the programming language Java with the help o
 ### General
 1. Clone the Github Repository
 ```shell
-git clone https://github.com/BSPQ23-24/BSPQ23-E%.git
+git clone https://github.com/BSPQ23-24/BSPQ23-E5.git
 ```
 ### Server Side
 1. Navigate to the Server Side
