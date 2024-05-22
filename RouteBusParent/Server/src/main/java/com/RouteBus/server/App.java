@@ -21,32 +21,13 @@ public class App {
         new Nationality("American", "en_US"),
         new Nationality("Spanish", "es"),
         new Nationality("British", "en"),
-        new Nationality("Chinese", "zh"),
         new Nationality("French", "fr"),
         new Nationality("German", "de"),
-        new Nationality("Indian", "hi"),
-        new Nationality("Japanese", "ja"),
-        new Nationality("Russian", "ru"),
         new Nationality("Italian", "it"),
         new Nationality("Portuguese", "pt"),
         new Nationality("Dutch", "nl"),
         new Nationality("Swedish", "sv"),
-        new Nationality("Korean", "ko"),
-        new Nationality("Arabic", "ar"),
         new Nationality("Turkish", "tr"),
-        new Nationality("Greek", "el"),
-        new Nationality("Polish", "pl"),
-        new Nationality("Vietnamese", "vi"),
-        new Nationality("Thai", "th"),
-        new Nationality("Indonesian", "id"),
-        new Nationality("Finnish", "fi"),
-        new Nationality("Czech", "cs"),
-        new Nationality("Danish", "da"),
-        new Nationality("Hungarian", "hu"),
-        new Nationality("Malay", "ms"),
-        new Nationality("Norwegian", "no"),
-        new Nationality("Romanian", "ro"),
-        new Nationality("Slovak", "sk")
     };
 
     private static final int numberOfSchedulesPerRoute = 5;
@@ -78,11 +59,11 @@ public class App {
                 new User("Diego", "Merino", "diego.merino@opendeusto.es", "123", nationalities[1], cal.getTime()),
                 new User("Xabi", "Alonso", "xabi.alonso@gmail.com", "123", nationalities[1], cal.getTime()),
                 new User("Hector", "Fernandez", "hector.f.c@opendeusto.es", "123", nationalities[1], cal.getTime()),
-                new User("Robert", "Lewandowski", "rlewandowski@gmail.com", "123", nationalities[17], cal.getTime()),
-                new User("Cristiano", "Ronaldo", "cristiano.ronaldo@gmail.com", "123", nationalities[10], cal.getTime()),
-                new User("Zlatan", "Ibrahimovic", "zlatan@gmail.com", "123", nationalities[12], cal.getTime()),
+                new User("Robert", "Lewandowski", "rlewandowski@gmail.com", "123", nationalities[1], cal.getTime()),
+                new User("Cristiano", "Ronaldo", "cristiano.ronaldo@gmail.com", "123", nationalities[8], cal.getTime()),
+                new User("Zlatan", "Ibrahimovic", "zlatan@gmail.com", "123", nationalities[2], cal.getTime()),
                 new User("Andres", "Iniesta", "andresiniesta@gmail.com", "123", nationalities[1], cal.getTime()),
-                new User("Erling", "Haaland", "erling.haaland@example.com", "123", nationalities[26], cal.getTime()),
+                new User("Erling", "Haaland", "erling.haaland@example.com", "123", nationalities[6], cal.getTime()),
                 new User("Zinedine", "Zidane", "zizou@gmail.com", "123", nationalities[4], cal.getTime()),
                 new User("Jude", "Bellingham", "jude.bellingham@gmail.com", "123", nationalities[2], cal.getTime()),
                 new User("Inaki", "Williams", "inaki.williams@example.com", "123", nationalities[1], cal.getTime()),
@@ -150,7 +131,7 @@ public class App {
             startCalendar.set(2024, Calendar.JUNE, 10, 8, 0);
 
             List<Schedule> allSchedules = new ArrayList<>();
-            // List<Ticket> allTickets = new ArrayList<>(); // Comentado para no crear tickets
+             List<Ticket> allTickets = new ArrayList<>(); // Comentado para no crear tickets
 
             for (Route route : routes) {
                 Set<Schedule> routeSchedules = new HashSet<>();
@@ -166,19 +147,19 @@ public class App {
                     startCalendar.add(Calendar.DAY_OF_YEAR, scheduleIntervalDays);
 
                     // Comentado para no crear tickets
-                    // for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
-                    //     User user = users.get(seatNumber % users.size());
-                    //     double price = 50.0 + (seatNumber % 100);
-                    //     TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
-                    //     Ticket ticket = new Ticket(user, seatNumber, price, status, schedule);
-                    //     allTickets.add(ticket);
-                    // }
+//                     for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
+//                         User user = users.get(seatNumber % users.size());
+//                         double price = 50.0 + (seatNumber % 100);
+//                         TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
+//                         Ticket ticket = new Ticket(UUID.randomUUID().toString(), user, seatNumber, price, status, schedule);
+//                         allTickets.add(ticket);
+//                     }
                 }
                 route.setSchedules(routeSchedules);
             }
 
             scheduleRepository.saveAll(allSchedules);
-            // ticketRepository.saveAll(allTickets); // Comentado para no crear tickets
+//             ticketRepository.saveAll(allTickets); // Comentado para no crear tickets
             routeRepository.saveAll(routes);
 
             logger.info("Data loading complete.");

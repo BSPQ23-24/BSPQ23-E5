@@ -13,7 +13,6 @@ public class MainWindow extends MultilingualLoadingWindow {
     private NewsPanel newsPanel;
     private MyInfoPanel infoPanel;
     private MyTicketsPanel ticketPanel;
-    private MyRoutesPanel routesPanel;
     private PurchaseTicketsPanel purchaseTicketsPanel;
 
     private JMenuItem busInfoMenuItem;
@@ -73,12 +72,10 @@ public class MainWindow extends MultilingualLoadingWindow {
         newsPanel = new NewsPanel(messages, colorPrimary, colorSecondary, colorTertiary, colorBackground);
         infoPanel = new MyInfoPanel(messages, user, colorBackground, colorPrimary);
         ticketPanel = new MyTicketsPanel(messages, user, colorBackground, colorPrimary);
-        routesPanel = new MyRoutesPanel(messages, user, colorBackground, colorPrimary, colorSecondary, colorTertiary);
         purchaseTicketsPanel = new PurchaseTicketsPanel(messages, user, colorBackground, colorPrimary, colorSecondary);
 
         leftPanel.add(newsPanel, "newsPanel");
         leftPanel.add(infoPanel, "infoPanel");
-        leftPanel.add(routesPanel, "routesPanel");
         leftPanel.add(ticketPanel, "ticketPanel");
         leftPanel.add(purchaseTicketsPanel, "ticketPurchasePanel");
 
@@ -117,7 +114,6 @@ public class MainWindow extends MultilingualLoadingWindow {
         newsPanel.updateTexts(messages);
         infoPanel.updateTexts(messages);
         ticketPanel.updateTexts(messages);
-        routesPanel.updateTexts(messages);
 
         busInfoMenuItem.setText(messages.getString("BusRouteInfo"));
         informationMenuItem.setText(messages.getString("myInformationMenu"));
