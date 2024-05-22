@@ -15,7 +15,6 @@ var hierarchy =
     [ "com.RouteBus.App", "classcom_1_1RouteBus_1_1App.html", null ],
     [ "com.RouteBus.client.App", "classcom_1_1RouteBus_1_1client_1_1App.html", null ],
     [ "com.RouteBus.server.App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ],
-    [ "com.RouteBus.server.AppTest", "classcom_1_1RouteBus_1_1server_1_1AppTest.html", null ],
     [ "com.RouteBus.client.gateway.BaseGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1BaseGateway.html", [
       [ "com.RouteBus.client.gateway.BusGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1BusGateway.html", null ],
       [ "com.RouteBus.client.gateway.RouteGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1RouteGateway.html", null ],
@@ -49,7 +48,6 @@ var hierarchy =
       [ "com.RouteBus.client.gui.AdminPanel< T >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", null ],
       [ "com.RouteBus.client.gui.HomeAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html", null ],
       [ "com.RouteBus.client.gui.MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", null ],
-      [ "com.RouteBus.client.gui.MyRoutesPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel.html", null ],
       [ "com.RouteBus.client.gui.MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", null ],
       [ "com.RouteBus.client.gui.NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", null ],
       [ "com.RouteBus.client.gui.PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", null ]

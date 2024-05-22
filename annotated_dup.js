@@ -39,7 +39,6 @@ var annotated_dup =
             [ "MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow" ],
             [ "MultilingualLoadingWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow" ],
             [ "MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel" ],
-            [ "MyRoutesPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel" ],
             [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel" ],
             [ "NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel" ],
             [ "ParentWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow" ],
@@ -122,8 +121,7 @@ var annotated_dup =
             [ "UserServicePerformanceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest" ],
             [ "UserServiceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest" ]
           ] ],
-          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ],
-          [ "AppTest", "classcom_1_1RouteBus_1_1server_1_1AppTest.html", "classcom_1_1RouteBus_1_1server_1_1AppTest" ]
+          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ]
         ] ],
         [ "App", "classcom_1_1RouteBus_1_1App.html", null ],
         [ "AppTest", "classcom_1_1RouteBus_1_1AppTest.html", "classcom_1_1RouteBus_1_1AppTest" ]

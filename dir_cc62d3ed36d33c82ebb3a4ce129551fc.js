@@ -27,9 +27,6 @@ var dir_cc62d3ed36d33c82ebb3a4ce129551fc =
     [ "MyInfoPanel.java", "MyInfoPanel_8java.html", [
       [ "MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel" ]
     ] ],
-    [ "MyRoutesPanel.java", "MyRoutesPanel_8java.html", [
-      [ "MyRoutesPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel" ]
-    ] ],
     [ "MyTicketsPanel.java", "MyTicketsPanel_8java.html", [
       [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel" ]
     ] ],

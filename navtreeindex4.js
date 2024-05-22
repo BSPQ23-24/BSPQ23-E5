@@ -1,17 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a90ff7bf72526da76f78a60f5dbef13d9":[1,0,0,0,1,3,18,0],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a91ab252eb4e84659a0223994ccab081a":[1,0,0,0,1,3,18,4],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a969a065b5538082f97808d2682477532":[1,0,0,0,1,3,18,1],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a9866abc12f24f0f3046c70ebcfefd434":[1,0,0,0,1,3,18,3],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#ab8298b9b0b914cd415b91a15a7273327":[1,0,0,0,1,3,18,7],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#ad7df15e3602df22ff5a35b5506bd7451":[1,0,0,0,1,3,18,5],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#aebb87e93db209ce81dd50e54734200f5":[1,0,0,0,1,3,18,11],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html":[1,0,0,0,1,3,6],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a5d743903b32a187065a5aac69c904ca5":[1,0,0,0,1,3,6,3],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a622a6275d71de8eecd3a6915a254fda8":[1,0,0,0,1,3,6,2],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a6b3491d3bc5426dd2419fd6b7939049d":[1,0,0,0,1,3,6,4],
-"classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a6e5203461a766a22c3c3faa54e88c18e":[1,0,0,0,1,3,6,6],
 "classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a6ed777439e578a4de15777bbf8d31999":[1,0,0,0,1,3,6,1],
 "classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a8ea6a1612ff9e046c650c827f116bcea":[1,0,0,0,1,3,6,9],
 "classcom_1_1RouteBus_1_1server_1_1service_1_1UserService.html#a9e0d30652affa482b02324679869fa87":[1,0,0,0,1,3,6,5],
@@ -135,8 +123,8 @@ var NAVTREEINDEX4 =
 "enumcom_1_1RouteBus_1_1server_1_1service_1_1UserService_1_1UserServiceResult.html#abf7dc9bd3912afda25915d4e83213226":[1,0,0,0,1,3,6,0,0],
 "enumcom_1_1RouteBus_1_1server_1_1service_1_1UserService_1_1UserServiceResult.html#aec67c7fd0fa29787591e38f07deb5cc5":[1,0,0,0,1,3,6,0,3],
 "files.html":[2,0],
-"functions.html":[1,3,0],
 "functions.html":[1,3,0,0],
+"functions.html":[1,3,0],
 "functions_b.html":[1,3,0,1],
 "functions_c.html":[1,3,0,2],
 "functions_d.html":[1,3,0,3],
@@ -206,5 +194,7 @@ var NAVTREEINDEX4 =
 "src_2main_2java_2com_2RouteBus_2App_8java.html":[2,0,2,0,0,0,0,0],
 "src_2main_2java_2com_2RouteBus_2App_8java_source.html":[2,0,2,0,0,0,0,0],
 "src_2test_2java_2com_2RouteBus_2AppTest_8java.html":[2,0,2,1,0,0,0,0],
-"src_2test_2java_2com_2RouteBus_2AppTest_8java_source.html":[2,0,2,1,0,0,0,0]
+"src_2test_2java_2com_2RouteBus_2AppTest_8java_source.html":[2,0,2,1,0,0,0,0],
+"":[0,0,0],
+"":[0,0,0,0]
 };

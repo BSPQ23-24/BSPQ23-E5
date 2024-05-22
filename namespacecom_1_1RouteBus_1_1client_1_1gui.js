@@ -9,7 +9,6 @@ var namespacecom_1_1RouteBus_1_1client_1_1gui =
     [ "MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow" ],
     [ "MultilingualLoadingWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow" ],
     [ "MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel" ],
-    [ "MyRoutesPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyRoutesPanel" ],
     [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel" ],
     [ "NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel" ],
     [ "ParentWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow" ],
