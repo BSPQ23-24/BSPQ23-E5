@@ -5,11 +5,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.RouteBus.client.controller.StationController;
 import com.RouteBus.client.controller.TicketController;
+import com.RouteBus.client.dto.RouteDTO;
 import com.RouteBus.client.dto.StationDTO;
 import com.RouteBus.client.dto.TicketDTO;
 import com.RouteBus.client.dto.UserDTO;
@@ -20,8 +22,8 @@ public class MyTicketsPanel extends JPanel {
     private JLabel ticketTitle;
     private JLabel lOrigin;
     private JLabel lDestination;
-    private JComboBox<StationDTO> comboOrigin;
-    private JComboBox<StationDTO> comboDestination;
+    private JComboBox<String> comboOrigin;
+    private JComboBox<String> comboDestination;
     private JTable tableJourneys;
     private DefaultTableModel tableModel;
     private UserDTO user;
@@ -50,7 +52,13 @@ public class MyTicketsPanel extends JPanel {
         comboOrigin = new JComboBox<>();
         comboDestination = new JComboBox<>();
 
-        String[] columnNames = {messages.getString("departuretime"), messages.getString("arrivaltime"), messages.getString("price")};
+        String[] columnNames = {
+            messages.getString("departuretime"), 
+            messages.getString("arrivaltime"), 
+            messages.getString("price"), 
+            messages.getString("startPoint"), 
+            messages.getString("endPoint")
+        };
         tableModel = new DefaultTableModel(columnNames, 0);
         tableJourneys = new JTable(tableModel);
         configureTableAppearance();
@@ -91,19 +99,17 @@ public class MyTicketsPanel extends JPanel {
     private void setupComboBoxes() {
         List<StationDTO> stations = StationController.getInstance().getAllStations();
         for (StationDTO station : stations) {
-            comboOrigin.addItem(station);
-            comboDestination.addItem(station);
+            comboOrigin.addItem(station.getName());
+            comboDestination.addItem(station.getName());
         }
-        comboOrigin.setRenderer(new StationListCellRenderer());
-        comboDestination.setRenderer(new StationListCellRenderer());
     }
 
     private void loadTicketsData() {
         tableModel.setRowCount(0);
 
         List<TicketDTO> tickets = TicketController.getInstance().getTicketByUser(user.getEmail());
-        StationDTO selectedOrigin = (StationDTO) comboOrigin.getSelectedItem();
-        StationDTO selectedDestination = (StationDTO) comboDestination.getSelectedItem();
+        String selectedOrigin = (String) comboOrigin.getSelectedItem();
+        String selectedDestination = (String) comboDestination.getSelectedItem();
 
         if (selectedOrigin == null || selectedDestination == null) {
             return;
@@ -114,15 +120,21 @@ public class MyTicketsPanel extends JPanel {
                 .forEach(this::addTicketToTable);
     }
 
-    private boolean ticketMatchesRoute(TicketDTO ticket, StationDTO origin, StationDTO destination) {
-        return ticket.getSchedule().getRoute().getStations().containsAll(List.of(origin, destination));
+    private boolean ticketMatchesRoute(TicketDTO ticket, String origin, String destination) {
+        RouteDTO route = ticket.getSchedule().getRoute();
+        return route.getStartPoint().equals(origin) && route.getEndPoint().equals(destination);
     }
 
     private void addTicketToTable(TicketDTO ticket) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        String formattedPrice = String.format("%.2f", ticket.getPrice());
+
         Object[] rowData = {
-                ticket.getSchedule().getDepartureTime(),
-                ticket.getSchedule().getArrivalTime(),
-                ticket.getPrice()
+            timeFormat.format(ticket.getSchedule().getDepartureTime()),
+            timeFormat.format(ticket.getSchedule().getArrivalTime()),
+            formattedPrice,
+            ticket.getSchedule().getRoute().getStartPoint(),
+            ticket.getSchedule().getRoute().getEndPoint()
         };
         tableModel.addRow(rowData);
     }
@@ -132,7 +144,13 @@ public class MyTicketsPanel extends JPanel {
         lOrigin.setText(messages.getString("origin"));
         lDestination.setText(messages.getString("destination"));
 
-        String[] columnNames = {messages.getString("departuretime"), messages.getString("arrivaltime"), messages.getString("price")};
+        String[] columnNames = {
+            messages.getString("departuretime"), 
+            messages.getString("arrivaltime"), 
+            messages.getString("price"), 
+            messages.getString("startPoint"), 
+            messages.getString("endPoint")
+        };
         tableModel.setColumnIdentifiers(columnNames);
     }
 
@@ -168,16 +186,5 @@ public class MyTicketsPanel extends JPanel {
         gbc.gridx = x;
         gbc.gridy = y;
         panel.add(component, gbc);
-    }
-
-    private static class StationListCellRenderer extends DefaultListCellRenderer {
-        @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if (value instanceof StationDTO) {
-                setText(((StationDTO) value).getName());
-            }
-            return renderer;
-        }
     }
 }
