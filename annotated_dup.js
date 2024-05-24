@@ -29,24 +29,29 @@ var annotated_dup =
             [ "TicketGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway.html", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1TicketGateway" ],
             [ "UserGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1UserGateway.html", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1UserGateway" ]
           ] ],
-          [ "gui", "namespacecom_1_1RouteBus_1_1client_1_1gui.html", [
-            [ "AdministratorWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow" ],
-            [ "AdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel" ],
-            [ "BusesAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel" ],
-            [ "HomeAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel" ],
+          [ "gui", null, [
+            [ "admin", "namespacecom_1_1RouteBus_1_1client_1_1gui_1_1admin.html", [
+              [ "AdministratorWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow" ],
+              [ "AdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel" ],
+              [ "BusesAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel" ],
+              [ "HomeAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel" ],
+              [ "RouteAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel" ],
+              [ "StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel" ],
+              [ "TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel" ]
+            ] ],
+            [ "user", "namespacecom_1_1RouteBus_1_1client_1_1gui_1_1user.html", [
+              [ "MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MainWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MainWindow" ],
+              [ "MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyInfoPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyInfoPanel" ],
+              [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyTicketsPanel" ],
+              [ "NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel" ],
+              [ "PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1PurchaseTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1PurchaseTicketsPanel" ],
+              [ "UserPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1UserPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1UserPanel" ]
+            ] ],
             [ "InitialWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow" ],
             [ "LoginWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1LoginWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1LoginWindow" ],
-            [ "MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow" ],
             [ "MultilingualLoadingWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow" ],
-            [ "MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel" ],
-            [ "MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel" ],
-            [ "NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel" ],
             [ "ParentWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow" ],
-            [ "PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel" ],
-            [ "RegistrationWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow" ],
-            [ "RouteAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel" ],
-            [ "StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel" ],
-            [ "TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel" ]
+            [ "RegistrationWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow" ]
           ] ],
           [ "util", "namespacecom_1_1RouteBus_1_1client_1_1util.html", [
             [ "TableUtil", "classcom_1_1RouteBus_1_1client_1_1util_1_1TableUtil.html", null ]
@@ -121,7 +126,8 @@ var annotated_dup =
             [ "UserServicePerformanceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServicePerformanceTest" ],
             [ "UserServiceTest", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest.html", "classcom_1_1RouteBus_1_1server_1_1service_1_1UserServiceTest" ]
           ] ],
-          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ]
+          [ "App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ],
+          [ "AppTest", "classcom_1_1RouteBus_1_1server_1_1AppTest.html", "classcom_1_1RouteBus_1_1server_1_1AppTest" ]
         ] ],
         [ "App", "classcom_1_1RouteBus_1_1App.html", null ],
         [ "AppTest", "classcom_1_1RouteBus_1_1AppTest.html", "classcom_1_1RouteBus_1_1AppTest" ]

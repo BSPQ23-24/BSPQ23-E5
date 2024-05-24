@@ -1,20 +1,21 @@
 var hierarchy =
 [
-    [ "com.RouteBus.client.gui.AdminPanel< BusDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", [
-      [ "com.RouteBus.client.gui.BusesAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel.html", null ]
+    [ "com.RouteBus.client.gui.admin.AdminPanel< BusDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", [
+      [ "com.RouteBus.client.gui.admin.BusesAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel.html", null ]
     ] ],
-    [ "com.RouteBus.client.gui.AdminPanel< RouteDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", [
-      [ "com.RouteBus.client.gui.RouteAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html", null ]
+    [ "com.RouteBus.client.gui.admin.AdminPanel< RouteDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", [
+      [ "com.RouteBus.client.gui.admin.RouteAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel.html", null ]
     ] ],
-    [ "com.RouteBus.client.gui.AdminPanel< StationDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", [
-      [ "com.RouteBus.client.gui.StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html", null ]
+    [ "com.RouteBus.client.gui.admin.AdminPanel< StationDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", [
+      [ "com.RouteBus.client.gui.admin.StationsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel.html", null ]
     ] ],
-    [ "com.RouteBus.client.gui.AdminPanel< TicketDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", [
-      [ "com.RouteBus.client.gui.TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html", null ]
+    [ "com.RouteBus.client.gui.admin.AdminPanel< TicketDTO >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", [
+      [ "com.RouteBus.client.gui.admin.TicketsAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel.html", null ]
     ] ],
     [ "com.RouteBus.App", "classcom_1_1RouteBus_1_1App.html", null ],
     [ "com.RouteBus.client.App", "classcom_1_1RouteBus_1_1client_1_1App.html", null ],
     [ "com.RouteBus.server.App", "classcom_1_1RouteBus_1_1server_1_1App.html", null ],
+    [ "com.RouteBus.server.AppTest", "classcom_1_1RouteBus_1_1server_1_1AppTest.html", null ],
     [ "com.RouteBus.client.gateway.BaseGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1BaseGateway.html", [
       [ "com.RouteBus.client.gateway.BusGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1BusGateway.html", null ],
       [ "com.RouteBus.client.gateway.RouteGateway", "classcom_1_1RouteBus_1_1client_1_1gateway_1_1RouteGateway.html", null ],
@@ -38,19 +39,21 @@ var hierarchy =
         [ "com.RouteBus.client.gui.InitialWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html", null ],
         [ "com.RouteBus.client.gui.LoginWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1LoginWindow.html", null ],
         [ "com.RouteBus.client.gui.MultilingualLoadingWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html", [
-          [ "com.RouteBus.client.gui.AdministratorWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html", null ],
-          [ "com.RouteBus.client.gui.MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MainWindow.html", null ]
+          [ "com.RouteBus.client.gui.admin.AdministratorWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html", null ],
+          [ "com.RouteBus.client.gui.user.MainWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MainWindow.html", null ]
         ] ],
         [ "com.RouteBus.client.gui.RegistrationWindow", "classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html", null ]
       ] ]
     ] ],
     [ "JPanel", null, [
-      [ "com.RouteBus.client.gui.AdminPanel< T >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1AdminPanel.html", null ],
-      [ "com.RouteBus.client.gui.HomeAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html", null ],
-      [ "com.RouteBus.client.gui.MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyInfoPanel.html", null ],
-      [ "com.RouteBus.client.gui.MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1MyTicketsPanel.html", null ],
-      [ "com.RouteBus.client.gui.NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html", null ],
-      [ "com.RouteBus.client.gui.PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1PurchaseTicketsPanel.html", null ]
+      [ "com.RouteBus.client.gui.admin.AdminPanel< T >", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdminPanel.html", null ],
+      [ "com.RouteBus.client.gui.admin.HomeAdminPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html", null ],
+      [ "com.RouteBus.client.gui.user.NewsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html", null ],
+      [ "com.RouteBus.client.gui.user.UserPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1UserPanel.html", [
+        [ "com.RouteBus.client.gui.user.MyInfoPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyInfoPanel.html", null ],
+        [ "com.RouteBus.client.gui.user.MyTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1MyTicketsPanel.html", null ],
+        [ "com.RouteBus.client.gui.user.PurchaseTicketsPanel", "classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1PurchaseTicketsPanel.html", null ]
+      ] ]
     ] ],
     [ "com.RouteBus.server.model.Nationality", "classcom_1_1RouteBus_1_1server_1_1model_1_1Nationality.html", null ],
     [ "com.RouteBus.client.dto.NationalityDTO", "classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html", null ],

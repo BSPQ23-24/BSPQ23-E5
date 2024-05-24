@@ -103,8 +103,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a03a69ef9b3d9e93359e4eeedc5ba3ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1b09e99dffeb5ebaad8a43f2c20dec"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1TicketRestController.html#a1f1b09e99dffeb5ebaad8a43f2c20dec">createTicket</a> (@RequestBody <a class="el" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html">Ticket</a> ticket)</td></tr>
 <tr class="separator:a1f1b09e99dffeb5ebaad8a43f2c20dec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e3be16d65f2496e2e1bc45fc1d7e342"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1TicketRestController.html#a8e3be16d65f2496e2e1bc45fc1d7e342">createTicketForUser</a> (@RequestBody <a class="el" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html">Ticket</a> ticket)</td></tr>
-<tr class="separator:a8e3be16d65f2496e2e1bc45fc1d7e342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89d26bfed833d631a08027a8a64c3b11"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1TicketRestController.html#a89d26bfed833d631a08027a8a64c3b11">updateTicket</a> (@RequestBody <a class="el" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html">Ticket</a> ticket)</td></tr>
 <tr class="separator:a89d26bfed833d631a08027a8a64c3b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef289146907f4cebf65a8d09d5e536dc"><td class="memItemLeft" align="right" valign="top">ResponseEntity&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1RouteBus_1_1server_1_1controller_1_1TicketRestController.html#aef289146907f4cebf65a8d09d5e536dc">deleteTicket</a> (@PathVariable String id)</td></tr>
@@ -171,34 +169,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8e3be16d65f2496e2e1bc45fc1d7e342"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e3be16d65f2496e2e1bc45fc1d7e342">&#9670;&nbsp;</a></span>createTicketForUser()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ResponseEntity&lt;String&gt; com.RouteBus.server.controller.TicketRestController.createTicketForUser </td>
-          <td>(</td>
-          <td class="paramtype">@RequestBody <a class="el" href="classcom_1_1RouteBus_1_1server_1_1model_1_1Ticket.html">Ticket</a>&#160;</td>
-          <td class="paramname"><em>ticket</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Endpoint to create a new ticket for a specific user.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ticket</td><td>The Ticket object to be created. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if creation is successful, or error message otherwise. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00087">87</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
-
-</div>
-</div>
 <a id="aef289146907f4cebf65a8d09d5e536dc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef289146907f4cebf65a8d09d5e536dc">&#9670;&nbsp;</a></span>deleteTicket()</h2>
 
@@ -223,7 +193,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00120">120</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00101">101</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>
@@ -328,7 +298,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00106">106</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TicketRestController_8java_source.html#l00087">87</a> of file <a class="el" href="TicketRestController_8java_source.html">TicketRestController.java</a>.</p>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/NewsPanel.java Source File</title>
+<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/user/NewsPanel.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,104 +87,105 @@ $(document).ready(function(){initNavTree('NewsPanel_8java_source.html',''); init
 <div class="title">NewsPanel.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="NewsPanel_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui;</div>
+<a href="NewsPanel_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui.user;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html">    8</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html">NewsPanel</a> extends JPanel {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html">    8</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html">NewsPanel</a> extends JPanel {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">private</span> JLabel titleLabel;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#aef996fb9081004be6fa8c4371eb97bea">   11</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#aef996fb9081004be6fa8c4371eb97bea">NewsPanel</a>(ResourceBundle messages, Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        this.setLayout(<span class="keyword">new</span> BorderLayout());</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        this.setBackground(colorBackground);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        titleLabel = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;welcome&quot;</span>));</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        titleLabel.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Serif&quot;</span>, Font.BOLD, 28));</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        titleLabel.setForeground(Color.BLACK);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this.add(titleLabel, BorderLayout.NORTH);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        JPanel newsContentPanel = <span class="keyword">new</span> JPanel();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        newsContentPanel.setLayout(<span class="keyword">new</span> BoxLayout(newsContentPanel, BoxLayout.Y_AXIS));</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        newsContentPanel.setBackground(colorBackground);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        Color[] borderColors = {colorPrimary, colorSecondary, colorTertiary};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 10; i++) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            JPanel newsItem = <span class="keyword">new</span> JPanel();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            newsItem.setBorder(BorderFactory.createLineBorder(borderColors[i % borderColors.length], 2));</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            newsItem.setBackground(colorBackground);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            newsItem.setLayout(<span class="keyword">new</span> BorderLayout(10, 10));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            JLabel newsImage = loadImage(<span class="stringliteral">&quot;/images/InitialImage&quot;</span> + ((i % 7) + 1) + <span class="stringliteral">&quot;.jpg&quot;</span>, 100, 100);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            newsImage.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            JPanel textPanel = <span class="keyword">new</span> JPanel();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            textPanel.setLayout(<span class="keyword">new</span> BoxLayout(textPanel, BoxLayout.Y_AXIS));</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            textPanel.setBackground(colorBackground);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            JLabel newsTitle = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + i + <span class="stringliteral">&quot;Title&quot;</span>));</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            newsTitle.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Serif&quot;</span>, Font.BOLD, 20));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            newsTitle.setAlignmentX(Component.LEFT_ALIGNMENT);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            JTextArea newsText = <span class="keyword">new</span> JTextArea(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + i + <span class="stringliteral">&quot;Content&quot;</span>));</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            newsText.setEditable(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            newsText.setLineWrap(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            newsText.setWrapStyleWord(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            newsText.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;SansSerif&quot;</span>, Font.PLAIN, 16));</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            newsText.setBackground(colorBackground);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            newsText.setAlignmentX(Component.LEFT_ALIGNMENT);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            textPanel.add(newsTitle);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            textPanel.add(Box.createVerticalStrut(10));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            textPanel.add(newsText);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            newsItem.add(newsImage, BorderLayout.WEST);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            newsItem.add(textPanel, BorderLayout.CENTER);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            newsContentPanel.add(newsItem);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            newsContentPanel.add(Box.createVerticalStrut(20));</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        JScrollPane scrollPane = <span class="keyword">new</span> JScrollPane(newsContentPanel);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        scrollPane.getVerticalScrollBar().setUnitIncrement(16);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        this.add(scrollPane, BorderLayout.CENTER);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#acefb4ecfaf13890e31570feeb220e2e6">   68</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#acefb4ecfaf13890e31570feeb220e2e6">updateTexts</a>(ResourceBundle messages) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        titleLabel.setText(messages.getString(<span class="stringliteral">&quot;welcome&quot;</span>));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        Component[] components = ((JPanel) ((JScrollPane) this.getComponent(1)).getViewport().getView()).getComponents();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; components.length; i++) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> (components[i] instanceof JPanel) {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                JPanel newsItem = (JPanel) components[i];</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                JLabel newsTitle = (JLabel) ((JPanel) newsItem.getComponent(1)).getComponent(0);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                JTextArea newsText = (JTextArea) ((JPanel) newsItem.getComponent(1)).getComponent(2);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                newsTitle.setText(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + (i + 1) + <span class="stringliteral">&quot;Title&quot;</span>));</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                newsText.setText(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + (i + 1) + <span class="stringliteral">&quot;Content&quot;</span>));</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">private</span> JLabel loadImage(String path, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        ImageIcon imageIcon = <span class="keyword">new</span> ImageIcon(getClass().getResource(path));</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        Image image = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> JLabel(<span class="keyword">new</span> ImageIcon(image));</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html">com.RouteBus.client.gui.NewsPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00008">NewsPanel.java:8</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel_html_acefb4ecfaf13890e31570feeb220e2e6"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#acefb4ecfaf13890e31570feeb220e2e6">com.RouteBus.client.gui.NewsPanel.updateTexts</a></div><div class="ttdeci">void updateTexts(ResourceBundle messages)</div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00068">NewsPanel.java:68</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel_html_aef996fb9081004be6fa8c4371eb97bea"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1NewsPanel.html#aef996fb9081004be6fa8c4371eb97bea">com.RouteBus.client.gui.NewsPanel.NewsPanel</a></div><div class="ttdeci">NewsPanel(ResourceBundle messages, Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground)</div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00011">NewsPanel.java:11</a></div></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span> numberOfNews = 10;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ace1475d66d7171dd607d1cdd1e3923ae">   12</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ace1475d66d7171dd607d1cdd1e3923ae">NewsPanel</a>(ResourceBundle messages, Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground) {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        this.setLayout(<span class="keyword">new</span> BorderLayout());</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        this.setBackground(colorBackground);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        titleLabel = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;welcome&quot;</span>));</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        titleLabel.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Serif&quot;</span>, Font.BOLD, 28));</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        titleLabel.setForeground(Color.BLACK);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        this.add(titleLabel, BorderLayout.NORTH);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        JPanel newsContentPanel = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        newsContentPanel.setLayout(<span class="keyword">new</span> BoxLayout(newsContentPanel, BoxLayout.Y_AXIS));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        newsContentPanel.setBackground(colorBackground);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        Color[] borderColors = {colorPrimary, colorSecondary, colorTertiary};</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= numberOfNews; i++) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            JPanel newsItem = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            newsItem.setBorder(BorderFactory.createLineBorder(borderColors[i % borderColors.length], 2));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            newsItem.setBackground(colorBackground);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            newsItem.setLayout(<span class="keyword">new</span> BorderLayout(10, 10));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            JLabel newsImage = loadImage(<span class="stringliteral">&quot;/images/InitialImage&quot;</span> + ((i % 7) + 1) + <span class="stringliteral">&quot;.jpg&quot;</span>, 100, 100);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            newsImage.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            JPanel textPanel = <span class="keyword">new</span> JPanel();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            textPanel.setLayout(<span class="keyword">new</span> BoxLayout(textPanel, BoxLayout.Y_AXIS));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            textPanel.setBackground(colorBackground);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            JLabel newsTitle = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + i + <span class="stringliteral">&quot;Title&quot;</span>));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            newsTitle.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;Serif&quot;</span>, Font.BOLD, 20));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            newsTitle.setAlignmentX(Component.LEFT_ALIGNMENT);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            JTextArea newsText = <span class="keyword">new</span> JTextArea(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + i + <span class="stringliteral">&quot;Content&quot;</span>));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            newsText.setEditable(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            newsText.setLineWrap(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            newsText.setWrapStyleWord(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            newsText.setFont(<span class="keyword">new</span> Font(<span class="stringliteral">&quot;SansSerif&quot;</span>, Font.PLAIN, 16));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            newsText.setBackground(colorBackground);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            newsText.setAlignmentX(Component.LEFT_ALIGNMENT);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            textPanel.add(newsTitle);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            textPanel.add(Box.createVerticalStrut(10));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            textPanel.add(newsText);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            newsItem.add(newsImage, BorderLayout.WEST);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            newsItem.add(textPanel, BorderLayout.CENTER);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            newsContentPanel.add(newsItem);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            newsContentPanel.add(Box.createVerticalStrut(20));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        JScrollPane scrollPane = <span class="keyword">new</span> JScrollPane(newsContentPanel);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        scrollPane.getVerticalScrollBar().setUnitIncrement(16);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        this.add(scrollPane, BorderLayout.CENTER);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ac96465d5a347e5c0032494e130b3c9d3">   69</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ac96465d5a347e5c0032494e130b3c9d3">updateTexts</a>(ResourceBundle messages) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        titleLabel.setText(messages.getString(<span class="stringliteral">&quot;welcome&quot;</span>));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        Component[] components = ((JPanel) ((JScrollPane) this.getComponent(1)).getViewport().getView()).getComponents();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; numberOfNews; i++) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (components[i] instanceof JPanel) {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                JPanel newsItem = (JPanel) components[i];</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                JLabel newsTitle = (JLabel) ((JPanel) newsItem.getComponent(1)).getComponent(0);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                JTextArea newsText = (JTextArea) ((JPanel) newsItem.getComponent(1)).getComponent(2);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                newsTitle.setText(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + (i + 1) + <span class="stringliteral">&quot;Title&quot;</span>));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                newsText.setText(messages.getString(<span class="stringliteral">&quot;new&quot;</span> + (i + 1) + <span class="stringliteral">&quot;Content&quot;</span>));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">private</span> JLabel loadImage(String path, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        ImageIcon imageIcon = <span class="keyword">new</span> ImageIcon(getClass().getResource(path));</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        Image image = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> JLabel(<span class="keyword">new</span> ImageIcon(image));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html">com.RouteBus.client.gui.user.NewsPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00008">NewsPanel.java:8</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel_html_ac96465d5a347e5c0032494e130b3c9d3"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ac96465d5a347e5c0032494e130b3c9d3">com.RouteBus.client.gui.user.NewsPanel.updateTexts</a></div><div class="ttdeci">void updateTexts(ResourceBundle messages)</div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00069">NewsPanel.java:69</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel_html_ace1475d66d7171dd607d1cdd1e3923ae"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1user_1_1NewsPanel.html#ace1475d66d7171dd607d1cdd1e3923ae">com.RouteBus.client.gui.user.NewsPanel.NewsPanel</a></div><div class="ttdeci">NewsPanel(ResourceBundle messages, Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground)</div><div class="ttdef"><b>Definition:</b> <a href="NewsPanel_8java_source.html#l00012">NewsPanel.java:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="NewsPanel_8java.html">NewsPanel.java</a></li>
+    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="dir_bc2f8bd3e621f3c8c139390d9142a3a5.html">user</a></li><li class="navelem"><a class="el" href="NewsPanel_8java.html">NewsPanel.java</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -87,97 +87,111 @@ $(document).ready(function(){initNavTree('Server_2src_2test_2java_2com_2RouteBus
 <div class="title">AppTest.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//package com.RouteBus.server;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//import org.junit.Before;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//import org.junit.Test;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">//import org.junit.runner.RunWith;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//import org.mockito.InjectMocks;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//import org.mockito.Mock;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">//import org.mockito.junit.MockitoJUnitRunner;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//import org.springframework.boot.CommandLineRunner;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//import com.RouteBus.server.dao.NationalityRepository;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//import com.RouteBus.server.dao.UserRepository;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//import com.RouteBus.server.dao.BusRepository;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//import com.RouteBus.server.dao.StationRepository;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//import com.RouteBus.server.dao.RouteRepository;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//import com.RouteBus.server.dao.ScheduleRepository;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//import com.RouteBus.server.dao.TicketRepository;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//import java.io.ByteArrayOutputStream;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//import java.io.PrintStream;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//import static org.junit.Assert.assertTrue;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//import static org.mockito.Mockito.*;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//@RunWith(MockitoJUnitRunner.class)</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//public class AppTest {</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//    private NationalityRepository nationalityRepository;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//    private UserRepository userRepository;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//    private BusRepository busRepository;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//    private StationRepository stationRepository;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">//    private RouteRepository routeRepository;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">//    private ScheduleRepository scheduleRepository;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//    @Mock</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//    private TicketRepository ticketRepository;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//    @InjectMocks</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//    private App app;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//    @Before</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//    public void setUp() {</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//        // Any initialization before tests run</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//    @Test</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//    public void testDemoWithEmptyDatabase() throws Exception {</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//        when(nationalityRepository.count()).thenReturn(0L);</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//        CommandLineRunner runner = app.demo(busRepository, nationalityRepository, routeRepository, scheduleRepository, stationRepository, ticketRepository, userRepository);</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//        runner.run(new String[]{});</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//        </span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//        verify(nationalityRepository, times(1)).saveAll(anyList());</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//        verify(nationalityRepository, atLeastOnce()).count();</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//        verifyNoMoreInteractions(nationalityRepository);</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//    @Test</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//    public void testDemoWithNonEmptyDatabase() throws Exception {</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//        when(nationalityRepository.count()).thenReturn(1L);</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//        CommandLineRunner runner = app.demo(busRepository, nationalityRepository, routeRepository, scheduleRepository, stationRepository, ticketRepository, userRepository);</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//        runner.run(new String[]{});</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//        </span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//        verify(nationalityRepository, never()).saveAll(anyList());</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//        verify(nationalityRepository, atLeastOnce()).count();</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//        verifyNoMoreInteractions(nationalityRepository);</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//    </span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//    @Test</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//    public void testMainMethod() throws Exception {</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//        ByteArrayOutputStream outContent = new ByteArrayOutputStream();</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//        System.setOut(new PrintStream(outContent));</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//        App.main(new String[]{});</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//        System.setOut(System.out);</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">//        String expectedOutput = &quot;Started App&quot;;</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//        assertTrue(outContent.toString().contains(expectedOutput));</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//}</span></div>
+<a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.server;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> org.junit.Before;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> org.junit.Test;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> org.junit.runner.RunWith;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> org.mockito.InjectMocks;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> org.mockito.Mock;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> org.mockito.junit.MockitoJUnitRunner;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> org.springframework.boot.CommandLineRunner;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.NationalityRepository;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.UserRepository;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.BusRepository;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.StationRepository;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.RouteRepository;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.ScheduleRepository;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">import</span> com.RouteBus.server.dao.TicketRepository;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">import</span> java.io.ByteArrayOutputStream;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">import</span> java.io.PrintStream;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">import</span> <span class="keyword">static</span> org.mockito.Mockito.*;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;@RunWith(MockitoJUnitRunner.class)</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html">   26</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html">AppTest</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    @Mock</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1NationalityRepository.html">NationalityRepository</a> nationalityRepository;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    @Mock</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1UserRepository.html">UserRepository</a> userRepository;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    @Mock</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1BusRepository.html">BusRepository</a> busRepository;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    @Mock</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1StationRepository.html">StationRepository</a> stationRepository;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    @Mock</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html">RouteRepository</a> routeRepository;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    @Mock</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html">ScheduleRepository</a> scheduleRepository;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    @Mock</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">private</span> <a class="code" href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1TicketRepository.html">TicketRepository</a> ticketRepository;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    @InjectMocks</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1App.html">App</a> app;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    @Before</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#ae6387c798b862e4d874c426d83365154">   53</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#ae6387c798b862e4d874c426d83365154">setUp</a>() {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="comment">// Any initialization before tests run</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    @Test</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#abc2225d26090afbea60e4bb9187d612d">   58</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#abc2225d26090afbea60e4bb9187d612d">testDemoWithEmptyDatabase</a>() throws Exception {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        when(nationalityRepository.count()).thenReturn(0L);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        CommandLineRunner runner = app.demo(busRepository, nationalityRepository, routeRepository, scheduleRepository, stationRepository, ticketRepository, userRepository);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        runner.run(<span class="keyword">new</span> String[]{});</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        verify(nationalityRepository, times(1)).saveAll(anyList());</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        verify(nationalityRepository, atLeastOnce()).count();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        verifyNoMoreInteractions(nationalityRepository);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    @Test</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aedd2f0a7047619e048533e71f725be41">   69</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aedd2f0a7047619e048533e71f725be41">testDemoWithNonEmptyDatabase</a>() throws Exception {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        when(nationalityRepository.count()).thenReturn(1L);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        CommandLineRunner runner = app.demo(busRepository, nationalityRepository, routeRepository, scheduleRepository, stationRepository, ticketRepository, userRepository);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        runner.run(<span class="keyword">new</span> String[]{});</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        verify(nationalityRepository, never()).saveAll(anyList());</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        verify(nationalityRepository, atLeastOnce()).count();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        verifyNoMoreInteractions(nationalityRepository);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    @Test</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aa5c9e64b17312a26f66120b9afd97296">   80</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aa5c9e64b17312a26f66120b9afd97296">testMainMethod</a>() throws Exception {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        ByteArrayOutputStream outContent = <span class="keyword">new</span> ByteArrayOutputStream();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        System.setOut(<span class="keyword">new</span> PrintStream(outContent));</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1server_1_1App.html">App</a>.<a class="code" href="classcom_1_1RouteBus_1_1server_1_1App.html#a532f38e7d130fcd3f3418fbdeaad45ca">main</a>(<span class="keyword">new</span> String[]{});</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        System.setOut(System.out);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        String expectedOutput = <span class="stringliteral">&quot;Started App&quot;</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        assertTrue(outContent.toString().contains(expectedOutput));</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1AppTest_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1AppTest.html">com.RouteBus.server.AppTest</a></div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java_source.html#l00026">AppTest.java:26</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1AppTest_html_aa5c9e64b17312a26f66120b9afd97296"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aa5c9e64b17312a26f66120b9afd97296">com.RouteBus.server.AppTest.testMainMethod</a></div><div class="ttdeci">void testMainMethod()</div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java_source.html#l00080">AppTest.java:80</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1AppTest_html_abc2225d26090afbea60e4bb9187d612d"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#abc2225d26090afbea60e4bb9187d612d">com.RouteBus.server.AppTest.testDemoWithEmptyDatabase</a></div><div class="ttdeci">void testDemoWithEmptyDatabase()</div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java_source.html#l00058">AppTest.java:58</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1AppTest_html_ae6387c798b862e4d874c426d83365154"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#ae6387c798b862e4d874c426d83365154">com.RouteBus.server.AppTest.setUp</a></div><div class="ttdeci">void setUp()</div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java_source.html#l00053">AppTest.java:53</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1AppTest_html_aedd2f0a7047619e048533e71f725be41"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1AppTest.html#aedd2f0a7047619e048533e71f725be41">com.RouteBus.server.AppTest.testDemoWithNonEmptyDatabase</a></div><div class="ttdeci">void testDemoWithNonEmptyDatabase()</div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2test_2java_2com_2RouteBus_2server_2AppTest_8java_source.html#l00069">AppTest.java:69</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1App_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1App.html">com.RouteBus.server.App</a></div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2main_2java_2com_2RouteBus_2server_2App_8java_source.html#l00016">App.java:16</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1server_1_1App_html_a532f38e7d130fcd3f3418fbdeaad45ca"><div class="ttname"><a href="classcom_1_1RouteBus_1_1server_1_1App.html#a532f38e7d130fcd3f3418fbdeaad45ca">com.RouteBus.server.App.main</a></div><div class="ttdeci">static void main(String[] args)</div><div class="ttdef"><b>Definition:</b> <a href="Server_2src_2main_2java_2com_2RouteBus_2server_2App_8java_source.html#l00036">App.java:36</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1BusRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1BusRepository.html">com.RouteBus.server.dao.BusRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="BusRepository_8java_source.html#l00008">BusRepository.java:8</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1NationalityRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1NationalityRepository.html">com.RouteBus.server.dao.NationalityRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityRepository_8java_source.html#l00008">NationalityRepository.java:8</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1RouteRepository.html">com.RouteBus.server.dao.RouteRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="RouteRepository_8java_source.html#l00010">RouteRepository.java:10</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1ScheduleRepository.html">com.RouteBus.server.dao.ScheduleRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="ScheduleRepository_8java_source.html#l00009">ScheduleRepository.java:9</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1StationRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1StationRepository.html">com.RouteBus.server.dao.StationRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="StationRepository_8java_source.html#l00008">StationRepository.java:8</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1TicketRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1TicketRepository.html">com.RouteBus.server.dao.TicketRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="TicketRepository_8java_source.html#l00011">TicketRepository.java:11</a></div></div>
+<div class="ttc" id="ainterfacecom_1_1RouteBus_1_1server_1_1dao_1_1UserRepository_html"><div class="ttname"><a href="interfacecom_1_1RouteBus_1_1server_1_1dao_1_1UserRepository.html">com.RouteBus.server.dao.UserRepository</a></div><div class="ttdef"><b>Definition:</b> <a href="UserRepository_8java_source.html#l00009">UserRepository.java:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/HomeAdminPanel.java Source File</title>
+<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/admin/HomeAdminPanel.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('HomeAdminPanel_8java_source.html','');
 <div class="title">HomeAdminPanel.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="HomeAdminPanel_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui;</div>
+<a href="HomeAdminPanel_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui.admin;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> javax.swing.table.DefaultTableModel;</div>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('HomeAdminPanel_8java_source.html','');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html">   28</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html">HomeAdminPanel</a> extends JPanel {</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html">   28</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html">HomeAdminPanel</a> extends JPanel {</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> Color colorPrimary;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> Color colorSecondary;</div>
@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('HomeAdminPanel_8java_source.html','');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> Color colorBackground;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> ResourceBundle messages;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html#a86d1cc563a95f40ed7df9dd2612a3aca">   36</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html#a86d1cc563a95f40ed7df9dd2612a3aca">HomeAdminPanel</a>(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html#ae17710054453071c3ac193b2a4fa5965">   36</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html#ae17710054453071c3ac193b2a4fa5965">HomeAdminPanel</a>(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages) {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        this.colorPrimary = colorPrimary;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        this.colorSecondary = colorSecondary;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        this.colorTertiary = colorTertiary;</div>
@@ -284,14 +284,14 @@ $(document).ready(function(){initNavTree('HomeAdminPanel_8java_source.html','');
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">new</span> ImageIcon(resizedImage);</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html">com.RouteBus.client.gui.HomeAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00028">HomeAdminPanel.java:28</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel_html_a86d1cc563a95f40ed7df9dd2612a3aca"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html#a86d1cc563a95f40ed7df9dd2612a3aca">com.RouteBus.client.gui.HomeAdminPanel.HomeAdminPanel</a></div><div class="ttdeci">HomeAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages)</div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00036">HomeAdminPanel.java:36</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html">com.RouteBus.client.gui.admin.HomeAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00028">HomeAdminPanel.java:28</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel_html_ae17710054453071c3ac193b2a4fa5965"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html#ae17710054453071c3ac193b2a4fa5965">com.RouteBus.client.gui.admin.HomeAdminPanel.HomeAdminPanel</a></div><div class="ttdeci">HomeAdminPanel(Color colorPrimary, Color colorSecondary, Color colorTertiary, Color colorBackground, ResourceBundle messages)</div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00036">HomeAdminPanel.java:36</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="HomeAdminPanel_8java.html">HomeAdminPanel.java</a></li>
+    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="dir_f5059ca00b7dc8e2ef76be8fc41d302a.html">admin</a></li><li class="navelem"><a class="el" href="HomeAdminPanel_8java.html">HomeAdminPanel.java</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

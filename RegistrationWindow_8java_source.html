@@ -93,223 +93,224 @@ $(document).ready(function(){initNavTree('RegistrationWindow_8java_source.html',
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> com.RouteBus.client.controller.UserController;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.NationalityDTO;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> com.RouteBus.client.dto.UserDTO;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> com.toedter.calendar.JDateChooser;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.awt.Color;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.awt.Component;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.awt.Graphics;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.util.Date;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.util.List;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> java.util.Locale;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">   18</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">RegistrationWindow</a> extends <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html">ParentWindow</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span> JLabel lName;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span> JLabel lSurname;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">private</span> JLabel lEmail;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span> JLabel lBirthDay;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span> JLabel lNationality;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">private</span> JLabel lPassword;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span> JLabel lPasswordR;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">private</span> JTextField tName;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">private</span> JTextField tSurname;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span> JTextField tEmail;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> JDateChooser dBirthDate;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> JComboBox&lt;NationalityDTO&gt; comboNationality;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> JPasswordField password;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> JPasswordField passwordR;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> JButton bRegister;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span> ResourceBundle messages;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">   38</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">RegistrationWindow</a>(<a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow) {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        super();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        this.initialWindow = initialWindow;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        Locale currentLocale = Locale.getDefault();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        messages = ResourceBundle.getBundle(<span class="stringliteral">&quot;multilingual/messages&quot;</span>, currentLocale);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        this.setTitle(messages.getString(<span class="stringliteral">&quot;windowTitle&quot;</span>));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        this.setLayout(<span class="keyword">null</span>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        this.setBounds(300, 100, 750, 600);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        this.setResizable(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        setLocationRelativeTo(<span class="keyword">null</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        JPanel contentPane = <span class="keyword">new</span> JPanel(<span class="keyword">null</span>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        contentPane.setBackground(colorBackground);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        this.setContentPane(contentPane);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        lName = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;nameLabel&quot;</span>));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        lSurname = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;surnameLabel&quot;</span>));</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        lEmail = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;email&quot;</span>));</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        lBirthDay = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;birthDateLabel&quot;</span>));</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        lNationality = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;nationalityLabel&quot;</span>));</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        lPassword = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;password&quot;</span>));</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        lPasswordR = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;repeatPasswordLabel&quot;</span>));</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        tName = <span class="keyword">new</span> JTextField();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        tSurname = <span class="keyword">new</span> JTextField();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        tEmail = <span class="keyword">new</span> JTextField();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        dBirthDate = <span class="keyword">new</span> JDateChooser(<span class="stringliteral">&quot;yyyy/MM/dd&quot;</span>, <span class="stringliteral">&quot;####/##/##&quot;</span>, <span class="charliteral">&#39;_&#39;</span>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        comboNationality = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        loadNationalities();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        comboNationality.addActionListener(e -&gt; {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a> selectedNationality = (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a>) comboNationality.getSelectedItem();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> (selectedNationality != <span class="keyword">null</span>) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                Locale locale = <span class="keyword">new</span> Locale(selectedNationality.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html#ac84bd45e7027af42e7c12e4b5b240613">getLanguage</a>());</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                messages = ResourceBundle.getBundle(<span class="stringliteral">&quot;multilingual/messages&quot;</span>, locale);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                updateLabels();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        });</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        password = <span class="keyword">new</span> JPasswordField();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        passwordR = <span class="keyword">new</span> JPasswordField();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        bRegister = <span class="keyword">new</span> JButton(messages.getString(<span class="stringliteral">&quot;registerButton&quot;</span>));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        bRegister.setBackground(colorSecondary);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        bRegister.setBorder(<span class="keyword">null</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">// POSITIONING</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        lName.setBounds(50, 210, 150, 30);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        contentPane.add(lName);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        tName.setBounds(50, 240, 150, 30);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        contentPane.add(tName);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        lSurname.setBounds(230, 210, 150, 30);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        contentPane.add(lSurname);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        tSurname.setBounds(230, 240, 150, 30);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        contentPane.add(tSurname);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        lEmail.setBounds(60, 270, 150, 30);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        contentPane.add(lEmail);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        tEmail.setBounds(60, 300, 310, 30);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        contentPane.add(tEmail);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        lNationality.setBounds(50, 330, 150, 30);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        contentPane.add(lNationality);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        comboNationality.setBounds(50, 360, 150, 30);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        contentPane.add(comboNationality);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        lBirthDay.setBounds(230, 330, 150, 30);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        contentPane.add(lBirthDay);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        dBirthDate.setBounds(230, 360, 150, 30);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        contentPane.add(dBirthDate);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        lPassword.setBounds(500, 210, 150, 30);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        contentPane.add(lPassword);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        password.setBounds(500, 240, 150, 30);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        contentPane.add(password);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        lPasswordR.setBounds(500, 290, 150, 30);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        contentPane.add(lPasswordR);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        passwordR.setBounds(500, 320, 150, 30);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        contentPane.add(passwordR);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        bRegister.setBounds(320, 450, 150, 30);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        contentPane.add(bRegister);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        bRegister.addActionListener(this::performRegistration);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="comment">// Draw vertical line</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        VerticalLinePanel linePanel = <span class="keyword">new</span> VerticalLinePanel();</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        linePanel.setBounds(450, 200, 1, 220);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        contentPane.add(linePanel);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        JLabel imageLabel = loadImage(<span class="stringliteral">&quot;/images/busroute.jpg&quot;</span>, 300, 300);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        imageLabel.setBounds(300, -40, 200, 300);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        contentPane.add(imageLabel);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> performRegistration(ActionEvent e) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        String name = tName.getText().trim();</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        String surname = tSurname.getText().trim();</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        String email = tEmail.getText().trim();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        Date birthDate = dBirthDate.getDate();</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a> nationality = (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a>) comboNationality.getSelectedItem();</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        String passwordText = <span class="keyword">new</span> String(password.getPassword());</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        String passwordRText = <span class="keyword">new</span> String(passwordR.getPassword());</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == <span class="keyword">null</span> || nationality == <span class="keyword">null</span> || passwordText.isEmpty() || passwordRText.isEmpty()) {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;fillFieldsError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">if</span> (!passwordText.equals(passwordRText)) {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;passwordMismatchError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        UserDTO newUser = <span class="keyword">new</span> UserDTO(name, surname, email, passwordText, nationality, birthDate);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordtype">boolean</span> created = UserController.getInstance().createUser(newUser);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">if</span> (created) {</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            initialWindow.dispose(); <span class="comment">// Close initial window upon successful registration</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            this.dispose();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            SwingUtilities.invokeLater(() -&gt; {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                MainWindow window = <span class="keyword">new</span> MainWindow(newUser.getNationality().getLanguage(),newUser);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                window.setVisible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            });</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;registrationFailError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class </span>VerticalLinePanel <span class="keyword">extends</span> JPanel {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> serialVersionUID = 1L;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        @Override</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keyword">protected</span> <span class="keywordtype">void</span> paintComponent(Graphics g) {</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            super.paintComponent(g);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            g.setColor(Color.BLACK);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            g.drawLine(0, 0, 0, getHeight());</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    }</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadNationalities() {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        List&lt;NationalityDTO&gt; nationalities = UserController.getInstance().getNationalities();</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">for</span> (NationalityDTO nationality : nationalities) {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            comboNationality.addItem(nationality);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        comboNationality.setRenderer(<span class="keyword">new</span> DefaultListCellRenderer() {</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> serialVersionUID = 1L;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            @Override</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keyword">public</span> Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, <span class="keywordtype">int</span> index, <span class="keywordtype">boolean</span> isSelected, <span class="keywordtype">boolean</span> cellHasFocus) {</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keywordflow">if</span> (value instanceof NationalityDTO) {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                    setText(((NationalityDTO) value).getName());</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            }</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        });</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> updateLabels() {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        lName.setText(messages.getString(<span class="stringliteral">&quot;nameLabel&quot;</span>));</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        lSurname.setText(messages.getString(<span class="stringliteral">&quot;surnameLabel&quot;</span>));</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        lEmail.setText(messages.getString(<span class="stringliteral">&quot;email&quot;</span>));</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        lBirthDay.setText(messages.getString(<span class="stringliteral">&quot;birthDateLabel&quot;</span>));</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        lNationality.setText(messages.getString(<span class="stringliteral">&quot;nationalityLabel&quot;</span>));</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        lPassword.setText(messages.getString(<span class="stringliteral">&quot;password&quot;</span>));</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        lPasswordR.setText(messages.getString(<span class="stringliteral">&quot;repeatPasswordLabel&quot;</span>));</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        bRegister.setText(messages.getString(<span class="stringliteral">&quot;registerButton&quot;</span>));</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">import</span> com.RouteBus.client.gui.user.MainWindow;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> com.toedter.calendar.JDateChooser;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.awt.Color;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> java.awt.Component;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> java.awt.Graphics;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> java.util.Date;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> java.util.List;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> java.util.Locale;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> java.util.ResourceBundle;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">   19</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">RegistrationWindow</a> extends <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html">ParentWindow</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span> JLabel lName;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">private</span> JLabel lSurname;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span> JLabel lEmail;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span> JLabel lBirthDay;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">private</span> JLabel lNationality;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span> JLabel lPassword;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">private</span> JLabel lPasswordR;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">private</span> JTextField tName;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span> JTextField tSurname;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">private</span> JTextField tEmail;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> JDateChooser dBirthDate;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span> JComboBox&lt;NationalityDTO&gt; comboNationality;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span> JPasswordField password;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span> JPasswordField passwordR;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span> JButton bRegister;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">private</span> ResourceBundle messages;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">   39</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">RegistrationWindow</a>(<a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        super();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        this.initialWindow = initialWindow;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        Locale currentLocale = Locale.getDefault();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        messages = ResourceBundle.getBundle(<span class="stringliteral">&quot;multilingual/messages&quot;</span>, currentLocale);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        this.setTitle(messages.getString(<span class="stringliteral">&quot;windowTitle&quot;</span>));</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        this.setLayout(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        this.setBounds(300, 100, 750, 600);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        this.setResizable(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        setLocationRelativeTo(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        JPanel contentPane = <span class="keyword">new</span> JPanel(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        contentPane.setBackground(colorBackground);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        this.setContentPane(contentPane);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        lName = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;nameLabel&quot;</span>));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        lSurname = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;surnameLabel&quot;</span>));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        lEmail = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;email&quot;</span>));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        lBirthDay = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;birthDateLabel&quot;</span>));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        lNationality = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;nationalityLabel&quot;</span>));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        lPassword = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;password&quot;</span>));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        lPasswordR = <span class="keyword">new</span> JLabel(messages.getString(<span class="stringliteral">&quot;repeatPasswordLabel&quot;</span>));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        tName = <span class="keyword">new</span> JTextField();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        tSurname = <span class="keyword">new</span> JTextField();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        tEmail = <span class="keyword">new</span> JTextField();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        dBirthDate = <span class="keyword">new</span> JDateChooser(<span class="stringliteral">&quot;yyyy/MM/dd&quot;</span>, <span class="stringliteral">&quot;####/##/##&quot;</span>, <span class="charliteral">&#39;_&#39;</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        comboNationality = <span class="keyword">new</span> JComboBox&lt;&gt;();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        loadNationalities();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        comboNationality.addActionListener(e -&gt; {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a> selectedNationality = (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a>) comboNationality.getSelectedItem();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">if</span> (selectedNationality != <span class="keyword">null</span>) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                Locale locale = <span class="keyword">new</span> Locale(selectedNationality.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html#ac84bd45e7027af42e7c12e4b5b240613">getLanguage</a>());</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                messages = ResourceBundle.getBundle(<span class="stringliteral">&quot;multilingual/messages&quot;</span>, locale);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                updateLabels();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        });</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        password = <span class="keyword">new</span> JPasswordField();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        passwordR = <span class="keyword">new</span> JPasswordField();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        bRegister = <span class="keyword">new</span> JButton(messages.getString(<span class="stringliteral">&quot;registerButton&quot;</span>));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        bRegister.setBackground(colorSecondary);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        bRegister.setBorder(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// POSITIONING</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        lName.setBounds(50, 210, 150, 30);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        contentPane.add(lName);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        tName.setBounds(50, 240, 150, 30);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        contentPane.add(tName);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        lSurname.setBounds(230, 210, 150, 30);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        contentPane.add(lSurname);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        tSurname.setBounds(230, 240, 150, 30);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        contentPane.add(tSurname);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        lEmail.setBounds(60, 270, 150, 30);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        contentPane.add(lEmail);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        tEmail.setBounds(60, 300, 310, 30);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        contentPane.add(tEmail);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        lNationality.setBounds(50, 330, 150, 30);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        contentPane.add(lNationality);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        comboNationality.setBounds(50, 360, 150, 30);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        contentPane.add(comboNationality);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        lBirthDay.setBounds(230, 330, 150, 30);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        contentPane.add(lBirthDay);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        dBirthDate.setBounds(230, 360, 150, 30);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        contentPane.add(dBirthDate);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        lPassword.setBounds(500, 210, 150, 30);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        contentPane.add(lPassword);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        password.setBounds(500, 240, 150, 30);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        contentPane.add(password);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        lPasswordR.setBounds(500, 290, 150, 30);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        contentPane.add(lPasswordR);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        passwordR.setBounds(500, 320, 150, 30);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        contentPane.add(passwordR);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        bRegister.setBounds(320, 450, 150, 30);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        contentPane.add(bRegister);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        bRegister.addActionListener(this::performRegistration);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="comment">// Draw vertical line</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        VerticalLinePanel linePanel = <span class="keyword">new</span> VerticalLinePanel();</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        linePanel.setBounds(450, 200, 1, 220);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        contentPane.add(linePanel);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        JLabel imageLabel = loadImage(<span class="stringliteral">&quot;/images/busroute.jpg&quot;</span>, 300, 300);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        imageLabel.setBounds(300, -40, 200, 300);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        contentPane.add(imageLabel);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> performRegistration(ActionEvent e) {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        String name = tName.getText().trim();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        String surname = tSurname.getText().trim();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        String email = tEmail.getText().trim();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        Date birthDate = dBirthDate.getDate();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a> nationality = (<a class="code" href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">NationalityDTO</a>) comboNationality.getSelectedItem();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        String passwordText = <span class="keyword">new</span> String(password.getPassword());</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        String passwordRText = <span class="keyword">new</span> String(passwordR.getPassword());</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">if</span> (name.isEmpty() || surname.isEmpty() || email.isEmpty() || birthDate == <span class="keyword">null</span> || nationality == <span class="keyword">null</span> || passwordText.isEmpty() || passwordRText.isEmpty()) {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;fillFieldsError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span> (!passwordText.equals(passwordRText)) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;passwordMismatchError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        UserDTO newUser = <span class="keyword">new</span> UserDTO(name, surname, email, passwordText, nationality, birthDate);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordtype">boolean</span> created = UserController.getInstance().createUser(newUser);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">if</span> (created) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            initialWindow.dispose(); <span class="comment">// Close initial window upon successful registration</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            this.dispose();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            SwingUtilities.invokeLater(() -&gt; {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                MainWindow window = <span class="keyword">new</span> MainWindow(newUser.getNationality().getLanguage(),newUser);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                window.setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            });</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            JOptionPane.showMessageDialog(<span class="keyword">this</span>, messages.getString(<span class="stringliteral">&quot;registrationFailError&quot;</span>), <span class="stringliteral">&quot;Error&quot;</span>, JOptionPane.ERROR_MESSAGE);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class </span>VerticalLinePanel <span class="keyword">extends</span> JPanel {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> serialVersionUID = 1L;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        @Override</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keyword">protected</span> <span class="keywordtype">void</span> paintComponent(Graphics g) {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            super.paintComponent(g);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            g.setColor(Color.BLACK);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            g.drawLine(0, 0, 0, getHeight());</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> loadNationalities() {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        List&lt;NationalityDTO&gt; nationalities = UserController.getInstance().getNationalities();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">for</span> (NationalityDTO nationality : nationalities) {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            comboNationality.addItem(nationality);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        comboNationality.setRenderer(<span class="keyword">new</span> DefaultListCellRenderer() {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">long</span> serialVersionUID = 1L;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            @Override</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keyword">public</span> Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, <span class="keywordtype">int</span> index, <span class="keywordtype">boolean</span> isSelected, <span class="keywordtype">boolean</span> cellHasFocus) {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">if</span> (value instanceof NationalityDTO) {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    setText(((NationalityDTO) value).getName());</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        });</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> updateLabels() {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        lName.setText(messages.getString(<span class="stringliteral">&quot;nameLabel&quot;</span>));</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        lSurname.setText(messages.getString(<span class="stringliteral">&quot;surnameLabel&quot;</span>));</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        lEmail.setText(messages.getString(<span class="stringliteral">&quot;email&quot;</span>));</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        lBirthDay.setText(messages.getString(<span class="stringliteral">&quot;birthDateLabel&quot;</span>));</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        lNationality.setText(messages.getString(<span class="stringliteral">&quot;nationalityLabel&quot;</span>));</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        lPassword.setText(messages.getString(<span class="stringliteral">&quot;password&quot;</span>));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        lPasswordR.setText(messages.getString(<span class="stringliteral">&quot;repeatPasswordLabel&quot;</span>));</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        bRegister.setText(messages.getString(<span class="stringliteral">&quot;registerButton&quot;</span>));</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    }</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html">com.RouteBus.client.dto.NationalityDTO</a></div><div class="ttdef"><b>Definition:</b> <a href="NationalityDTO_8java_source.html#l00009">NationalityDTO.java:9</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO_html_ac84bd45e7027af42e7c12e4b5b240613"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1dto_1_1NationalityDTO.html#ac84bd45e7027af42e7c12e4b5b240613">com.RouteBus.client.dto.NationalityDTO.getLanguage</a></div><div class="ttdeci">String getLanguage()</div><div class="ttdef"><b>Definition:</b> <a href="NationalityDTO_8java_source.html#l00028">NationalityDTO.java:28</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">com.RouteBus.client.gui.InitialWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="InitialWindow_8java_source.html#l00011">InitialWindow.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">com.RouteBus.client.gui.InitialWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="InitialWindow_8java_source.html#l00012">InitialWindow.java:12</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html">com.RouteBus.client.gui.ParentWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="ParentWindow_8java_source.html#l00010">ParentWindow.java:10</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">com.RouteBus.client.gui.RegistrationWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="RegistrationWindow_8java_source.html#l00018">RegistrationWindow.java:18</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow_html_a30c293887633003c73f5873bd95a215f"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">com.RouteBus.client.gui.RegistrationWindow.RegistrationWindow</a></div><div class="ttdeci">RegistrationWindow(InitialWindow initialWindow)</div><div class="ttdef"><b>Definition:</b> <a href="RegistrationWindow_8java_source.html#l00038">RegistrationWindow.java:38</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html">com.RouteBus.client.gui.RegistrationWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="RegistrationWindow_8java_source.html#l00019">RegistrationWindow.java:19</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow_html_a30c293887633003c73f5873bd95a215f"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RegistrationWindow.html#a30c293887633003c73f5873bd95a215f">com.RouteBus.client.gui.RegistrationWindow.RegistrationWindow</a></div><div class="ttdeci">RegistrationWindow(InitialWindow initialWindow)</div><div class="ttdef"><b>Definition:</b> <a href="RegistrationWindow_8java_source.html#l00039">RegistrationWindow.java:39</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

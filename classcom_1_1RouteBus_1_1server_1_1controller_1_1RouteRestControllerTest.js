@@ -9,6 +9,8 @@ var classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest =
     [ "testGetAllRoutes", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#aea53246aba48fe4df0ee0c429799e7dc", null ],
     [ "testGetRouteByIdFound", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#a3ea9855b259b0129db1f3acf2bace4e7", null ],
     [ "testGetRouteByIdNotFound", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#a5f3dae24db7aa06297d347a0158a1fb6", null ],
+    [ "testGetRoutesByStations", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#ade7e2e704dcd40ed1dea805d78e0103f", null ],
+    [ "testGetRoutesByStationsNotFound", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#aca8cc691e53a601f8f4c9c7fcc28564b", null ],
     [ "testObtainRoutesByBus", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#a070872bc69f9ea06a370582d1db49b34", null ],
     [ "testUpdateRouteNotFound", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#a956d59d3fca96b549c94a04c8049cbe6", null ],
     [ "testUpdateRouteSuccess", "classcom_1_1RouteBus_1_1server_1_1controller_1_1RouteRestControllerTest.html#a3cd0c400cd7d7649df094e8e1cf8d916", null ]

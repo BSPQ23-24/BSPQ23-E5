@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/AdministratorWindow.java Source File</title>
+<title>Bus Route: Client/src/main/java/com/RouteBus/client/gui/admin/AdministratorWindow.java Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,119 +87,125 @@ $(document).ready(function(){initNavTree('AdministratorWindow_8java_source.html'
 <div class="title">AdministratorWindow.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="AdministratorWindow_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacecom_1_1RouteBus_1_1client_1_1gui.html">    1</a></span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui;</div>
+<a href="AdministratorWindow_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespacecom_1_1RouteBus_1_1client_1_1gui_1_1admin.html">    1</a></span>&#160;<span class="keyword">package </span>com.RouteBus.client.gui.admin;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.swing.*;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html">    8</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html">AdministratorWindow</a> extends <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html">MultilingualLoadingWindow</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">private</span> JMenuItem homeMenuItem, routeAdminMenuItem, busAdminMenuItem, ticketsAdminMenuItem, stationAdminMenuItem, logoutMenuItem;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a529bfe01322d4592e059bc94a67c3d44">   13</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a529bfe01322d4592e059bc94a67c3d44">AdministratorWindow</a>(String languageToLoad, <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow) {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        super(languageToLoad);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        this.initialWindow = initialWindow;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        setTitle(messages.getString(<span class="stringliteral">&quot;adminWindowTitle&quot;</span>));</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        initializeMenuItems();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> initializeMenuItems() {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        JMenuBar menuBar = getJMenuBar();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        homeMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;home&quot;</span>));</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        routeAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;routeAdmin&quot;</span>));</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        busAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;busAdmin&quot;</span>));</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        ticketsAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;ticketsAdmin&quot;</span>));</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        stationAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;stationAdmin&quot;</span>));</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        logoutMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;logout&quot;</span>));</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        menuBar.add(homeMenuItem);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        menuBar.add(routeAdminMenuItem);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        menuBar.add(busAdminMenuItem);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        menuBar.add(ticketsAdminMenuItem);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        menuBar.add(stationAdminMenuItem);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        menuBar.add(logoutMenuItem);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        homeMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;Home&quot;</span>));</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        routeAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;RouteAdmin&quot;</span>));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        busAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;BusAdmin&quot;</span>));</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        ticketsAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;TicketsAdmin&quot;</span>));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        stationAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;StationAdmin&quot;</span>));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        logoutMenuItem.addActionListener(this::logoutActionPerformed);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        applyMenuColors();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    @Override</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a41524c5e8b2ce8863eb41dd4a5e1d6be">   49</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a41524c5e8b2ce8863eb41dd4a5e1d6be">loadPanels</a>() {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html">HomeAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;Home&quot;</span>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html">RouteAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;RouteAdmin&quot;</span>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel.html">BusesAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;BusAdmin&quot;</span>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html">TicketsAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;TicketsAdmin&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html">StationsAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;StationAdmin&quot;</span>);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        showPanel(<span class="stringliteral">&quot;Home&quot;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> showPanel(String panelName) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        CardLayout cl = (CardLayout) (mainPanel.getLayout());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        cl.show(mainPanel, panelName);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        updateMenuColors(panelName);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> updateMenuColors(String activePanel) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        homeMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;Home&quot;</span>) ? colorPrimary : colorSecondary);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        routeAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;RouteAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        busAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;BusAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        ticketsAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;TicketsAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        stationAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;StationAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        logoutMenuItem.setBackground(colorSecondary);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        applyPanelBackgroundColor(activePanel);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> applyPanelBackgroundColor(String activePanel) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        mainPanel.setBackground(colorPrimary);</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> com.RouteBus.client.gui.InitialWindow;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">import</span> com.RouteBus.client.gui.MultilingualLoadingWindow;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">import</span> java.awt.*;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> java.awt.event.ActionEvent;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;serial&quot;</span>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html">   12</a></span>&#160;public class <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html">AdministratorWindow</a> extends <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html">MultilingualLoadingWindow</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">private</span> JMenuItem homeMenuItem, routeAdminMenuItem, busAdminMenuItem, ticketsAdminMenuItem, stationAdminMenuItem, logoutMenuItem;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#a9442388537c92723f9b995657b3bac26">   17</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#a9442388537c92723f9b995657b3bac26">AdministratorWindow</a>(String languageToLoad, <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">InitialWindow</a> initialWindow) {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        super(languageToLoad);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this.initialWindow = initialWindow;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        setTitle(messages.getString(<span class="stringliteral">&quot;adminWindowTitle&quot;</span>));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        initializeMenuItems();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> initializeMenuItems() {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        JMenuBar menuBar = getJMenuBar();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        homeMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;home&quot;</span>));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        routeAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;routeAdmin&quot;</span>));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        busAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;busAdmin&quot;</span>));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        ticketsAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;ticketsAdmin&quot;</span>));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        stationAdminMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;stationAdmin&quot;</span>));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        logoutMenuItem = <span class="keyword">new</span> JMenuItem(messages.getString(<span class="stringliteral">&quot;logout&quot;</span>));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        menuBar.add(homeMenuItem);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        menuBar.add(routeAdminMenuItem);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        menuBar.add(busAdminMenuItem);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        menuBar.add(ticketsAdminMenuItem);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        menuBar.add(stationAdminMenuItem);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        menuBar.add(logoutMenuItem);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        homeMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;Home&quot;</span>));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        routeAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;RouteAdmin&quot;</span>));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        busAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;BusAdmin&quot;</span>));</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        ticketsAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;TicketsAdmin&quot;</span>));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        stationAdminMenuItem.addActionListener(e -&gt; showPanel(<span class="stringliteral">&quot;StationAdmin&quot;</span>));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        logoutMenuItem.addActionListener(this::logoutActionPerformed);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        applyMenuColors();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    @Override</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#acb477a00faa160149576da2cca742fc3">   53</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#acb477a00faa160149576da2cca742fc3">loadPanels</a>() {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html">HomeAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;Home&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel.html">RouteAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;RouteAdmin&quot;</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel.html">BusesAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;BusAdmin&quot;</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel.html">TicketsAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;TicketsAdmin&quot;</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        mainPanel.add(<span class="keyword">new</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel.html">StationsAdminPanel</a>(colorPrimary, colorSecondary, colorTertiary, colorBackground, messages), <span class="stringliteral">&quot;StationAdmin&quot;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        showPanel(<span class="stringliteral">&quot;Home&quot;</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> showPanel(String panelName) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        CardLayout cl = (CardLayout) (mainPanel.getLayout());</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        cl.show(mainPanel, panelName);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        updateMenuColors(panelName);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> updateMenuColors(String activePanel) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        homeMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;Home&quot;</span>) ? colorPrimary : colorSecondary);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        routeAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;RouteAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        busAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;BusAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        ticketsAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;TicketsAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        stationAdminMenuItem.setBackground(activePanel.equals(<span class="stringliteral">&quot;StationAdmin&quot;</span>) ? colorPrimary : colorSecondary);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        logoutMenuItem.setBackground(colorSecondary);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        applyPanelBackgroundColor(activePanel);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> logoutActionPerformed(ActionEvent evt) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        this.dispose();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        SwingUtilities.invokeLater(() -&gt; initialWindow.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html#a8796d3addcc2040c4d0383b463c2207e">setVisible</a>(<span class="keyword">true</span>));</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    @Override</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a7c3c896855d3c44b6daf36762e0c22f2">   85</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a7c3c896855d3c44b6daf36762e0c22f2">updateTexts</a>() {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        setTitle(messages.getString(<span class="stringliteral">&quot;adminWindowTitle&quot;</span>));</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> applyPanelBackgroundColor(String activePanel) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        mainPanel.setBackground(colorPrimary);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> logoutActionPerformed(ActionEvent evt) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        this.dispose();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        SwingUtilities.invokeLater(() -&gt; initialWindow.<a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html#a8796d3addcc2040c4d0383b463c2207e">setVisible</a>(<span class="keyword">true</span>));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        homeMenuItem.setText(messages.getString(<span class="stringliteral">&quot;home&quot;</span>));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        routeAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;routeAdmin&quot;</span>));</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        busAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;busAdmin&quot;</span>));</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        ticketsAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;ticketsAdmin&quot;</span>));</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        stationAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;stationAdmin&quot;</span>));</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        logoutMenuItem.setText(messages.getString(<span class="stringliteral">&quot;logout&quot;</span>));</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html">com.RouteBus.client.gui.AdministratorWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00008">AdministratorWindow.java:8</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow_html_a41524c5e8b2ce8863eb41dd4a5e1d6be"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a41524c5e8b2ce8863eb41dd4a5e1d6be">com.RouteBus.client.gui.AdministratorWindow.loadPanels</a></div><div class="ttdeci">void loadPanels()</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00049">AdministratorWindow.java:49</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow_html_a529bfe01322d4592e059bc94a67c3d44"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a529bfe01322d4592e059bc94a67c3d44">com.RouteBus.client.gui.AdministratorWindow.AdministratorWindow</a></div><div class="ttdeci">AdministratorWindow(String languageToLoad, InitialWindow initialWindow)</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00013">AdministratorWindow.java:13</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow_html_a7c3c896855d3c44b6daf36762e0c22f2"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1AdministratorWindow.html#a7c3c896855d3c44b6daf36762e0c22f2">com.RouteBus.client.gui.AdministratorWindow.updateTexts</a></div><div class="ttdeci">void updateTexts()</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00085">AdministratorWindow.java:85</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1BusesAdminPanel.html">com.RouteBus.client.gui.BusesAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="BusesAdminPanel_8java_source.html#l00017">BusesAdminPanel.java:17</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1HomeAdminPanel.html">com.RouteBus.client.gui.HomeAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00028">HomeAdminPanel.java:28</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">com.RouteBus.client.gui.InitialWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="InitialWindow_8java_source.html#l00011">InitialWindow.java:11</a></div></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    @Override</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#af1bec4168552f721bc2d3661a797ba1d">   89</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#af1bec4168552f721bc2d3661a797ba1d">updateTexts</a>() {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        super.updateTexts();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        setTitle(messages.getString(<span class="stringliteral">&quot;adminWindowTitle&quot;</span>));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        homeMenuItem.setText(messages.getString(<span class="stringliteral">&quot;home&quot;</span>));</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        routeAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;routeAdmin&quot;</span>));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        busAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;busAdmin&quot;</span>));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        ticketsAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;ticketsAdmin&quot;</span>));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        stationAdminMenuItem.setText(messages.getString(<span class="stringliteral">&quot;stationAdmin&quot;</span>));</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        logoutMenuItem.setText(messages.getString(<span class="stringliteral">&quot;logout&quot;</span>));</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1InitialWindow.html">com.RouteBus.client.gui.InitialWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="InitialWindow_8java_source.html#l00012">InitialWindow.java:12</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1MultilingualLoadingWindow.html">com.RouteBus.client.gui.MultilingualLoadingWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="MultilingualLoadingWindow_8java_source.html#l00014">MultilingualLoadingWindow.java:14</a></div></div>
 <div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow_html_a8796d3addcc2040c4d0383b463c2207e"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1ParentWindow.html#a8796d3addcc2040c4d0383b463c2207e">com.RouteBus.client.gui.ParentWindow.setVisible</a></div><div class="ttdeci">void setVisible(boolean visible)</div><div class="ttdef"><b>Definition:</b> <a href="ParentWindow_8java_source.html#l00028">ParentWindow.java:28</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1RouteAdminPanel.html">com.RouteBus.client.gui.RouteAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="RouteAdminPanel_8java_source.html#l00018">RouteAdminPanel.java:18</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1StationsAdminPanel.html">com.RouteBus.client.gui.StationsAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="StationsAdminPanel_8java_source.html#l00018">StationsAdminPanel.java:18</a></div></div>
-<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1TicketsAdminPanel.html">com.RouteBus.client.gui.TicketsAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="TicketsAdminPanel_8java_source.html#l00018">TicketsAdminPanel.java:18</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html">com.RouteBus.client.gui.admin.AdministratorWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00012">AdministratorWindow.java:12</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow_html_a9442388537c92723f9b995657b3bac26"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#a9442388537c92723f9b995657b3bac26">com.RouteBus.client.gui.admin.AdministratorWindow.AdministratorWindow</a></div><div class="ttdeci">AdministratorWindow(String languageToLoad, InitialWindow initialWindow)</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00017">AdministratorWindow.java:17</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow_html_acb477a00faa160149576da2cca742fc3"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#acb477a00faa160149576da2cca742fc3">com.RouteBus.client.gui.admin.AdministratorWindow.loadPanels</a></div><div class="ttdeci">void loadPanels()</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00053">AdministratorWindow.java:53</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow_html_af1bec4168552f721bc2d3661a797ba1d"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1AdministratorWindow.html#af1bec4168552f721bc2d3661a797ba1d">com.RouteBus.client.gui.admin.AdministratorWindow.updateTexts</a></div><div class="ttdeci">void updateTexts()</div><div class="ttdef"><b>Definition:</b> <a href="AdministratorWindow_8java_source.html#l00089">AdministratorWindow.java:89</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1BusesAdminPanel.html">com.RouteBus.client.gui.admin.BusesAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="BusesAdminPanel_8java_source.html#l00017">BusesAdminPanel.java:17</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1HomeAdminPanel.html">com.RouteBus.client.gui.admin.HomeAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="HomeAdminPanel_8java_source.html#l00028">HomeAdminPanel.java:28</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1RouteAdminPanel.html">com.RouteBus.client.gui.admin.RouteAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="RouteAdminPanel_8java_source.html#l00018">RouteAdminPanel.java:18</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1StationsAdminPanel.html">com.RouteBus.client.gui.admin.StationsAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="StationsAdminPanel_8java_source.html#l00018">StationsAdminPanel.java:18</a></div></div>
+<div class="ttc" id="aclasscom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel_html"><div class="ttname"><a href="classcom_1_1RouteBus_1_1client_1_1gui_1_1admin_1_1TicketsAdminPanel.html">com.RouteBus.client.gui.admin.TicketsAdminPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="TicketsAdminPanel_8java_source.html#l00018">TicketsAdminPanel.java:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="AdministratorWindow_8java.html">AdministratorWindow.java</a></li>
+    <li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li><li class="navelem"><a class="el" href="dir_71db3c9ac669ad0e48d6cd88f7e1e924.html">src</a></li><li class="navelem"><a class="el" href="dir_29de8235cf18054b03e9d05a909460bc.html">main</a></li><li class="navelem"><a class="el" href="dir_7c49efd1b69f11ee49a53ba65c63cd5d.html">java</a></li><li class="navelem"><a class="el" href="dir_7741ecf53a7d8adc9c386ed7a968c5ab.html">com</a></li><li class="navelem"><a class="el" href="dir_f50f6b5e2f2c6d3e175ab42ceee6065e.html">RouteBus</a></li><li class="navelem"><a class="el" href="dir_2b00d3d9b3b630ce4d584dd6d0a7e26a.html">client</a></li><li class="navelem"><a class="el" href="dir_cc62d3ed36d33c82ebb3a4ce129551fc.html">gui</a></li><li class="navelem"><a class="el" href="dir_f5059ca00b7dc8e2ef76be8fc41d302a.html">admin</a></li><li class="navelem"><a class="el" href="AdministratorWindow_8java.html">AdministratorWindow.java</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

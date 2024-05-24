@@ -8,6 +8,7 @@ var classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest =
     [ "testDeleteTicket_Found", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#ad7df15e3602df22ff5a35b5506bd7451", null ],
     [ "testDeleteTicket_NotFound", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a6b21af3839cceee8961c9e672e9c38b9", null ],
     [ "testGetAllTickets", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#ab8298b9b0b914cd415b91a15a7273327", null ],
+    [ "testGetAllTicketsByUser", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a3a0102bef79c1c3ff69b32a952bb7e68", null ],
     [ "testGetTicketById", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a270b6aa721d98dd5a0e730953a8ade3a", null ],
     [ "testUpdateTicket_ChangesMade", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a6c3d749e98f63f4619eb204cda4005da", null ],
     [ "testUpdateTicket_NoChanges", "classcom_1_1RouteBus_1_1server_1_1service_1_1TicketServiceTest.html#a15fce66e9a8a8492b550c3f44eef33df", null ],
