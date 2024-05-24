@@ -7,59 +7,116 @@ import com.RouteBus.server.model.Route;
 import com.RouteBus.server.service.RouteService;
 
 import java.util.List;
+import java.util.Set;
 
+/**
+ * REST controller for managing Route entities.
+ */
 @RestController
 @RequestMapping(&quot;/Route&quot;)
 public class RouteRestController {
     private final RouteService routeService;
 
-<span class="fc" id="L16">    public RouteRestController(RouteService routeService) {</span>
-<span class="fc" id="L17">        this.routeService = routeService;</span>
-<span class="fc" id="L18">    }</span>
+    /**
+     * Constructor for RouteRestController.
+     *
+     * @param routeService The RouteService instance to be used by the controller.
+     */
+<span class="fc" id="L25">    public RouteRestController(RouteService routeService) {</span>
+<span class="fc" id="L26">        this.routeService = routeService;</span>
+<span class="fc" id="L27">    }</span>
 
+    /**
+     * Endpoint to get all routes.
+     *
+     * @return ResponseEntity containing a Set of Route objects.
+     */
     @GetMapping(&quot;/all&quot;)
-    public List&lt;Route&gt; getAllRoutes() {
-<span class="fc" id="L22">        return routeService.getAllRoutes();</span>
+    public ResponseEntity&lt;Set&lt;Route&gt;&gt; getAllRoutes() {
+<span class="fc" id="L36">        return ResponseEntity.ok(routeService.getAllRoutes());</span>
     }
 
+    /**
+     * Endpoint to get a route by its name.
+     *
+     * @param name The name of the route to retrieve.
+     * @return ResponseEntity containing a Route object if found, or ResponseEntity.notFound() if not found.
+     */
     @GetMapping(&quot;/{name}&quot;)
     public ResponseEntity&lt;Route&gt; getRouteById(@PathVariable String name) {
-<span class="fc" id="L27">        Route Route = routeService.getRouteById(name);</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        return Route != null ? ResponseEntity.ok(Route) : ResponseEntity.notFound().build();</span>
+<span class="fc" id="L47">        Route route = routeService.getRouteById(name);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        return route != null ? ResponseEntity.ok(route) : ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to create a new route.
+     *
+     * @param route The Route object to be created.
+     * @return ResponseEntity with a success message if creation is successful, or error message otherwise.
+     */
     @PostMapping(&quot;/create&quot;)
-    public ResponseEntity&lt;String&gt; createRoute(@RequestBody Route Route) {
-<span class="fc" id="L33">        RouteService.RouteServiceResult result = routeService.createRoute(Route);</span>
-<span class="fc bfc" id="L34" title="All 3 branches covered.">        switch (result) {</span>
+    public ResponseEntity&lt;String&gt; createRoute(@RequestBody Route route) {
+<span class="fc" id="L59">        RouteService.RouteServiceResult result = routeService.createRoute(route);</span>
+<span class="fc bfc" id="L60" title="All 3 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L36">                return ResponseEntity.ok(&quot;Route created successfully.&quot;);</span>
+<span class="fc" id="L62">                return ResponseEntity.ok(&quot;Route created successfully.&quot;);</span>
             case ERROR:
-<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;Failed to create Route.&quot;);</span>
+<span class="fc" id="L64">                return ResponseEntity.badRequest().body(&quot;Failed to create Route.&quot;);</span>
             default:
-<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+<span class="fc" id="L66">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
         }
     }
 
+    /**
+     * Endpoint to update an existing route.
+     *
+     * @param route The Route object with updated information.
+     * @return ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise.
+     */
     @PutMapping(&quot;/update&quot;)
-    public ResponseEntity&lt;String&gt; updateRoute(@RequestBody Route Route) {
-<span class="fc" id="L46">        RouteService.RouteServiceResult result = routeService.updateRoute(Route);</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
-<span class="fc" id="L48">            ResponseEntity.ok(&quot;Route updated successfully.&quot;) :</span>
-<span class="fc" id="L49">            ResponseEntity.notFound().build();</span>
+    public ResponseEntity&lt;String&gt; updateRoute(@RequestBody Route route) {
+<span class="fc" id="L78">        RouteService.RouteServiceResult result = routeService.updateRoute(route);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
+<span class="fc" id="L80">            ResponseEntity.ok(&quot;Route updated successfully.&quot;) :</span>
+<span class="fc" id="L81">            ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to delete a route by its name.
+     *
+     * @param name The name of the route to be deleted.
+     * @return ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise.
+     */
     @DeleteMapping(&quot;/delete/{name}&quot;)
     public ResponseEntity&lt;String&gt; deleteRoute(@PathVariable String name) {
-<span class="fc" id="L54">        RouteService.RouteServiceResult result = routeService.deleteRoute(name);</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
-<span class="fc" id="L56">            ResponseEntity.ok(&quot;Route deleted successfully.&quot;) :</span>
-<span class="fc" id="L57">            ResponseEntity.notFound().build();</span>
+<span class="fc" id="L92">        RouteService.RouteServiceResult result = routeService.deleteRoute(name);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        return result == RouteService.RouteServiceResult.SUCCESS ?</span>
+<span class="fc" id="L94">            ResponseEntity.ok(&quot;Route deleted successfully.&quot;) :</span>
+<span class="fc" id="L95">            ResponseEntity.notFound().build();</span>
     }
     
-	@GetMapping(&quot;bus/{licensePlate}/routes&quot;)
-	public List&lt;Route&gt; obtainRoutesByBus(@PathVariable String licensePlate) {
-<span class="fc" id="L62">        return routeService.obtainRoutesByBus(licensePlate);</span>
+    /**
+     * Endpoint to obtain routes associated with a specific bus.
+     *
+     * @param licensePlate The license plate of the bus.
+     * @return List of routes associated with the bus.
+     */
+    @GetMapping(&quot;/bus/{licensePlate}/routes&quot;)
+    public List&lt;Route&gt; obtainRoutesByBus(@PathVariable String licensePlate) {
+<span class="fc" id="L106">        return routeService.obtainRoutesByBus(licensePlate);</span>
+    }
+    
+    /**
+     * Endpoint to get routes by origin and destination stations.
+     *
+     * @param origin      The origin station.
+     * @param destination The destination station.
+     * @return ResponseEntity containing a list of routes if found, or ResponseEntity.notFound() otherwise.
+     */
+    @GetMapping(&quot;/stations&quot;)
+    public ResponseEntity&lt;List&lt;Route&gt;&gt; getRoutesByStations(@RequestParam String origin, @RequestParam String destination) {
+<span class="fc" id="L118">        List&lt;Route&gt; routes = routeService.getRoutesByStations(origin, destination);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        return routes != null ? ResponseEntity.ok(routes) : ResponseEntity.notFound().build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

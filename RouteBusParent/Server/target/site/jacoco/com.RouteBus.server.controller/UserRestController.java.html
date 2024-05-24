@@ -6,7 +6,7 @@ import com.RouteBus.server.model.User;
 import com.RouteBus.server.service.UserService;
 import com.RouteBus.server.service.UserService.UserServiceResult;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(&quot;/user&quot;)
@@ -18,8 +18,8 @@ public class UserRestController {
 <span class="fc" id="L18">    }</span>
 
     @GetMapping(&quot;/all&quot;)
-    public List&lt;User&gt; getUsers() {
-<span class="fc" id="L22">        return userService.getAllUsers();</span>
+    public ResponseEntity&lt;Set&lt;User&gt;&gt; getUsers() {
+<span class="fc" id="L22">        return ResponseEntity.ok(userService.getAllUsers());</span>
     }
 
     @GetMapping(&quot;/email/{email}&quot;)
@@ -33,11 +33,11 @@ public class UserRestController {
 <span class="fc" id="L33">        UserServiceResult result = userService.createUser(user);</span>
 <span class="fc bfc" id="L34" title="All 3 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L36">                return ResponseEntity.ok(&quot;User created successfully.&quot;);</span>
+<span class="fc" id="L36">                return ResponseEntity.ok(&quot;{\&quot;message\&quot;:\&quot;User created successfully.\&quot;}&quot;);</span>
             case USER_ALREADY_EXISTS:
-<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;User already exists.&quot;);</span>
+<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;{\&quot;error\&quot;:\&quot;User already exists.\&quot;}&quot;);</span>
             default:
-<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;Error creating user.&quot;);</span>
+<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;{\&quot;error\&quot;:\&quot;Error creating user.\&quot;}&quot;);</span>
         }
     }
 
@@ -46,24 +46,24 @@ public class UserRestController {
 <span class="fc" id="L46">        UserServiceResult result = userService.updateUser(user);</span>
 <span class="fc bfc" id="L47" title="All 3 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L49">                return ResponseEntity.ok(&quot;User updated successfully.&quot;);</span>
+<span class="fc" id="L49">                return ResponseEntity.ok(&quot;{\&quot;message\&quot;:\&quot;User updated successfully.\&quot;}&quot;);</span>
             case USER_NOT_FOUND:
 <span class="fc" id="L51">                return ResponseEntity.notFound().build();</span>
             default:
-<span class="fc" id="L53">                return ResponseEntity.internalServerError().body(&quot;Error updating user.&quot;);</span>
+<span class="fc" id="L53">                return ResponseEntity.internalServerError().body(&quot;{\&quot;error\&quot;:\&quot;Error updating user.\&quot;}&quot;);</span>
         }
     }
 
     @DeleteMapping(&quot;/delete/{email}&quot;)
     public ResponseEntity&lt;String&gt; deleteUser(@PathVariable String email) {
 <span class="fc" id="L59">        UserServiceResult result = userService.deleteUser(email);</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        return result == UserServiceResult.SUCCESS ? ResponseEntity.ok(&quot;User deleted successfully.&quot;) : ResponseEntity.notFound().build();</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        return result == UserServiceResult.SUCCESS ? ResponseEntity.ok(&quot;{\&quot;message\&quot;:\&quot;User deleted successfully.\&quot;}&quot;) : ResponseEntity.notFound().build();</span>
     }
 
     @DeleteMapping(&quot;/delete/all&quot;)
     public ResponseEntity&lt;String&gt; deleteUsers() {
 <span class="fc" id="L65">        userService.deleteAllUsers();</span>
-<span class="fc" id="L66">        return ResponseEntity.ok(&quot;All users deleted successfully.&quot;);</span>
+<span class="fc" id="L66">        return ResponseEntity.ok(&quot;{\&quot;message\&quot;:\&quot;All users deleted successfully.\&quot;}&quot;);</span>
     }
 
     @GetMapping(&quot;/check/{email}&quot;)

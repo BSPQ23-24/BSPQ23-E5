@@ -4,6 +4,7 @@ import javax.swing.*;
 import com.RouteBus.client.controller.UserController;
 import com.RouteBus.client.dto.NationalityDTO;
 import com.RouteBus.client.dto.UserDTO;
+import com.RouteBus.client.gui.user.MainWindow;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Component;

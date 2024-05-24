@@ -32,7 +32,6 @@ public abstract class MultilingualLoadingWindow extends ParentWindow {
         this.setLayout(new BorderLayout());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Loading panel with progress bar
         JPanel loadingPanel = new JPanel(new BorderLayout());
         JLabel loadingLabel = new JLabel("Loading...", SwingConstants.CENTER);
         loadingLabel.setFont(new Font("Arial", Font.BOLD, 30));
@@ -123,8 +122,10 @@ public abstract class MultilingualLoadingWindow extends ParentWindow {
             component.setBackground(colorSecondary);
         }
     }
+    
+    protected void updateTexts() {
+    	languageMenu.setText(messages.getString("languageMenu"));
+    };
 
     protected abstract void loadPanels();
-
-    protected abstract void updateTexts();
 }

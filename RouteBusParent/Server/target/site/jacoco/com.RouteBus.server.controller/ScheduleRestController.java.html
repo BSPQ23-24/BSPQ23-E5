@@ -8,54 +8,91 @@ import com.RouteBus.server.service.ScheduleService;
 
 import java.util.Set;
 
+/**
+ * REST controller for managing Schedule entities.
+ */
 @RestController
 @RequestMapping(&quot;/Schedule&quot;)
 public class ScheduleRestController {
     private final ScheduleService scheduleService;
 
-<span class="fc" id="L16">    public ScheduleRestController(ScheduleService ScheduleService) {</span>
-<span class="fc" id="L17">        this.scheduleService = ScheduleService;</span>
-<span class="fc" id="L18">    }</span>
+    /**
+     * Constructor for ScheduleRestController.
+     *
+     * @param scheduleService The ScheduleService instance to be used by the controller.
+     */
+<span class="fc" id="L24">    public ScheduleRestController(ScheduleService scheduleService) {</span>
+<span class="fc" id="L25">        this.scheduleService = scheduleService;</span>
+<span class="fc" id="L26">    }</span>
 
+    /**
+     * Endpoint to get all schedules.
+     *
+     * @return ResponseEntity containing a Set of Schedule objects.
+     */
     @GetMapping(&quot;/all&quot;)
-    public Set&lt;Schedule&gt; getAllSchedulees() {
-<span class="fc" id="L22">        return scheduleService.getAllSchedules();</span>
+    public ResponseEntity&lt;Set&lt;Schedule&gt;&gt; getAllSchedules() {
+<span class="fc" id="L35">        return ResponseEntity.ok(scheduleService.getAllSchedules());</span>
     }
 
+    /**
+     * Endpoint to get a schedule by its ID.
+     *
+     * @param id The ID of the schedule to retrieve.
+     * @return ResponseEntity containing a Schedule object if found, or ResponseEntity.notFound() if not found.
+     */
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Schedule&gt; getScheduleById(@PathVariable String id) {
-<span class="fc" id="L27">        Schedule Schedule = scheduleService.getScheduleById(id);</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        return Schedule != null ? ResponseEntity.ok(Schedule) : ResponseEntity.notFound().build();</span>
+<span class="fc" id="L46">        Schedule schedule = scheduleService.getScheduleById(id);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        return schedule != null ? ResponseEntity.ok(schedule) : ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to create a new schedule.
+     *
+     * @param schedule The Schedule object to be created.
+     * @return ResponseEntity with a success message if creation is successful, or error message otherwise.
+     */
     @PostMapping(&quot;/create&quot;)
-    public ResponseEntity&lt;String&gt; createSchedule(@RequestBody Schedule Schedule) {
-<span class="fc" id="L33">        ScheduleService.ScheduleServiceResult result = scheduleService.createSchedule(Schedule);</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (result == null) {</span>
-<span class="fc" id="L35">        	return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+    public ResponseEntity&lt;String&gt; createSchedule(@RequestBody Schedule schedule) {
+<span class="fc" id="L58">        ScheduleService.ScheduleServiceResult result = scheduleService.createSchedule(schedule);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (result == null) {</span>
+<span class="fc" id="L60">            return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
         }
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        switch (result) {</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L39">                return ResponseEntity.ok(&quot;Schedule created successfully.&quot;);</span>
+<span class="fc" id="L64">                return ResponseEntity.ok(&quot;Schedule created successfully.&quot;);</span>
             default:
-<span class="fc" id="L41">                return ResponseEntity.badRequest().body(&quot;Failed to create Schedule.&quot;);</span>
+<span class="fc" id="L66">                return ResponseEntity.badRequest().body(&quot;Failed to create schedule.&quot;);</span>
         }
     }
 
+    /**
+     * Endpoint to update an existing schedule.
+     *
+     * @param schedule The Schedule object with updated information.
+     * @return ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise.
+     */
     @PutMapping(&quot;/update&quot;)
-    public ResponseEntity&lt;String&gt; updateSchedule(@RequestBody Schedule Schedule) {
-<span class="fc" id="L47">        ScheduleService.ScheduleServiceResult result = scheduleService.updateSchedule(Schedule);</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        return result == ScheduleService.ScheduleServiceResult.SUCCESS ?</span>
-<span class="fc" id="L49">            ResponseEntity.ok(&quot;Schedule updated successfully.&quot;) :</span>
-<span class="fc" id="L50">            ResponseEntity.notFound().build();</span>
+    public ResponseEntity&lt;String&gt; updateSchedule(@RequestBody Schedule schedule) {
+<span class="fc" id="L78">        ScheduleService.ScheduleServiceResult result = scheduleService.updateSchedule(schedule);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        return result == ScheduleService.ScheduleServiceResult.SUCCESS ?</span>
+<span class="fc" id="L80">            ResponseEntity.ok(&quot;Schedule updated successfully.&quot;) :</span>
+<span class="fc" id="L81">            ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to delete a schedule by its ID.
+     *
+     * @param id The ID of the schedule to be deleted.
+     * @return ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise.
+     */
     @DeleteMapping(&quot;/delete/{id}&quot;)
     public ResponseEntity&lt;String&gt; deleteSchedule(@PathVariable String id) {
-<span class="fc" id="L55">        ScheduleService.ScheduleServiceResult result = scheduleService.deleteSchedule(id);</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        return result == ScheduleService.ScheduleServiceResult.SUCCESS ?</span>
-<span class="fc" id="L57">            ResponseEntity.ok(&quot;Schedule deleted successfully.&quot;) :</span>
-<span class="fc" id="L58">            ResponseEntity.notFound().build();</span>
+<span class="fc" id="L92">        ScheduleService.ScheduleServiceResult result = scheduleService.deleteSchedule(id);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        return result == ScheduleService.ScheduleServiceResult.SUCCESS ?</span>
+<span class="fc" id="L94">            ResponseEntity.ok(&quot;Schedule deleted successfully.&quot;) :</span>
+<span class="fc" id="L95">            ResponseEntity.notFound().build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

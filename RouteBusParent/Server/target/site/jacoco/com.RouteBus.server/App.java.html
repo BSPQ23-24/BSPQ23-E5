@@ -7,73 +7,163 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.RouteBus.server.dao.NationalityRepository;
-import com.RouteBus.server.model.Nationality;
+import com.RouteBus.server.dao.*;
+import com.RouteBus.server.model.*;
+
+import java.util.*;
 
 @SpringBootApplication
-<span class="fc" id="L14">public class App {</span>
+<span class="fc" id="L16">public class App {</span>
 
-<span class="fc" id="L16">	private static int numberOfLoadedNationalities = 0;</span>
-	
 <span class="fc" id="L18">    private static final Logger logger = LoggerFactory.getLogger(App.class);</span>
 
 <span class="fc" id="L20">    private static final Nationality[] nationalities = {</span>
-            new Nationality(&quot;American&quot;, &quot;en_US&quot;),
-            new Nationality(&quot;British&quot;, &quot;en&quot;),
-            new Nationality(&quot;Chinese&quot;, &quot;zh&quot;),
-            new Nationality(&quot;French&quot;, &quot;fr&quot;),
-            new Nationality(&quot;German&quot;, &quot;de&quot;),
-            new Nationality(&quot;Indian&quot;, &quot;hi&quot;),
-            new Nationality(&quot;Japanese&quot;, &quot;ja&quot;),
-            new Nationality(&quot;Russian&quot;, &quot;ru&quot;),
-            new Nationality(&quot;Spanish&quot;, &quot;es&quot;),
-            new Nationality(&quot;Italian&quot;, &quot;it&quot;),
-            new Nationality(&quot;Portuguese&quot;, &quot;pt&quot;),
-            new Nationality(&quot;Dutch&quot;, &quot;nl&quot;),
-            new Nationality(&quot;Swedish&quot;, &quot;sv&quot;),
-            new Nationality(&quot;Korean&quot;, &quot;ko&quot;),
-            new Nationality(&quot;Arabic&quot;, &quot;ar&quot;),
-            new Nationality(&quot;Turkish&quot;, &quot;tr&quot;),
-            new Nationality(&quot;Greek&quot;, &quot;el&quot;),
-            new Nationality(&quot;Polish&quot;, &quot;pl&quot;),
-            new Nationality(&quot;Vietnamese&quot;, &quot;vi&quot;),
-            new Nationality(&quot;Thai&quot;, &quot;th&quot;),
-            new Nationality(&quot;Indonesian&quot;, &quot;id&quot;),
-            new Nationality(&quot;Finnish&quot;, &quot;fi&quot;),
-            new Nationality(&quot;Czech&quot;, &quot;cs&quot;),
-            new Nationality(&quot;Danish&quot;, &quot;da&quot;),
-            new Nationality(&quot;Hungarian&quot;, &quot;hu&quot;),
-            new Nationality(&quot;Malay&quot;, &quot;ms&quot;),
-            new Nationality(&quot;Norwegian&quot;, &quot;no&quot;),
-            new Nationality(&quot;Romanian&quot;, &quot;ro&quot;),
-            new Nationality(&quot;Slovak&quot;, &quot;sk&quot;)
-        };
-    
+        new Nationality(&quot;American&quot;, &quot;en_US&quot;),
+        new Nationality(&quot;Spanish&quot;, &quot;es&quot;),
+        new Nationality(&quot;British&quot;, &quot;en&quot;),
+        new Nationality(&quot;French&quot;, &quot;fr&quot;),
+        new Nationality(&quot;German&quot;, &quot;de&quot;),
+        new Nationality(&quot;Italian&quot;, &quot;it&quot;),
+        new Nationality(&quot;Portuguese&quot;, &quot;pt&quot;),
+        new Nationality(&quot;Dutch&quot;, &quot;nl&quot;),
+        new Nationality(&quot;Swedish&quot;, &quot;sv&quot;),
+        new Nationality(&quot;Turkish&quot;, &quot;tr&quot;),
+    };
+
+    private static final int numberOfSchedulesPerRoute = 5;
+    private static final int scheduleIntervalDays = 2;
+
     public static void main(String[] args) {
-<span class="fc" id="L53">        SpringApplication.run(App.class, args);</span>
-<span class="fc" id="L54">    }</span>
+<span class="fc" id="L37">        SpringApplication.run(App.class, args);</span>
+<span class="fc" id="L38">    }</span>
 
     @Bean
-    CommandLineRunner demo(NationalityRepository nationalityRepository) {
-<span class="fc" id="L58">        return (args) -&gt; {</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (nationalityRepository.count() == 0) {</span>
-<span class="fc" id="L60">                numberOfLoadedNationalities = 0;</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">                for (Nationality nationality : nationalities) {</span>
-<span class="fc bfc" id="L62" title="All 2 branches covered.">                    if(nationalityRepository.save(nationality) != null)	numberOfLoadedNationalities++;</span>
-                }
-<span class="fc" id="L64">                logger.info(numberOfLoadedNationalities + &quot; nationalities loaded into the database out of &quot; + nationalities.length);</span>
-            } else {
-<span class="fc" id="L66">                logger.info(&quot;Nationalities are already loaded.&quot;);</span>
+    CommandLineRunner demo(BusRepository busRepository, NationalityRepository nationalityRepository,
+                           RouteRepository routeRepository, ScheduleRepository scheduleRepository,
+                           StationRepository stationRepository, TicketRepository ticketRepository,
+                           UserRepository userRepository) {
+<span class="fc" id="L45">        return (args) -&gt; {</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (nationalityRepository.count() == 0) {</span>
+<span class="fc" id="L47">                List&lt;Nationality&gt; nationalitiesList = Arrays.asList(nationalities);</span>
+<span class="fc" id="L48">                nationalityRepository.saveAll(nationalitiesList);</span>
+<span class="fc" id="L49">                logger.info(&quot;{} nationalities loaded into the database.&quot;, nationalitiesList.size());</span>
+<span class="fc" id="L50">            } else {</span>
+<span class="fc" id="L51">                logger.info(&quot;Nationalities are already loaded.&quot;);</span>
             }
-<span class="fc" id="L68">        };</span>
-    }
-    
-    public static int getNumberOfNationalities() {
-<span class="fc" id="L72">    	return nationalities.length;</span>
-    }
-    
-    public static int getNumberOfLoadedNationalities() {
-<span class="fc" id="L76">    	return numberOfLoadedNationalities;</span>
+
+            // Load Users
+<span class="fc" id="L55">            Calendar cal = Calendar.getInstance();</span>
+<span class="fc" id="L56">            cal.set(2003, Calendar.SEPTEMBER, 6);</span>
+<span class="fc" id="L57">            List&lt;User&gt; users = Arrays.asList(</span>
+<span class="fc" id="L58">                new User(&quot;Diego&quot;, &quot;Merino&quot;, &quot;admin@routebus.es&quot;, &quot;123&quot;, nationalities[1], cal.getTime(), UserRole.ADMIN, new HashSet&lt;&gt;()),</span>
+<span class="fc" id="L59">                new User(&quot;Diego&quot;, &quot;Merino&quot;, &quot;diego.merino@opendeusto.es&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L60">                new User(&quot;Xabi&quot;, &quot;Alonso&quot;, &quot;xabi.alonso@gmail.com&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L61">                new User(&quot;Hector&quot;, &quot;Fernandez&quot;, &quot;hector.f.c@opendeusto.es&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L62">                new User(&quot;Robert&quot;, &quot;Lewandowski&quot;, &quot;rlewandowski@gmail.com&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L63">                new User(&quot;Cristiano&quot;, &quot;Ronaldo&quot;, &quot;cristiano.ronaldo@gmail.com&quot;, &quot;123&quot;, nationalities[8], cal.getTime()),</span>
+<span class="fc" id="L64">                new User(&quot;Zlatan&quot;, &quot;Ibrahimovic&quot;, &quot;zlatan@gmail.com&quot;, &quot;123&quot;, nationalities[2], cal.getTime()),</span>
+<span class="fc" id="L65">                new User(&quot;Andres&quot;, &quot;Iniesta&quot;, &quot;andresiniesta@gmail.com&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L66">                new User(&quot;Erling&quot;, &quot;Haaland&quot;, &quot;erling.haaland@example.com&quot;, &quot;123&quot;, nationalities[6], cal.getTime()),</span>
+<span class="fc" id="L67">                new User(&quot;Zinedine&quot;, &quot;Zidane&quot;, &quot;zizou@gmail.com&quot;, &quot;123&quot;, nationalities[4], cal.getTime()),</span>
+<span class="fc" id="L68">                new User(&quot;Jude&quot;, &quot;Bellingham&quot;, &quot;jude.bellingham@gmail.com&quot;, &quot;123&quot;, nationalities[2], cal.getTime()),</span>
+<span class="fc" id="L69">                new User(&quot;Inaki&quot;, &quot;Williams&quot;, &quot;inaki.williams@example.com&quot;, &quot;123&quot;, nationalities[1], cal.getTime()),</span>
+<span class="fc" id="L70">                new User(&quot;Unai&quot;, &quot;Gomez&quot;, &quot;unai.gomez@example.com&quot;, &quot;123&quot;, nationalities[1], cal.getTime())</span>
+            );
+
+<span class="fc" id="L73">            userRepository.saveAll(users);</span>
+
+            // Load Buses
+<span class="fc" id="L76">            List&lt;Bus&gt; buses = Arrays.asList(</span>
+                new Bus(&quot;AB123CD&quot;, 50, &quot;Mercedes&quot;, &quot;Sprinter&quot;),
+                new Bus(&quot;EF456GH&quot;, 45, &quot;Volvo&quot;, &quot;B9R&quot;),
+                new Bus(&quot;IJ789KL&quot;, 40, &quot;Scania&quot;, &quot;K360&quot;),
+                new Bus(&quot;MN012OP&quot;, 55, &quot;MAN&quot;, &quot;Lion's Coach&quot;),
+                new Bus(&quot;QR345ST&quot;, 60, &quot;Irizar&quot;, &quot;i6&quot;),
+                new Bus(&quot;UV678WX&quot;, 50, &quot;Setra&quot;, &quot;S 431 DT&quot;),
+                new Bus(&quot;YZ901AB&quot;, 53, &quot;Mercedes&quot;, &quot;Tourismo&quot;),
+                new Bus(&quot;CD234EF&quot;, 48, &quot;Neoplan&quot;, &quot;Cityliner&quot;),
+                new Bus(&quot;GH567IJ&quot;, 47, &quot;Van Hool&quot;, &quot;TX16 Astron&quot;),
+                new Bus(&quot;KL890MN&quot;, 52, &quot;Prevost&quot;, &quot;H3-45&quot;)
+            );
+
+<span class="fc" id="L89">            busRepository.saveAll(buses);</span>
+
+            // Load Stations
+<span class="fc" id="L92">            List&lt;Station&gt; stations = Arrays.asList(</span>
+                new Station(&quot;Madrid&quot;, &quot;Puerta del Sol&quot;),
+                new Station(&quot;Barcelona&quot;, &quot;Placa Catalunya&quot;),
+                new Station(&quot;Valencia&quot;, &quot;Estacio del Nord&quot;),
+                new Station(&quot;Sevilla&quot;, &quot;Estacion de Santa Justa&quot;),
+                new Station(&quot;Zaragoza&quot;, &quot;Estacion de Delicias&quot;),
+                new Station(&quot;Bilbao&quot;, &quot;Termibus&quot;),
+                new Station(&quot;Malaga&quot;, &quot;Estacion de Autobuses de Malaga&quot;),
+                new Station(&quot;Alicante&quot;, &quot;Estacion de Autobuses de Alicante&quot;),
+                new Station(&quot;Zamora&quot;, &quot;Estacion de Autobuses de Zamora&quot;),
+                new Station(&quot;Granada&quot;, &quot;Estacion de Autobuses de Granada&quot;),
+                new Station(&quot;Valladolid&quot;, &quot;Estacion de Autobuses de Valladolid&quot;),
+                new Station(&quot;Murcia&quot;, &quot;Estacion de Autobuses de Murcia&quot;),
+                new Station(&quot;Santander&quot;, &quot;Estacion de Autobuses de Santander&quot;),
+                new Station(&quot;Gijon&quot;, &quot;Estacion de Autobuses de Gijon&quot;),
+                new Station(&quot;San Sebastian&quot;, &quot;Estacion de Autobuses de San Sebastian&quot;)
+            );
+
+<span class="fc" id="L110">            stationRepository.saveAll(stations);</span>
+
+            // Load Routes
+<span class="fc" id="L113">            List&lt;Route&gt; routes = Arrays.asList(</span>
+<span class="fc" id="L114">                new Route(&quot;Madrid-Barcelona&quot;, &quot;Madrid&quot;, &quot;Barcelona&quot;, 620.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(0), stations.get(1))), new HashSet&lt;&gt;(Arrays.asList(buses.get(0), buses.get(1), buses.get(2)))),</span>
+<span class="fc" id="L115">                new Route(&quot;Valencia-Sevilla&quot;, &quot;Valencia&quot;, &quot;Sevilla&quot;, 650.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(2), stations.get(3))), new HashSet&lt;&gt;(Arrays.asList(buses.get(3), buses.get(4)))),</span>
+<span class="fc" id="L116">                new Route(&quot;Bilbao-Madrid&quot;, &quot;Bilbao&quot;, &quot;Madrid&quot;, 401.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(4), stations.get(0))), new HashSet&lt;&gt;(Arrays.asList(buses.get(5), buses.get(6)))),</span>
+<span class="fc" id="L117">                new Route(&quot;Zaragoza-Malaga&quot;, &quot;Zaragoza&quot;, &quot;Malaga&quot;, 742.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(5), stations.get(6))), new HashSet&lt;&gt;(Arrays.asList(buses.get(7), buses.get(8), buses.get(9)))),</span>
+<span class="fc" id="L118">                new Route(&quot;Alicante-Zamora&quot;, &quot;Alicante&quot;, &quot;Zamora&quot;, 679.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(7), stations.get(8))), new HashSet&lt;&gt;(Arrays.asList(buses.get(0), buses.get(1)))),</span>
+<span class="fc" id="L119">                new Route(&quot;Granada-Valladolid&quot;, &quot;Granada&quot;, &quot;Valladolid&quot;, 680.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(9), stations.get(10))), new HashSet&lt;&gt;(Arrays.asList(buses.get(2), buses.get(3)))),</span>
+<span class="fc" id="L120">                new Route(&quot;Murcia-Santander&quot;, &quot;Murcia&quot;, &quot;Santander&quot;, 790.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(11), stations.get(12))), new HashSet&lt;&gt;(Arrays.asList(buses.get(4), buses.get(5)))),</span>
+<span class="fc" id="L121">                new Route(&quot;Gijon-San_Sebastian&quot;, &quot;Gijon&quot;, &quot;San Sebastian&quot;, 380.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(13), stations.get(14))), new HashSet&lt;&gt;(Arrays.asList(buses.get(6), buses.get(7)))),</span>
+<span class="fc" id="L122">                new Route(&quot;Valencia-Madrid&quot;, &quot;Valencia&quot;, &quot;Madrid&quot;, 360.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(2), stations.get(0))), new HashSet&lt;&gt;(Arrays.asList(buses.get(8)))),</span>
+<span class="fc" id="L123">                new Route(&quot;Sevilla-Zaragoza&quot;, &quot;Sevilla&quot;, &quot;Zaragoza&quot;, 800.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(3), stations.get(4))), new HashSet&lt;&gt;(Arrays.asList(buses.get(9)))),</span>
+<span class="fc" id="L124">                new Route(&quot;Malaga-Alicante&quot;, &quot;Malaga&quot;, &quot;Alicante&quot;, 530.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(6), stations.get(7))), new HashSet&lt;&gt;(Arrays.asList(buses.get(0), buses.get(1), buses.get(2)))),</span>
+<span class="fc" id="L125">                new Route(&quot;Valladolid-Granada&quot;, &quot;Valladolid&quot;, &quot;Granada&quot;, 570.0, new HashSet&lt;&gt;(Arrays.asList(stations.get(10), stations.get(9))), new HashSet&lt;&gt;(Arrays.asList(buses.get(3), buses.get(4), buses.get(5))))</span>
+            );
+
+<span class="fc" id="L128">            routeRepository.saveAll(routes);</span>
+
+<span class="fc" id="L130">            Calendar startCalendar = Calendar.getInstance();</span>
+<span class="fc" id="L131">            startCalendar.set(2024, Calendar.JUNE, 10, 8, 0);</span>
+
+<span class="fc" id="L133">            List&lt;Schedule&gt; allSchedules = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L134">             List&lt;Ticket&gt; allTickets = new ArrayList&lt;&gt;(); // Comentado para no crear tickets</span>
+
+<span class="fc bfc" id="L136" title="All 2 branches covered.">            for (Route route : routes) {</span>
+<span class="fc" id="L137">                Set&lt;Schedule&gt; routeSchedules = new HashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">                for (int i = 0; i &lt; numberOfSchedulesPerRoute; i++) {</span>
+<span class="fc" id="L139">                    Date departureTime = startCalendar.getTime();</span>
+<span class="fc" id="L140">                    startCalendar.add(Calendar.HOUR, 3); // assuming a 3-hour travel time for simplicity</span>
+<span class="fc" id="L141">                    Date arrivalTime = startCalendar.getTime();</span>
+<span class="fc" id="L142">                    Schedule schedule = new Schedule(route, departureTime, arrivalTime);</span>
+<span class="fc" id="L143">                    routeSchedules.add(schedule);</span>
+<span class="fc" id="L144">                    allSchedules.add(schedule);</span>
+
+<span class="fc" id="L146">                    startCalendar.add(Calendar.HOUR, -6); // reset to departure time</span>
+<span class="fc" id="L147">                    startCalendar.add(Calendar.DAY_OF_YEAR, scheduleIntervalDays);</span>
+
+                    // Comentado para no crear tickets
+<span class="fc bfc" id="L150" title="All 2 branches covered.">                     for (int seatNumber = 1; seatNumber &lt;= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {</span>
+<span class="fc" id="L151">                         User user = users.get(seatNumber % users.size());</span>
+<span class="fc" id="L152">                         double price = 50.0 + (seatNumber % 100);</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">                         TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;</span>
+<span class="fc" id="L154">                         Ticket ticket = new Ticket(UUID.randomUUID().toString(), user, seatNumber, price, status, schedule);</span>
+<span class="fc" id="L155">                         allTickets.add(ticket);</span>
+                     }
+                }
+<span class="fc" id="L158">                route.setSchedules(routeSchedules);</span>
+<span class="fc" id="L159">            }</span>
+
+<span class="fc" id="L161">            scheduleRepository.saveAll(allSchedules);</span>
+<span class="fc" id="L162">            ticketRepository.saveAll(allTickets); // Comentado para no crear tickets</span>
+<span class="fc" id="L163">            routeRepository.saveAll(routes);</span>
+
+<span class="fc" id="L165">            logger.info(&quot;Data loading complete.&quot;);</span>
+<span class="fc" id="L166">        };</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

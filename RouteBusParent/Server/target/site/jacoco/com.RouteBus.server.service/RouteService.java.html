@@ -3,6 +3,8 @@
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.RouteRepository;
@@ -10,71 +12,77 @@ import com.RouteBus.server.model.Route;
 
 @Service
 public class RouteService {
-	private final RouteRepository routeRepository;
+    private final RouteRepository routeRepository;
 
-<span class="fc" id="L15">	public RouteService(RouteRepository routeRepository) {</span>
-<span class="fc" id="L16">		this.routeRepository = routeRepository;</span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L17">    public RouteService(RouteRepository routeRepository) {</span>
+<span class="fc" id="L18">        this.routeRepository = routeRepository;</span>
+<span class="fc" id="L19">    }</span>
 
-<span class="fc" id="L19">	public enum RouteServiceResult {</span>
-<span class="fc" id="L20">		SUCCESS, NOT_FOUND, ERROR</span>
-	}
+<span class="fc" id="L21">    public enum RouteServiceResult {</span>
+<span class="fc" id="L22">        SUCCESS, NOT_FOUND, ERROR</span>
+    }
+    
+    public Route getRouteById(String id) {
+<span class="fc" id="L26">        return routeRepository.findById(id).orElse(null);</span>
+    }
 
-	public Route getRouteById(String id) {
-<span class="fc" id="L24">		return routeRepository.findById(id).orElse(null);</span>
-	}
+    public Set&lt;Route&gt; getAllRoutes() {
+<span class="fc" id="L30">        return new HashSet&lt;&gt;(routeRepository.findAll());</span>
+    }
 
-	public List&lt;Route&gt; getAllRoutes() {
-<span class="fc" id="L28">		return routeRepository.findAll();</span>
-	}
+    public RouteServiceResult createRoute(Route route) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (!routeRepository.findById(route.getName()).isPresent()) {</span>
+<span class="fc" id="L35">            Route savedRoute = routeRepository.save(route);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            return savedRoute != null ? RouteServiceResult.SUCCESS : RouteServiceResult.ERROR;</span>
+        }
+<span class="fc" id="L38">        return RouteServiceResult.ERROR;</span>
+    }
 
-	public RouteServiceResult createRoute(Route route) {
-<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (!routeRepository.findById(route.getName()).isPresent()) {</span>
-<span class="fc" id="L33">			Route savedRoute = routeRepository.save(route);</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">			return savedRoute != null ? RouteServiceResult.SUCCESS : RouteServiceResult.ERROR;</span>
-		}
-<span class="fc" id="L36">		return RouteServiceResult.ERROR;</span>
-	}
+    public RouteServiceResult updateRoute(Route route) {
+<span class="fc" id="L42">        return routeRepository.findById(route.getName()).map(existingRoute -&gt; {</span>
+<span class="fc" id="L43">            boolean updated = false;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (!Objects.equals(existingRoute.getStartPoint(), route.getStartPoint())) {</span>
+<span class="fc" id="L45">                existingRoute.setStartPoint(route.getStartPoint());</span>
+<span class="fc" id="L46">                updated = true;</span>
+            }
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if (!Objects.equals(existingRoute.getEndPoint(), route.getEndPoint())) {</span>
+<span class="fc" id="L49">                existingRoute.setEndPoint(route.getEndPoint());</span>
+<span class="fc" id="L50">                updated = true;</span>
+            }
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (existingRoute.getTotalDistance() != route.getTotalDistance()) {</span>
+<span class="fc" id="L53">                existingRoute.setTotalDistance(route.getTotalDistance());</span>
+<span class="fc" id="L54">                updated = true;</span>
+            }
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (!Objects.equals(existingRoute.getStations(), route.getStations())) {</span>
+<span class="fc" id="L57">                existingRoute.setStations(new HashSet&lt;&gt;(route.getStations()));</span>
+<span class="fc" id="L58">                updated = true;</span>
+            }
+<span class="fc bfc" id="L60" title="All 2 branches covered.">            if (!Objects.equals(existingRoute.getBuses(), route.getBuses())) {</span>
+<span class="fc" id="L61">                existingRoute.setBuses(new HashSet&lt;&gt;(route.getBuses()));</span>
+<span class="fc" id="L62">                updated = true;</span>
+            }
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            if (updated) {</span>
+<span class="fc" id="L65">                routeRepository.save(existingRoute);</span>
+            }
+<span class="fc" id="L67">            return RouteServiceResult.SUCCESS;</span>
+<span class="fc" id="L68">        }).orElse(RouteServiceResult.NOT_FOUND);</span>
+    }
 
-	public RouteServiceResult updateRoute(Route route) {
-<span class="fc" id="L40">		return routeRepository.findById(route.getName()).map(existingRoute -&gt; {</span>
-<span class="fc" id="L41">			boolean updated = false;</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">			if (!Objects.equals(existingRoute.getStartPoint(), route.getStartPoint())) {</span>
-<span class="fc" id="L43">				existingRoute.setStartPoint(route.getStartPoint());</span>
-<span class="fc" id="L44">				updated = true;</span>
-			}
-<span class="fc bfc" id="L46" title="All 2 branches covered.">			if (!Objects.equals(existingRoute.getEndPoint(), route.getEndPoint())) {</span>
-<span class="fc" id="L47">				existingRoute.setEndPoint(route.getEndPoint());</span>
-<span class="fc" id="L48">				updated = true;</span>
-			}
-<span class="fc bfc" id="L50" title="All 2 branches covered.">			if (existingRoute.getTotalDistance() != route.getTotalDistance()) {</span>
-<span class="fc" id="L51">				existingRoute.setTotalDistance(route.getTotalDistance());</span>
-<span class="fc" id="L52">				updated = true;</span>
-			}
-<span class="fc bfc" id="L54" title="All 2 branches covered.">			if (!Objects.equals(existingRoute.getStations(), route.getStations())) {</span>
-<span class="fc" id="L55">				existingRoute.setStations(new HashSet&lt;&gt;(route.getStations()));</span>
-<span class="fc" id="L56">				updated = true;</span>
-			}
-<span class="fc bfc" id="L58" title="All 2 branches covered.">			if (!Objects.equals(existingRoute.getBuses(), route.getBuses())) {</span>
-<span class="fc" id="L59">				existingRoute.setBuses(new HashSet&lt;&gt;(route.getBuses()));</span>
-<span class="fc" id="L60">				updated = true;</span>
-			}
-<span class="fc bfc" id="L62" title="All 2 branches covered.">			if (updated) {</span>
-<span class="fc" id="L63">				routeRepository.save(existingRoute);</span>
-			}
-<span class="fc" id="L65">			return RouteServiceResult.SUCCESS;</span>
-<span class="fc" id="L66">		}).orElse(RouteServiceResult.NOT_FOUND);</span>
-	}
+    public RouteServiceResult deleteRoute(String id) {
+<span class="fc" id="L72">        return routeRepository.findById(id).map(route -&gt; {</span>
+<span class="fc" id="L73">            routeRepository.delete(route);</span>
+<span class="fc" id="L74">            return RouteServiceResult.SUCCESS;</span>
+<span class="fc" id="L75">        }).orElse(RouteServiceResult.NOT_FOUND);</span>
+    }
 
-	public RouteServiceResult deleteRoute(String id) {
-<span class="fc" id="L70">		return routeRepository.findById(id).map(route -&gt; {</span>
-<span class="fc" id="L71">			routeRepository.delete(route);</span>
-<span class="fc" id="L72">			return RouteServiceResult.SUCCESS;</span>
-<span class="fc" id="L73">		}).orElse(RouteServiceResult.NOT_FOUND);</span>
-	}
+    public List&lt;Route&gt; obtainRoutesByBus(String licensePlate) {
+<span class="fc" id="L79">        return routeRepository.findByBusesLicensePlate(licensePlate);</span>
+    }
 
-	public List&lt;Route&gt; obtainRoutesByBus(String licensePlate) {
-<span class="fc" id="L77">		return routeRepository.findByBusesLicensePlate(licensePlate);</span>
-	}
+    public List&lt;Route&gt; getRoutesByStations(String origin, String destination) {
+<span class="fc" id="L83">        return routeRepository.findAll().stream()</span>
+<span class="pc bpc" id="L84" title="1 of 4 branches missed.">            .filter(route -&gt; route.getStartPoint().equalsIgnoreCase(origin) &amp;&amp; route.getEndPoint().equalsIgnoreCase(destination))</span>
+<span class="fc" id="L85">            .collect(Collectors.toList());</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

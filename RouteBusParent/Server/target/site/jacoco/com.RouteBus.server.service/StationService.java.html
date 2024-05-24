@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.service</a> &gt; <span class="el_source">StationService.java</span></div><h1>StationService.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import com.RouteBus.server.dao.StationRepository;
@@ -17,15 +17,15 @@ public class StationService {
 <span class="fc" id="L17">	}</span>
 
 <span class="fc" id="L19">	public enum StationServiceResult {</span>
-<span class="fc" id="L20">		SUCCESS, NOT_FOUND, ERROR</span>
+<span class="fc" id="L20">		SUCCESS, NOT_FOUND, ERROR, OTHER</span>
 	}
 
+	public Set&lt;Station&gt; getAllStations() {
+<span class="fc" id="L24">		return new HashSet&lt;Station&gt;(stationRepository.findAll());</span>
+	}
+	
 	public Station getStationById(String name) {
-<span class="fc" id="L24">		return stationRepository.findById(name).orElse(null);</span>
-	}
-
-	public List&lt;Station&gt; getAllStations() {
-<span class="fc" id="L28">		return stationRepository.findAll();</span>
+<span class="fc" id="L28">		return stationRepository.findById(name).orElse(null);</span>
 	}
 
 	public StationServiceResult createStation(Station station) {

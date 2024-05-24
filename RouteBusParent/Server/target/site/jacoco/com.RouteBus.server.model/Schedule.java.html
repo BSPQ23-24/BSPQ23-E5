@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Schedule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.model</a> &gt; <span class="el_source">Schedule.java</span></div><h1>Schedule.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = &quot;schedules&quot;)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = &quot;id&quot;)
 public class Schedule {
 
     @Id
@@ -22,78 +28,80 @@ public class Schedule {
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalTime;
 
-    @OneToMany(mappedBy = &quot;schedule&quot;, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = &quot;schedule&quot;, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set&lt;Ticket&gt; tickets;
 
-<span class="fc" id="L28">    public Schedule() {</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L34">    public Schedule() {</span>
+<span class="fc" id="L35">    }</span>
 
-<span class="fc" id="L31">    public Schedule(Route route, Date departureTime, Date arrivalTime) {</span>
-<span class="fc" id="L32">        this.route = route;</span>
-<span class="fc" id="L33">        this.departureTime = departureTime;</span>
-<span class="fc" id="L34">        this.arrivalTime = arrivalTime;</span>
-<span class="fc" id="L35">        this.tickets = null;</span>
-<span class="fc" id="L36">    }</span>
-    
-<span class="fc" id="L38">    public Schedule(String id, Route route, Date departureTime, Date arrivalTime, Set&lt;Ticket&gt; tickets) {</span>
-<span class="fc" id="L39">    	this.id = id;</span>
+<span class="fc" id="L37">    public Schedule(Route route, Date departureTime, Date arrivalTime) {</span>
+<span class="fc" id="L38">    	SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;);</span>
+<span class="fc" id="L39">    	this.id = route.getName().replaceAll(&quot;\\s+&quot;, &quot;&quot;).toLowerCase() + &quot;-&quot; + sdf.format(departureTime) + &quot;-&quot; + sdf.format(arrivalTime);</span>
 <span class="fc" id="L40">        this.route = route;</span>
 <span class="fc" id="L41">        this.departureTime = departureTime;</span>
 <span class="fc" id="L42">        this.arrivalTime = arrivalTime;</span>
-<span class="fc" id="L43">        this.tickets = tickets;</span>
+<span class="fc" id="L43">        this.tickets = null;</span>
 <span class="fc" id="L44">    }</span>
+    
+<span class="fc" id="L46">    public Schedule(String id, Route route, Date departureTime, Date arrivalTime, Set&lt;Ticket&gt; tickets) {</span>
+<span class="fc" id="L47">    	this.id = id;</span>
+<span class="fc" id="L48">        this.route = route;</span>
+<span class="fc" id="L49">        this.departureTime = departureTime;</span>
+<span class="fc" id="L50">        this.arrivalTime = arrivalTime;</span>
+<span class="fc" id="L51">        this.tickets = tickets;</span>
+<span class="fc" id="L52">    }</span>
 
 	public String getId() {
-<span class="fc" id="L47">		return id;</span>
+<span class="fc" id="L55">		return id;</span>
 	}
 
 	public Route getRoute() {
-<span class="fc" id="L51">		return route;</span>
+<span class="fc" id="L59">		return route;</span>
 	}
 
 	public Date getDepartureTime() {
-<span class="fc" id="L55">		return departureTime;</span>
+<span class="fc" id="L63">		return departureTime;</span>
 	}
 
 	public Date getArrivalTime() {
-<span class="fc" id="L59">		return arrivalTime;</span>
+<span class="fc" id="L67">		return arrivalTime;</span>
 	}
 
 	public Set&lt;Ticket&gt; getTickets() {
-<span class="fc" id="L63">		return tickets;</span>
+<span class="fc" id="L71">		return tickets;</span>
 	}
 
 	public void setId(String id) {
-<span class="fc" id="L67">		this.id = id;</span>
-<span class="fc" id="L68">	}</span>
-
-	public void setRoute(Route route) {
-<span class="fc" id="L71">		this.route = route;</span>
-<span class="fc" id="L72">	}</span>
-
-	public void setDepartureTime(Date departureTime) {
-<span class="fc" id="L75">		this.departureTime = departureTime;</span>
+<span class="fc" id="L75">		this.id = id;</span>
 <span class="fc" id="L76">	}</span>
 
-	public void setArrivalTime(Date arrivalTime) {
-<span class="fc" id="L79">		this.arrivalTime = arrivalTime;</span>
+	public void setRoute(Route route) {
+<span class="fc" id="L79">		this.route = route;</span>
 <span class="fc" id="L80">	}</span>
 
-	public void setTickets(Set&lt;Ticket&gt; tickets) {
-<span class="fc" id="L83">		this.tickets = tickets;</span>
+	public void setDepartureTime(Date departureTime) {
+<span class="fc" id="L83">		this.departureTime = departureTime;</span>
 <span class="fc" id="L84">	}</span>
+
+	public void setArrivalTime(Date arrivalTime) {
+<span class="fc" id="L87">		this.arrivalTime = arrivalTime;</span>
+<span class="fc" id="L88">	}</span>
+
+	public void setTickets(Set&lt;Ticket&gt; tickets) {
+<span class="fc" id="L91">		this.tickets = tickets;</span>
+<span class="fc" id="L92">	}</span>
 
 	@Override
 	public int hashCode() {
-<span class="fc" id="L88">		return Objects.hash(id);</span>
+<span class="fc" id="L96">		return Objects.hash(id);</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="fc bfc" id="L93" title="All 2 branches covered.">	    if (this == obj) return true;</span>
-<span class="fc bfc" id="L94" title="All 4 branches covered.">	    if (obj == null || getClass() != obj.getClass()) return false;</span>
-<span class="fc" id="L95">		Schedule other = (Schedule) obj;</span>
-<span class="fc" id="L96">		return Objects.equals(id, other.id);</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">	    if (this == obj) return true;</span>
+<span class="fc bfc" id="L102" title="All 4 branches covered.">	    if (obj == null || getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L103">		Schedule other = (Schedule) obj;</span>
+<span class="fc" id="L104">		return Objects.equals(id, other.id);</span>
 	}
 	
 }

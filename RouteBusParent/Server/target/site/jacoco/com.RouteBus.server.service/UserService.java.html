@@ -5,8 +5,8 @@ import com.RouteBus.server.dao.UserRepository;
 import com.RouteBus.server.model.User;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -25,8 +25,8 @@ public class UserService {
 <span class="fc" id="L25">		return userRepository.findByEmail(email).orElse(null);</span>
 	}
 
-	public List&lt;User&gt; getAllUsers() {
-<span class="fc" id="L29">		return userRepository.findAll();</span>
+	public Set&lt;User&gt; getAllUsers() {
+<span class="fc" id="L29">		return new HashSet&lt;User&gt;(userRepository.findAll());</span>
 	}
 
 	public UserServiceResult createUser(User user) {
@@ -34,7 +34,7 @@ public class UserService {
 <span class="fc" id="L34">			return UserServiceResult.USER_ALREADY_EXISTS;</span>
 		}
 		try {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">			return userRepository.save(user) == null ? UserServiceResult.ERROR : UserServiceResult.SUCCESS;</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">			return userRepository.save(user) == null ? UserServiceResult.ERROR : UserServiceResult.SUCCESS;</span>
 <span class="fc" id="L38">		} catch (Exception e) {</span>
 <span class="fc" id="L39">			return UserServiceResult.ERROR;</span>
 		}

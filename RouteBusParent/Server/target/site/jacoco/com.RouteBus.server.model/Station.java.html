@@ -2,11 +2,15 @@
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = &quot;stations&quot;)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = &quot;name&quot;)
 public class Station {
 
     @Id
@@ -15,50 +19,50 @@ public class Station {
 
     @ManyToMany(mappedBy = &quot;stations&quot;, fetch = FetchType.EAGER)
     private Set&lt;Route&gt; routes;
+    
+<span class="fc" id="L23">    public Station() {</span>
+<span class="fc" id="L24">    }</span>
 
-<span class="fc" id="L19">    public Station() {</span>
-<span class="fc" id="L20">    }</span>
-
-<span class="fc" id="L22">    public Station(String name, String location) {</span>
-<span class="fc" id="L23">        this.name = name;</span>
-<span class="fc" id="L24">        this.location = location;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L26">    public Station(String name, String location) {</span>
+<span class="fc" id="L27">        this.name = name;</span>
+<span class="fc" id="L28">        this.location = location;</span>
+<span class="fc" id="L29">    }</span>
 
 	public String getName() {
-<span class="fc" id="L28">		return name;</span>
+<span class="fc" id="L32">		return name;</span>
 	}
 
 	public String getLocation() {
-<span class="fc" id="L32">		return location;</span>
+<span class="fc" id="L36">		return location;</span>
 	}
 
 	public Set&lt;Route&gt; getRoutes() {
-<span class="fc" id="L36">		return routes;</span>
+<span class="fc" id="L40">		return routes;</span>
 	}
 
 	public void setName(String name) {
-<span class="fc" id="L40">		this.name = name;</span>
-<span class="fc" id="L41">	}</span>
-
-	public void setLocation(String location) {
-<span class="fc" id="L44">		this.location = location;</span>
+<span class="fc" id="L44">		this.name = name;</span>
 <span class="fc" id="L45">	}</span>
 
-	public void setRoutes(Set&lt;Route&gt; routes) {
-<span class="fc" id="L48">		this.routes = routes;</span>
+	public void setLocation(String location) {
+<span class="fc" id="L48">		this.location = location;</span>
 <span class="fc" id="L49">	}</span>
+
+	public void setRoutes(Set&lt;Route&gt; routes) {
+<span class="fc" id="L52">		this.routes = routes;</span>
+<span class="fc" id="L53">	}</span>
 	
 	@Override
 	public int hashCode() {
-<span class="fc" id="L53">		return Objects.hash(name);</span>
+<span class="fc" id="L57">		return Objects.hash(name);</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">	    if (this == obj) return true;</span>
-<span class="fc bfc" id="L59" title="All 4 branches covered.">	    if (obj == null || getClass() != obj.getClass()) return false;</span>
-<span class="fc" id="L60">		Station other = (Station) obj;</span>
-<span class="fc" id="L61">		return Objects.equals(name, other.name);</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">	    if (this == obj) return true;</span>
+<span class="fc bfc" id="L63" title="All 4 branches covered.">	    if (obj == null || getClass() != obj.getClass()) return false;</span>
+<span class="fc" id="L64">		Station other = (Station) obj;</span>
+<span class="fc" id="L65">		return Objects.equals(name, other.name);</span>
 	}
 	
 }

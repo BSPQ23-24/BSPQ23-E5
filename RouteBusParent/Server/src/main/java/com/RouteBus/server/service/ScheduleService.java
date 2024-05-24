@@ -1,7 +1,6 @@
 package com.RouteBus.server.service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -68,13 +67,5 @@ public class ScheduleService {
             scheduleRepository.delete(schedule);
             return ScheduleServiceResult.SUCCESS;
         }).orElse(ScheduleServiceResult.NOT_FOUND);
-    }
-
-    public List<Schedule> getSchedulesByRoute(String routeName) {
-        return scheduleRepository.findByRoute_Name(routeName);
-    }
-
-    public Schedule getScheduleByRouteAndDepartureTime(String routeName, String departureTime) {
-        return scheduleRepository.findByRoute_NameAndDepartureTime(routeName, departureTime).orElse(null);
     }
 }

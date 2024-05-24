@@ -16,10 +16,7 @@ import com.RouteBus.server.model.TicketStatus;
 import com.RouteBus.server.model.User;
 import com.RouteBus.server.model.Schedule;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class TicketServiceTest {
 
@@ -34,16 +31,14 @@ public class TicketServiceTest {
     private AutoCloseable closeable;
 
     private Ticket existingTicket, updatedTicket;
-    private User user, newUser;
-    private Schedule schedule, newSchedule;
+    private User user;
+    private Schedule schedule;
 
     @Before
     public void setUp() {
         closeable = MockitoAnnotations.openMocks(this);
         user = new User("John", "Doe", "john.doe@example.com", "password", null, null);
-        newUser = new User("Jane", "Doe", "jane.doe@example.com", "newpassword", null, null);
         schedule = new Schedule("scheduleId", null, null, null, null);
-        newSchedule = new Schedule("newScheduleId", null, null, null, null);
         existingTicket = new Ticket("ticketId", user, 25, 199.99, TicketStatus.RESERVED, schedule);
 
         when(ticketRepository.findById("ticketId")).thenReturn(Optional.of(existingTicket));
@@ -70,6 +65,17 @@ public class TicketServiceTest {
         assertFalse(result.isEmpty());
         assertEquals(1, result.size());
         logger.info("testGetAllTickets passed successfully");
+    }
+
+    @Test
+    public void testGetAllTicketsByUser() {
+        List<Ticket> tickets = Arrays.asList(existingTicket);
+        when(ticketRepository.findByUserEmail("john.doe@example.com")).thenReturn(tickets);
+
+        List<Ticket> result = ticketService.getAllTicketsByUser("john.doe@example.com");
+        assertEquals(1, result.size());
+        assertEquals(existingTicket, result.get(0));
+        logger.info("testGetAllTicketsByUser passed successfully");
     }
 
     @Test
@@ -102,10 +108,18 @@ public class TicketServiceTest {
 
     @Test
     public void testUpdateTicket_ChangesMade() {
-        updatedTicket = new Ticket("ticketId", user, 30, 299.99, TicketStatus.PURCHASED, schedule);
+        User newUser = new User("Jane", "Smith", "jane.smith@example.com", "newpassword", null, null);
+        Schedule newSchedule = new Schedule("newScheduleId", null, null, null, null);
+        updatedTicket = new Ticket("ticketId", newUser, 30, 299.99, TicketStatus.PURCHASED, newSchedule);
+
         TicketService.TicketServiceResult result = ticketService.updateTicket(updatedTicket);
         assertEquals(TicketService.TicketServiceResult.SUCCESS, result);
+
         verify(ticketRepository).save(existingTicket);
+
+        assertEquals(newUser, existingTicket.getUser());
+        assertEquals(newSchedule, existingTicket.getSchedule());
+
         logger.info("testUpdateTicket_ChangesMade passed successfully");
     }
 

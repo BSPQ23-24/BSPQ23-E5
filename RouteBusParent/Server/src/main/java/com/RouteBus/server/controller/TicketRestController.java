@@ -78,25 +78,6 @@ public class TicketRestController {
     }
     
     /**
-     * Endpoint to create a new ticket for a specific user.
-     *
-     * @param ticket The Ticket object to be created.
-     * @return ResponseEntity with a success message if creation is successful, or error message otherwise.
-     */
-    @PostMapping("/createForUser")
-    public ResponseEntity<String> createTicketForUser(@RequestBody Ticket ticket) {
-        TicketService.TicketServiceResult result = ticketService.createTicket(ticket);
-        switch (result) {
-            case SUCCESS:
-                return ResponseEntity.ok("Ticket created successfully.");
-            case ERROR:
-                return ResponseEntity.badRequest().body("Failed to create ticket.");
-            default:
-                return ResponseEntity.internalServerError().body("Internal server error.");
-        }
-    }
-
-    /**
      * Endpoint to update an existing ticket.
      *
      * @param ticket The Ticket object with updated information.

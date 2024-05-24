@@ -11,7 +11,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -40,6 +42,21 @@ public class TicketRestControllerTest {
         assertEquals(tickets, response.getBody());
         verify(ticketServiceMock, times(1)).getAllTickets();
         logger.debug("Test testGetAllTickets passed successfully.");
+    }
+
+    @Test
+    public void testGetAllTicketsByUser() {
+        String email = "user@example.com";
+        List<Ticket> tickets = new ArrayList<>();
+        tickets.add(new Ticket());
+        tickets.add(new Ticket());
+        when(ticketServiceMock.getAllTicketsByUser(email)).thenReturn(tickets);
+
+        ResponseEntity<List<Ticket>> response = ticketController.getAllTicketsByUser(email);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(tickets, response.getBody());
+        verify(ticketServiceMock, times(1)).getAllTicketsByUser(email);
+        logger.debug("Test testGetAllTicketsByUser passed successfully.");
     }
 
     @Test

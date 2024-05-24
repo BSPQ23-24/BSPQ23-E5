@@ -28,6 +28,7 @@
 		public Set<Ticket> getAllTickets() {
 			return new HashSet<Ticket>(ticketRepository.findAll());
 		}
+		
 		public List<Ticket> getAllTicketsByUser(String email) {
 			return ticketRepository.findByUserEmail(email);
 		}

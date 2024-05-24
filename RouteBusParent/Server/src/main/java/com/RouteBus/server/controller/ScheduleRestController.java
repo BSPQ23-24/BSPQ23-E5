@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import com.RouteBus.server.model.Schedule;
 import com.RouteBus.server.service.ScheduleService;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -94,29 +93,5 @@ public class ScheduleRestController {
         return result == ScheduleService.ScheduleServiceResult.SUCCESS ?
             ResponseEntity.ok("Schedule deleted successfully.") :
             ResponseEntity.notFound().build();
-    }
-
-    /**
-     * Endpoint to get schedules associated with a specific route.
-     *
-     * @param routeName The name of the route.
-     * @return ResponseEntity containing a list of schedules associated with the route.
-     */
-    @GetMapping("/route/{routeName}")
-    public ResponseEntity<List<Schedule>> getSchedulesByRoute(@PathVariable String routeName) {
-        return ResponseEntity.ok(scheduleService.getSchedulesByRoute(routeName));
-    }
-
-    /**
-     * Endpoint to get a schedule by route name and departure time.
-     *
-     * @param routeName     The name of the route.
-     * @param departureTime The departure time.
-     * @return ResponseEntity containing the Schedule object if found, or ResponseEntity.notFound() otherwise.
-     */
-    @GetMapping("/route/{routeName}/departureTime")
-    public ResponseEntity<Schedule> getScheduleByRouteAndDepartureTime(@PathVariable String routeName, @RequestParam String departureTime) {
-        Schedule schedule = scheduleService.getScheduleByRouteAndDepartureTime(routeName, departureTime);
-        return schedule != null ? ResponseEntity.ok(schedule) : ResponseEntity.notFound().build();
     }
 }

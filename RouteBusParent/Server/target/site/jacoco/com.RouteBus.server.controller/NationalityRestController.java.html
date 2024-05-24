@@ -5,21 +5,33 @@ import com.RouteBus.server.service.NationalityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
+/**
+ * REST controller for managing Nationality entities.
+ */
 @RestController
 @RequestMapping(&quot;/nationalities&quot;)
 public class NationalityRestController {
     private final NationalityService nationalityService;
 
-<span class="fc" id="L15">    public NationalityRestController(NationalityService nationalityService) {</span>
-<span class="fc" id="L16">        this.nationalityService = nationalityService;</span>
-<span class="fc" id="L17">    }</span>
+    /**
+     * Constructor for NationalityRestController.
+     *
+     * @param nationalityService The NationalityService instance to be used by the controller.
+     */
+<span class="fc" id="L23">    public NationalityRestController(NationalityService nationalityService) {</span>
+<span class="fc" id="L24">        this.nationalityService = nationalityService;</span>
+<span class="fc" id="L25">    }</span>
 
+    /**
+     * Endpoint to get all nationalities.
+     *
+     * @return ResponseEntity containing a Set of Nationality objects.
+     */
     @GetMapping(&quot;/all&quot;)
-    public ResponseEntity&lt;List&lt;Nationality&gt;&gt; getAllNationalities() {
-<span class="fc" id="L21">        List&lt;Nationality&gt; nationalities = nationalityService.getAllNationalities();</span>
-<span class="fc" id="L22">        return ResponseEntity.ok(nationalities);</span>
+    public ResponseEntity&lt;Set&lt;Nationality&gt;&gt; getAllNationalities() {
+<span class="fc" id="L34">        return ResponseEntity.ok(nationalityService.getAllNationalities());</span>
     }
 
 }

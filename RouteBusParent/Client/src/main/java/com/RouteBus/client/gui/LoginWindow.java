@@ -4,6 +4,8 @@ import javax.swing.*;
 import com.RouteBus.client.controller.UserController;
 import com.RouteBus.client.dto.UserDTO;
 import com.RouteBus.client.dto.UserDTO.UserRole;
+import com.RouteBus.client.gui.admin.AdministratorWindow;
+import com.RouteBus.client.gui.user.MainWindow;
 
 import java.awt.*;
 import java.util.Locale;

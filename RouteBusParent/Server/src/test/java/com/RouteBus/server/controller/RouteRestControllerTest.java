@@ -145,4 +145,27 @@ public class RouteRestControllerTest {
         assertEquals(mockRoutesList, result);
         logger.debug("Test obtainRoutesByBus completed successfully.");
     }
+
+    @Test
+    public void testGetRoutesByStations() {
+        String origin = "Start1";
+        String destination = "End1";
+        when(routeService.getRoutesByStations(origin, destination)).thenReturn(mockRoutesList);
+        
+        ResponseEntity<List<Route>> responseEntity = routeRestController.getRoutesByStations(origin, destination);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(mockRoutesList, responseEntity.getBody());
+        logger.debug("Test getRoutesByStations completed successfully.");
+    }
+
+    @Test
+    public void testGetRoutesByStationsNotFound() {
+        String origin = "NonExistingStart";
+        String destination = "NonExistingEnd";
+        when(routeService.getRoutesByStations(origin, destination)).thenReturn(null);
+        
+        ResponseEntity<List<Route>> responseEntity = routeRestController.getRoutesByStations(origin, destination);
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        logger.debug("Test getRoutesByStationsNotFound completed successfully.");
+    }
 }

@@ -1,76 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.service</a> &gt; <span class="el_source">TicketService.java</span></div><h1>TicketService.java</h1><pre class="source lang-java linenums">package com.RouteBus.server.service;
-
-import java.util.List;
-import java.util.Objects;
-
-import org.springframework.stereotype.Service;
-import com.RouteBus.server.dao.TicketRepository;
-import com.RouteBus.server.model.Ticket;
-
-@Service
-public class TicketService {
-	private final TicketRepository ticketRepository;
-
-<span class="fc" id="L14">	public TicketService(TicketRepository ticketRepository) {</span>
-<span class="fc" id="L15">		this.ticketRepository = ticketRepository;</span>
-<span class="fc" id="L16">	}</span>
-
-<span class="fc" id="L18">	public enum TicketServiceResult {</span>
-<span class="fc" id="L19">		SUCCESS, NOT_FOUND, ERROR</span>
-	}
-
-	public Ticket getTicketById(String id) {
-<span class="fc" id="L23">		return ticketRepository.findById(id).orElse(null);</span>
-	}
-
-	public List&lt;Ticket&gt; getAllTickets() {
-<span class="fc" id="L27">		return ticketRepository.findAll();</span>
-	}
-
-	public TicketServiceResult createTicket(Ticket ticket) {
-<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (!ticketRepository.findById(ticket.getId()).isPresent()) {</span>
-<span class="fc" id="L32">			Ticket savedTicket = ticketRepository.save(ticket);</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">			return savedTicket != null ? TicketServiceResult.SUCCESS : TicketServiceResult.ERROR;</span>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Server</a> &gt; <a href="index.source.html" class="el_package">com.RouteBus.server.service</a> &gt; <span class="el_source">TicketService.java</span></div><h1>TicketService.java</h1><pre class="source lang-java linenums">	package com.RouteBus.server.service;
+	
+	import java.util.HashSet;
+	import java.util.List;
+	import java.util.Objects;
+	import java.util.Set;
+	
+	import org.springframework.stereotype.Service;
+	import com.RouteBus.server.dao.TicketRepository;
+	import com.RouteBus.server.model.Ticket;
+	
+	@Service
+	public class TicketService {
+		private final TicketRepository ticketRepository;
+	
+<span class="fc" id="L16">		public TicketService(TicketRepository ticketRepository) {</span>
+<span class="fc" id="L17">			this.ticketRepository = ticketRepository;</span>
+<span class="fc" id="L18">		}</span>
+	
+<span class="fc" id="L20">		public enum TicketServiceResult {</span>
+<span class="fc" id="L21">			SUCCESS, NOT_FOUND, ERROR, OTHER</span>
 		}
-<span class="fc" id="L35">		return TicketServiceResult.ERROR;</span>
+	
+		public Ticket getTicketById(String id) {
+<span class="fc" id="L25">			return ticketRepository.findById(id).orElse(null);</span>
+		}
+	
+		public Set&lt;Ticket&gt; getAllTickets() {
+<span class="fc" id="L29">			return new HashSet&lt;Ticket&gt;(ticketRepository.findAll());</span>
+		}
+		
+		public List&lt;Ticket&gt; getAllTicketsByUser(String email) {
+<span class="fc" id="L33">			return ticketRepository.findByUserEmail(email);</span>
+		}
+	
+		public TicketServiceResult createTicket(Ticket ticket) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">			if (!ticketRepository.findById(ticket.getId()).isPresent()) {</span>
+<span class="fc" id="L38">				Ticket savedTicket = ticketRepository.save(ticket);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">				return savedTicket != null ? TicketServiceResult.SUCCESS : TicketServiceResult.ERROR;</span>
+			}
+<span class="fc" id="L41">			return TicketServiceResult.ERROR;</span>
+		}
+	
+		public TicketServiceResult updateTicket(Ticket ticket) {
+<span class="fc" id="L45">		    return ticketRepository.findById(ticket.getId()).map(existingTicket -&gt; {</span>
+<span class="fc" id="L46">		        boolean updated = false;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		        if (existingTicket.getPrice() != ticket.getPrice()) {</span>
+<span class="fc" id="L48">		            existingTicket.setPrice(ticket.getPrice());</span>
+<span class="fc" id="L49">		            updated = true;</span>
+		        }
+<span class="fc bfc" id="L51" title="All 2 branches covered.">		        if (!Objects.equals(existingTicket.getStatus(), ticket.getStatus())) {</span>
+<span class="fc" id="L52">		            existingTicket.setStatus(ticket.getStatus());</span>
+<span class="fc" id="L53">		            updated = true;</span>
+		        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		        if (!Objects.equals(existingTicket.getSeatNumber(), ticket.getSeatNumber())) {</span>
+<span class="fc" id="L56">		            existingTicket.setSeatNumber(ticket.getSeatNumber());</span>
+<span class="fc" id="L57">		            updated = true;</span>
+		        }
+<span class="fc bfc" id="L59" title="All 2 branches covered.">		        if (!Objects.equals(existingTicket.getUser(), ticket.getUser())) {</span>
+<span class="fc" id="L60">		            existingTicket.setUser(ticket.getUser());</span>
+<span class="fc" id="L61">		            updated = true;</span>
+		        }
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		        if (!Objects.equals(existingTicket.getSchedule(), ticket.getSchedule())) {</span>
+<span class="fc" id="L64">		            existingTicket.setSchedule(ticket.getSchedule());</span>
+<span class="fc" id="L65">		            updated = true;</span>
+		        }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		        if (updated) {</span>
+<span class="fc" id="L68">		            ticketRepository.save(existingTicket);</span>
+		        }
+<span class="fc" id="L70">		        return TicketServiceResult.SUCCESS;</span>
+<span class="fc" id="L71">		    }).orElse(TicketServiceResult.NOT_FOUND);</span>
+		}
+	
+	
+		public TicketServiceResult deleteTicket(String id) {
+<span class="fc" id="L76">			return ticketRepository.findById(id).map(ticket -&gt; {</span>
+<span class="fc" id="L77">				ticketRepository.delete(ticket);</span>
+<span class="fc" id="L78">				return TicketServiceResult.SUCCESS;</span>
+<span class="fc" id="L79">			}).orElse(TicketServiceResult.NOT_FOUND);</span>
+		}
 	}
-
-	public TicketServiceResult updateTicket(Ticket ticket) {
-<span class="fc" id="L39">	    return ticketRepository.findById(ticket.getId()).map(existingTicket -&gt; {</span>
-<span class="fc" id="L40">	        boolean updated = false;</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">	        if (existingTicket.getPrice() != ticket.getPrice()) {</span>
-<span class="fc" id="L42">	            existingTicket.setPrice(ticket.getPrice());</span>
-<span class="fc" id="L43">	            updated = true;</span>
-	        }
-<span class="fc bfc" id="L45" title="All 2 branches covered.">	        if (!Objects.equals(existingTicket.getStatus(), ticket.getStatus())) {</span>
-<span class="fc" id="L46">	            existingTicket.setStatus(ticket.getStatus());</span>
-<span class="fc" id="L47">	            updated = true;</span>
-	        }
-<span class="fc bfc" id="L49" title="All 2 branches covered.">	        if (!Objects.equals(existingTicket.getSeatNumber(), ticket.getSeatNumber())) {</span>
-<span class="fc" id="L50">	            existingTicket.setSeatNumber(ticket.getSeatNumber());</span>
-<span class="fc" id="L51">	            updated = true;</span>
-	        }
-<span class="fc bfc" id="L53" title="All 2 branches covered.">	        if (!Objects.equals(existingTicket.getUser(), ticket.getUser())) {</span>
-<span class="fc" id="L54">	            existingTicket.setUser(ticket.getUser());</span>
-<span class="fc" id="L55">	            updated = true;</span>
-	        }
-<span class="fc bfc" id="L57" title="All 2 branches covered.">	        if (!Objects.equals(existingTicket.getSchedule(), ticket.getSchedule())) {</span>
-<span class="fc" id="L58">	            existingTicket.setSchedule(ticket.getSchedule());</span>
-<span class="fc" id="L59">	            updated = true;</span>
-	        }
-<span class="fc bfc" id="L61" title="All 2 branches covered.">	        if (updated) {</span>
-<span class="fc" id="L62">	            ticketRepository.save(existingTicket);</span>
-	        }
-<span class="fc" id="L64">	        return TicketServiceResult.SUCCESS;</span>
-<span class="fc" id="L65">	    }).orElse(TicketServiceResult.NOT_FOUND);</span>
-	}
-
-
-	public TicketServiceResult deleteTicket(String id) {
-<span class="fc" id="L70">		return ticketRepository.findById(id).map(ticket -&gt; {</span>
-<span class="fc" id="L71">			ticketRepository.delete(ticket);</span>
-<span class="fc" id="L72">			return TicketServiceResult.SUCCESS;</span>
-<span class="fc" id="L73">		}).orElse(TicketServiceResult.NOT_FOUND);</span>
-	}
-}
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

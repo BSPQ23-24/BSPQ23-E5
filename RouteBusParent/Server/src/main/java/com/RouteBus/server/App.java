@@ -147,19 +147,19 @@ public class App {
                     startCalendar.add(Calendar.DAY_OF_YEAR, scheduleIntervalDays);
 
                     // Comentado para no crear tickets
-//                     for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
-//                         User user = users.get(seatNumber % users.size());
-//                         double price = 50.0 + (seatNumber % 100);
-//                         TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
-//                         Ticket ticket = new Ticket(UUID.randomUUID().toString(), user, seatNumber, price, status, schedule);
-//                         allTickets.add(ticket);
-//                     }
+                     for (int seatNumber = 1; seatNumber <= route.getBuses().stream().mapToInt(Bus::getCapacity).sum(); seatNumber++) {
+                         User user = users.get(seatNumber % users.size());
+                         double price = 50.0 + (seatNumber % 100);
+                         TicketStatus status = (seatNumber % 2 == 0) ? TicketStatus.RESERVED : TicketStatus.PURCHASED;
+                         Ticket ticket = new Ticket(UUID.randomUUID().toString(), user, seatNumber, price, status, schedule);
+                         allTickets.add(ticket);
+                     }
                 }
                 route.setSchedules(routeSchedules);
             }
 
             scheduleRepository.saveAll(allSchedules);
-//             ticketRepository.saveAll(allTickets); // Comentado para no crear tickets
+            ticketRepository.saveAll(allTickets); // Comentado para no crear tickets
             routeRepository.saveAll(routes);
 
             logger.info("Data loading complete.");

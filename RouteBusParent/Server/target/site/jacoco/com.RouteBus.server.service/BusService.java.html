@@ -4,70 +4,71 @@ import com.RouteBus.server.dao.BusRepository;
 import com.RouteBus.server.model.Bus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class BusService {
 	private final BusRepository busRepository;
 
-<span class="fc" id="L14">	public BusService(BusRepository busRepository) {</span>
-<span class="fc" id="L15">		this.busRepository = busRepository;</span>
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L15">	public BusService(BusRepository busRepository) {</span>
+<span class="fc" id="L16">		this.busRepository = busRepository;</span>
+<span class="fc" id="L17">	}</span>
 
-<span class="fc" id="L18">	public enum BusServiceResult {</span>
-<span class="fc" id="L19">		SUCCESS, NOT_FOUND, ERROR</span>
+<span class="fc" id="L19">	public enum BusServiceResult {</span>
+<span class="fc" id="L20">		SUCCESS, NOT_FOUND, ERROR</span>
 	}
 
 	public Bus getBusById(String id) {
-<span class="fc" id="L23">		return busRepository.findById(id).orElse(null);</span>
+<span class="fc" id="L24">		return busRepository.findById(id).orElse(null);</span>
 	}
 
-	public List&lt;Bus&gt; getAllBuses() {
-<span class="fc" id="L27">		return busRepository.findAll();</span>
+	public Set&lt;Bus&gt; getAllBuses() {
+<span class="fc" id="L28">		return new HashSet&lt;Bus&gt;(busRepository.findAll());</span>
 	}
 
 	public BusServiceResult createBus(Bus bus) {
-<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (!busRepository.existsById(bus.getLicensePlate())) {</span>
-<span class="fc" id="L32">			busRepository.save(bus);</span>
-<span class="fc" id="L33">			return BusServiceResult.SUCCESS;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (!busRepository.existsById(bus.getLicensePlate())) {</span>
+<span class="fc" id="L33">			busRepository.save(bus);</span>
+<span class="fc" id="L34">			return BusServiceResult.SUCCESS;</span>
 		}
-<span class="fc" id="L35">		return BusServiceResult.ERROR;</span>
+<span class="fc" id="L36">		return BusServiceResult.ERROR;</span>
 	}
 
 	public BusServiceResult updateBus(Bus bus) {
-<span class="fc" id="L39">	    return busRepository.findById(bus.getLicensePlate()).map(existingBus -&gt; {</span>
-<span class="fc" id="L40">	        boolean updated = false;</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">	        if (existingBus.getCapacity() != bus.getCapacity()) {</span>
-<span class="fc" id="L42">	            existingBus.setCapacity(bus.getCapacity());</span>
-<span class="fc" id="L43">	            updated = true;</span>
+<span class="fc" id="L40">	    return busRepository.findById(bus.getLicensePlate()).map(existingBus -&gt; {</span>
+<span class="fc" id="L41">	        boolean updated = false;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">	        if (existingBus.getCapacity() != bus.getCapacity()) {</span>
+<span class="fc" id="L43">	            existingBus.setCapacity(bus.getCapacity());</span>
+<span class="fc" id="L44">	            updated = true;</span>
 	        }
-<span class="fc bfc" id="L45" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getMake(), bus.getMake())) {</span>
-<span class="fc" id="L46">	            existingBus.setMake(bus.getMake());</span>
-<span class="fc" id="L47">	            updated = true;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getMake(), bus.getMake())) {</span>
+<span class="fc" id="L47">	            existingBus.setMake(bus.getMake());</span>
+<span class="fc" id="L48">	            updated = true;</span>
 	        }
-<span class="fc bfc" id="L49" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getModel(), bus.getModel())) {</span>
-<span class="fc" id="L50">	            existingBus.setModel(bus.getModel());</span>
-<span class="fc" id="L51">	            updated = true;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getModel(), bus.getModel())) {</span>
+<span class="fc" id="L51">	            existingBus.setModel(bus.getModel());</span>
+<span class="fc" id="L52">	            updated = true;</span>
 	        }
-<span class="fc bfc" id="L53" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getRoutes(), bus.getRoutes())) {</span>
-<span class="fc" id="L54">	            existingBus.setRoutes(bus.getRoutes());</span>
-<span class="fc" id="L55">	            updated = true;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">	        if (!Objects.equals(existingBus.getRoutes(), bus.getRoutes())) {</span>
+<span class="fc" id="L55">	            existingBus.setRoutes(bus.getRoutes());</span>
+<span class="fc" id="L56">	            updated = true;</span>
 	        }
-<span class="fc bfc" id="L57" title="All 2 branches covered.">	        if (updated) {</span>
-<span class="fc" id="L58">	            busRepository.save(existingBus);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">	        if (updated) {</span>
+<span class="fc" id="L59">	            busRepository.save(existingBus);</span>
 	        }
-<span class="fc" id="L60">	        return BusServiceResult.SUCCESS;</span>
-<span class="fc" id="L61">	    }).orElse(BusServiceResult.NOT_FOUND);</span>
+<span class="fc" id="L61">	        return BusServiceResult.SUCCESS;</span>
+<span class="fc" id="L62">	    }).orElse(BusServiceResult.NOT_FOUND);</span>
 	}
 
 
 	public BusServiceResult deleteBus(String licensePlate) {
-<span class="fc bfc" id="L66" title="All 2 branches covered.">		if (busRepository.existsById(licensePlate)) {</span>
-<span class="fc" id="L67">			busRepository.deleteById(licensePlate);</span>
-<span class="fc" id="L68">			return BusServiceResult.SUCCESS;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (busRepository.existsById(licensePlate)) {</span>
+<span class="fc" id="L68">			busRepository.deleteById(licensePlate);</span>
+<span class="fc" id="L69">			return BusServiceResult.SUCCESS;</span>
 		}
-<span class="fc" id="L70">		return BusServiceResult.NOT_FOUND;</span>
+<span class="fc" id="L71">		return BusServiceResult.NOT_FOUND;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -6,55 +6,92 @@ import org.springframework.web.bind.annotation.*;
 import com.RouteBus.server.model.Station;
 import com.RouteBus.server.service.StationService;
 
-import java.util.List;
+import java.util.Set;
 
+/**
+ * REST controller for managing Station entities.
+ */
 @RestController
 @RequestMapping(&quot;/Station&quot;)
 public class StationRestController {
     private final StationService stationService;
 
-<span class="fc" id="L16">    public StationRestController(StationService StationService) {</span>
-<span class="fc" id="L17">        this.stationService = StationService;</span>
-<span class="fc" id="L18">    }</span>
+    /**
+     * Constructor for StationRestController.
+     *
+     * @param stationService The StationService instance to be used by the controller.
+     */
+<span class="fc" id="L24">    public StationRestController(StationService stationService) {</span>
+<span class="fc" id="L25">        this.stationService = stationService;</span>
+<span class="fc" id="L26">    }</span>
 
+    /**
+     * Endpoint to get all stations.
+     *
+     * @return ResponseEntity containing a Set of Station objects.
+     */
     @GetMapping(&quot;/all&quot;)
-    public List&lt;Station&gt; getAllStationes() {
-<span class="fc" id="L22">        return stationService.getAllStations();</span>
+    public ResponseEntity&lt;Set&lt;Station&gt;&gt; getAllStationes() {
+<span class="fc" id="L35">        return ResponseEntity.ok(stationService.getAllStations());</span>
     }
 
+    /**
+     * Endpoint to get a station by its ID.
+     *
+     * @param name The ID of the station to retrieve.
+     * @return ResponseEntity containing a Station object if found, or ResponseEntity.notFound() if not found.
+     */
     @GetMapping(&quot;/{name}&quot;)
     public ResponseEntity&lt;Station&gt; getStationById(@PathVariable String name) {
-<span class="fc" id="L27">        Station Station = stationService.getStationById(name);</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        return Station != null ? ResponseEntity.ok(Station) : ResponseEntity.notFound().build();</span>
+<span class="fc" id="L46">        Station station = stationService.getStationById(name);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        return station != null ? ResponseEntity.ok(station) : ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to create a new station.
+     *
+     * @param station The Station object to be created.
+     * @return ResponseEntity with a success message if creation is successful, or error message otherwise.
+     */
     @PostMapping(&quot;/create&quot;)
-    public ResponseEntity&lt;String&gt; createStation(@RequestBody Station Station) {
-<span class="fc" id="L33">        StationService.StationServiceResult result = stationService.createStation(Station);</span>
-<span class="fc bfc" id="L34" title="All 3 branches covered.">        switch (result) {</span>
+    public ResponseEntity&lt;String&gt; createStation(@RequestBody Station station) {
+<span class="fc" id="L58">        StationService.StationServiceResult result = stationService.createStation(station);</span>
+<span class="fc bfc" id="L59" title="All 3 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L36">                return ResponseEntity.ok(&quot;Station created successfully.&quot;);</span>
+<span class="fc" id="L61">                return ResponseEntity.ok(&quot;Station created successfully.&quot;);</span>
             case ERROR:
-<span class="fc" id="L38">                return ResponseEntity.badRequest().body(&quot;Failed to create Station.&quot;);</span>
+<span class="fc" id="L63">                return ResponseEntity.badRequest().body(&quot;Failed to create Station.&quot;);</span>
             default:
-<span class="fc" id="L40">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+<span class="fc" id="L65">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
         }
     }
 
+    /**
+     * Endpoint to update an existing station.
+     *
+     * @param station The Station object with updated information.
+     * @return ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise.
+     */
     @PutMapping(&quot;/update&quot;)
-    public ResponseEntity&lt;String&gt; updateStation(@RequestBody Station Station) {
-<span class="fc" id="L46">        StationService.StationServiceResult result = stationService.updateStation(Station);</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        return result == StationService.StationServiceResult.SUCCESS ?</span>
-<span class="fc" id="L48">            ResponseEntity.ok(&quot;Station updated successfully.&quot;) :</span>
-<span class="fc" id="L49">            ResponseEntity.notFound().build();</span>
+    public ResponseEntity&lt;String&gt; updateStation(@RequestBody Station station) {
+<span class="fc" id="L77">        StationService.StationServiceResult result = stationService.updateStation(station);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        return result == StationService.StationServiceResult.SUCCESS ?</span>
+<span class="fc" id="L79">            ResponseEntity.ok(&quot;Station updated successfully.&quot;) :</span>
+<span class="fc" id="L80">            ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to delete a station by its ID.
+     *
+     * @param name The ID of the station to be deleted.
+     * @return ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise.
+     */
     @DeleteMapping(&quot;/delete/{name}&quot;)
     public ResponseEntity&lt;String&gt; deleteStation(@PathVariable String name) {
-<span class="fc" id="L54">        StationService.StationServiceResult result = stationService.deleteStation(name);</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        return result == StationService.StationServiceResult.SUCCESS ?</span>
-<span class="fc" id="L56">            ResponseEntity.ok(&quot;Station deleted successfully.&quot;) :</span>
-<span class="fc" id="L57">            ResponseEntity.notFound().build();</span>
+<span class="fc" id="L91">        StationService.StationServiceResult result = stationService.deleteStation(name);</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        return result == StationService.StationServiceResult.SUCCESS ?</span>
+<span class="fc" id="L93">            ResponseEntity.ok(&quot;Station deleted successfully.&quot;) :</span>
+<span class="fc" id="L94">            ResponseEntity.notFound().build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -4,19 +4,20 @@ import com.RouteBus.server.dao.NationalityRepository;
 import com.RouteBus.server.model.Nationality;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class NationalityService {
 
 	private final NationalityRepository nationalityRepository;
 
-<span class="fc" id="L14">	public NationalityService(NationalityRepository nationalityRepository) {</span>
-<span class="fc" id="L15">		this.nationalityRepository = nationalityRepository;</span>
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L15">	public NationalityService(NationalityRepository nationalityRepository) {</span>
+<span class="fc" id="L16">		this.nationalityRepository = nationalityRepository;</span>
+<span class="fc" id="L17">	}</span>
 
-	public List&lt;Nationality&gt; getAllNationalities() {
-<span class="fc" id="L19">		return nationalityRepository.findAll();</span>
+	public Set&lt;Nationality&gt; getAllNationalities() {
+<span class="fc" id="L20">		return new HashSet&lt;Nationality&gt;(nationalityRepository.findAll());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

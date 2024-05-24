@@ -5,55 +5,92 @@ import com.RouteBus.server.service.BusService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
+/**
+ * REST controller for managing Bus entities.
+ */
 @RestController
 @RequestMapping(&quot;/bus&quot;)
 public class BusRestController {
     private final BusService busService;
 
-<span class="fc" id="L15">    public BusRestController(BusService busService) {</span>
-<span class="fc" id="L16">        this.busService = busService;</span>
-<span class="fc" id="L17">    }</span>
+    /**
+     * Constructor for BusRestController.
+     *
+     * @param busService The BusService instance to be used by the controller.
+     */
+<span class="fc" id="L23">    public BusRestController(BusService busService) {</span>
+<span class="fc" id="L24">        this.busService = busService;</span>
+<span class="fc" id="L25">    }</span>
 
+    /**
+     * Endpoint to get all buses.
+     *
+     * @return ResponseEntity containing a Set of Bus objects.
+     */
     @GetMapping(&quot;/all&quot;)
-    public List&lt;Bus&gt; getAllBuses() {
-<span class="fc" id="L21">        return busService.getAllBuses();</span>
+    public ResponseEntity&lt;Set&lt;Bus&gt;&gt; getAllBuses() {
+<span class="fc" id="L34">        return ResponseEntity.ok(busService.getAllBuses());</span>
     }
 
+    /**
+     * Endpoint to get a bus by its license plate.
+     *
+     * @param licensePlate The license plate of the bus to retrieve.
+     * @return ResponseEntity containing a Bus object if found, or ResponseEntity.notFound() if not found.
+     */
     @GetMapping(&quot;/{licensePlate}&quot;)
     public ResponseEntity&lt;Bus&gt; getBusById(@PathVariable String licensePlate) {
-<span class="fc" id="L26">        Bus bus = busService.getBusById(licensePlate);</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        return bus != null ? ResponseEntity.ok(bus) : ResponseEntity.notFound().build();</span>
+<span class="fc" id="L45">        Bus bus = busService.getBusById(licensePlate);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        return bus != null ? ResponseEntity.ok(bus) : ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to create a new bus.
+     *
+     * @param bus The Bus object to be created.
+     * @return ResponseEntity with a success message if creation is successful, or error message otherwise.
+     */
     @PostMapping(&quot;/create&quot;)
     public ResponseEntity&lt;String&gt; createBus(@RequestBody Bus bus) {
-<span class="fc" id="L32">        BusService.BusServiceResult result = busService.createBus(bus);</span>
-<span class="fc bfc" id="L33" title="All 3 branches covered.">        switch (result) {</span>
+<span class="fc" id="L57">        BusService.BusServiceResult result = busService.createBus(bus);</span>
+<span class="fc bfc" id="L58" title="All 3 branches covered.">        switch (result) {</span>
             case SUCCESS:
-<span class="fc" id="L35">                return ResponseEntity.ok(&quot;Bus created successfully.&quot;);</span>
+<span class="fc" id="L60">                return ResponseEntity.ok(&quot;Bus created successfully.&quot;);</span>
             case ERROR:
-<span class="fc" id="L37">                return ResponseEntity.badRequest().body(&quot;Failed to create bus.&quot;);</span>
+<span class="fc" id="L62">                return ResponseEntity.badRequest().body(&quot;Failed to create bus.&quot;);</span>
             default:
-<span class="fc" id="L39">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
+<span class="fc" id="L64">                return ResponseEntity.internalServerError().body(&quot;Internal server error.&quot;);</span>
         }
     }
 
+    /**
+     * Endpoint to update an existing bus.
+     *
+     * @param bus The Bus object with updated information.
+     * @return ResponseEntity with a success message if update is successful, or ResponseEntity.notFound() otherwise.
+     */
     @PutMapping(&quot;/update&quot;)
     public ResponseEntity&lt;String&gt; updateBus(@RequestBody Bus bus) {
-<span class="fc" id="L45">        BusService.BusServiceResult result = busService.updateBus(bus);</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        return result == BusService.BusServiceResult.SUCCESS ?</span>
-<span class="fc" id="L47">            ResponseEntity.ok(&quot;Bus updated successfully.&quot;) :</span>
-<span class="fc" id="L48">            ResponseEntity.notFound().build();</span>
+<span class="fc" id="L76">        BusService.BusServiceResult result = busService.updateBus(bus);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        return result == BusService.BusServiceResult.SUCCESS ?</span>
+<span class="fc" id="L78">                ResponseEntity.ok(&quot;Bus updated successfully.&quot;) :</span>
+<span class="fc" id="L79">                ResponseEntity.notFound().build();</span>
     }
 
+    /**
+     * Endpoint to delete a bus by its license plate.
+     *
+     * @param licensePlate The license plate of the bus to be deleted.
+     * @return ResponseEntity with a success message if deletion is successful, or ResponseEntity.notFound() otherwise.
+     */
     @DeleteMapping(&quot;/delete/{licensePlate}&quot;)
     public ResponseEntity&lt;String&gt; deleteBus(@PathVariable String licensePlate) {
-<span class="fc" id="L53">        BusService.BusServiceResult result = busService.deleteBus(licensePlate);</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        return result == BusService.BusServiceResult.SUCCESS ?</span>
-<span class="fc" id="L55">            ResponseEntity.ok(&quot;Bus deleted successfully.&quot;) :</span>
-<span class="fc" id="L56">            ResponseEntity.notFound().build();</span>
+<span class="fc" id="L90">        BusService.BusServiceResult result = busService.deleteBus(licensePlate);</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        return result == BusService.BusServiceResult.SUCCESS ?</span>
+<span class="fc" id="L92">                ResponseEntity.ok(&quot;Bus deleted successfully.&quot;) :</span>
+<span class="fc" id="L93">                ResponseEntity.notFound().build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -144,7 +144,6 @@ public class UserTest {
         logger.debug("Test testEqualsAndHashCode passed successfully.");
     }
 
-    
     @Test
     public void testToString() {
         String expectedString = "User{" +

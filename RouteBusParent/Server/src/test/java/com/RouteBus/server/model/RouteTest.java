@@ -25,12 +25,15 @@ public class RouteTest {
     private Set<Station> mockStations;
     @Mock
     private Set<Bus> mockBuses;
+    @Mock
+    private Set<Schedule> mockSchedules;
 
     @Before
     public void setUp() {
         route = new Route("Route A", "Start Point", "End Point", 120.5);
         route.setStations(mockStations);
         route.setBuses(mockBuses);
+        route.setSchedules(mockSchedules);
     }
 
     @Test
@@ -87,6 +90,14 @@ public class RouteTest {
         logger.debug("Test testSetAndGetBuses passed successfully.");
     }
     
+    @Test
+    public void testSetAndGetSchedules() {
+        Set<Schedule> newSchedules = new HashSet<>();
+        route.setSchedules(newSchedules);
+        assertEquals(newSchedules, route.getSchedules());
+        logger.debug("Test testSetAndGetSchedules passed successfully.");
+    }
+
     @Test
     public void testEqualsAndHashCode() {
         Route route1 = new Route("Route A", "Start Point", "End Point", 120.5);
